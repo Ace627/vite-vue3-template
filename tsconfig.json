@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    // 设定编译后的 JavaScript 文件的 ECMAScript 目标版本
+    "target": "ES2020",
+    // 是否将 class 声明中的字段语义从 Set 变更到 Object.defineProperty
+    "useDefineForClassFields": true,
+    // 设定编译后的 JavaScript 文件使用的模块化方案
+    "module": "ESNext",
+    // 编译过程中需要引入的库文件的列表
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "skipLibCheck": true,
+    // 模块解析策略，是指编译器在查找导入模块内容时所遵循的流程
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    // 是否允许引入 JSON 文件
+    "resolveJsonModule": true,
+    // isolatedModules 设置为 true 时，如果某个 ts 文件中没有一个 import || export 时，
+    // TypeScript 则认为这个模块不是一个 ES Module 模块，它被认为是一个全局的脚本，
+    "isolatedModules": true,
+    // 模块加载兼容模式,可以使用 import from 语法导入 commonJS 模块
+    "esModuleInterop": true,
+    // 是否移除编译后的 JavaScript 文件的注释
+    "removeComments": true,
+    // 是否不生成打包后的 JavaScript 文件
+    "noEmit": true,
+    // 支持 jsx 语法
+    "jsx": "preserve",
+    // 要包含的类型声明文件名列表
+    "types": ["node"],
+    // 解析非相对模块名的基准目录
+    "baseUrl": ".",
+    // 模块名到基于 baseUrl 的路径映射的列表
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    // 启用所有严格类型检查选项。
+    // 启用 --strict 相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict，
+    // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  // 定义希望被编译的文件所在的目录 ** 代表任意目录 * 代表任意文件
+  "include": ["src/**/*.ts", "types/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  // 指定工程引用依赖
+  // 在项目开发中，有时候为了方便将前端项目和后端 node 项目放在同一个目录下开发，两个项目依赖同一个配置文件和通用文件
+  // 但我们希望前后端项目进行灵活的分别打包
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

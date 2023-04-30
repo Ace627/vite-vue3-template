@@ -1,0 +1,49 @@
+/* 使用更直观的盒模型（box-sizing） */
+*, *::before, *::after {
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* 取消默认的内外边距 margin padding */
+body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ol, ul , li, p, fieldset, legend, header, footer, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+/* 新布局元素兼容旧版本浏览器 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* 允许通过百分比设置应用的高度 */
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased; /* 优化 text 的渲染平滑度 */
+}
+
+/* 去除所有项目符号标识 */
+li {
+  list-style: none;
+}
+
+/* 去除超链接默认下划线 */
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* 给超链接添加一个默认的 hover 颜色 */
+a:hover {
+  color: #1ba784;
+}
+
+/* 去除图片与容器底部的留白 更合理的多媒体默认展示方式 */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button, input {
+  outline: none;
+}
