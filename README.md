@@ -20,3 +20,12 @@ npm run dev
 ## 技术选型
 
 Vue3、TypeScript、Axios、VueRouter4、Pinia、NProgress、Sass 等
+
+## 内置功能
+
+- 设置 @ 指向 src 目录
+- 对 axios 进行的的简易二次封装
+- 对 Vue、VueRouter、Pinia 等库的 api 可以免引入使用
+- 对 Pinia 模块的自动化引入 src/store/modules 下 useXxx 格式的文件
+- 浏览器默认样式的重置 reset.scss
+- 打包后自动移除 console 与 debugger
