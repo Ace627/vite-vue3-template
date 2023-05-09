@@ -1,4 +1,4 @@
-# Vite + Vue2 项目骨架
+# Vite + Vue3 + TypeScript 项目骨架
 
 ## 项目拉取
 
@@ -25,6 +25,7 @@ Vue3、TypeScript、Axios、VueRouter4、Pinia、NProgress、Sass 等
 
 - 设置 @ 指向 src 目录
 - 对 axios 进行的的简易二次封装
+- 内置常用的校验方法 utils/validate.ts
 - 对 Vue、VueRouter、Pinia 等库的 api 可以免引入使用
 - 对 Pinia 模块的自动化引入 src/store/modules 下 useXxx 格式的文件
 - 浏览器默认样式的重置 reset.scss
