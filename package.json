@@ -1,6 +1,7 @@
 {
   "name": "vite-vue3-template",
   "private": true,
+  "packageManager": "npm@8.19.4",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
