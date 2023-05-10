@@ -9,8 +9,7 @@ git clone https://github.com/Ace627/vite-vue3-template.git
 # 进入项目目录
 cd vite-vue3-template
 
-# 安装依赖
-# 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
+# 安装依赖 | 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug
 npm install
 
 # 启动服务
@@ -34,3 +33,4 @@ Vue3、TypeScript、Axios、VueRouter4、Pinia、NProgress、Sass 等
 ## 可选功能
 
 - [Element Plus 自动按需导入](https://zhuanlan.zhihu.com/p/611238863)
+- [如何实现 Pinia 的持久化存储](https://zhuanlan.zhihu.com/p/614302570)
