@@ -30,3 +30,7 @@ Vue3、TypeScript、Axios、VueRouter4、Pinia、NProgress、Sass 等
 - 对 Pinia 模块的自动化引入 src/store/modules 下 useXxx 格式的文件
 - 浏览器默认样式的重置 reset.scss
 - 打包后自动移除 console 与 debugger
+
+## 可选功能
+
+- [Element Plus 自动按需导入](https://zhuanlan.zhihu.com/p/611238863)
