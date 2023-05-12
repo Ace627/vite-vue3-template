@@ -20,4 +20,4 @@ export const isIPv4 = (ip: string): boolean => /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\
 export const isEmptyObject = (obj: object): boolean => Object.keys(obj).length === 0
 
 // 判断浏览器是否支持 webp 格式图片
-export const isSupportWebp = (): boolean => !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0
+export const isSupportWebp = (): boolean => !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
