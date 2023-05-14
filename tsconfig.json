@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
     // 设定编译后的 JavaScript 文件的 ECMAScript 目标版本
-    "target": "ES2020",
+    "target": "ESNext",
     // 是否将 class 声明中的字段语义从 Set 变更到 Object.defineProperty
     "useDefineForClassFields": true,
     // 设定编译后的 JavaScript 文件使用的模块化方案
     "module": "ESNext",
     // 编译过程中需要引入的库文件的列表
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     // 忽略所有的声明文件（ *.d.ts）的类型检查
     "skipLibCheck": true,
     // 模块解析策略，是指编译器在查找导入模块内容时所遵循的流程
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
+    // 是否允许 TypeScript 文件使用特定于 TypeScript 的扩展名（如 .ts、.mts 或 .tsx）相互导入
     "allowImportingTsExtensions": true,
     // 是否允许引入 JSON 文件
     "resolveJsonModule": true,
