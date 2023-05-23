@@ -16,3 +16,10 @@ export const deepClone = (source: any): any => {
 export const getRawType = (variable: any): string => {
   return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()
 }
+
+/**
+ * 随机生成十六进制的颜色
+ */
+export const getRandomHexColor = () => {
+  return `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
+}
