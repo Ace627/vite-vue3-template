@@ -9,3 +9,10 @@ export const deepClone = (source: any): any => {
   for (const key in source) target[key] = typeof source[key] === 'object' ? deepClone(source[key]) : source[key]
   return target
 }
+
+/**
+ * 获取变量的真实类型
+ */
+export const getRawType = (variable: any): string => {
+  return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()
+}
