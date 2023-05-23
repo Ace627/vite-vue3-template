@@ -18,8 +18,16 @@ export const getRawType = (variable: any): string => {
 }
 
 /**
- * 随机生成十六进制的颜色
+ * 随机生成 Hex 格式的颜色
  */
-export const getRandomHexColor = () => {
+export const getRandomHexColor = (): string => {
   return `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
+}
+
+/**
+ * 随机生成 RGB 格式的颜色
+ */
+export const getRandomRgbColor = (): string => {
+  const random = (): number => Math.floor(Math.random() * 256)
+  return `rgb(${random()}, ${random()}, ${random()})`
 }
