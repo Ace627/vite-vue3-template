@@ -1,6 +1,13 @@
 <template>
   <div class="app-container">
-    <div id="star-five"></div>
+    <div class="svg-icon-container">
+      <h2>Svg Icon 测试</h2>
+      <div>
+        <SvgIcon name="home" :size="40" />
+        <SvgIcon name="cart-empty" :size="40" color="blue" />
+        <SvgIcon name="phone" :size="40" color="#f00" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,47 +15,23 @@
 
 <style lang="scss" scoped>
 .app-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
-#star-five {
-  cursor: pointer;
-  width: 600px;
-  height: 600px;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  animation: run 6s infinite linear;
-}
-
-@keyframes run {
-  0% {
-    background-color: red;
-    transform: rotate(0deg);
-  }
-  10% {
-    background-color: orangered;
-  }
-  20% {
-    background-color: yellow;
-  }
-  30% {
-    background-color: green;
-  }
-  40% {
-    background-color: cyan;
-  }
-  50% {
-    background-color: blue;
-  }
-  60% {
-    background-color: purple;
-  }
-  100% {
-    background-color: red;
-    transform: rotate(360deg);
+.svg-icon-container {
+  width: 90%;
+  margin: 16px;
+  padding: 16px;
+  border: 2px solid #ff5a5a;
+  div {
+    display: flex;
+    .svg-icon {
+      margin: 6px;
+      border: 2px solid #ff5a5a;
+    }
   }
 }
 </style>

@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite' // 使用 defineConfig 工具函数
 import vue from '@vitejs/plugin-vue' // 提供 Vue 3 单文件组件支持
 import AutoImport from 'unplugin-auto-import/vite'
 import { compression } from 'vite-plugin-compression2' // 提供打包为 gzip 的压缩文件支持
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons' // 集成对 SVG 图标的支持
 
 const pathResolve = (path: string): string => resolve(process.cwd(), path)
 
@@ -19,6 +20,10 @@ export default defineConfig(({ command, mode }) => {
         imports: ['vue', 'vue-router', 'pinia'], // 自动导入 vue、vue-router、Pinia 相关函数
         dts: 'types/auto-import.d.ts',
         dirs: ['src/store/modules', 'src/hooks'], // 配置其它需要导入的文件目录
+      }),
+      createSvgIconsPlugin({
+        iconDirs: [pathResolve('src/assets/icons')], // 指定图标文件夹
+        symbolId: 'icon-[dir]-[name]', // 指定symbolId格式
       }),
       compression({
         algorithm: 'gzip', // 压缩算法 gzip | brotliCompress | deflate | deflateRaw
