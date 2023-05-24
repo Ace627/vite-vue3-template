@@ -4,6 +4,8 @@ import vue from '@vitejs/plugin-vue' // 提供 Vue 3 单文件组件支持
 import AutoImport from 'unplugin-auto-import/vite'
 import { compression } from 'vite-plugin-compression2' // 提供打包为 gzip 的压缩文件支持
 
+const pathResolve = (path: string): string => resolve(process.cwd(), path)
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
@@ -34,7 +36,16 @@ export default defineConfig(({ command, mode }) => {
 
     resolve: {
       alias: {
-        '@': resolve(process.cwd(), 'src'), // 设置 `@` 指向 `src` 目录
+        '@': pathResolve('src'), // 设置 `@` 指向 `src` 目录
+        '#': pathResolve('types'), // 设置 `#` 指向 `types` 目录
+      },
+    },
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/variables.scss";`,
+        },
       },
     },
 

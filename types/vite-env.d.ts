@@ -1,5 +1,11 @@
+declare module '*.module.scss' {
+  const classes: ScssModuleClasses
+  export default classes
+}
+
 /// <reference types="vite/client" />
 
+// 解决 TypeScript 无法识别 .vue 文件的异常
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
@@ -10,7 +16,6 @@ declare module '*.vue' {
 interface ImportMetaEnv {
   readonly VITE_BASE_URL: string
   readonly VITE_BASE_API: string
-  // 更多环境变量...
 }
 interface ImportMeta {
   readonly env: ImportMetaEnv
