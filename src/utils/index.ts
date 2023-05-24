@@ -31,3 +31,10 @@ export const getRandomRgbColor = (): string => {
   const random = (): number => Math.floor(Math.random() * 256)
   return `rgb(${random()}, ${random()}, ${random()})`
 }
+
+/**
+ * 反转字符串
+ */
+export const reverseString = (str: string): string => {
+  return str.split('').reverse().join('')
+}
