@@ -33,7 +33,8 @@
     "baseUrl": ".",
     // 模块名到基于 baseUrl 的路径映射的列表
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
     },
     // 启用所有严格类型检查选项。
     // 启用 --strict 相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict，

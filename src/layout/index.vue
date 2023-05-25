@@ -2,9 +2,7 @@
   <div class="app-container"></div>
 </template>
 
-<script setup lang="ts">
-console.log(import.meta.env)
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .app-container {
