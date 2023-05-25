@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import type { RouteRecordRaw } from 'vue-router'
 
 /* Base Layout */
-import Layout from '@/layout/index.vue'
+const Layout = () => import('@/layout/index.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,8 +12,11 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
+// 设定当前路由的模式
+const IS_HASH_MODE = import.meta.env.VITE_ROUTER_MODE === 'hash'
+const RouterMode = IS_HASH_MODE ? createWebHashHistory() : createWebHashHistory()
+
 export default createRouter({
-  // history: createWebHistory(), // 路径中无 # 号，但需要服务器提供支持
-  history: createWebHashHistory(),
+  history: RouterMode,
   routes,
 })

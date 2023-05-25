@@ -15,7 +15,8 @@ declare module '*.vue' {
 // 方便在代码中获取这些以 VITE_ 为前缀的用户自定义环境变量的 TypeScript 智能提示
 interface ImportMetaEnv {
   readonly VITE_BASE_URL: string
-  readonly VITE_BASE_API: string
+  readonly VITE_BASE_API: string // 后端接口公共路径
+  readonly VITE_ROUTER_MODE: 'hash' | 'history' // VueRouter 的路由模式 hash | history
 }
 interface ImportMeta {
   readonly env: ImportMetaEnv

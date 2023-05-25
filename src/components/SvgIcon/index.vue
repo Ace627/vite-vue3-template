@@ -1,21 +1,21 @@
 <template>
-  <svg :style="{ width: `${size}px`, height: `${size}px` }" class="svg-icon">
-    <use :href="`#icon-${name}`" :fill="color"></use>
+  <svg class="svg-icon" aria-hidden>
+    <use :href="`#icon-${name}`"></use>
   </svg>
 </template>
 
 <script setup lang="ts">
 defineProps({
   name: { type: String, required: true },
-  color: { type: String, default: '' },
-  size: { type: Number, default: 20 },
 })
 </script>
 
 <style lang="scss" scoped>
 .svg-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  overflow: hidden;
 }
 </style>

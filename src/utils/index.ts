@@ -13,16 +13,12 @@ export const deepClone = (source: any): any => {
 /**
  * 获取变量的真实类型
  */
-export const getRawType = (variable: any): string => {
-  return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()
-}
+export const getRawType = (variable: any): string => Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()
 
 /**
  * 随机生成 Hex 格式的颜色
  */
-export const getRandomHexColor = (): string => {
-  return `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
-}
+export const getRandomHexColor = (): string => `#${Math.floor(Math.random() * 0xffffff).toString(16)}`
 
 /**
  * 随机生成 RGB 格式的颜色
@@ -35,6 +31,4 @@ export const getRandomRgbColor = (): string => {
 /**
  * 反转字符串
  */
-export const reverseString = (str: string): string => {
-  return str.split('').reverse().join('')
-}
+export const reverseString = (str: string): string => str.split('').reverse().join('')
