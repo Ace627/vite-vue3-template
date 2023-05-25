@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
 
 // 设定当前路由的模式
 const IS_HASH_MODE = import.meta.env.VITE_ROUTER_MODE === 'hash'
-const RouterMode = IS_HASH_MODE ? createWebHashHistory() : createWebHashHistory()
+const RouterMode = IS_HASH_MODE ? createWebHashHistory() : createWebHistory()
 
 export default createRouter({
   history: RouterMode,
