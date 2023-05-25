@@ -11,7 +11,7 @@ const pathResolve = (path: string): string => resolve(process.cwd(), path)
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const { VITE_BASE_API } = loadEnv(mode, process.cwd(), '')
+  const { VITE_BASE_API, VITE_DROP_CONSOLE } = loadEnv(mode, process.cwd(), '')
 
   return {
     plugins: [
@@ -65,7 +65,7 @@ export default defineConfig(({ command, mode }) => {
       minify: 'terser', // 指定使用哪种混淆器。默认为 esbuild，它比 terser 快 20-40 倍，压缩率只差 1%-2%
       terserOptions: {
         compress: {
-          drop_console: true, // 正式环境移除 console
+          drop_console: VITE_DROP_CONSOLE === '1', // 正式环境移除 console
           drop_debugger: true, // 正式环境移除 debugger
         },
       },
