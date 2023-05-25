@@ -29,6 +29,32 @@ export const getRandomRgbColor = (): string => {
 }
 
 /**
+ * RGB 颜色值转换为 十六进制颜色值； r g b 需要在 [0, 255] 范围内
+ */
+export const rgbToHex = (r: number, g: number, b: number): string => {
+  const hex = ((r << 16) | (g << 8) | b).toString(16)
+  return '#' + new Array(Math.abs(hex.length - 7)).join('0') + hex
+}
+
+/**
+ * 十六进制颜色值 转换为  RGB 颜色值
+ */
+export const hexToRgb = (hex: string): string => {
+  let sHex = hex.toLowerCase()
+  if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(hex)) {
+    if (sHex.length === 4) {
+      let sColorNew = '#'
+      for (let i = 1; i < 4; i += 1) sColorNew += sHex.slice(i, i + 1).concat(sHex.slice(i, i + 1))
+      sHex = sColorNew
+    }
+    const sColorChange: number[] = []
+    for (let i = 1; i < 7; i += 2) sColorChange.push(parseInt('0x' + sHex.slice(i, i + 2)))
+    return 'RGB(' + sColorChange.join(',') + ')'
+  }
+  return sHex
+}
+
+/**
  * 反转字符串
  */
 export const reverseString = (str: string): string => str.split('').reverse().join('')
