@@ -11,13 +11,13 @@ export const isQQ = (qq: string): boolean => /^[1-9]\d{4,10}$/.test(qq)
 export const isHexColor = (color: string): boolean => /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color)
 
 // 校验是否为外链
-export const isExternal = (path: string): boolean => /^(https?:|mailto:|tel:)/.test(path)
+export const isExternal = (url: string): boolean => /^(https?:|mailto:|tel:)/.test(url)
 
 // 检验是否为 IPv4 地址
 export const isIPv4 = (ip: string): boolean => /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/.test(ip)
 
 // 校验对象是否为空
-export const isEmptyObject = (obj: object): boolean => Object.keys(obj).length === 0
+export const isEmptyObject = (obj: Record<string, any>): boolean => Object.keys(obj).length === 0
 
 // 判断浏览器是否支持 webp 格式图片
 export const isSupportWebp = (): boolean => !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0

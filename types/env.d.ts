@@ -3,19 +3,15 @@
  * import.meta.env 的类型声明文件
  */
 interface ImportMetaEnv {
-  // 应用标题
-  VITE_APP_TITLE: string
+  VITE_APP_TITLE: string // 应用标题
 
-  VITE_BASE_URL: string
+  VITE_BASE_URL: string // 接口地址
 
-  // 后端接口公共路径
-  VITE_BASE_API: string
+  VITE_BASE_API: string // 后端接口公共路径
 
-  // VueRouter 的路由模式 hash | history
-  VITE_ROUTER_MODE: 'hash' | 'history'
+  VITE_ROUTER_MODE: string // VueRouter 的路由模式 hash | history
 
-  // 是否移除打包后的 conole.log 日志打印
-  VITE_DROP_CONSOLE: '0' | '1'
+  VITE_DROP_CONSOLE: string // 是否移除打包后的 conole.log 日志打印
 }
 
 interface ImportMeta {
