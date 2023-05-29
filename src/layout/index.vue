@@ -1,5 +1,7 @@
 <template>
-  <div class="app-container"></div>
+  <div class="app-container">
+    <SvgIcon name="phone" />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
