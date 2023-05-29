@@ -21,3 +21,6 @@ export const isEmptyObject = (obj: Record<string, any>): boolean => Object.keys(
 
 // 判断浏览器是否支持 webp 格式图片
 export const isSupportWebp = (): boolean => !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
+
+// 校验是否是中文汉字
+export const isChinese = (str: string): boolean => /[\u0391-\uFFE5A-Za-z]+$/.test(str)
