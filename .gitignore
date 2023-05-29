@@ -7,7 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# 会随着 npm scripts 自动生成
 types/auto-import.d.ts
+types/components.d.ts
 
 node_modules
 dist
