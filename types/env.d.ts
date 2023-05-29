@@ -3,6 +3,9 @@
  * import.meta.env 的类型声明文件
  */
 interface ImportMetaEnv {
+  // 应用标题
+  VITE_APP_TITLE: string
+
   VITE_BASE_URL: string
 
   // 后端接口公共路径

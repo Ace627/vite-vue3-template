@@ -19,4 +19,6 @@ const RouterMode = IS_HASH_MODE ? createWebHashHistory() : createWebHistory()
 export default createRouter({
   history: RouterMode,
   routes,
+  // 刷新时，重置滚动条的位置
+  scrollBehavior: () => ({ left: 0, top: 0 }),
 })
