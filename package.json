@@ -15,7 +15,8 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.3",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.1"
+    "vue-qr": "^4.0.9",
+    "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
