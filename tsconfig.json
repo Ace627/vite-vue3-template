@@ -49,7 +49,7 @@
     "noFallthroughCasesInSwitch": true
   },
   // 定义希望被编译的文件所在的目录 ** 代表任意目录 * 代表任意文件
-  "include": ["src/**/*.ts", "types/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "types/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   // 指定工程引用依赖
   // 在项目开发中，有时候为了方便将前端项目和后端 node 项目放在同一个目录下开发，两个项目依赖同一个配置文件和通用文件
   // 但我们希望前后端项目进行灵活的分别打包
