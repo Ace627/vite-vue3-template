@@ -19,11 +19,11 @@ export default defineConfig(({ command, mode }) => {
       vue(),
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'], // 自动导入 vue、vue-router、Pinia 相关函数
-        dts: 'types/auto-import.d.ts',
+        dts: 'types/auto-generate/auto-import.d.ts',
         dirs: ['src/store/modules', 'src/hooks'], // 配置其它需要导入的文件目录
       }),
       Components({
-        dts: 'types/components.d.ts',
+        dts: 'types/auto-generate/components.d.ts',
         dirs: ['src/components'],
       }),
       createSvgIconsPlugin({
