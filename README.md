@@ -35,3 +35,4 @@ Vue3、TypeScript、Axios、VueRouter4、Pinia、NProgress、Sass 等
 
 - [Element Plus 自动按需导入](https://zhuanlan.zhihu.com/p/611238863)
 - [如何实现 Pinia 的持久化存储](https://zhuanlan.zhihu.com/p/614302570)
+- [一款轻量级的时间处理库 Dayjs](https://dayjs.fenxianglu.cn)
