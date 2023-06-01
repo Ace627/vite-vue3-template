@@ -6,5 +6,6 @@
   "arrowParens": "avoid",
   "singleQuote": true,
   "bracketSpacing": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "htmlWhitespaceSensitivity": "ignore"
 }
