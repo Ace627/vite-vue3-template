@@ -4,3 +4,26 @@
 body {
   background-color: #f1f1f1;
 }
+
+// 同时解决高度塌陷和外边距折叠的问题
+.clearFix::before,
+.clearFix::after {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+// 文本不允许选中
+.no-select {
+  user-select: none;
+}
+
+// 鼠标样式显示小手
+.pointer {
+  cursor: pointer;
+}
+
+// 点击无效
+.click--invalid {
+  pointer-events: none;
+}
