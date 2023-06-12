@@ -12,9 +12,12 @@ const pathResolve = (path: string): string => resolve(process.cwd(), path)
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const { VITE_BASE_API, VITE_DROP_CONSOLE, VITE_OUT_DIR } = loadEnv(mode, process.cwd(), '')
+  const ENV_CONFIG = loadEnv(mode, process.cwd(), 'VITE_') as unknown as ImportMetaEnv
+  console.log('ENV_CONFIG: ', ENV_CONFIG)
 
   return {
+    // 部署应用包时的基本 URL
+    base: ENV_CONFIG.VITE_PUBLIC_PATH,
     plugins: [
       vue(),
       AutoImport({
@@ -61,7 +64,7 @@ export default defineConfig(({ command, mode }) => {
     },
 
     build: {
-      outDir: VITE_OUT_DIR, // 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整
+      outDir: ENV_CONFIG.VITE_OUTPUT_DIR, // 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整
       assetsDir: 'assets', // 指定生成静态资源的存放目录。默认值为 assets ，可根据需要进行调整
       assetsInlineLimit: 4096, // 图片转 base64 编码的阈值。为防止过多的 http 请求，Vite 会将小于此阈值的图片转为 base64 格式
       chunkSizeWarningLimit: 500, // 规定触发警告的 chunk 大小。（以 kbs 为单位）
@@ -71,7 +74,7 @@ export default defineConfig(({ command, mode }) => {
       minify: 'terser', // 指定使用哪种混淆器。默认为 esbuild，它比 terser 快 20-40 倍，压缩率只差 1%-2%
       terserOptions: {
         compress: {
-          drop_console: VITE_DROP_CONSOLE === '1', // 正式环境移除 console
+          drop_console: ENV_CONFIG.VITE_DROP_CONSOLE === '1', // 正式环境移除 console
           drop_debugger: true, // 正式环境移除 debugger
         },
       },
