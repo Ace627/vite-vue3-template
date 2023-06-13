@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1>Vite、TypeScript、Vue3 骨架模板</h1>
+    <h1>天子呼来不上船，自称臣是酒中仙。</h1>
   </div>
 </template>
 
