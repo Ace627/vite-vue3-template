@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1>天子呼来不上船，自称臣是酒中仙。</h1>
+    <h1 class="text-center">天子呼来不上船，自称臣是酒中仙。</h1>
   </div>
 </template>
 

@@ -1,0 +1,33 @@
+.w-screen {
+  width: 100vh;
+}
+.h-screen {
+  height: 100vh;
+}
+
+/* ---------------------------------- text ---------------------------------- */
+/* 文本靠右对齐 */
+.text-right {
+  text-align: right;
+}
+/* 文本居中对齐 */
+.text-center {
+  text-align: center;
+}
+
+/* ---------------------------------- float --------------------------------- */
+/* 左浮动 */
+.fl {
+  float: left;
+}
+/* 右浮动 */
+.fr {
+  float: right;
+}
+/* 同时解决高度塌陷和外边距折叠的问题 */
+/* prettier-ignore */
+.clearFix::before, .clearFix::after {
+  display: table;
+  content: '';
+  clear: both;
+}
