@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import autoprefixer from 'autoprefixer' // 自动补全 CSS 浏览器前缀，以兼容旧浏览器
 
 /** 路径拼接函数，简化代码 */
 const pathResolve = (path: string): string => resolve(process.cwd(), path)
@@ -56,23 +57,31 @@ export default defineConfig(({ command, mode }) => {
       open: false,
       /** 是否允许跨域 */
       cors: true,
+      /** 反向代理配置（主要是开发时用来解决跨域问题） */
       proxy: {
-        // 字符串简写写法
-        // '/foo': 'http://localhost:4567',
-        //
-        // 选项写法
-        // '/api': {
-        //   target: 'http://jsonplaceholder.typicode.com',
-        //   changeOrigin: true,
-        //   rewrite: path => path.replace(/^\/api/, ''),
-        // },
-        //
-        // 正则表达式写法
-        // '^/fallback/.*': {
-        //   target: 'http://jsonplaceholder.typicode.com',
-        //   changeOrigin: true,
-        //   rewrite: path => path.replace(/^\/fallback/, ''),
-        // },
+        [VITE_ENV.VITE_BASE_API]: {
+          target: VITE_ENV.VITE_BASE_URL,
+          changeOrigin: true,
+        },
+      },
+    },
+
+    css: {
+      postcss: {
+        plugins: [
+          /**
+           * 这里插播一下：为什么有些属性需要添加前缀呢？
+           * 因为 CSS 中有一些属性还没有确定下来，标准规范还没有发布，许多浏览器支持的程度也不同，而且每个浏览器厂商同一个样式支持的写法也不同，
+           * 所以要加前缀来达到各个浏览器兼容，将来统一了规范就不用写前缀了。
+           * last 10 versions 所有主流浏览器最近 10 个版本⽤
+           */
+          autoprefixer({
+            // 声明需要支持的浏览器版本
+            overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8', 'last 10 versions'],
+            // 是否应为网格布局添加 IE 10-11 的前缀
+            grid: true,
+          }),
+        ],
       },
     },
 
