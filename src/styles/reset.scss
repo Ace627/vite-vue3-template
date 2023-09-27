@@ -1,0 +1,113 @@
+/* 使用更直观的盒模型（box-sizing） */
+*, *::before, *::after {
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* 取消默认的内外边距 margin padding */
+body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ol, ul , li, p, fieldset, legend, header, footer, hgroup, menu, nav, section, figcaption, figure, mark, form,
+time, td, th, label, hr, i, strong {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: inherit;
+}
+
+/* 新布局元素兼容旧版本浏览器 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* 允许通过百分比设置应用的高度 */
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased; /* 优化 text 的渲染平滑度 */
+}
+
+/* 解决在移动端时，点击元素会出现阴影的问题 */
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 去除所有项目符号标识 */
+li {
+  list-style: none;
+}
+
+/* 去除超链接默认下划线 */
+a {
+  text-decoration: none;
+}
+
+/* 给超链接添加一个默认的 hover 颜色 */
+a:hover {
+  cursor: pointer;
+}
+
+/* 去除图片与容器底部的留白 更合理的多媒体默认展示方式 */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 去除 input 标签的默认样式 */
+button, input, textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  background-color: transparent;
+}
+
+/* input placeholder 文字的样式 */
+::-webkit-input-placeholder {
+  color: #afbdcc;
+}
+
+/* 禁止文本域手动拖动大小 */
+textarea {
+  resize: none;
+}
+
+/* 解决 chrome 浏览器默认黄色背景问题 */
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+/* 整个滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+/* 滚动条没有滑块的轨道部分 */
+::-webkit-scrollbar-track-piece {
+  border-radius: 6px;
+  background-color: #f5f5f5;
+}
+/* 滚动条上的滚动滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #ccc;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #787878;
+}
+/* 当同时有垂直滚动条和水平滚动条时交汇的部分 */
+::-webkit-scrollbar-corner {
+  background-color: #f5f5f5;
+}
+/* 某些元素的 corner 部分的部分样式(例:textarea 的可拖动按钮) */
+::-webkit-resizer {
+  background-repeat: no-repeat; 
+  background-position: bottom right;
+}

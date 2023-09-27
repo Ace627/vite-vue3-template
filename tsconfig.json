@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    // 设定编译后的 JavaScript 文件的 ECMAScript 目标版本
+    "target": "ES2020",
+    // 是否将 class 声明中的字段语义从 Set 变更到 Object.defineProperty
+    "useDefineForClassFields": true,
+    // 设定编译后的 JavaScript 文件使用的模块化方案
+    "module": "ESNext",
+    // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "skipLibCheck": true,
+
+    // 模块解析策略，是指编译器在查找导入模块内容时所遵循的流程
+    "moduleResolution": "bundler",
+    // 是否允许 TypeScript 文件使用特定于 TypeScript 的扩展名（如 .ts、.mts 或 .tsx）相互导入
+    "allowImportingTsExtensions": true,
+    // 是否允许引入 JSON 文件
+    "resolveJsonModule": true,
+    // isolatedModules 设置为 true 时，如果某个 ts 文件中没有一个 import || export 时，
+    // TypeScript 则认为这个模块不是一个 ES Module 模块，它被认为是一个全局的脚本
+    "isolatedModules": true,
+    // 是否不生成打包后的 JavaScript 文件
+    "noEmit": true,
+    // 支持 jsx 语法
+    "jsx": "preserve",
+    // 要包含的类型声明文件名列表
+    "types": ["vite/client"],
+
+    // 解析非相对模块名的基准目录
+    "baseUrl": "./",
+    // 模块名到基于 baseUrl 的路径映射的列表
+    "paths": {
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
+    },
+
+    // 启用所有严格类型检查选项
+    // 启用 --strict 相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict，
+    // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
+    "strict": true,
+    // 存在无用变量时，是否不进行编译
+    "noUnusedLocals": false,
+    // 存在无用参数时，是否不进行编译
+    "noUnusedParameters": false,
+    // 不允许 switch 表达式中存在 fallthrough case，即如果某个 case 内不存在 break 或 return 关键字，会抛出错误。
+    // 注意：只有当该 case 中存在代码逻辑但是无 break 或 return 时才会抛出错误。如果 case 内无逻辑代码则不会抛出错误。
+    "noFallthroughCasesInSwitch": true
+  },
+
+  // 定义希望被编译的文件所在的目录 ** 代表任意目录 * 代表任意文件
+  "include": ["src/**/*.ts", "types/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

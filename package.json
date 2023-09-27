@@ -1,0 +1,31 @@
+{
+  "name": "vite-vue3-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@8.7.6",
+  "description": "Vite、TypeScript、Vue3 的基础开发模板以及常用配置流程参考记录",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.6",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.0",
+    "@types/nprogress": "^0.2.1",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "sass": "^1.68.0",
+    "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.16.6",
+    "vite": "^4.4.5",
+    "vite-plugin-html": "^3.2.0",
+    "vue-tsc": "^1.8.5"
+  }
+}
