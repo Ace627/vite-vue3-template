@@ -33,7 +33,9 @@ export default defineConfig(({ command, mode }) => {
         // 是否压缩 html
         minify: true,
         // 需要注入 index.html ejs 模版的数据
-        inject: { data: { title: VITE_ENV.VITE_APP_TITLE } },
+        inject: {
+          data: { title: VITE_ENV.VITE_APP_TITLE, buildTime: new Date().toLocaleString() },
+        },
       }),
     ],
 

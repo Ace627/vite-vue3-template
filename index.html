@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%- title %></title>
+    <!-- 注入打包时间，方便查看线上版本是否更新 -->
+    <meta name="build-time" content="<%= buildTime %>" />
+    <title><%= title %></title>
   </head>
   <body>
     <div id="app"></div>
