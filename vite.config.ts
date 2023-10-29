@@ -4,15 +4,19 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import autoprefixer from 'autoprefixer' // 自动补全 CSS 浏览器前缀，以兼容旧浏览器
+import { warpperEnv } from './build'
+
+/** 当前执行 node 命令时文件夹的地址（工作目录） */
+const root: string = process.cwd()
 
 /** 路径拼接函数，简化代码 */
-const pathResolve = (path: string): string => resolve(process.cwd(), path)
+const pathResolve = (path: string): string => resolve(root, path)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const VITE_ENV = loadEnv(mode, process.cwd(), 'VITE_') as unknown as ImportMetaEnv
+  const VITE_ENV: ImportMetaEnv = warpperEnv(loadEnv(mode, root, 'VITE_'))
 
   return {
     // 部署应用包时的基本 URL

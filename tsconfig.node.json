@@ -8,5 +8,5 @@
     // 是否不生成打包后的 JavaScript 文件
     "noEmit": true
   },
-  "include": ["vite.config.ts", "types/vite-env.d.ts"]
+  "include": ["vite.config.ts", "types/vite-env.d.ts", "build/**/*.ts"]
 }
