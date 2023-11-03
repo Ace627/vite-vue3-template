@@ -5,8 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    // 是否不生成打包后的 JavaScript 文件
-    "noEmit": true
+    "noEmit": false
   },
   "include": ["vite.config.ts", "types/vite-env.d.ts", "build/**/*.ts"]
 }

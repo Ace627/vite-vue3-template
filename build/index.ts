@@ -14,6 +14,5 @@ export function warpperEnv(env_config: Record<string, string>): ImportMetaEnv {
       env[env_name] = env_value
     }
   }
-  console.log('env: ', env)
   return env
 }
