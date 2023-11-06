@@ -4,3 +4,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+/** 简化 Record<string, any> 的使用流程 */
+type Recordable<T = any> = Record<string, T>

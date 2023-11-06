@@ -1,8 +1,5 @@
 import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
-import { createHtmlPlugin } from 'vite-plugin-html'
 import autoprefixer from 'autoprefixer' // 自动补全 CSS 浏览器前缀，以兼容旧浏览器
 import { warpperEnv } from './build'
 import { generateVitePlugins } from './build/plugins'
