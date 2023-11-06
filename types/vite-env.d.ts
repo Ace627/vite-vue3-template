@@ -12,7 +12,7 @@ interface ImportMetaEnv {
   VITE_OUTPUT_DIR: string
 
   /** 打包后移除所有的 console、debugger */
-  VITE_DROP_CONSOLE: string
+  VITE_DROP_CONSOLE: boolean
 
   /** 部署应用包时的基本 URL */
   VITE_PUBLIC_PATH: string

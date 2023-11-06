@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import autoprefixer from 'autoprefixer' // 自动补全 CSS 浏览器前缀，以兼容旧浏览器
 import { warpperEnv } from './build'
+import { generateVitePlugins } from './build/plugins'
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd()
@@ -17,31 +18,13 @@ export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
   const VITE_ENV: ImportMetaEnv = warpperEnv(loadEnv(mode, root, 'VITE_'))
+  const isBuild = command === 'build'
 
   return {
     // 部署应用包时的基本 URL
     base: VITE_ENV.VITE_PUBLIC_PATH,
 
-    plugins: [
-      vue({
-        include: [/\.vue$/],
-      }),
-      AutoImport({
-        imports: ['vue', 'pinia', 'vue-router'], // 自动导入 vue、vue-router、Pinia 相关函数
-        dts: 'types/auto-import.d.ts',
-        dirs: ['src/store/modules', 'src/hooks'], // 配置其它需要导入的文件目录
-      }),
-      createHtmlPlugin({
-        // 在这里写 entry 后，你将不需要在 `index.html` 内添加 script 标签，原有标签需要删除
-        entry: 'src/main.ts',
-        // 是否压缩 html
-        minify: true,
-        // 需要注入 index.html ejs 模版的数据
-        inject: {
-          data: { title: VITE_ENV.VITE_APP_TITLE, buildTime: new Date().toLocaleString() },
-        },
-      }),
-    ],
+    plugins: generateVitePlugins(VITE_ENV, isBuild),
 
     resolve: {
       alias: [
