@@ -35,8 +35,8 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   response => {
-    // 关闭响应进度条
-    NProgress.done()
+    NProgress.done() // 关闭响应进度条
+    if (['blob', 'arraybuffer'].includes(response.request.responseType)) return response.data // 二进制数据则直接返回
     return response.data
   },
   (error: any) => {
