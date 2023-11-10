@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
+    <!-- 定义当前 HTML 页面所使用的字符集 -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 针对 IE 浏览器的一个特殊配置，含义是让 IE 浏览器以最高的渲染级别来渲染页面 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 开启理想视口，并禁用缩放功能，强制文档与设备的宽度保持 1:1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- 注入打包时间，方便查看线上版本是否更新 -->
     <meta name="build-time" content="<%= buildTime %>" />
     <title><%= title %></title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   </head>
   <body>
     <div id="app"></div>
