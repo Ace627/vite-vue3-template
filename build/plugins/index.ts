@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 /**
@@ -13,6 +14,8 @@ export function generateVitePlugins(viteEnv: ImportMetaEnv, isBuild: boolean): P
 
   const plugin_list: PluginOption[] = [
     vue({ include: [/\.vue$/] }),
+
+    vueJsx(),
 
     AutoImport({
       imports: ['vue', 'pinia', 'vue-router'], // 自动导入 vue、vue-router、Pinia 相关函数

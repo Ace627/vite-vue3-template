@@ -22,6 +22,7 @@
     "@types/node": "^20.9.0",
     "@types/nprogress": "^0.2.3",
     "@vitejs/plugin-vue": "^4.4.1",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
     "autoprefixer": "^10.4.16",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
