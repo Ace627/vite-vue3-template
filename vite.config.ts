@@ -1,7 +1,7 @@
-import { resolve } from 'path'
-import { defineConfig, loadEnv } from 'vite'
-import { warpperEnv } from './build'
-import { generateVitePlugins } from './build/plugins'
+import { resolve } from 'path' // path 模块提供了一些工具函数，用于处理文件与目录的路径
+import { defineConfig, loadEnv } from 'vite' // 使用 defineConfig 工具函数，这样不用 jsdoc 注解也可以获取类型提示
+import { warpperEnv } from './build' // 引入对环境变量的处理函数
+import { generateVitePlugins } from './build/plugins' // 引入抽离出去的 vite 插件集合
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd()
