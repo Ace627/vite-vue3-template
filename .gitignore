@@ -12,8 +12,8 @@ dist
 dist-ssr
 *.local
 
-# 自动生成的文件
-auto-import.d.ts
+# 会自动生成的类型声明文件
+types/auto-generate/*
 
 # Editor directories and files
 .vscode/*
