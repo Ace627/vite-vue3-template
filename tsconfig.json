@@ -7,7 +7,7 @@
     // 设定编译后的 JavaScript 文件使用的模块化方案
     "module": "ESNext",
     // 忽略所有的声明文件（ *.d.ts）的类型检查
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     // 忽略所有的声明文件（ *.d.ts）的类型检查
     "skipLibCheck": true,
 
