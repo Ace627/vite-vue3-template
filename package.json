@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@8.9.0",
   "description": "Vite、TypeScript、Vue3 的基础开发模板以及常用配置流程参考记录",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -13,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "vue": "^3.3.12",
