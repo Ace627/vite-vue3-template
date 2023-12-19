@@ -87,3 +87,19 @@
 .text-lowercase {
   text-transform: lowercase;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  Position                                  */
+/* -------------------------------------------------------------------------- */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.sticky {
+  position: sticky;
+}
+.fixed {
+  position: fixed;
+}
