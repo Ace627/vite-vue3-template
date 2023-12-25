@@ -1,5 +1,5 @@
 /** 角度转弧度 */
-export function angleToAngle(angle: number): number {
+export function angleToRadius(angle: number): number {
   return (Math.PI / 180) * angle
 }
 
