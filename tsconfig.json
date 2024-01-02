@@ -25,7 +25,7 @@
     // 支持 jsx 语法
     "jsx": "preserve",
     // 要包含的类型声明文件名列表
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
 
     // 解析非相对模块名的基准目录
     "baseUrl": "./",
