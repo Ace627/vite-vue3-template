@@ -16,6 +16,9 @@ interface ImportMetaEnv {
 
   /** 部署应用包时的基本 URL */
   VITE_PUBLIC_PATH: string
+
+  /** 开发服务器的监听端口 */
+  VITE_SERVER_PORT: number
 }
 
 interface ImportMeta {

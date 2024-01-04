@@ -35,7 +35,7 @@ export default defineConfig(({ command, mode }) => {
       /** 设置为 0.0.0.0 或者 true 将监听所有地址，包括局域网和公网地址 */
       host: true,
       /** 指定开发服务器端口。注意：如果端口已经被使用，Vite 会自动尝试下一个可用的端口，所以这可能不是开发服务器最终监听的实际端口 */
-      port: 5173,
+      port: VITE_ENV.VITE_SERVER_PORT,
       /** 端口被占用时，是否直接退出 | 设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口 */
       strictPort: false,
       /** 是否自动打开浏览器 */
