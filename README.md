@@ -19,6 +19,7 @@ pnpm run dev
 ## 相关插件
 
 - [Day.js 中文网](https://dayjs.fenxianglu.cn)
+- [Lodash 中文文档](https://www.lodashjs.com)
 - [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html/blob/main/README.zh_CN.md)
 - [@vitejs/plugin-vue](https://www.npmjs.com/package/@vitejs/plugin-vue)
 - [unplugin-auto-import](https://www.npmjs.com/package/unplugin-auto-import)
