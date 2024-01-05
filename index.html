@@ -13,9 +13,21 @@
     <title><%= title %></title>
     <!-- 页签标题左侧新图标 -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/css/app-loading.css" />
   </head>
   <body>
     <!-- VueJS 挂载的 DOM 容器 -->
-    <div id="app"></div>
+    <div id="app">
+      <!-- 白屏阶段会执行的 CSS 加载动画 -->
+      <div class="app-loading">
+        <div class="app-loading-wrap">
+          <img src="/vite.svg" class="app-loading-logo" alt="Logo" />
+          <div class="app-loading-dots">
+            <span class="dot"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <div class="app-loading-title"><%= title %></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -11,6 +11,7 @@ async function bootstrap() {
   app.use(router)
   await router.isReady()
   app.mount('#app')
+  // setTimeout(() => app.mount('#app'), 500000)
 }
 
 bootstrap()
