@@ -39,10 +39,24 @@ export function reverseString(str: string): string {
 }
 
 /** 通过名称获取 URL 查询参数 */
-export function getQueryByName(name: string) {
+export function getQueryByName(name: string): string {
   const queryNameRegExp = new RegExp(`[?&]${name}=([^&]*)(?:&|$)`)
   const queryNameMatch = window.location.href.match(queryNameRegExp)
   return queryNameMatch ? decodeURIComponent(queryNameMatch[1]) : ''
+}
+
+/** 查询字符串转对象 */
+export function getQueryObject(url?: string): Record<string, string> {
+  url = url ? url : window.location.href
+  const search = url.substring(url.lastIndexOf('?') + 1)
+  const query: Record<string, string> = {}
+  const list = search.split('&')
+  for (const item of list) {
+    if (!item.includes('=')) continue
+    const [key, value] = item.split('=')
+    query[key] = value
+  }
+  return query
 }
 
 /** 复制文本到剪贴板 */
