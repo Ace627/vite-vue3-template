@@ -1,0 +1,19 @@
+:root {
+  /* 色彩 color */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-primary: #409eff;
+  --color-success: #67c23a;
+  --color-warning: #e6a23c;
+  --color-danger: #f56c6c;
+  --color-info: #909399;
+
+  /* 字体 font */
+  --font-weight-primary: 500;
+  --font-size-extra-large: 20px;
+  --font-size-extra-small: 12px;
+  --font-size-small: 13px;
+  --font-size-base: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+}

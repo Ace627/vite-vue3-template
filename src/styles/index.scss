@@ -1,3 +1,9 @@
+@use './variables.css';
 @use './reset.scss';
 @use 'nprogress/nprogress.css';
 @use './common.scss';
+
+body {
+  // background-color: var(--color-danger);
+  background-color: #f4f7f9;
+}
