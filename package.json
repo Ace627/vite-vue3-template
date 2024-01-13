@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://github.com/Ace627/vite-vue3-template.git",
   "description": "Vite、TypeScript、Vue3 的基础开发模板以及常用配置流程参考记录",
+  "license": "MIT",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vite",
@@ -34,5 +35,17 @@
     "vite-plugin-html": "^3.2.1",
     "vite-plugin-minipic": "^0.2.1",
     "vue-tsc": "^1.8.27"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Ace627/vite-vue3-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ace627/vite-vue3-template/issues",
+    "email": "1207588603@qq.com"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
   }
 }
