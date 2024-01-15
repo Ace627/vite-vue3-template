@@ -13,7 +13,7 @@ const pathResolve = (path: string): string => resolve(root, path)
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const VITE_ENV: ImportMetaEnv = warpperEnv(loadEnv(mode, root, 'VITE_'))
+  const VITE_ENV = warpperEnv(loadEnv(mode, root, 'VITE_'))
   const isBuild = command === 'build'
 
   return {

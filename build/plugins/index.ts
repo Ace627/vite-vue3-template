@@ -5,7 +5,7 @@ import { registerAutoImport } from './auto-import'
 import { registerHtmlPlugin } from './compile.html'
 import { registerImageMini } from './image.mini'
 
-export function generateVitePlugins(viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] {
+export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOption[] {
   const plugins: PluginOption[] = []
 
   /** 提供 Vue 3 单文件组件支持 */

@@ -1,10 +1,3 @@
-/** 修复找不到 .vue 文件的声明的异常 */
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
-  export default component
-}
-
 /** 简化 Record<string, any> 的使用流程 */
 type Recordable<T = any> = Record<string, T>
 

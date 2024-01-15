@@ -7,5 +7,5 @@
     "allowSyntheticDefaultImports": true,
     "noEmit": false
   },
-  "include": ["vite.config.ts", "types/vite-env.d.ts", "build/**/*.ts"]
+  "include": ["vite.config.ts", "types/**/*.d.ts", "build/**/*.ts"]
 }

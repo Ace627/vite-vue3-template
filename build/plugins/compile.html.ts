@@ -1,7 +1,7 @@
 import type { PluginOption } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
-export const registerHtmlPlugin = (viteEnv: ImportMetaEnv): PluginOption => {
+export const registerHtmlPlugin = (viteEnv: ViteEnv): PluginOption => {
   return createHtmlPlugin({
     // 启用 Vite 最新语法模式
     viteNext: true,

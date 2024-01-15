@@ -1,8 +1,8 @@
 /** 处理环境变量 */
-export function warpperEnv(env_config: Recordable<string>): ViteEnv {
+export default (): ViteEnv => {
+  const initEnv = import.meta.env
   const env = {} as ViteEnv
-
-  for (const [key, value] of Object.entries(env_config)) {
+  for (const [key, value] of Object.entries(initEnv)) {
     if (['true', 'false'].includes(value)) {
       env[key] = value === 'true' ? true : false // 布尔类型处理
     } else if (Number(value)) {
@@ -11,6 +11,5 @@ export function warpperEnv(env_config: Recordable<string>): ViteEnv {
       env[key] = value // 字符串类型原值即可
     }
   }
-
   return env
 }
