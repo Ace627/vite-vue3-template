@@ -17,9 +17,9 @@ export function linkDownload(fileURL: string, fileName = Date.now().toString()):
 
 /**
  * Buffer 转 Blob
- * @param buffer 待转换的 Buffer 数据
- * @param blobType 目标 Blob 的数据 MIME 类型
- * @returns 转换后的 Blob 数据
+ * @param {Buffer} buffer 待转换的 Buffer 数据
+ * @param {String} blobType 目标 Blob 的数据 MIME 类型
+ * @returns {Blob} 转换后的 Blob 数据
  */
 export function bufferToBlob(buffer: Buffer, blobType = 'application/actet-stream'): Blob {
   const unit8Array = new Uint8Array(buffer)
