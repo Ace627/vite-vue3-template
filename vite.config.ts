@@ -13,8 +13,8 @@ const pathResolve = (path: string): string => resolve(root, path)
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const VITE_ENV = warpperEnv(loadEnv(mode, root, 'VITE_'))
-  const isBuild = command === 'build'
+  const VITE_ENV = warpperEnv(loadEnv(mode, root, 'VITE_')) // 对原生环境变量进行二次处理
+  const isBuild = command === 'build' // 当前是否是生产模式
 
   return {
     // 部署应用包时的基本 URL
@@ -39,15 +39,12 @@ export default defineConfig(({ command, mode }) => {
       /** 端口被占用时，是否直接退出 | 设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口 */
       strictPort: false,
       /** 是否自动打开浏览器 */
-      open: false,
+      open: VITE_ENV.VITE_AUTO_OPEN,
       /** 是否允许跨域 */
       cors: true,
       /** 反向代理配置（主要是开发时用来解决跨域问题） */
       proxy: {
-        [VITE_ENV.VITE_BASE_API]: {
-          target: VITE_ENV.VITE_BASE_URL,
-          changeOrigin: true,
-        },
+        [VITE_ENV.VITE_BASE_API]: { target: VITE_ENV.VITE_BASE_URL, changeOrigin: true },
       },
     },
 
