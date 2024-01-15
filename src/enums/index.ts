@@ -10,3 +10,8 @@ export enum GenderEnum {
   /** 女性 */
   FEMALE = 2,
 }
+
+/** 缓存数据时用到的 Key */
+export enum CacheKeyEnum {
+  TOKEN = 'Admin_Token_Key',
+}
