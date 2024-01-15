@@ -24,6 +24,8 @@
     "noEmit": true,
     // 支持 jsx 语法
     "jsx": "preserve",
+    // 指定 jsx 命名空间
+    "jsxImportSource": "vue",
     // 要包含的类型声明文件名列表
     "types": ["vite/client", "node"],
 
