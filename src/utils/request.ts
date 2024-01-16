@@ -1,5 +1,6 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
+import { AppEnum } from '@/enums'
 
 const { getToken } = useToken() // 解构 Token 处理函数
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT } = useEnv() // 解构环境变量
@@ -24,7 +25,7 @@ request.interceptors.request.use(
     // 后台根据携带的 token 判断用户的登录情况，并返回给我们对应的业务状态码
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作
     const token = getToken()
-    token && Reflect.set(config.headers, 'Authorization', `Beraer ${token}`)
+    token && Reflect.set(config.headers, AppEnum.AUTHORIZATION, `Beraer ${token}`)
     return config
   },
   (error) => {

@@ -15,3 +15,9 @@ export enum GenderEnum {
 export enum CacheKeyEnum {
   TOKEN = 'Admin_Token_Key',
 }
+
+/** 项目常用值枚举 */
+export enum AppEnum {
+  /** 凭证请求头的 Key */
+  AUTHORIZATION = 'Authorization',
+}
