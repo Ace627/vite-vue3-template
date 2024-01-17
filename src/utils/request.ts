@@ -42,7 +42,7 @@ request.interceptors.response.use(
     return response.data
   },
   (error: any) => {
-    const status: number = error.response.status.toString() // status 是 HTTP 状态码
+    const status: number = error.response.status // status 是 HTTP 状态码
     const message = handleErrorCode(status)
     console.log('响应拦截器异常信息: ', message)
     console.log('响应拦截器异常: ', error) // for debug
