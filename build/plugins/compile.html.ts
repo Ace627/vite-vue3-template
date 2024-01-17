@@ -2,6 +2,8 @@ import type { PluginOption } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 export const registerHtmlPlugin = (viteEnv: ViteEnv): PluginOption => {
+  const { VITE_APP_TITLE } = viteEnv
+
   return createHtmlPlugin({
     // 启用 Vite 最新语法模式
     viteNext: true,
@@ -11,7 +13,7 @@ export const registerHtmlPlugin = (viteEnv: ViteEnv): PluginOption => {
     minify: true,
     // 需要注入 index.html ejs 模版的数据
     inject: {
-      data: { title: viteEnv.VITE_APP_TITLE, buildTime: new Date().toLocaleString() },
+      data: { VITE_APP_TITLE, buildTime: new Date().toLocaleString() },
     },
   })
 }

@@ -10,7 +10,7 @@
     <!-- 注入打包时间，方便查看线上版本是否更新 -->
     <meta name="build-time" content="<%= buildTime %>" />
     <!-- 页签标题 -->
-    <title><%= title %></title>
+    <title><%= VITE_APP_TITLE %></title>
     <!-- 页签标题左侧新图标 -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/css/app-loading.css" />
@@ -25,7 +25,7 @@
           <div class="app-loading-dots">
             <span class="dot"><i></i><i></i><i></i><i></i></span>
           </div>
-          <div class="app-loading-title"><%= title %></div>
+          <div class="app-loading-title"><%= VITE_APP_TITLE %></div>
         </div>
       </div>
     </div>
