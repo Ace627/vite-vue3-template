@@ -20,4 +20,6 @@ export enum CacheKeyEnum {
 export enum AppEnum {
   /** 凭证请求头的 Key */
   AUTHORIZATION = 'Authorization',
+  /** Token 前缀字符 */
+  TOKEN_PREFIX = 'Beraer',
 }
