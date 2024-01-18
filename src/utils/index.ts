@@ -38,6 +38,21 @@ export function reverseString(str: string): string {
   return str.split('').reverse().join('')
 }
 
+/** 驼峰字符串转下划线字符串 */
+export function humpToUnderline(str: string): string {
+  return str.replace(/([A-Z])/g, '_$1').toLowerCase()
+}
+
+/** 下划线字符串转驼峰字符串  */
+export function underlineToHump(str: string): string {
+  return str.replace(/\-(\w)/g, (_, letter: string) => letter.toUpperCase())
+}
+
+/** 驼峰字符串转横杠字符串 */
+export function humpToDash(str: string): string {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
 /** 通过名称获取 URL 查询参数 */
 export function getQueryByName(name: string): string {
   const queryNameRegExp = new RegExp(`[?&]${name}=([^&]*)(?:&|$)`)
