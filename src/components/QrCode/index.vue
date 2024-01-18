@@ -11,7 +11,7 @@ defineProps({
   text: { type: String, required: true, default: '' },
   /** 嵌入至二维码中心的 LOGO 地址 */
   icon: { type: String, default: '' },
-  /** 二维码图像的外边距, 默认 16px */
+  /** 二维码图像的外边距, 默认 0px */
   margin: { type: Number, default: 0 },
   /** 尺寸, 长宽一致, 包含外边距 */
   size: { type: Number, default: 150 },
