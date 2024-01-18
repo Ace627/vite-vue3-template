@@ -15,7 +15,7 @@ interface ImportMetaEnv {
   VITE_DROP_CONSOLE: string
   /** 打包后移除所有的 console、debugger */
   VITE_SERVER_PORT: string
-  /** 请求超时时间 单位毫秒 */
+  /** 请求超时时间 单位秒 */
   VITE_REQUEST_TIMEOUT: string
   /** 是否自动打开浏览器 */
   VITE_AUTO_OPEN: string
@@ -25,7 +25,7 @@ interface ImportMetaEnv {
 interface ViteEnv extends ImportMetaEnv {
   /** 开发服务器的监听端口 */
   VITE_SERVER_PORT: number
-  /** 请求超时时间 单位毫秒 */
+  /** 请求超时时间 单位秒 */
   VITE_REQUEST_TIMEOUT: number
   /** 是否自动打开浏览器 */
   VITE_AUTO_OPEN: boolean
