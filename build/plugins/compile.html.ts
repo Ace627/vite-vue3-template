@@ -5,8 +5,6 @@ export const registerHtmlPlugin = (viteEnv: ViteEnv): PluginOption => {
   const { VITE_APP_TITLE } = viteEnv
 
   return createHtmlPlugin({
-    // 启用 Vite 最新语法模式
-    viteNext: true,
     // 在这里写 entry 后，你将不需要在 `index.html` 内添加 script 标签，原有标签需要删除
     entry: 'src/main.ts',
     // 是否压缩 html
