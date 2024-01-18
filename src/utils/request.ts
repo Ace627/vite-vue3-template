@@ -1,12 +1,10 @@
 import axios from 'axios'
-import NProgress from 'nprogress'
 import { AppEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
 
 const { getToken } = useToken() // 解构 Token 处理函数
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT } = useEnv() // 解构环境变量
-
-NProgress.configure({ showSpinner: false }) // 去除进度条加载时右侧的小圆圈
+const NProgress = useNProgress() // 顶部进度条
 
 const request = axios.create({
   // baseURL 将自动加在 url 前面，除非 url 是一个绝对 URL

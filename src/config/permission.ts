@@ -1,9 +1,7 @@
 import router from '@/router'
-import NProgress from 'nprogress'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
-// 去除进度条加载时右侧的小圆圈
-NProgress.configure({ showSpinner: false })
+const NProgress = useNProgress() // 顶部进度条
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   NProgress.start()
