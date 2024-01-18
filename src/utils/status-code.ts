@@ -1,5 +1,5 @@
 export function handleErrorCode(status: number) {
-  const map = new Map()
+  const map = new Map<number, string>()
   map.set(401, '认证失败，无法访问系统资源')
   map.set(403, '拒绝访问')
   map.set(404, '请求地址出错')
@@ -9,6 +9,5 @@ export function handleErrorCode(status: number) {
   map.set(503, '服务不可用')
   map.set(504, '网关超时')
   map.set(505, 'HTTP 版本不受支持')
-  map.set('default', '系统未知错误，请反馈给管理员')
-  return map.get(status) || map.get('default')
+  return map.get(status) || '系统未知错误，请反馈给管理员'
 }
