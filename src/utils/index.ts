@@ -45,12 +45,17 @@ export function humpToUnderline(str: string): string {
 
 /** 下划线字符串转驼峰字符串  */
 export function underlineToHump(str: string): string {
-  return str.replace(/\-(\w)/g, (_, letter: string) => letter.toUpperCase())
+  return str.replace(/\_(\w)/g, (_, letter: string) => letter.toUpperCase())
 }
 
-/** 驼峰字符串转横杠字符串 */
+/** 驼峰字符串转中划线字符串 */
 export function humpToDash(str: string): string {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
+/** 中划线字符串转驼峰字符串 */
+export function dashToHump(str: string): string {
+  return str.replace(/\-(\w)/g, (_, letter: string) => letter.toUpperCase())
 }
 
 /** 通过名称获取 URL 查询参数 */
