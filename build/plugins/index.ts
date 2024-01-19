@@ -18,10 +18,12 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
   plugins.push(registerAutoImport())
 
   /** 针对 index.html，提供压缩和基于 ejs 模板功能，亦可对其注入动态数据 */
-  plugins.push(registerHtmlPlugin(viteEnv))
+  plugins.push(registerHtmlPlugin(viteEnv, isBuild))
 
-  /** 图片压缩插件，使用简单，重要的是它真的很快 🚀🚀🚀🚀 */
-  isBuild && plugins.push(registerImageMini())
+  if (isBuild) {
+    /** 图片压缩插件，使用简单，重要的是它真的很快 🚀🚀🚀🚀 */
+    plugins.push(registerImageMini())
+  }
 
   return plugins
 }
