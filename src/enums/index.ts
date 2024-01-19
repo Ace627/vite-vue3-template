@@ -22,6 +22,8 @@ export enum AppEnum {
   AUTHORIZATION = 'Authorization',
   /** Token 前缀字符 */
   TOKEN_PREFIX = 'Beraer',
+  /** 自定义环境变量前缀 */
+  ENV_PREFIX = 'VITE_',
 }
 
 /** 请求参数类型 */
