@@ -13,7 +13,7 @@ cd vite-vue3-template
 pnpm install
 
 # 启动服务
-pnpm run dev
+pnpm dev
 ```
 
 ## 相关插件
@@ -23,3 +23,9 @@ pnpm run dev
 - [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html/blob/main/README.zh_CN.md)
 - [@vitejs/plugin-vue](https://www.npmjs.com/package/@vitejs/plugin-vue)
 - [unplugin-auto-import](https://www.npmjs.com/package/unplugin-auto-import)
+
+## 参考文献
+
+- [Vite 配置路径别名的流程](https://juejin.cn/post/7302249949215457319)
+- [Vite 全局组件的自动批量化注册](https://juejin.cn/post/7304183129896124416)
+- [VueRouter 中 Meta 字段的类型声明](https://juejin.cn/post/7302241918351163426)
