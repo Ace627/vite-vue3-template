@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AppEnum } from '@/enums'
+import { AppEnum, RequestMethodEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
 
 const { getToken } = useToken() // 解构 Token 处理函数
@@ -16,6 +16,9 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config) => {
+    if (config.method?.toUpperCase() === RequestMethodEnum.GET) {
+      config.params = Object.assign(config.params || {}, { timestamp: Date.now() }) // 给 get 请求加上时间戳参数，避免从缓存中拿数据
+    }
     NProgress.start() // 开启响应进度条
     // 登录流程控制中，一般根据本地是否存在 token 来判断用户的登录情况
     // 但即使 token 存在，也有可能 token 是过期的，所以在每次的请求头中携带 token
@@ -26,8 +29,7 @@ request.interceptors.request.use(
     return config
   },
   (error) => {
-    // 关闭响应进度条
-    NProgress.done()
+    NProgress.done() // 关闭响应进度条
     return Promise.reject(error)
   },
 )

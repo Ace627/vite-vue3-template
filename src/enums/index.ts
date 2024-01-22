@@ -35,3 +35,11 @@ export enum ContentTypeEnum {
   /** 一般用于上传文件 */
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
+
+/** 请求方式的枚举值 */
+export enum RequestMethodEnum {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}

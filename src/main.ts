@@ -7,15 +7,23 @@ import './config/permission'
 import { registerGlobalComponents } from '@/components' // 批量自动化注册全局组件
 
 async function bootstrap() {
+  /** 创建 Vue 应用实例 */
   const app = createApp(App)
 
-  /** 批量自动化注册全局组件 */
-  app.use(registerGlobalComponents)
+  /** 配置存储 */
   app.use(store)
+
+  /** 注册全局组件 */
+  app.use(registerGlobalComponents)
+
+  /** 配置路由 */
   app.use(router)
+
+  /** 当路由准备好时再执行挂载 https://router.vuejs.org/zh/api/interfaces/Router.html#Methods-isReady */
   await router.isReady()
+
+  /** 挂载应用 */
   app.mount('#app')
-  // setTimeout(() => app.mount('#app'), 500000)
 }
 
 bootstrap()
