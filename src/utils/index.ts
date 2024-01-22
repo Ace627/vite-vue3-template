@@ -18,16 +18,6 @@ export function setCssVariableValue(cssVariableName: string, cssVariableValue: s
   document.documentElement.style.setProperty(cssVariableName, cssVariableValue)
 }
 
-/** 深拷贝，支持日期、正则、函数 */
-export function deepClone(source: any): any {
-  if (!source || typeof source !== 'object') return source
-  if (source instanceof Date) return new Date(source)
-  if (source instanceof RegExp) return new RegExp(source)
-  const target = Array.isArray(source) ? ([] as Record<any, any>) : ({} as Record<string, any>)
-  for (const key in source) target[key] = typeof source[key] === 'object' ? deepClone(source[key]) : source[key]
-  return target
-}
-
 /** 获取变量的真实类型 */
 export function getRawType(variable: any): string {
   return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()

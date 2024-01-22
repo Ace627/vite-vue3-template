@@ -20,12 +20,8 @@ request.interceptors.request.use(
       config.params = Object.assign(config.params || {}, { timestamp: Date.now() }) // 给 get 请求加上时间戳参数，避免从缓存中拿数据
     }
     NProgress.start() // 开启响应进度条
-    // 登录流程控制中，一般根据本地是否存在 token 来判断用户的登录情况
-    // 但即使 token 存在，也有可能 token 是过期的，所以在每次的请求头中携带 token
-    // 后台根据携带的 token 判断用户的登录情况，并返回给我们对应的业务状态码
-    // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作
     const token = getToken()
-    token && Reflect.set(config.headers, AppEnum.AUTHORIZATION, `${AppEnum.TOKEN_PREFIX} ${token}`)
+    token && Reflect.set(config.headers, AppEnum.AUTHORIZATION, `${AppEnum.TOKEN_PREFIX} ${token}`) // 让每个请求携带自定义 token 请根据实际情况自行修改
     return config
   },
   (error) => {

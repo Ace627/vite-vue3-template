@@ -6,22 +6,22 @@ export function getAction<T = any>(url: string, params: Recordable = {}) {
   return request.get<any, T>(url, { params })
 }
 
-/** Post 请求封装 */
-export function postAction<T = any>(url: string, params: Recordable = {}) {
-  return request.post<any, T>(url, params)
-}
-
-/** Put 请求封装 */
-export function putAction<T = any>(url: string, params: Recordable = {}) {
-  return request.put<any, T>(url, params)
-}
-
 /** Delete 请求封装 */
 export function deleteAction<T = any>(url: string, params: Recordable = {}) {
   return request.delete<any, T>(url, { params })
 }
 
+/** Post 请求封装 */
+export function postAction<T = any>(url: string, data: Recordable = {}) {
+  return request.post<any, T>(url, data)
+}
+
+/** Put 请求封装 */
+export function putAction<T = any>(url: string, data: Recordable = {}) {
+  return request.put<any, T>(url, data)
+}
+
 /** Upload 请求封装 */
-export function uploadAction<T = any>(url: string, params: FormData) {
-  return request.post<any, T>(url, params, { headers: { 'Content-Type': ContentTypeEnum.FORM_DATA } })
+export function uploadAction<T = any>(url: string, data: FormData) {
+  return request.post<any, T>(url, data, { headers: { 'Content-Type': ContentTypeEnum.FORM_DATA } })
 }
