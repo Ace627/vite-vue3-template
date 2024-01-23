@@ -10,6 +10,8 @@ interface ImportMetaEnv {
   VITE_OUTPUT_DIR: string
   /** 部署应用包时的基本 URL */
   VITE_PUBLIC_PATH: string
+  /** 路由模式 */
+  VITE_ROUTER_MODE: 'hash' | 'history'
 
   /** 开发服务器的监听端口 */
   VITE_DROP_CONSOLE: string
