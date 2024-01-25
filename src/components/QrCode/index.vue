@@ -8,7 +8,7 @@ defineOptions({ name: 'QrCode' })
 
 defineProps({
   /** 二维码内容 必需 */
-  text: { type: String, required: true, default: '' },
+  text: { type: String, required: true },
   /** 嵌入至二维码中心的 LOGO 地址 */
   icon: { type: String, default: '' },
   /** 二维码图像的外边距, 默认 0px */
