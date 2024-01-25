@@ -4,7 +4,6 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import './config/permission'
-import { registerGlobalComponents } from '@/components' // 批量自动化注册全局组件
 
 async function bootstrap() {
   /** 创建 Vue 应用实例 */
@@ -12,9 +11,6 @@ async function bootstrap() {
 
   /** 配置存储 */
   app.use(store)
-
-  /** 注册全局组件 */
-  app.use(registerGlobalComponents)
 
   /** 配置路由 */
   app.use(router)
