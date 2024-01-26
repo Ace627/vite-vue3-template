@@ -12,13 +12,13 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
   /** 提供 Vue 3 单文件组件支持 */
   plugins.push(vue({ include: [/\.vue$/] }))
 
-  /** 提供 Vue 3 JSX 支持 */
+  /** 提供 Vue 3 JSX/TSX 支持 */
   plugins.push(vueJsx())
 
   /** 自动跟踪依赖并导入所需的内容，避免手动导入的繁琐步骤 */
   plugins.push(registerAutoImport())
 
-  /** 提供组件自动化导入及类型声明功能 */
+  /** 提供组件自动按需导入及类型声明功能 */
   plugins.push(registerAutoComponents())
 
   /** 针对 index.html，提供压缩和基于 ejs 模板功能，亦可对其注入动态数据 */
