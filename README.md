@@ -16,25 +16,9 @@ pnpm install
 pnpm dev
 ```
 
-## 文件参考
-
-- `src/utils/download.ts` 常用下载方法
-- `src/utils/request.ts` axios 的二次封装
-- `src/utils/validate.ts` 常用校验方法
-- `src/utils/status-code.ts` 常见响应状态码的解析处理
-- `src/hooks/useToken.ts` 对 Token 使用的 hooks 封装
-- `src/hooks/useNProgress.ts` 对顶部请求进度条使用的 hooks 封装
-- `src/hooks/useEnv.ts` 对环境变量 `VITE_` 使用的封装
-- `src/config/constants.ts` 常量统一声明文件
-- `src/config/permission.ts` 全局路由守卫配置文件 | 鉴权
-- `src/styles/reset.scss` 重置样式表
-- `src/styles/common.scss` 公共样式表
-- `src/enums/index.ts` 常用枚举值 | 可以拆分到目录中
-- `src/components/QrCode/index.vue` 二维码组件
-
 ## 使用须知
 
-- [Vite 不再支持已 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
+- [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
 
 ## 参考文献
 

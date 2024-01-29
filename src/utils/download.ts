@@ -33,7 +33,7 @@ export function bufferToBlob(buffer: Buffer, blobType = 'application/actet-strea
  * @param  {Number} quality 转换后的图片质量
  * @returns {String} Base64 字符串
  */
-export function imageToBase64(imgURL: string, mimeType = 'image/jpeg', quality = 1): Promise<string> {
+export function imageToBase64(imgURL: string, mimeType: 'image/jpeg' | 'image/png' | 'image/webp' = 'image/jpeg', quality = 1): Promise<string> {
   const img = new Image()
   // 因为是网络资源所以会有图片跨域问题产生，此属性可以解决跨域问题
   img.setAttribute('crossOrigin', 'anonymous')
