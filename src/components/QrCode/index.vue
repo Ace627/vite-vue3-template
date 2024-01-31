@@ -1,5 +1,5 @@
 <template>
-  <VueQr :text="text" :size="size" :margin="margin" :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" :callback="callback" />
+  <VueQr class="qrcode" :text="text" :size="size" :margin="margin" :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" :callback="callback" />
 </template>
 
 <script setup lang="ts">
@@ -30,4 +30,10 @@ const toDataURL = () => base64URL.value || ''
 defineExpose({ toDataURL })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.qrcode {
+  &:hover {
+    cursor: pointer;
+  }
+}
+</style>
