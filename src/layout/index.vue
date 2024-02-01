@@ -17,6 +17,12 @@
         </div>
       </div>
     </Card>
+
+    <Card>
+      <template #header> 解决 v-html 指令潜在的 xss 攻击 </template>
+      <!-- <div v-html="`<img src='../a.png' onerror='alert(1)'/>`"></div> -->
+      <div v-dompurify-html="`<img src='../a.png' onerror='alert(1)'/>`"></div>
+    </Card>
   </div>
 </template>
 
@@ -52,6 +58,9 @@ const Card = defineComponent({
   }
   .card__body {
     padding: 16px;
+  }
+  ~ .card {
+    margin-top: 16px;
   }
 }
 

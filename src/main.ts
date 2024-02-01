@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import VueDOMPurifyHTML from 'vue-dompurify-html' // Third Module
 import './styles/index.scss'
 import App from './App.vue'
 import store from './store'
@@ -8,6 +9,9 @@ import './config/permission'
 async function bootstrap() {
   /** 创建 Vue 应用实例 */
   const app = createApp(App)
+
+  /** 解决 v-html 指令潜在的 xss 攻击 v-dompurify-html */
+  app.use(VueDOMPurifyHTML)
 
   /** 配置存储 */
   app.use(store)

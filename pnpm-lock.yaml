@@ -23,6 +23,9 @@ dependencies:
   vue:
     specifier: ^3.4.15
     version: 3.4.15(typescript@5.3.3)
+  vue-dompurify-html:
+    specifier: 5.0.1
+    version: 5.0.1(vue@3.4.15)
   vue-qr:
     specifier: ^4.0.9
     version: 4.0.9
@@ -1431,6 +1434,10 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
+  /dompurify@3.0.8:
+    resolution: {integrity: sha512-b7uwreMYL2eZhrSCRC4ahLTeZcPZxSmYfmcQGXGkXiZSNW1X85v+SDM5KsWcpivIiUBH47Ji7NtyUdpLeF5JZQ==}
+    dev: false
+
   /domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
     dependencies:
@@ -2725,6 +2732,15 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
+      vue: 3.4.15(typescript@5.3.3)
+    dev: false
+
+  /vue-dompurify-html@5.0.1(vue@3.4.15):
+    resolution: {integrity: sha512-8yoMbo7PX4vt01k0dcCHvP4tY0fOCLkQeMhXXRNmH7/muIUTkFOQNzkAtE0RmqgaF/unabvYnsnCu2CjIMgueg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      dompurify: 3.0.8
       vue: 3.4.15(typescript@5.3.3)
     dev: false
 

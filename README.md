@@ -20,6 +20,12 @@ pnpm dev
 
 - [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
 
+## 特征说明
+
+- 已配置 `Vue`、`VueRouter` 等 Api 的自动导入
+- 已封装二维码功能，具体参数见 `src/components/QrCode/index.vue`
+- 已解决 v-html 指令潜在的 xss 攻击（vue-dompurify-html 代替 v-html）
+
 ## 参考文献
 
 - [Vite 配置路径别名的流程](https://juejin.cn/post/7302249949215457319)
