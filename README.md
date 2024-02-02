@@ -18,6 +18,7 @@ pnpm dev
 
 ## 使用须知
 
+- [vite-plugin-minipic 图片压缩插件下载异常参考](https://github.com/60late/vite-plugin-minipic/issues/2)
 - [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
 
 ## 特征说明
