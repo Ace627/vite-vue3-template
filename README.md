@@ -26,6 +26,9 @@ pnpm dev
 - 已配置 `Vue`、`VueRouter` 等 Api 的自动导入
 - 已封装二维码功能，具体参数见 `src/components/QrCode/index.vue`
 - 已解决 v-html 指令潜在的 xss 攻击（vue-dompurify-html 代替 v-html）
+- 打包时对业务内静态图片资源和 `index.html` 进行压缩处理
+- 打包时默认移除所有的 `console`、`debugger`
+- 打包时进行最小化拆包，解决 js 包之间的依赖问题，提升加载时间
 
 ## 参考文献
 
