@@ -48,6 +48,11 @@ export default defineConfig(({ command, mode }) => {
       },
     },
 
+    css: {
+      /** 通过多线程运行 CSS 预处理器，从而极大提高其处理速度 */
+      preprocessorMaxWorkers: true,
+    },
+
     build: {
       /** 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整 */
       outDir: VITE_ENV.VITE_OUTPUT_DIR,
