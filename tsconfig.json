@@ -27,7 +27,7 @@
     // 指定 jsx 命名空间
     "jsxImportSource": "vue",
     // 要包含的类型声明文件名列表
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "element-plus/global"],
 
     // 解析非相对模块名的基准目录
     "baseUrl": "./",

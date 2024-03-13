@@ -1,10 +1,20 @@
-import { Layout } from '@/config/constants'
 import type { RouteRecordRaw } from 'vue-router'
+import { BaseLayout } from '@/layouts'
 
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: Layout,
+    name: 'BaseLayout',
+    component: BaseLayout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/Dashboard/index.vue'),
+        meta: { title: '首页' },
+      },
+    ],
   },
 
   {
