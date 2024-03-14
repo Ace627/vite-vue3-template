@@ -5,6 +5,25 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
+    redirect: '/ArAnimation',
+    children: [
+      {
+        path: 'ArAnimation',
+        name: 'ArAnimation',
+        component: () => import('@/views/Demo/ArAnimation.vue'),
+      },
+      {
+        path: 'JdNavbar',
+        name: 'JdNavbar',
+        component: () => import('@/views/Demo/JdNavbar.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: Layout,
   },
 
   {

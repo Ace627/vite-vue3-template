@@ -1,4 +1,7 @@
 :root {
+  /** Sidebar 组件 */
+  --sidebar-width: 200px;
+
   /* 色彩 color */
   --color-white: #ffffff;
   --color-black: #000000;

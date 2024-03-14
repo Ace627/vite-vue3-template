@@ -2,8 +2,17 @@
 @use './reset.scss';
 @use 'nprogress/nprogress.css';
 @use './common.scss';
+@use './transition.scss';
 
 body {
   // background-color: var(--color-danger);
   background-color: #f4f7f9;
+}
+
+/* 业务页面几乎都应该在根元素上挂载 class="app-content"，以保持页面美观 */
+.app-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
 }

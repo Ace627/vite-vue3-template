@@ -1,87 +1,75 @@
 <template>
-  <div class="app-container wh-full">
-    <Card>
-      <template #header> 二维码使用案例 </template>
-      <div class="qrcode-container">
-        <div class="qrcode-item">
-          <QrCode text="https://github.com/Ace627/vite-vue3-template" draggable="false" />
-          <span>Vue3 Vite 模板</span>
-        </div>
-        <div class="qrcode-item">
-          <QrCode text="https://github.com/Ace627/vite-vue3-template" :icon="VueLogo" draggable="false" />
-          <span>Vue3 Vite 模板</span>
-        </div>
-        <div class="qrcode-item">
-          <QrCode text="WIFI:S:Dataway-Mobile;T:WPA;P:Horizon1992;;" draggable="false" />
-          <span>WiFi 二维码</span>
-        </div>
-      </div>
-    </Card>
+  <div class="app-container wh-full relative">
+    <aside class="sidebar-container">
+      <router-link v-for="(item, index) in routeList" :key="index" :to="item.path" :class="{ active: route.path === item.path }">{{ item.title }}</router-link>
+    </aside>
 
-    <Card>
-      <template #header> 解决 v-html 指令潜在的 xss 攻击 </template>
-      <!-- <div v-html="`<img src='../a.png' onerror='alert(1)'/>`"></div> -->
-      <div v-dompurify-html="`<img src='../a.png' onerror='alert(1)'/>`"></div>
-    </Card>
+    <section class="main-container">
+      <div class="app-main">
+        <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
+        <RouterView v-slot="{ Component, route }">
+          <Transition name="fade-transform" mode="out-in">
+            <component :is="Component" :key="route.path" />
+          </Transition>
+        </RouterView>
+      </div>
+    </section>
   </div>
 </template>
 
-<script setup lang="tsx">
-import VueLogo from '@/assets/vue.svg'
+<script setup lang="ts">
 defineOptions({ name: 'Layout' })
 
-/** 利用 TSX 封装一个 Card 组件 */
-const Card = defineComponent({
-  setup(props, { slots }) {
-    return () => (
-      <div class="card">
-        <div class="card__header">{slots.header ? slots.header() : null}</div>
-        <div class="card__body">{slots.default ? slots.default() : null}</div>
-      </div>
-    )
-  },
-})
+const route = useRoute()
+const routeList = [
+  { title: '支付宝AR扫福动画', path: '/ArAnimation' },
+  { title: '京东左侧导航条', path: '/JdNavbar' },
+]
 </script>
 
 <style lang="scss" scoped>
 .app-container {
   position: relative;
-  padding: 16px;
 }
 
-:deep(.card) {
-  background-color: #fff;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
-  .card__header {
-    padding: 14px 16px;
-    border-bottom: 1px solid #e4e7ed;
-  }
-  .card__body {
-    padding: 16px;
-  }
-  ~ .card {
-    margin-top: 16px;
-  }
-}
-
-.qrcode-container {
+.sidebar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  .qrcode-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    span {
-      margin-top: 8px;
-      font-weight: 500;
-      color: #333;
-      letter-spacing: 1px;
-    }
-    & ~ .qrcode-item {
-      margin-left: 16px;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: #262935;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  a {
+    padding: 8px 0;
+    color: #fff;
+
+    &.active {
+      font-weight: bold;
+      color: #c81623;
     }
   }
+}
+
+.main-container {
+  position: relative;
+  height: 100%;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.28s;
+}
+
+.app-main {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 </style>
