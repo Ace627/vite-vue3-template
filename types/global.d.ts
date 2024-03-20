@@ -6,3 +6,6 @@ type AnyFunction = (...args: any[]) => any
 
 /** 设备类型 */
 type DeviceType = 'mobile' | 'desktop'
+
+/** 常用操作类型 */
+type ActionType = 'create' | 'delete' | 'update' | 'copy' | 'upload' | 'export'

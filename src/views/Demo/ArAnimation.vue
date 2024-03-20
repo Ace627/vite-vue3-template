@@ -4,6 +4,9 @@
       <polygon class="g-polygon-wrap" points="150 0, 300 75, 300 225, 150 300, 0 225,  0 75, 150 0" />
       <polygon class="g-polygon-move" points="150 0, 300 75, 300 225, 150 300, 0 225,  0 75, 150 0" />
     </svg>
+
+    <img src="../../assets/images/lazy-image_1.gif" alt="" srcset="" />
+    <img src="@/assets/images/lazy-image_2.gif" alt="" srcset="" />
   </div>
 </template>
 
