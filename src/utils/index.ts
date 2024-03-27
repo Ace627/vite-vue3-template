@@ -68,23 +68,3 @@ export function getQueryObject(url?: string): Record<string, string> {
   }
   return query
 }
-
-/** 复制文本到剪贴板 */
-export function copyText(text: string): void {
-  // 是否支持 navigator.clipboard 属性
-  const isClipboardApiSupported = window.navigator && window.navigator.clipboard
-  if (isClipboardApiSupported) {
-    window.navigator.clipboard.writeText(text)
-  } else {
-    const textarea = document.createElement('textarea')
-    textarea.readOnly = true
-    textarea.value = text
-    textarea.style.position = 'absolute'
-    textarea.style.top = '-9999px'
-    textarea.style.left = '-9999px'
-    document.body.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    textarea.remove()
-  }
-}

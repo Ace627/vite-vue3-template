@@ -16,12 +16,12 @@ export function linkDownload(fileURL: string, fileName = Date.now().toString()):
 }
 
 /**
- * Buffer 转 Blob
- * @param {Buffer} buffer 待转换的 Buffer 数据
+ * ArrayBuffer 转 Blob
+ * @param {Buffer} buffer 待转换的 ArrayBuffer 数据
  * @param {String} blobType 目标 Blob 的数据 MIME 类型
  * @returns {Blob} 转换后的 Blob 数据
  */
-export function bufferToBlob(buffer: Buffer, blobType = 'application/actet-stream'): Blob {
+export function arrayBufferToBlob(buffer: ArrayBuffer, blobType = 'application/actet-stream'): Blob {
   const unit8Array = new Uint8Array(buffer)
   return new Blob([unit8Array], { type: blobType })
 }
@@ -50,4 +50,24 @@ export function imageToBase64(imgURL: string, mimeType: 'image/jpeg' | 'image/pn
     }
     img.onerror = (error: any) => reject(error)
   })
+}
+
+/** 复制文本到剪贴板 */
+export function copyText(text: string): void {
+  // 是否支持 navigator.clipboard 属性
+  const isClipboardApiSupported = window.navigator && window.navigator.clipboard
+  if (isClipboardApiSupported) {
+    window.navigator.clipboard.writeText(text)
+  } else {
+    const textarea = document.createElement('textarea')
+    textarea.readOnly = true
+    textarea.value = text
+    textarea.style.position = 'absolute'
+    textarea.style.top = '-9999px'
+    textarea.style.left = '-9999px'
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    textarea.remove()
+  }
 }
