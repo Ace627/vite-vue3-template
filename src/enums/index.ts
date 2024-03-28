@@ -1,3 +1,4 @@
+export { default as StatusEnum } from './status.enum'
 export { default as HttpStatusEnum } from './http-status.enum'
 
 /**
