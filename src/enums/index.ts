@@ -23,7 +23,7 @@ export enum AppEnum {
   /** 凭证请求头的 Key */
   AUTHORIZATION = 'Authorization',
   /** Token 前缀字符 */
-  TOKEN_PREFIX = 'Beraer',
+  TOKEN_PREFIX = 'Bearer',
   /** 自定义环境变量前缀 */
   ENV_PREFIX = 'VITE_',
 }
