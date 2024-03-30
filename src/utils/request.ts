@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AppEnum, RequestMethodEnum } from '@/enums'
+import { AuthEnum, RequestMethodEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
 
 const { getToken } = useToken() // 解构 Token 处理函数
@@ -21,7 +21,7 @@ request.interceptors.request.use(
     }
     NProgress.start() // 开启响应进度条
     const token = getToken()
-    token && Reflect.set(config.headers, AppEnum.AUTHORIZATION, `${AppEnum.TOKEN_PREFIX} ${token}`) // 让每个请求携带自定义 token 请根据实际情况自行修改
+    token && Reflect.set(config.headers, AuthEnum.AUTHORIZATION, `${AuthEnum.TOKEN_PREFIX} ${token}`) // 让每个请求携带自定义 token 请根据实际情况自行修改
     return config
   },
   (error) => {
