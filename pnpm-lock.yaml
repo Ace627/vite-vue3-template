@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
   sass:
-    specifier: ^1.72.0
-    version: 1.72.0
+    specifier: ^1.74.1
+    version: 1.74.1
   typescript:
     specifier: ^5.4.3
     version: 5.4.3
@@ -69,7 +69,7 @@ devDependencies:
     version: 0.26.0(vue@3.4.21)
   vite:
     specifier: ^5.2.8
-    version: 5.2.8(@types/node@20.12.4)(sass@1.72.0)
+    version: 5.2.8(@types/node@20.12.4)(sass@1.74.1)
   vite-plugin-html:
     specifier: ^3.2.2
     version: 3.2.2(vite@5.2.8)
@@ -909,7 +909,7 @@ packages:
       '@babel/core': 7.23.3
       '@babel/plugin-transform-typescript': 7.23.3(@babel/core@7.23.3)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.23.3)
-      vite: 5.2.8(@types/node@20.12.4)(sass@1.72.0)
+      vite: 5.2.8(@types/node@20.12.4)(sass@1.74.1)
       vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - supports-color
@@ -922,7 +922,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.2.8(@types/node@20.12.4)(sass@1.72.0)
+      vite: 5.2.8(@types/node@20.12.4)(sass@1.74.1)
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -3650,14 +3650,14 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: true
 
-  /sass@1.72.0:
-    resolution: {integrity: sha512-Gpczt3WA56Ly0Mn8Sl21Vj94s1axi9hDIzDFn9Ph9x3C3p4nNyvsqJoQyVXKou6cBlfFWEgRW4rT8Tb4i3XnVA==}
+  /sass@1.74.1:
+    resolution: {integrity: sha512-w0Z9p/rWZWelb88ISOLyvqTWGmtmu2QJICqDBGyNnfG4OUnPX9BBjjYIXUpXCMOOg5MQWNpqzt876la1fsTvUA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
       immutable: 4.3.4
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
     dev: true
 
   /scule@1.1.1:
@@ -4196,7 +4196,7 @@ packages:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 5.2.8(@types/node@20.12.4)(sass@1.72.0)
+      vite: 5.2.8(@types/node@20.12.4)(sass@1.74.1)
     dev: true
 
   /vite-plugin-imagemin@0.6.1(vite@5.2.8):
@@ -4227,12 +4227,12 @@ packages:
       imagemin-webp: 6.1.0
       jpegtran-bin: 6.0.1
       pathe: 0.2.0
-      vite: 5.2.8(@types/node@20.12.4)(sass@1.72.0)
+      vite: 5.2.8(@types/node@20.12.4)(sass@1.74.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@5.2.8(@types/node@20.12.4)(sass@1.72.0):
+  /vite@5.2.8(@types/node@20.12.4)(sass@1.74.1):
     resolution: {integrity: sha512-OyZR+c1CE8yeHw5V5t59aXsUPPVTHMDjEZz8MgguLL/Q7NblxhZUlTu9xSPqlsUO/y+X7dlU05jdhvyycD55DA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -4264,7 +4264,7 @@ packages:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.13.0
-      sass: 1.72.0
+      sass: 1.74.1
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
