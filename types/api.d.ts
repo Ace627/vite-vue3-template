@@ -1,25 +1,24 @@
 /** 所有 api 接口的响应数据都应该遵守该格式 */
 interface ApiResponseData<T = any> {
-  readonly code: number
-  readonly timestamp: number
-  readonly success: boolean
-  readonly message: string
-  result: Readonly<T>
+  code: number
+  timestamp: number
+  success: boolean
+  message: string
+  result: T
 }
 
 /** 列表类型的响应数据类型 */
 interface TableResponseData<T = any> extends ApiResponseData {
   result: {
     total: number
-    list: T
+    records: T
   }
 }
 
 /** 基础的分页查询参数 */
-interface QueryTableParams {
+interface TableQueryParams {
   pageNo: number
   pageSize: number
-  [key: string]: any
 }
 
 /* 定义类型别名，简化接口返回类型的书写 */
