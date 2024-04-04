@@ -35,3 +35,4 @@ pnpm dev
 - [Vite 全局组件的自动批量化注册](https://juejin.cn/post/7304183129896124416)
 - [VueRouter 中 Meta 字段的类型声明](https://juejin.cn/post/7302241918351163426)
 - [npm 的配置文件 .npmrc](https://juejin.cn/post/7325427710754422784)
+- [关于 npm 包更新工具 npm-check-updates 使用详解](https://zhuanlan.zhihu.com/p/482923542)
