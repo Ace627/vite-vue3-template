@@ -1,5 +1,6 @@
 import router from '@/router'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import { getToken } from '@/utils/cache/local-storage'
 
 const NProgress = useNProgress() // 顶部进度条
 

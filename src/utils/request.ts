@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { AuthEnum, RequestMethodEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
+import { getToken } from '@/utils/cache/local-storage'
 
-const { getToken } = useToken() // 解构 Token 处理函数
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT } = useEnv() // 解构环境变量
 const NProgress = useNProgress() // 顶部进度条
 

@@ -5,4 +5,3 @@ export { default as GenderEnum } from './gender.enum' // 性别枚举值
 export { default as HttpStatusEnum } from './http-status.enum' // HTTP状态码枚举值
 export { default as RequestMethodEnum } from './request-method.enum' // 请求方式枚举值
 export { default as ContentTypeEnum } from './content-type.enum' // 请求类型枚举值
-export { default as CacheKeyEnum } from './cache-key.enum' // 缓存数据时用到的 Key
