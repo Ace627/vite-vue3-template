@@ -1,26 +1,104 @@
-// 校验是否为手机号
-export const isPhone = (phone: string): boolean => /^1[3-9]\d{9}$/.test(phone)
+/** 判断是否为字符串 */
+export const isString = (str: unknown) => {
+  return typeof str === 'string' || str instanceof String
+}
 
-// 校验是否为邮箱
-export const isEmail = (email: string): boolean => /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email)
+/** 校验是否为手机号 */
+export function isPhone(phone: string): boolean {
+  const reg = /^1[3-9]\d{9}$/
+  return reg.test(phone)
+}
 
-// 校验是否为 QQ 号码
-export const isQQ = (qq: string): boolean => /^[1-9]\d{4,10}$/.test(qq)
+/** 判断版本号格式是否为 X.Y.Z */
+export const isVersion = (version: string) => {
+  const reg = /^\d+(?:\.\d+){2}$/
+  return reg.test(version)
+}
 
-// 校验是否为十六进制颜色值
-export const isHexColor = (color: string): boolean => /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color)
+/** 判断是否为 Email（支持中文邮箱） */
+export function isEmail(email: string): boolean {
+  const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+  return reg.test(email)
+}
 
-// 校验是否为外链
-export const isExternal = (url: string): boolean => /^(https?:|mailto:|tel:)/.test(url)
+/** 校验是否为 QQ 号码 */
+export function isQQ(qq: string): boolean {
+  const reg = /^[1-9]\d{4,10}$/
+  return reg.test(qq)
+}
 
-// 检验是否为 IPv4 地址
-export const isIPv4 = (ip: string): boolean => /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/.test(ip)
+/** 校验是否为十六进制颜色值 */
+export function isHexColor(color: string): boolean {
+  const reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
+  return reg.test(color)
+}
 
-// 校验对象是否为空
-export const isEmptyObject = (obj: Record<string, any>): boolean => Reflect.ownKeys(obj).length === 0
+/** 校验对象是否为空 */
+export function isEmptyObject(obj: Record<string, any>): boolean {
+  return Reflect.ownKeys(obj).length === 0 && JSON.stringify(obj) === '{}'
+}
 
-// 判断浏览器是否支持 webp 格式图片
-export const isSupportWebp = (): boolean => !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
+/** 判断浏览器是否支持 webp 格式图片 */
+export function isSupportWebp(): boolean {
+  return !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
+}
 
-// 校验是否是中文汉字
-export const isChinese = (str: string): boolean => /[\u0391-\uFFE5A-Za-z]+$/.test(str)
+/** 校验是否是中文汉字 */
+export function isChinese(str: string): boolean {
+  const reg = /[\u0391-\uFFE5A-Za-z]+$/
+  return reg.test(str)
+}
+
+/** 判断时间格式是否为 24 小时制（HH:mm:ss） */
+export function is24H(time: string) {
+  const reg = /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/
+  return reg.test(time)
+}
+
+/** 校验是否为外链 */
+export function isExternal(path: string) {
+  const reg = /^(https?:|mailto:|tel:)/
+  return reg.test(path)
+}
+
+/** 判断是否为网址（带协议） */
+export const isUrl = (url: string) => {
+  const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
+  return reg.test(url)
+}
+
+/** 判断是否为网址或 IP（带端口） */
+export const isUrlPort = (url: string) => {
+  const reg = /^((ht|f)tps?:\/\/)?[\w-]+(\.[\w-]+)+:\d{1,5}\/?$/
+  return reg.test(url)
+}
+
+/** 判断是否为域名（不带协议） */
+export const isDomain = (domain: string) => {
+  const reg = /^([0-9a-zA-Z-]{1,}\.)+([a-zA-Z]{2,})$/
+  return reg.test(domain)
+}
+
+/** 检验是否为 IPv4 地址 */
+export function isIPv4(ip: string) {
+  const reg = /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/
+  return reg.test(ip)
+}
+
+/** 判断是否为 MAC 地址 */
+export function isMac(mac: string) {
+  const reg = /^(([a-f0-9][0,2,4,6,8,a,c,e]:([a-f0-9]{2}:){4})|([a-f0-9][0,2,4,6,8,a,c,e]-([a-f0-9]{2}-){4}))[a-f0-9]{2}$/i
+  return reg.test(mac)
+}
+
+/** 判断是否为车牌（兼容新能源车牌） */
+export function isLicensePlate(plate: string) {
+  const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳]$/
+  return reg.test(plate)
+}
+
+/** 判断是否为第二代身份证（18 位） */
+export function isChineseIdCard(content: string) {
+  const reg = /^[1-9]\d{5}(?:18|19|20)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dXx]$/
+  return reg.test(content)
+}
