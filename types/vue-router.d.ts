@@ -43,5 +43,10 @@ declare module 'vue-router' {
      * 默认为 false，为 true 时代表需要缓存，此时该路由和该页面都需要设置一致的 Name
      */
     keepAlive?: boolean
+
+    /**
+     * 默认 false，如果设置为 true，它则会固定在 tags-view 中
+     */
+    affix?: boolean
   }
 }

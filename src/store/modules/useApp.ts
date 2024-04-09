@@ -13,24 +13,24 @@ export default defineStore('app', () => {
     withoutAnimation: false,
   })
 
-  /** 设备类型 */
-  const device = ref<DeviceType>('desktop')
-  const isMobile = computed(() => device.value === 'mobile')
-  const isDesktop = computed(() => device.value === 'desktop')
-
   /** 面包屑开关菜单栏的回调 */
-  function toggleSidebar() {
+  function toggleSidebar(): void {
     sidebar.withoutAnimation = false
     sidebar.opened = !sidebar.opened
     setSidebarStatus(sidebar.opened)
   }
 
   /** 关闭侧边栏（主要用于移动端状态下） */
-  function closeSidebar(withoutAnimation: boolean) {
+  function closeSidebar(withoutAnimation: boolean): void {
     setSidebarStatus(false)
     sidebar.opened = false
     sidebar.withoutAnimation = withoutAnimation
   }
+
+  /** 设备类型 */
+  const device = ref<DeviceType>('desktop')
+  const isMobile: globalThis.ComputedRef<boolean> = computed(() => device.value === 'mobile')
+  const isDesktop: globalThis.ComputedRef<boolean> = computed(() => device.value === 'desktop')
 
   return { sidebar, device, isMobile, isDesktop, toggleSidebar, closeSidebar }
 })
