@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue' // 提供 Vue 3 单文件组件支持
 import vueJsx from '@vitejs/plugin-vue-jsx' // 提供 Vue 3 JSX 支持
+import UnoCSS from 'unocss/vite' // 即时按需的原子化 CSS 引擎 UnoCSS
 import { registerAutoImport } from './auto-import'
 import { registerAutoComponents } from './auto-components'
 import { registerHtmlPlugin } from './compile.html'
@@ -14,6 +15,9 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
 
   /** 提供 Vue 3 JSX/TSX 支持 */
   plugins.push(vueJsx())
+
+  /** 即时按需的原子化 CSS 引擎 UnoCSS */
+  plugins.push(UnoCSS())
 
   /** 自动跟踪依赖并导入所需的内容，避免手动导入的繁琐步骤 */
   plugins.push(registerAutoImport())

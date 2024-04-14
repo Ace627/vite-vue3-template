@@ -32,6 +32,8 @@ pnpm dev
 
 ## 参考文献
 
+- [UnoCSS 中文文档](https://unocss.nodejs.cn)
+- [UnoCSS 样式速查表](https://unocss.dev/interactive)
 - [Vite 配置路径别名的流程](https://juejin.cn/post/7302249949215457319)
 - [Vite 全局组件的自动批量化注册](https://juejin.cn/post/7304183129896124416)
 - [VueRouter 中 Meta 字段的类型声明](https://juejin.cn/post/7302241918351163426)
