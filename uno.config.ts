@@ -13,13 +13,13 @@ export default defineConfig({
   ],
 
   /** 规则定义工具类和生成的 CSS。UnoCSS 有许多内置规则，但也允许轻松添加自定义规则 https://unocss.nodejs.cn/config/rules */
-  rules: [
-    // ['wh-full', { width: '100%', height: '100%' }],
-  ],
+  // rules: [['className', { content: '', clear: 'both' }]],
 
   /** 受 Windi CSS 的 启发，快捷方式可让你将多个规则组合成一个简写 https://unocss.nodejs.cn/config/shortcuts */
   shortcuts: {
-    'wh-full': 'w-full h-full',
-    'wh-screen': 'w-screen h-screen',
+    'wh-full': 'w-full h-full', // 宽高百分比铺满
+    'wh-screen': 'w-screen h-screen', // 宽高视口铺满
+    'flex-center': 'flex justify-center items-center', // 利用 flex 使子元素垂直水平居中
+    clearFix: 'before:content-empty before:table before:clear-both after:content-empty after:table after:clear-both', // 同时解决高度塌陷和外边距折叠的问题
   },
 })
