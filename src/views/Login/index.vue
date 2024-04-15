@@ -1,8 +1,8 @@
 <template>
-  <div class="login-container">
-    <div class="login-content">
+  <div class="login-container relative wh-screen overflow-hidden">
+    <div class="login-content fixed overflow-hidden flex">
       <div class="left">
-        <img src="../../assets/images/223502-17123277028d9c.jpg" alt="" />
+        <img src="../../assets/images/223502-17123277028d9c.jpg" class="wh-full" alt="" />
       </div>
       <div class="right">
         <h3>登录</h3>
@@ -55,31 +55,22 @@ async function handleLogin() {
 
 <style lang="scss" scoped>
 .login-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
   background-image: linear-gradient(to right, #65cbf7, #b3a5fc);
 }
 
 .login-content {
-  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
   width: 60%;
   height: 450px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  overflow: hidden;
 }
 .left {
   width: 60%;
   img {
     display: block;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
   }
 }
