@@ -6,6 +6,12 @@ import transformerDirectives from '@unocss/transformer-directives'
  * UnoCSS 样式速查表 https://unocss.dev/interactive
  */
 export default defineConfig({
+  content: {
+    pipeline: {
+      exclude: ['node_modules', 'dist', '.git', '.vscode', 'public', 'build', 'config', '.github', 'types'],
+    },
+  },
+
   presets: [
     /** 默认预设，包括Tailwind CSS、Windi CSS、Bootstrap、Tachyons，可以使用以上任意规则 https://unocss.nodejs.cn/presets/uno */
     presetUno(),
