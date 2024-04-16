@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container relative w-full h-full" :class="classes">
+  <div class="app-container relative wh-full" :class="classes">
     <RouterView />
   </div>
 </template>

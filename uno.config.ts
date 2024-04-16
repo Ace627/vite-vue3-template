@@ -1,4 +1,5 @@
 import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import transformerDirectives from '@unocss/transformer-directives'
 
 /**
  * UnoCSS中文网 https://unocss.nodejs.cn
@@ -13,7 +14,7 @@ export default defineConfig({
   ],
 
   /** 规则定义工具类和生成的 CSS。UnoCSS 有许多内置规则，但也允许轻松添加自定义规则 https://unocss.nodejs.cn/config/rules */
-  // rules: [['className', { content: '', clear: 'both' }]],
+  rules: [['bg-repeat-none', { 'background-repeat': 'no-repeat' }]],
 
   /** 受 Windi CSS 的 启发，快捷方式可让你将多个规则组合成一个简写 https://unocss.nodejs.cn/config/shortcuts */
   shortcuts: {
@@ -22,4 +23,9 @@ export default defineConfig({
     'flex-center': 'flex justify-center items-center', // 利用 flex 使子元素垂直水平居中
     clearFix: 'before:content-empty before:table before:clear-both after:content-empty after:table after:clear-both', // 同时解决高度塌陷和外边距折叠的问题
   },
+
+  transformers: [
+    /** 实现在 style 中写原子化 css https://unocss.nodejs.cn/transformers/directives */
+    transformerDirectives({ applyVariable: ['--uno-apply'] }),
+  ],
 })
