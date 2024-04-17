@@ -1,22 +1,8 @@
+/** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+
 :root {
-  /** Sidebar 组件 */
-  --sidebar-width: 200px;
-
-  /* 色彩 color */
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-primary: #409eff;
-  --color-success: #67c23a;
-  --color-warning: #e6a23c;
-  --color-danger: #f56c6c;
-  --color-info: #909399;
-
-  /* 字体 font */
-  --font-weight-primary: 500;
-  --font-size-extra-large: 20px;
-  --font-size-extra-small: 12px;
-  --font-size-small: 13px;
-  --font-size-base: 14px;
-  --font-size-medium: 16px;
-  --font-size-large: 18px;
+  /** Body */
+  --app-body-text-color: #303133;
+  --app-body-bg-color: #f2f3f5;
+  --app-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
 }
