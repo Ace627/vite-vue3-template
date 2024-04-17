@@ -21,6 +21,8 @@ interface ImportMetaEnv {
   VITE_REQUEST_TIMEOUT: string
   /** 是否自动打开浏览器 */
   VITE_AUTO_OPEN: string
+  /** 是否开启路由加载时的顶部进度条 */
+  VITE_ROUTER_NPROGRESS: string
 }
 
 /** 原生读取出的环境变量经过处理后的类型 */
@@ -33,6 +35,8 @@ interface ViteEnv extends ImportMetaEnv {
   VITE_AUTO_OPEN: boolean
   /** 打包后移除所有的 console、debugger */
   VITE_DROP_CONSOLE: boolean
+  /** 是否开启路由加载时的顶部进度条 */
+  VITE_ROUTER_NPROGRESS: boolean
 }
 
 interface ImportMeta {
