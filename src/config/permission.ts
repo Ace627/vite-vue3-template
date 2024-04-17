@@ -11,9 +11,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
   const hasToken = getToken()
 
   /** 如果没有 Token，但在免登录的白名单中，则直接进入；否则将被重定向到登录页面 */
-  if (!hasToken) {
-    return isWhiteList(to) ? next() : next(`/login?redirect=${to.fullPath}`)
-  }
+  if (!hasToken) return isWhiteList(to) ? next() : next(`/login?redirect=${to.fullPath}`)
 
   /** 如果已经登录，并准备进入 Login 页面，则重定向到主页 */
   if (to.path.toLowerCase() === '/login') return next({ path: '/', replace: true })
