@@ -23,6 +23,8 @@ interface ImportMetaEnv {
   VITE_AUTO_OPEN: string
   /** 是否开启路由加载时的顶部进度条 */
   VITE_ROUTER_NPROGRESS: string
+  /** 是否开启请求接口时的顶部进度条 */
+  VITE_REQUEST_NPROGRESS: string
 }
 
 /** 原生读取出的环境变量经过处理后的类型 */
@@ -37,6 +39,8 @@ interface ViteEnv extends ImportMetaEnv {
   VITE_DROP_CONSOLE: boolean
   /** 是否开启路由加载时的顶部进度条 */
   VITE_ROUTER_NPROGRESS: boolean
+  /** 是否开启请求接口时的顶部进度条 */
+  VITE_REQUEST_NPROGRESS: boolean
 }
 
 interface ImportMeta {

@@ -3,8 +3,8 @@ import { AuthEnum, RequestMethodEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
 import { getToken } from '@/utils/cache/local-storage'
 
-const { VITE_BASE_API, VITE_REQUEST_TIMEOUT } = useEnv() // 解构环境变量
-const NProgress = useNProgress() // 顶部进度条
+const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
+const NProgress = useNProgress({ show: VITE_REQUEST_NPROGRESS }) // 顶部进度条
 
 const request = axios.create({
   // baseURL 将自动加在 url 前面，除非 url 是一个绝对 URL
