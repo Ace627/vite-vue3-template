@@ -32,7 +32,7 @@ const userStore = useUser()
 /** 登录按钮 Loading */
 const loading = ref(false)
 /** 登录表单数据 */
-const loginForm = ref({
+const loginForm = ref<LoginModule.LoginParams>({
   account: 'admin',
   password: '123456',
 })
@@ -43,7 +43,7 @@ const redirect = (route.query.redirect as string) || '/'
 async function handleLogin() {
   try {
     loading.value = true
-    await userStore.login()
+    await userStore.login(loginForm.value)
     loading.value = false
     await router.replace({ path: redirect })
   } catch (error) {
