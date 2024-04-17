@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import type { PluginOption } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
@@ -11,7 +12,7 @@ export const registerHtmlPlugin = (viteEnv: ViteEnv, isBuild: boolean): PluginOp
     minify: isBuild,
     // 需要注入 index.html ejs 模版的数据
     inject: {
-      data: { VITE_APP_TITLE, buildTime: new Date().toLocaleString() },
+      data: { VITE_APP_TITLE, buildTime: dayjs().format(`YYYY-MM-DD HH:mm:ss`) },
     },
   })
 }

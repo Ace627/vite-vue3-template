@@ -6,6 +6,7 @@ import store from './store'
 import router from './router'
 import plugins from './plugins'
 import './config/permission'
+import { Logger } from './common/Logger'
 
 async function bootstrap() {
   /** 创建 Vue 应用实例 */
@@ -25,6 +26,8 @@ async function bootstrap() {
 
   /** 挂载应用 */
   app.mount('#app')
+
+  Logger.verbose(`系统初始化完成`)
 }
 
 bootstrap()

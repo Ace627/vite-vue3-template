@@ -2,12 +2,14 @@ import router from '@/router'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { getToken } from '@/utils/cache/local-storage' // 从缓存读取 Token 的方法
 import isWhiteList from './white-list' // 路由是否在白名单的判断判断方法
+import { Logger } from '@/common/Logger'
 
 const { VITE_ROUTER_NPROGRESS } = useEnv()
 const NProgress = useNProgress({ show: VITE_ROUTER_NPROGRESS }) // 顶部进度条
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   NProgress.start()
+  Logger.verbose(`访问权限校验开始`)
   const hasToken = getToken()
 
   /** 如果没有 Token，但在免登录的白名单中，则直接进入；否则将被重定向到登录页面 */
@@ -22,4 +24,5 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
 
 router.afterEach((to: RouteLocationNormalized) => {
   NProgress.done()
+  Logger.verbose(`访问权限校验完成`)
 })
