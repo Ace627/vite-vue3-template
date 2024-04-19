@@ -20,6 +20,7 @@
 defineOptions({ name: 'Layout' })
 import RichText from '@/views/Example/RichText/index.vue'
 import QrCodeDemo from '@/views/Example/QrCodeDemo/index.vue'
+import iFrameDemo from '@/views/Example/iFrameDemo/index.vue'
 import NotFound from '@/views/ExceptionPage/NotFound.vue'
 
 /** Layout 布局响应式 */
@@ -39,6 +40,7 @@ const activeComponent = shallowRef<Component>(RichText)
 const viewList = [
   { title: '富文本编辑器', component: RichText },
   { title: '二维码示例', component: QrCodeDemo },
+  { title: '链接内嵌示例', component: iFrameDemo },
   { title: 'NotFound页面', component: NotFound },
 ]
 
