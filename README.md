@@ -16,6 +16,21 @@ pnpm install
 pnpm dev
 ```
 
+## 目录参考
+
+```bash
+|-src
+| |-config
+|   |-defaultSettings.ts              # 项目默认配置
+|   |-permission.ts                   # 访问权限校验守卫
+|   |-white-list.ts                   # 路由免授权白名单
+| |-utils
+    |-cache
+|     |-local-storage.ts              # 统一处理 localStorage 的存储
+|   |-request.ts                      # 对 axios 的二次封装
+|   |-validate.ts                     # 常用的校验方法合集
+```
+
 ## 使用须知
 
 - [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)

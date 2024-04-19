@@ -13,7 +13,11 @@
 
     <div class="example-item">
       <h4>二维码示例</h4>
-      <QrCode text="二维码示例" />
+      <!-- <QrCode text="二维码示例" /> -->
+      <button class="bg-sky mr-10px" @click="settingStore.showColorWeakness = true">开启色弱模式 {{ settingStore.showColorWeakness }}</button>
+      <button class="bg-sky mr-10px" @click="settingStore.showColorWeakness = false">关闭色弱模式</button>
+      <button class="bg-sky mr-10px" @click="settingStore.showGreyMode = true">开启灰色模式 {{ settingStore.showGreyMode }}</button>
+      <button class="bg-sky mr-10px" @click="settingStore.showGreyMode = false">关闭灰色模式</button>
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@ useResize()
 
 /** 读取 Pinia 仓库 */
 const appStore = useApp()
+const settingStore = useSetting()
 
 const ss = ref('')
 
@@ -42,6 +47,10 @@ const classes = computed(() => {
   width: 100%;
   height: 100%;
   padding: 16px;
+}
+
+button {
+  --uno-apply: bg-[--app-color-primary];
 }
 
 .example-item {

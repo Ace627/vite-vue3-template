@@ -4,12 +4,19 @@
 @use './transition.scss';
 
 body {
-  font-family: var(--app-font-family);
-  color: var(--app-body-text-color);
-  background-color: var(--app-body-bg-color);
+  --uno-apply: c-[--app-body-text-color] bg-[--app-body-bg-color] font-[--app-font-family];
 }
 
 /* 业务页面几乎都应该在根元素上挂载 class="app-content"，以保持页面美观 */
 .app-content {
   --uno-apply: relative wh-full p-16px;
+}
+
+/* 灰色模式 */
+.showGreyMode {
+  filter: grayscale(1);
+}
+/* 色弱模式 */
+.showColorWeakness {
+  filter: invert(0.8);
 }
