@@ -2,6 +2,8 @@
 
 :root {
   /* 主题色 */
+  --app-color-white: #ffffff;
+  --app-color-black: #000000;
   --app-color-primary: #409eff;
   --app-color-success: #67c23a;
   --app-color-warning: #e6a23c;

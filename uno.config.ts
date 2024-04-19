@@ -28,6 +28,7 @@ export default defineConfig({
     'wh-screen': 'w-screen h-screen', // 宽高视口铺满
     'flex-center': 'flex justify-center items-center', // 利用 flex 使子元素垂直水平居中
     clearFix: 'before:content-empty before:table before:clear-both after:content-empty after:table after:clear-both', // 同时解决高度塌陷和外边距折叠的问题
+    'app-content': 'relative w-full p-16px', // 业务页面几乎都应该在根元素上挂载 class="app-content"，以保持页面美观
   },
 
   transformers: [

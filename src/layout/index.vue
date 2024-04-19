@@ -1,44 +1,54 @@
 <template>
   <div class="app-container" :class="classes">
-    <div class="example-item">
-      <h4>默认数据</h4>
-      <p>当前设备类型： {{ appStore.device }}</p>
-      <p><router-link to="/sadfg">访问404页面</router-link></p>
-    </div>
+    <aside class="sidebar-container">
+      <div class="menu-item" v-for="(item, i) in viewList" :key="i" :class="{ 'is-active': activeComponent?.name === item.component.name }" @click="switchView(item.component)">
+        {{ item.title }}
+      </div>
 
-    <div class="example-item">
-      <h4>富文本编辑器示例</h4>
-      <Editor v-model="ss" />
-    </div>
+      <footer>
+        <button @click="logout">退出登录</button>
+      </footer>
+    </aside>
 
-    <div class="example-item">
-      <h4>二维码示例</h4>
-      <!-- <QrCode text="二维码示例" /> -->
-      <button class="bg-sky mr-10px" @click="settingStore.showColorWeakness = true">开启色弱模式 {{ settingStore.showColorWeakness }}</button>
-      <button class="bg-sky mr-10px" @click="settingStore.showColorWeakness = false">关闭色弱模式</button>
-      <button class="bg-sky mr-10px" @click="settingStore.showGreyMode = true">开启灰色模式 {{ settingStore.showGreyMode }}</button>
-      <button class="bg-sky mr-10px" @click="settingStore.showGreyMode = false">关闭灰色模式</button>
-    </div>
+    <section class="main-container">
+      <component :is="activeComponent"></component>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'Layout' })
+import RichText from '@/views/Example/RichText/index.vue'
+import QrCodeDemo from '@/views/Example/QrCodeDemo/index.vue'
+import NotFound from '@/views/ExceptionPage/NotFound.vue'
 
 /** Layout 布局响应式 */
 useResize()
 
 /** 读取 Pinia 仓库 */
 const appStore = useApp()
-const settingStore = useSetting()
-
-const ss = ref('')
+const userStore = useUser()
 
 /** 用来添加到根组件的动态类的集合 */
 const classes = computed(() => {
   const cls: string[] = [appStore.device]
   return cls
 })
+
+const activeComponent = shallowRef<Component>(RichText)
+const viewList = [
+  { title: '富文本编辑器', component: RichText },
+  { title: '二维码示例', component: QrCodeDemo },
+  { title: 'NotFound页面', component: NotFound },
+]
+
+function switchView(component: Component) {
+  activeComponent.value = component
+}
+function logout() {
+  userStore.logout()
+  window.location.href = '/'
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,41 +56,78 @@ const classes = computed(() => {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 16px;
+
+  --app-sidebar-width: 200px;
 }
 
-button {
-  --uno-apply: bg-[--app-color-primary];
-}
+.sidebar-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  width: var(--app-sidebar-width);
+  height: 100%;
+  color: #fff;
+  background-color: #2b65d9;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  transition: width 0.28s;
+  overflow: hidden;
 
-.example-item {
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #dcdfe6;
-  background-color: #fff;
-  box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04), 0px 8px 20px rgba(0, 0, 0, 0.08);
-  h4 {
+  footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    height: 32px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    background-color: rgba(0, 21, 41, 0.08);
-    letter-spacing: 2px;
-    &::before {
-      display: block;
-      content: '';
-      width: 3px;
-      height: 60%;
-      margin-left: 8px;
-      margin-right: 8px;
-      border-radius: 8px;
-      background-color: #07f;
+    width: 100%;
+    border-top: 1px solid var(--app-color-white);
+    button {
+      cursor: pointer;
+      font-size: 14px;
+      margin: 10px auto;
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: var(--app-color-white);
+      background-color: var(--app-color-danger);
     }
   }
-  & ~ .example-item {
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 32px;
+  margin: 0 auto;
+  font-size: 14px;
+  white-space: nowrap;
+  border-radius: 10px;
+  transition: all 0.32s;
+  cursor: pointer;
+  &.is-active {
+    color: #2b65d9;
+    background-color: #fff;
+  }
+  &:first-of-type {
     margin-top: 16px;
+  }
+}
+
+.main-container {
+  position: relative;
+  height: 100%;
+  margin-left: var(--app-sidebar-width);
+  transition: margin-left 0.28s;
+}
+
+.mobile {
+  .sidebar-container {
+    width: 0;
+  }
+  .main-container {
+    margin-left: 0;
   }
 }
 </style>
