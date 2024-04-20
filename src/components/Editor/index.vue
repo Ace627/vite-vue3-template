@@ -1,37 +1,35 @@
 <template>
   <div class="editor-container">
-    <Toolbar class="editor-container__toolbar" :editor="editorRef" :defaultConfig="toolbarConfig" mode="default" />
-    <Editor v-model="modelValue" :style="styles" :defaultConfig="editorConfig" mode="default" @onCreated="handleCreated" @customPaste="handleCustomPaste" />
+    <Toolbar class="toolbar" :editor="editorRef" :defaultConfig="toolbarConfig" :mode />
+    <Editor v-model="modelValue" :style="styles" :defaultConfig="editorConfig" :mode @onCreated="handleCreated" @customPaste="handleCustomPaste" />
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'Editor' })
 import { onBeforeUnmount, ref, shallowRef, CSSProperties } from 'vue'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import type { IEditorConfig, IDomEditor, IToolbarConfig } from '@wangeditor/editor'
-import toolbarKeys from './toolbarKeys'
 
 /** 接收父组件传递的属性 */
 const props = defineProps({
   /** 工具栏中需要隐藏的菜单的 key */
-  excludeToolBar: { type: Array as PropType<WangEditorToolbarKey[]>, default: ['fullScreen', 'redo', 'undo'] },
+  excludeToolBar: { type: Array as PropType<string[]>, default: [] },
   /** 编辑器为空时的提示字符 */
   placeholder: { type: String, default: '请输入内容...' },
   /** 编辑器是否只读 */
   readOnly: { type: Boolean, default: false },
   /** 编辑器内容区域高度 */
   height: { type: Number, default: 300 },
+  /** 默认模式 - 集成了 wangEditor 所有功能 简洁模式 - 仅有部分常见功能，但更加简洁易用 */
+  mode: { type: String as PropType<'default' | 'simple'>, default: 'default' },
 })
 
 /** 父子双向绑定数据字段 */
 const modelValue = defineModel({ default: '', type: String })
-
-/** 编辑器实例，必须用 shallowRef */
-const editorRef = shallowRef<IDomEditor>()
 /** 工具栏配置 */
-const toolbarConfig: Partial<IToolbarConfig> = { toolbarKeys, excludeKeys: props.excludeToolBar, modalAppendToBody: false }
+const toolbarConfig: Partial<IToolbarConfig> = { excludeKeys: props.excludeToolBar, modalAppendToBody: false }
 /** 编辑器配置 */
 const editorConfig = ref<Partial<IEditorConfig>>({
   readOnly: props.readOnly,
@@ -42,8 +40,6 @@ const editorConfig = ref<Partial<IEditorConfig>>({
   },
 })
 
-/** 富文本编辑器生成后触发 */
-const handleCreated = (editor: IDomEditor) => (editorRef.value = editor)
 const styles = computed<CSSProperties>(() => ({ height: `${props.height}px`, overflow: 'hidden' }))
 
 /** 自定义图片上传逻辑 */
@@ -65,19 +61,21 @@ async function handleVideoUpload(file: File, insertFn: (fileURL: string, desc: s
  * https://www.wangeditor.com/v5/editor-config.html#custompaste
  */
 function handleCustomPaste(editor: IDomEditor, event: ClipboardEvent, callback: (status: boolean) => void) {
-  // event 是 ClipboardEvent 类型，可以拿到粘贴的数据 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
-  callback(true)
+  callback(true) // 返回 true ，继续默认的粘贴行为
 }
 
-/** 组件销毁时，也及时销毁编辑器 */
+/** 编辑器实例，必须用 shallowRef */
+const editorRef = shallowRef<IDomEditor>()
+/** 富文本编辑器生成后触发 记录 editor 实例，重要！ */
+const handleCreated = (editor: IDomEditor) => (editorRef.value = editor)
+/** 组件销毁时，也及时销毁编辑器，重要！ */
 onBeforeUnmount(() => editorRef.value && editorRef.value.destroy())
 </script>
 
 <style lang="scss" scoped>
 .editor-container {
   border: 1px solid #dcdfe6;
-
-  &__toolbar {
+  .toolbar {
     border-bottom: 1px solid #dcdfe6;
   }
 }
