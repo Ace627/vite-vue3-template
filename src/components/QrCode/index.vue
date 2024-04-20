@@ -1,5 +1,5 @@
 <template>
-  <VueQr class="qrcode" :text="text" :size="size" :margin="margin" :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" :callback="callback" />
+  <VueQr class="qrcode" :text :size :margin :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" :callback />
 </template>
 
 <script setup lang="ts">
