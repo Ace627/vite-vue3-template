@@ -20,6 +20,10 @@ pnpm dev
 
 ```bash
 |-src
+| |-components
+|   |-Editor                          # 富文本编辑器组件
+|   |-IFrame                          # 外链内嵌组件
+|   |-QrCode                          # 二维码组件
 | |-config
 |   |-defaultSettings.ts              # 项目默认配置
 |   |-permission.ts                   # 访问权限校验守卫
