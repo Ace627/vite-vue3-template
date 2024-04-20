@@ -100,14 +100,12 @@ function logout() {
 
 .menu-item {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 90%;
-  height: 32px;
+  height: 42px;
   margin: 0 auto;
+  padding-left: 16px;
   font-size: 14px;
   white-space: nowrap;
-  border-radius: 10px;
   transition: all 0.32s;
   cursor: pointer;
   &.is-active {

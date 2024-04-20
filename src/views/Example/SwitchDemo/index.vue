@@ -45,7 +45,7 @@ function switchChange() {
   background-color: #1d1f2c;
 }
 .theme-switch {
-  --toggle-size: 30px;
+  --toggle-size: 64px;
   /* the size is adjusted using font-size,
      this is not transform scale,
      so you can choose any size */
