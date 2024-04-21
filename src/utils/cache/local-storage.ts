@@ -1,5 +1,5 @@
 /** 统一处理 localStorage */
-import { CacheKey } from '@/common/constants/cache-key'
+import { CacheKey } from '@/config/constants/cache-key'
 import { ProjectConfig } from '@/config/defaultSettings'
 
 /* -------------------------------------------------------------------------- */

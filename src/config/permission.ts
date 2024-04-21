@@ -1,11 +1,13 @@
-import type { RouteLocationNormalized, NavigationGuardNext, NavigationFailure } from 'vue-router'
+import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { getToken } from '@/utils/cache/local-storage' // 从缓存读取 Token 的方法
 import isWhiteList from '@/config/white-list' // 路由是否在白名单的判断判断方法
 
 const { VITE_ROUTER_NPROGRESS } = useEnv()
 const NProgress = useNProgress({ show: VITE_ROUTER_NPROGRESS }) // 顶部进度条
 
-/** 全局前置守卫 */
+/**
+ * @description 路由全局前置守卫
+ */
 export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   console.log(`访问权限校验开始`)
   NProgress.start()
@@ -21,7 +23,9 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from:
   next()
 }
 
-/** 全局后置守卫 */
+/**
+ * @description 路由全局后置守卫
+ */
 export async function globalRouterAfterGuard(to: RouteLocationNormalized) {
   NProgress.done()
   console.log(`访问权限校验完成`)

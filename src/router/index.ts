@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { constantRoutes } from './constants-routes'
-import { globalRouterAfterGuard, globalRouterBeforeGuard } from '@/common/guards/global-router.guard'
+import { globalRouterAfterGuard, globalRouterBeforeGuard } from '@/config/permission'
 
 const { VITE_PUBLIC_PATH, VITE_ROUTER_MODE } = useEnv() // 解构环境变量
 
