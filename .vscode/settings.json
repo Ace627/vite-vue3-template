@@ -1,0 +1,29 @@
+{
+  // 指定默认的代码格式化工具
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 保存时对代码进行格式化
+  "editor.formatOnSave": true,
+  // 控制是否启用括号对着色。使用 “workbench.colorCustomizations” 替代括号突出显示颜色
+  "editor.bracketPairColorization.enabled": true,
+
+  // 控制资源管理器是否应以紧凑形式呈现文件夹。
+  // 在这种形式中，单个子文件夹将被压缩在组合的树元素中。例如，对 Java 包结构很有用
+  "explorer.compactFolders": false,
+
+  // 箭头函数仅有一个参数时，参数是否添加括号。
+  "prettier.arrowParens": "always",
+  // 每行代码的长度限制。
+  "prettier.printWidth": 180,
+  // 在所有代码语句的末尾添加分号。
+  "prettier.semi": false,
+  // 使用单引号而不是双引号。
+  "prettier.singleQuote": true,
+  // 指定一个制表符等于的空格数。
+  "prettier.tabWidth": 2,
+  // 使用制表符缩进，而不是空格缩进。
+  "prettier.useTabs": false,
+  // 缩进 Vue SFC 文件中的 `<script>` 和 `<style>` 标签。
+  "prettier.vueIndentScriptAndStyle": false,
+  // 允许 Prettier 格式化 `node_modules` 中的文件。
+  "prettier.withNodeModules": false
+}
