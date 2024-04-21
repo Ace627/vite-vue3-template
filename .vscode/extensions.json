@@ -1,11 +1,14 @@
 {
   "recommendations": [
-    "Vue.vscode-typescript-vue-plugin",
-    "naumovs.color-highlight",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "kisstkondoros.vscode-gutter-preview",
     "whtouche.vscode-js-console-utils",
     "esbenp.prettier-vscode",
     "vue.volar",
+    "antfu.unocss",
+    "vscode-icons-team.vscode-icons",
     "hollowtree.vue-snippets",
-    "kisstkondoros.vscode-gutter-preview"
+    "xabikos.javascriptsnippets",
+    "eamodio.gitlens"
   ]
 }

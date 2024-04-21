@@ -17,13 +17,12 @@
 defineOptions({ name: 'QrCodeDemo' })
 import { type GlobalComponents } from 'vue'
 import vueLogo from '@/assets/vue.svg'
-import { Logger } from '@/common/Logger'
 import { generateHexColor } from '@/utils/color'
 
 const qrcodeRef = ref<InstanceType<GlobalComponents['QrCode']>>()
 
 function getImgData() {
-  Logger.success(qrcodeRef.value?.toDataURL() || '')
+  console.log(qrcodeRef.value?.toDataURL())
 }
 onMounted(() => {})
 </script>
