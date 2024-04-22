@@ -20,7 +20,10 @@
     </aside>
 
     <section class="main-container">
-      <component :is="activeComponent"></component>
+      <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
+      <Transition :name="settingStore.transitionName" mode="out-in">
+        <component :is="activeComponent" :key="route.path"></component>
+      </Transition>
     </section>
   </div>
 </template>
@@ -41,6 +44,8 @@ useResize()
 /** 读取 Pinia 仓库 */
 const appStore = useApp()
 const userStore = useUser()
+const settingStore = useSetting()
+const route = useRoute()
 
 /** 用来添加到根组件的动态类的集合 */
 const classes = computed(() => {

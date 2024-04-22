@@ -1,7 +1,7 @@
 <template>
   <div class="app-content">
     <div class="mb-16px">
-      <button @click="getImgData">获取第一张二维码的图片数据</button>
+      <button @click="getImgData">获取第四张二维码的图片数据</button>
     </div>
 
     <div class="flex items-start gap-16px flex-wrap flex-content-start">

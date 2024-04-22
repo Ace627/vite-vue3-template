@@ -8,6 +8,8 @@ export interface ProjectConfig {
   showGreyMode: boolean
   /** 是否显示色弱模式 */
   showColorWeakness: boolean
+  /** 内容区域转场动效 */
+  transitionName: 'fade-transform'
 }
 
 /** 默认配置 */
@@ -15,6 +17,7 @@ const defaultSettings: ProjectConfig = {
   showSetting: false,
   showGreyMode: false,
   showColorWeakness: false,
+  transitionName: 'fade-transform',
 }
 
 /** 合并后的配置 */
