@@ -1,8 +1,3 @@
-/** 判断是否为字符串 */
-export const isString = (str: unknown) => {
-  return typeof str === 'string' || str instanceof String
-}
-
 /** 校验是否为手机号 */
 export function isPhone(phone: string): boolean {
   const reg = /^1[3-9]\d{9}$/

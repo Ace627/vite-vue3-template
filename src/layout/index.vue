@@ -20,10 +20,12 @@
     </aside>
 
     <section class="main-container">
-      <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
-      <Transition :name="settingStore.transitionName" mode="out-in">
-        <component :is="activeComponent" :key="route.path"></component>
-      </Transition>
+      <div class="app-main">
+        <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
+        <Transition :name="settingStore.transitionName" mode="out-in">
+          <component :is="activeComponent" :key="route.path"></component>
+        </Transition>
+      </div>
     </section>
   </div>
 </template>
@@ -128,9 +130,15 @@ function logout() {
 
 .main-container {
   position: relative;
-  height: 100%;
+  min-height: 100%;
   margin-left: var(--app-sidebar-width);
   transition: margin-left 0.28s;
+}
+
+.app-main {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 .mobile {
