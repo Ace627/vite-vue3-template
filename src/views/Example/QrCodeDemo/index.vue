@@ -41,6 +41,6 @@ button {
 }
 
 .qrcode {
-  flex: 1;
+  width: 120px;
 }
 </style>

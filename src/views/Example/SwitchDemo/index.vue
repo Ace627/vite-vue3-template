@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content flex-center" :class="{ dark: isDark }">
+  <div class="app-content flex-center h-screen" :class="{ dark: isDark }">
     <label class="theme-switch">
       <input type="checkbox" :checked="isDark" class="theme-switch__checkbox" @change="switchChange" />
       <div class="theme-switch__container">

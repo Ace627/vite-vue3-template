@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 defineOptions({ name: 'QrCode' })
+import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 
 defineProps({
   /** 二维码内容 必需 */
