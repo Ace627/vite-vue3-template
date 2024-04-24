@@ -1,9 +1,9 @@
 <template>
-  <VueQr class="qrcode" :text :size :margin :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" :callback />
+  <VueQr class="qrcode" :text :size :margin :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" />
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'QrCode' })
+defineOptions({ name: 'QRCode' })
 import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 
 defineProps({
@@ -20,20 +20,10 @@ defineProps({
   /** 二维码背景颜色 */
   bgColor: { type: String, default: 'transparent' },
 })
-
-/** 获取二维码的图片 Base64 字符串 */
-const base64URL = ref<string>()
-const callback = (value: string) => (base64URL.value = value)
-const toDataURL = () => base64URL.value || ''
-
-/** 暴露组件的方法属性 便于父组件访问 */
-defineExpose({ toDataURL })
 </script>
 
 <style lang="scss" scoped>
-.qrcode {
-  &:hover {
-    cursor: pointer;
-  }
+.qrcode:hover {
+  cursor: pointer;
 }
 </style>
