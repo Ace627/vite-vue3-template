@@ -59,7 +59,7 @@ export default defineConfig(({ command, mode }) => {
       /** 图片转 base64 编码的阈值。为防止过多的 http 请求，Vite 会将小于此阈值的图片转为 base64 格式 */
       assetsInlineLimit: 4096,
       /** 规定触发警告的 chunk 大小。（以 kbs 为单位） */
-      chunkSizeWarningLimit: 500,
+      chunkSizeWarningLimit: 1024,
       /** 启用/禁用 CSS 代码拆分 */
       cssCodeSplit: true,
       /** 构建后是否生成 source map 文件 */
@@ -68,18 +68,18 @@ export default defineConfig(({ command, mode }) => {
       copyPublicDir: true,
       /** 指定使用哪种混淆器。默认为 esbuild，它比 terser 快 20-40 倍，压缩率只差 1%-2% */
       minify: 'esbuild',
-      rollupOptions: {
-        /** 配置打包文件分类输出 */
-        output: {
-          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
-          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
-          assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
-          /** JavaScript 最小化拆分包 让打开那个页面，加载那个页面的 js ，让其之间的关联足够小 */
-          manualChunks(id) {
-            id.includes('node_modules') && id.toString().split('node_modules/')[1].split('/')[0].toString()
-          },
-        },
-      },
+      // rollupOptions: {
+      //   /** 配置打包文件分类输出 */
+      //   output: {
+      //     chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+      //     entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+      //     assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
+      //     /** JavaScript 最小化拆分包 让打开那个页面，加载那个页面的 js ，让其之间的关联足够小 */
+      //     manualChunks(id) {
+      //       id.includes('node_modules') && id.toString().split('node_modules/')[1].split('/')[0].toString()
+      //     },
+      //   },
+      // },
     },
 
     /** 打包后移除所有的 console、debugger */
