@@ -14,10 +14,6 @@
 defineOptions({ name: 'RichText' })
 
 const content = ref<string>('一曲肝肠断，天涯何处觅知音。')
-
-function printContent() {
-  console.log(content.value)
-}
 </script>
 
 <style lang="scss" scoped>

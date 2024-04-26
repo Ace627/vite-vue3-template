@@ -35,6 +35,7 @@ defineOptions({ name: 'Layout' })
 import RichText from '@/views/Example/RichText/index.vue'
 import QrCodeDemo from '@/views/Example/QrCodeDemo/index.vue'
 import iFrameDemo from '@/views/Example/iFrameDemo/index.vue'
+import SvgIconDemo from '@/views/Example/SvgIconDemo/index.vue'
 import StarfishDesign from '@/views/Example/iFrameDemo/StarfishDesign.vue'
 import FormGenerator from '@/views/Example/iFrameDemo/FormGenerator.vue'
 import SwitchDemo from '@/views/Example/SwitchDemo/index.vue'
@@ -60,6 +61,7 @@ const viewList = [
   { title: '富文本编辑器', component: RichText },
   { title: '二维码示例', component: QrCodeDemo },
   { title: '挺火的那个Switch', component: SwitchDemo },
+  { title: 'SvgIcon', component: SvgIconDemo },
   { title: 'NotFound页面', component: NotFound },
   { title: '链接内嵌示例', component: iFrameDemo },
   { title: 'Starfish表单设计', component: StarfishDesign },

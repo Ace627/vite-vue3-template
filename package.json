@@ -41,6 +41,7 @@
     "vite": "^5.2.10",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-imagemin": "0.6.1",
+    "vite-plugin-svg-icons": "2.0.1",
     "vue-tsc": "^2.0.14"
   },
   "repository": {

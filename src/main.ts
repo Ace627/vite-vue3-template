@@ -3,7 +3,7 @@ import App from './App.vue'
 import { setupStore } from './store'
 import { setupRouter } from './router'
 import plugins from './plugins'
-// 样式引入
+import 'virtual:svg-icons-register'
 import 'virtual:uno.css'
 import './styles/index.scss'
 

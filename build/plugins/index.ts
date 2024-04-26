@@ -6,6 +6,7 @@ import { registerAutoImport } from './auto-import'
 import { registerAutoComponents } from './auto-components'
 import { registerHtmlPlugin } from './compile.html'
 import { registerImageMini } from './image.mini'
+import { registerSvgIcons } from './register-svg-icons'
 
 export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOption[] {
   const plugins: PluginOption[] = []
@@ -15,6 +16,9 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
 
   /** 提供 Vue 3 JSX/TSX 支持 */
   plugins.push(vueJsx())
+
+  /** 提供 Svg 图标功能的使用支持 */
+  plugins.push(registerSvgIcons())
 
   /** 即时按需的原子化 CSS 引擎 UnoCSS */
   plugins.push(UnoCSS())
