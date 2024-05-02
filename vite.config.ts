@@ -64,18 +64,21 @@ export default defineConfig(({ command, mode }) => {
       copyPublicDir: true,
       /** 指定使用哪种混淆器。默认为 esbuild，它比 terser 快 20-40 倍，压缩率只差 1%-2% */
       minify: 'esbuild',
-      // rollupOptions: {
-      //   /** 配置打包文件分类输出 */
-      //   output: {
-      //     chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
-      //     entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
-      //     assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
-      //     /** JavaScript 最小化拆分包 让打开那个页面，加载那个页面的 js ，让其之间的关联足够小 */
-      //     manualChunks(id) {
-      //       id.includes('node_modules') && id.toString().split('node_modules/')[1].split('/')[0].toString()
-      //     },
-      //   },
-      // },
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+          assetFileNames(chunkInfo) {
+            const ext = chunkInfo.name.split('.')[1]
+            if (ext === 'css') return `css/[name]-[hash].css`
+            if (['png', 'jpg', 'gif', 'webp'].includes(ext)) return `img/[name]-[hash].[ext]`
+            return '[ext]/[name]-[hash].[ext]'
+          },
+          manualChunks(chunk) {
+            if (chunk.includes('node_modules')) return 'vendor'
+          },
+        },
+      },
     },
 
     /** 打包后移除所有的 console、debugger */
