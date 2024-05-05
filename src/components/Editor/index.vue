@@ -9,7 +9,7 @@
 defineOptions({ name: 'Editor' })
 import { onBeforeUnmount, ref, shallowRef, CSSProperties } from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { Editor, Toolbar, type InsertFnType } from '@wangeditor/editor-for-vue'
 import type { IEditorConfig, IDomEditor, IToolbarConfig } from '@wangeditor/editor'
 
 /** 接收父组件传递的属性 */
@@ -43,14 +43,14 @@ const editorConfig = ref<Partial<IEditorConfig>>({
 const styles = computed<CSSProperties>(() => ({ height: `${props.height}px`, overflow: 'hidden' }))
 
 /** 自定义图片上传逻辑 */
-async function handleImageUpload(file: File, insertFn: (fileURL: string, desc: string) => void) {
+async function handleImageUpload(file: File, insertFn: InsertFnType) {
   const fileSize = file.size // 单位 bit
   const blobURL = URL.createObjectURL(file) // 此处可以替换为真正的图片上传逻辑
   insertFn(blobURL, 'image') // 调用inserFn函数将url加载到富文本编辑器中
 }
 
 /** 自定义视频上传逻辑 */
-async function handleVideoUpload(file: File, insertFn: (fileURL: string, desc: string) => void) {
+async function handleVideoUpload(file: File, insertFn: InsertFnType) {
   console.log('上传视频', file)
   const blobURL = URL.createObjectURL(file)
   insertFn(blobURL, 'video')

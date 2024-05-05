@@ -4,9 +4,10 @@
 
     <Editor v-model="content" class="mt-16px mb-16px" mode="default" />
 
-    <main class="bg-slate c-white p-10px b-rd-10px">
+    <button @click="getData">获取数据</button>
+    <!-- <main class="bg-slate c-white p-10px b-rd-10px">
       <div v-dompurify-html="content"></div>
-    </main>
+    </main> -->
   </div>
 </template>
 
@@ -14,6 +15,10 @@
 defineOptions({ name: 'RichText' })
 
 const content = ref<string>('一曲肝肠断，天涯何处觅知音。')
+
+function getData() {
+  console.log(content.value)
+}
 </script>
 
 <style lang="scss" scoped>
