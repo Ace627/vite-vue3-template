@@ -1,5 +1,6 @@
-/** 生成指定范围的随机数 包含边界值 */
-export function randomCount(min = 2, max = 10): number {
+/** 取得 [n, m] 范围内随机整数 */
+export function randomFullClose(min: number, max: number): number {
+  if (min > max) throw new Error(`min must be less than max!`)
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
