@@ -4,6 +4,8 @@ import { getToken, removeToken, setToken } from '@/utils/cache/local-storage'
 /** 第一个参数是该 store 的唯一 id */
 export default defineStore('user', () => {
   const token = ref<string>(getToken())
+  const roles: string[] = []
+  const permissions: string[] = []
   const avatar = ref<string>('https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80')
 
   /** 登录 */
@@ -20,5 +22,5 @@ export default defineStore('user', () => {
     removeToken()
   }
 
-  return { token, avatar, login, logout }
+  return { token, avatar, roles, permissions, login, logout }
 })
