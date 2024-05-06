@@ -1,4 +1,4 @@
-import { randomCount } from '@/utils'
+import { randomFullClose } from '@/utils'
 import { isHexColor } from '@/utils/validate'
 
 /** 随机生成十六进制颜色 */
@@ -13,14 +13,14 @@ export function generateHexaColor(): string {
 
 /** 随机 RGB 颜色 */
 export function generateRgbColor(): string {
-  return `rgb(${randomCount(0, 255)}, ${randomCount(0, 255)}, ${randomCount(0, 255)})`
+  return `rgb(${randomFullClose(0, 255)}, ${randomFullClose(0, 255)}, ${randomFullClose(0, 255)})`
 }
 
 /** 随机 RGBA 颜色 */
 export function generateRgbaColor(): string {
-  const r = randomCount(0, 255)
-  const g = randomCount(0, 255)
-  const b = randomCount(0, 255)
+  const r = randomFullClose(0, 255)
+  const g = randomFullClose(0, 255)
+  const b = randomFullClose(0, 255)
   const alpha = Math.random().toFixed(1)
   return `rgb(${r}, ${g}, ${b}, ${alpha})`
 }
