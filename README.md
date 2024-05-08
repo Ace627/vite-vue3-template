@@ -20,10 +20,14 @@ pnpm dev
 
 ```bash
 |-src
+| |-assets
+|   |-svg-icons                       # Svg 图标的存放目录
 | |-components
 |   |-Editor                          # 富文本编辑器组件
+|   |-IconFont                        # 阿里图标简化组件
 |   |-IFrame                          # 外链内嵌组件
 |   |-QrCode                          # 二维码组件
+|   |-SvgIcon                         # Svg 图标简化组件
 | |-config
 |   |-defaultSettings.ts              # 项目默认配置
 |   |-permission.ts                   # 访问权限校验守卫
