@@ -20,8 +20,8 @@ export function setCssVariableValue(cssVariableName: string, cssVariableValue: s
 }
 
 /** 获取变量的真实类型 */
-export function getRawType(variable: any): string {
-  return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase()
+export function getRawType(variable: any): VariableType {
+  return Object.prototype.toString.call(variable).split(' ')[1].replace(']', '').toLowerCase() as VariableType
 }
 
 /** 反转字符串 */
