@@ -1,10 +1,11 @@
 <template>
-  <VueQr class="qrcode" v-bind="$attrs" :text :size :margin :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" />
+  <VueQr class="qrcode" ref="vueQrInstance" v-bind="$attrs" :text :size :margin :logoSrc="icon" :colorDark="color" :backgroundColor="bgColor" />
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'QRCode' })
 import VueQr from 'vue-qr/src/packages/vue-qr.vue'
+import { linkDownload } from '@/utils/download'
 
 defineProps({
   /** 二维码内容 必需 */
@@ -20,6 +21,21 @@ defineProps({
   /** 二维码背景颜色 */
   bgColor: { type: String, default: 'transparent' },
 })
+
+/** 二维码的组件实例 */
+const vueQrInstance = ref()
+
+/** 二维码转为 base64 格式 */
+function toDataURL() {
+  return vueQrInstance.value.imgUrl
+}
+
+/** 下载二维码图片到本地 */
+function download(fileName?: string) {
+  linkDownload(toDataURL(), fileName)
+}
+
+defineExpose({ toDataURL, download })
 </script>
 
 <style lang="scss" scoped>

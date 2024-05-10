@@ -21,12 +21,11 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'QrCodeDemo' })
-import { type GlobalComponents } from 'vue'
-import { linkDownload } from '@/utils/download'
+import type { QRCodeInstance } from '@/components'
 
 const qrcodeText = ref<string>('https://github.com/Ace627/vite-vue3-template')
 const qrcodeIcon = ref<string>()
-const qrcodeRef = ref<InstanceType<GlobalComponents['QRCode']>>()
+const qrcodeRef = ref<QRCodeInstance>()
 
 function handleFileChange(event: Event) {
   const el = event.target as HTMLInputElement
@@ -35,8 +34,7 @@ function handleFileChange(event: Event) {
 }
 
 function downloadQRCode() {
-  console.log(qrcodeRef.value?.$el.src)
-  qrcodeRef.value && linkDownload(qrcodeRef.value.$el.src)
+  qrcodeRef.value?.download()
 }
 
 onUnmounted(() => {
