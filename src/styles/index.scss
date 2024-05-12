@@ -1,7 +1,7 @@
-@use './variables.css'; // 全局 CSS 变量
-@use './reset.scss';
-@use 'nprogress/nprogress.css';
-@use './transition.scss';
+@import './variables.css'; // 全局 CSS 变量
+@import './reset.scss';
+@import 'nprogress/nprogress.css';
+@import './transition.scss';
 @import '//at.alicdn.com/t/c/font_3806809_43zggh88y9h.css';
 
 body {
