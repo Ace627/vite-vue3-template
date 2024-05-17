@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { AuthEnum, RequestMethodEnum } from '@/enums'
 import { handleErrorCode } from './status-code'
-import { getToken } from '@/utils/cache/local-storage'
+import { getAccessToken } from '@/utils/cache/local-storage'
 
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
 const NProgress = useNProgress({ show: VITE_REQUEST_NPROGRESS }) // 顶部进度条
@@ -20,7 +20,7 @@ request.interceptors.request.use(
       config.params = Object.assign(config.params || {}, { timestamp: Date.now() }) // 给 get 请求加上时间戳参数，避免从缓存中拿数据
     }
     NProgress.start() // 开启响应进度条
-    const token = getToken()
+    const token = getAccessToken()
     token && Reflect.set(config.headers, AuthEnum.AUTHORIZATION, `${AuthEnum.TOKEN_PREFIX} ${token}`) // 让每个请求携带自定义 token 请根据实际情况自行修改
     return config
   },

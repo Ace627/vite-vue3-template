@@ -1,14 +1,13 @@
 /** 统一处理 localStorage */
-import { WebStorage } from '@/common'
-import { CacheKey } from '@/config/constants/cache-key'
+import { CacheKey, WebStorage } from '@/common'
 import { ProjectConfig } from '@/config/defaultSettings'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Token                                   */
 /* -------------------------------------------------------------------------- */
-export const setToken = (token: string) => WebStorage.setItem(CacheKey.TOKEN, token)
-export const getToken = (): string => WebStorage.getItem(CacheKey.TOKEN) || ''
-export const removeToken = () => WebStorage.removeItem(CacheKey.TOKEN)
+export const setAccessToken = (token: string) => WebStorage.setItem(CacheKey.ACCESS_TOKEN, token)
+export const getAccessToken = (): string => WebStorage.getItem(CacheKey.ACCESS_TOKEN) || ''
+export const removeAccessToken = () => WebStorage.removeItem(CacheKey.ACCESS_TOKEN)
 
 /* -------------------------------------------------------------------------- */
 /*                               Sidebar Status                               */
