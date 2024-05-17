@@ -1,42 +1,24 @@
 /** 统一处理 localStorage */
+import { WebStorage } from '@/common'
 import { CacheKey } from '@/config/constants/cache-key'
 import { ProjectConfig } from '@/config/defaultSettings'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Token                                   */
 /* -------------------------------------------------------------------------- */
-export function setToken(token: string): void {
-  localStorage.setItem(CacheKey.TOKEN, token)
-}
-export function getToken(): string {
-  return localStorage.getItem(CacheKey.TOKEN) || ''
-}
-export function removeToken(): void {
-  localStorage.removeItem(CacheKey.TOKEN)
-}
+export const setToken = (token: string) => WebStorage.setItem(CacheKey.TOKEN, token)
+export const getToken = (): string => WebStorage.getItem(CacheKey.TOKEN) || ''
+export const removeToken = () => WebStorage.removeItem(CacheKey.TOKEN)
 
 /* -------------------------------------------------------------------------- */
 /*                               Sidebar Status                               */
 /* -------------------------------------------------------------------------- */
-export function setSidebarStatus(status: boolean): void {
-  const data = { [CacheKey.SIDEBAR_STATUS]: status }
-  localStorage.setItem(CacheKey.SIDEBAR_STATUS, JSON.stringify(data))
-}
-export function getSidebarStatus(): boolean {
-  const json = localStorage.getItem(CacheKey.SIDEBAR_STATUS)
-  return json ? JSON.parse(json)[CacheKey.SIDEBAR_STATUS] : true
-}
+export const setSidebarStatus = (status: boolean) => WebStorage.setItem(CacheKey.SIDEBAR_STATUS, status)
+export const getSidebarStatus = (): boolean => WebStorage.getItem(CacheKey.SIDEBAR_STATUS) || true
 
 /* -------------------------------------------------------------------------- */
 /*                               Project Config                               */
 /* -------------------------------------------------------------------------- */
-export function setProjectConfig(config: Omit<ProjectConfig, 'showSetting'>): void {
-  localStorage.setItem(CacheKey.PROJECT_CONFIG, JSON.stringify(config))
-}
-export function getProjectConfig(): ProjectConfig {
-  const json = localStorage.getItem(CacheKey.PROJECT_CONFIG)
-  return json ? JSON.parse(json) : {}
-}
-export function removeProjectConfig() {
-  localStorage.removeItem(CacheKey.PROJECT_CONFIG)
-}
+export const setProjectConfig = (config: Omit<ProjectConfig, 'showSetting'>) => WebStorage.setItem(CacheKey.PROJECT_CONFIG, config)
+export const getProjectConfig = (): ProjectConfig => WebStorage.getItem(CacheKey.PROJECT_CONFIG) || ({} as ProjectConfig)
+export const removeProjectConfig = () => WebStorage.removeItem(CacheKey.PROJECT_CONFIG)

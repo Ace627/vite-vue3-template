@@ -3,8 +3,12 @@
 ## 项目拉取
 
 ```bash
-# 克隆项目
+# 克隆项目 基础模板
 git clone https://github.com/Ace627/vite-vue3-template.git
+# 自动按需引入 Ant Design Vue
+git clone https://github.com/Ace627/vite-vue3-template.git -b ant-design-vue
+# 自动按需引入 Element Plus
+git clone https://github.com/Ace627/vite-vue3-template.git -b element-plus
 
 # 进入项目目录
 cd vite-vue3-template

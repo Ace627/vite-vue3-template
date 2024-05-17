@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.12",
     "@types/nprogress": "^0.2.3",
     "@unocss/transformer-directives": "0.60.2",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -42,7 +42,7 @@
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-imagemin": "0.6.1",
     "vite-plugin-svg-icons": "2.0.1",
-    "vue-tsc": "^2.0.17"
+    "vue-tsc": "^2.0.19"
   },
   "repository": {
     "type": "github",

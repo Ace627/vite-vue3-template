@@ -12,6 +12,7 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from:
   console.log(`访问权限校验开始`)
   NProgress.start()
   const hasToken = getToken()
+  console.log('hasToken: ', hasToken)
 
   /** 如果没有 Token，但在免登录的白名单中，则直接进入；否则将被重定向到登录页面 */
   if (!hasToken) return isWhiteList(to) ? next() : next(`/login?redirect=${to.fullPath}`)
