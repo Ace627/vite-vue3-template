@@ -5,8 +5,10 @@
 ```bash
 # 克隆项目 基础模板
 git clone https://github.com/Ace627/vite-vue3-template.git
+
 # 自动按需引入 Ant Design Vue
 git clone https://github.com/Ace627/vite-vue3-template.git -b ant-design-vue
+
 # 自动按需引入 Element Plus
 git clone https://github.com/Ace627/vite-vue3-template.git -b element-plus
 
@@ -60,6 +62,7 @@ pnpm dev
 
 ## 参考文献
 
+- [SVG 引入插件的恶意提交修复](https://github.com/vbenjs/vite-plugin-svg-icons/issues/66)
 - [UnoCSS 中文文档](https://unocss.nodejs.cn)
 - [UnoCSS 样式速查表](https://unocss.dev/interactive)
 - [Vite 配置路径别名的流程](https://juejin.cn/post/7302249949215457319)

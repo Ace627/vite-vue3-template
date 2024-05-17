@@ -1,4 +1,4 @@
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons2'
 import { pathResolve } from '..'
 
 export function registerSvgIcons() {
