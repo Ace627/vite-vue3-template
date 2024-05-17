@@ -12,8 +12,9 @@ dist
 dist-ssr
 *.local
 
-# 会自动生成的类型声明文件
+# 会自动生成的文件
 types/auto-generate/*
+src/components/SvgIcon/icons.ts
 
 # Editor directories and files
 .idea
