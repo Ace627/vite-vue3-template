@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 /** 禁止组件的根元素继承特性 inheritAttrs: false */
-defineOptions({ name: 'IFrame', inheritAttrs: false })
+defineOptions({ name: 'InnerLink', inheritAttrs: false })
 import { isString } from 'lodash-es'
 
 /** 接收父组件传递的属性 */

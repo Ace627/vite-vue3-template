@@ -1,6 +1,6 @@
 <template>
   <div class="wh-full">
-    <IFrame src="https://demo.gin-vue-admin.com/form-generator"></IFrame>
+    <InnerLink src="https://demo.gin-vue-admin.com/form-generator"></InnerLink>
   </div>
 </template>
 

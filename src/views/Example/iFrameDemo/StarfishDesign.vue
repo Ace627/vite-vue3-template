@@ -1,6 +1,6 @@
 <template>
   <div class="wh-full">
-    <IFrame src="https://haixin-fang.github.io/starfish-vue3-lowcode/playground/index.html"></IFrame>
+    <InnerLink src="https://haixin-fang.github.io/starfish-vue3-lowcode/playground/index.html"></InnerLink>
   </div>
 </template>
 

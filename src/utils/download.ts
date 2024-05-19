@@ -3,16 +3,16 @@
  * @param {String} fileURL
  * @param {String} fileName
  */
-export function linkDownload(fileURL: string, fileName = Date.now().toString()): void {
+export function linkDownload(fileURL: string, fileName?: string): void {
   const a = document.createElement('a')
   a.style.position = 'relative' // 确保临时元素不会显示在页面中
   a.style.left = '-999999px'
   a.style.top = '-999999px'
   a.href = fileURL
-  a.download = fileName
+  a.download = fileName || Date.now().toString() // 下载后文件名
   document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
+  a.click() // 点击下载
+  document.body.removeChild(a) // 下载完成移除元素
 }
 
 /**
@@ -33,7 +33,7 @@ export function arrayBufferToBlob(buffer: ArrayBuffer, blobType = 'application/a
  * @param  {Number} quality 转换后的图片质量
  * @returns {String} Base64 字符串
  */
-export function imageToBase64(imgURL: string, mimeType: 'image/jpeg' | 'image/png' | 'image/webp' = 'image/jpeg', quality = 1): Promise<string> {
+export function imageToBase64(imgURL: string, quality = 0.9): Promise<string> {
   const img = new Image()
   // 因为是网络资源所以会有图片跨域问题产生，此属性可以解决跨域问题
   img.setAttribute('crossOrigin', 'anonymous')
@@ -46,7 +46,7 @@ export function imageToBase64(imgURL: string, mimeType: 'image/jpeg' | 'image/pn
       cvs.height = img.height
       const ctx = cvs.getContext('2d')!
       ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
-      resolve(cvs.toDataURL(mimeType, quality))
+      resolve(cvs.toDataURL('image/png', quality))
     }
     img.onerror = (error: any) => reject(error)
   })
@@ -54,6 +54,7 @@ export function imageToBase64(imgURL: string, mimeType: 'image/jpeg' | 'image/pn
 
 /** 复制文本到剪贴板 */
 export function copyText(text: string): void {
+  if (typeof text !== 'string') throw new Error(`the content must be of type string`)
   // 是否支持 navigator.clipboard 属性
   const isClipboardApiSupported = window.navigator && window.navigator.clipboard
   if (isClipboardApiSupported) {

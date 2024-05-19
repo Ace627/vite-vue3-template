@@ -1,6 +1,6 @@
 <template>
   <div class="wh-full">
-    <IFrame src="https://wannianrili.bmcx.com"></IFrame>
+    <InnerLink src="https://wannianrili.bmcx.com"></InnerLink>
   </div>
 </template>
 
