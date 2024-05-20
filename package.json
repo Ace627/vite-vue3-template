@@ -15,7 +15,7 @@
   "dependencies": {
     "@wangeditor/editor": "5.1.23",
     "@wangeditor/editor-for-vue": "5.1.12",
-    "axios": "^1.6.8",
+    "axios": "^1.7.0",
     "dayjs": "^1.11.11",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
