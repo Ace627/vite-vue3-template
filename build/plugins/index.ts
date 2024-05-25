@@ -2,8 +2,7 @@ import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue' // 提供 Vue 3 单文件组件支持
 import vueJsx from '@vitejs/plugin-vue-jsx' // 提供 Vue 3 JSX 支持
 import UnoCSS from 'unocss/vite' // 即时按需的原子化 CSS 引擎 UnoCSS
-import { registerAutoImport } from './auto-import'
-import { registerAutoComponents } from './auto-components'
+import { registerAutoImport, registerAutoComponents } from './auto-import-plugin'
 import { registerHtmlPlugin } from './compile.html'
 import { registerImageMini } from './image.mini'
 import { registerSvgIcons } from './register-svg-icons'
