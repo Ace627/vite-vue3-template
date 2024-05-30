@@ -26,6 +26,7 @@ const styles = computed<CSSProperties>(() => ({
 
 <style scoped>
 .svg-icon {
+  cursor: pointer;
   display: inline-block;
   outline: none;
   /* 因 icon 大小被设置为和字体大小一致，而 span 等标签的下边缘会和字体的基线对齐，故需设置一个往下的偏移比例，来纠正视觉上的未对齐效果 */
@@ -33,5 +34,9 @@ const styles = computed<CSSProperties>(() => ({
   /* 定义元素的颜色，currentColor 是一个变量，其值就是当前元素的 color 值，如果当前元素未设置 color 值，则从父元素继承 */
   fill: currentColor;
   overflow: hidden;
+}
+
+.svg-icon ~ .svg-icon {
+  margin-left: 8px;
 }
 </style>
