@@ -1,4 +1,4 @@
-import defaultSettings, { type ProjectConfig } from '@/config/defaultSettings'
+import defaultSettings, { type ProjectConfig } from '@/config/default-settings'
 import { removeProjectConfig, setProjectConfig } from '@/utils/cache/local-storage'
 
 export default defineStore('setting', () => {

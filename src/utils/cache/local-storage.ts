@@ -1,6 +1,6 @@
 /** 统一处理 localStorage */
 import { CacheKey, WebStorage } from '@/common'
-import { ProjectConfig } from '@/config/defaultSettings'
+import { ProjectConfig } from '@/config/default-settings'
 
 /* -------------------------------------------------------------------------- */
 /*                                    Token                                   */
