@@ -13,7 +13,7 @@ export const removeAccessToken = () => WebStorage.removeItem(CacheKey.ACCESS_TOK
 /*                               Sidebar Status                               */
 /* -------------------------------------------------------------------------- */
 export const setSidebarStatus = (status: boolean) => WebStorage.setItem(CacheKey.SIDEBAR_STATUS, status)
-export const getSidebarStatus = (): boolean => WebStorage.getItem(CacheKey.SIDEBAR_STATUS) || true
+export const getSidebarStatus = (): boolean => WebStorage.getItem(CacheKey.SIDEBAR_STATUS) ?? true
 
 /* -------------------------------------------------------------------------- */
 /*                               Project Config                               */
