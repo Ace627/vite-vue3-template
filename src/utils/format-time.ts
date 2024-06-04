@@ -16,21 +16,19 @@ export function getTimeWelcome(time: Date = new Date()): string {
 }
 
 /**
- * @description 获取当前日期是第几周
+ * @description 获取当前日期是今年第几周
  * @param date 当前传入的日期值
  * @returns 返回第几周数字值
  */
-export function getWeekNumber(date: Date = new Date()): number {
-  const time = new Date(date.getTime())
-  const weekDay = time.getDay() || 7 // 周几
-  time.setDate(time.getDate() - weekDay + 1 + 5) // 周1+5天=周六
-  let firstDay = new Date(time.getFullYear(), 0, 1)
-  const dayOfWeek = firstDay.getDay()
-  let spendDay = 1
-  if (dayOfWeek != 0) spendDay = 7 - dayOfWeek + 1
-  firstDay = new Date(time.getFullYear(), 0, 1 + spendDay)
-  const d = Math.ceil((time.valueOf() - firstDay.valueOf()) / 86400000)
-  return Math.ceil(d / 7)
+export function weekOfYear(date: Date = new Date()): number {
+  // 获取当年的 1月1日
+  const yearStart = new Date(date.getFullYear(), 0, 1)
+  // 获取当年第一周的第一天，如果该天为上一年的12月31日，则为第0周
+  const firstWeekStart = new Date(date.getFullYear(), 0, 1 + ((7 - yearStart.getDay() + 1) % 7))
+  if (date < firstWeekStart) return 0
+  // 获取当前日期与第一周的相差天数
+  const diff = Math.round((date.getTime() - firstWeekStart.getTime()) / 86400000)
+  return Math.ceil((diff + 1) / 7)
 }
 
 /**
