@@ -10,7 +10,8 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:icon": "esno ./build/scripts/generate-svg-type.ts"
   },
   "dependencies": {
     "@wangeditor/editor": "5.1.23",
@@ -27,12 +28,13 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.14.1",
+    "@types/node": "^20.14.2",
     "@types/nprogress": "^0.2.3",
     "@unocss/transformer-directives": "0.60.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "autoprefixer": "^10.4.19",
+    "esno": "4.7.0",
     "sass": "^1.77.4",
     "typescript": "^5.4.5",
     "unocss": "0.60.4",

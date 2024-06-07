@@ -1,5 +1,4 @@
 import path from 'path' // path 模块提供了一些工具函数，用于处理文件与目录的路径
-import './scripts/generate-svg-type' // 项目启动时自动生成 SvgIcon 的类型
 
 /** 处理环境变量 */
 export function warpperEnv(env_config: Recordable<string>): ViteEnv {

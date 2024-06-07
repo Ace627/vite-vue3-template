@@ -1,0 +1,1 @@
+export default ["ChatLineRound","Check","Clock","Close","CopyDocument","Delete","Edit","ExitFullScreen","Expand","Female","Fold","FullScreen","Hide","Key","Link","Lock","Male","Minus","PieChart","Plus","Refresh","Search","Setting","Share","Star","SwitchButton","View"] as SvgIconName[]

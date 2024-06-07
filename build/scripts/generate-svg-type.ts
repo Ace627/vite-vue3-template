@@ -4,8 +4,8 @@ import { pathResolve } from '..'
 /** Svg Icon 的存放目录 */
 const svgIconDir = pathResolve('src/assets/svg-icons')
 /** Svg Icon 声明文件的存放位置 */
-const svgIconTypeFileURL = pathResolve('types/auto-generate/auto-svg-name.d.ts')
-const iconDataFile = pathResolve('src/components/SvgIcon/icons.ts')
+const svgIconTypeFileURL = pathResolve('types/auto-svg-name.d.ts')
+const iconDataFile = pathResolve('src/assets/database/svg-icons.ts')
 
 /** 用来自动读取 svg 图标目录并用其名字生成一个 Svg 名字的枚举值；每次新增图标都需要重启项目来更新声明文件 */
 async function generateSvgIconType(dir: string, outputFile: string) {
