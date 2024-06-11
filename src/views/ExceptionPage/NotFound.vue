@@ -20,7 +20,7 @@ defineOptions({ name: 'NotFound' })
 /** Layout 布局响应式 */
 useResize()
 /** 读取 Pinia 仓库 */
-const appStore = useApp()
+const appStore = useAppStore()
 const classes = computed(() => [appStore.device])
 </script>
 

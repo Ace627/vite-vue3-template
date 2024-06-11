@@ -9,10 +9,8 @@ const NProgress = useNProgress({ show: VITE_ROUTER_NPROGRESS }) // 顶部进度�
  * @description 路由全局前置守卫
  */
 export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
-  console.log(`访问权限校验开始`)
   NProgress.start()
   const hasToken = getAccessToken()
-  console.log('hasToken: ', hasToken)
 
   /** 如果没有 Token，但在免登录的白名单中，则直接进入；否则将被重定向到登录页面 */
   if (!hasToken) return isWhiteList(to) ? next() : next(`/login?redirect=${to.fullPath}`)
@@ -29,5 +27,4 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from:
  */
 export async function globalRouterAfterGuard(to: RouteLocationNormalized) {
   NProgress.done()
-  console.log(`访问权限校验完成`)
 }

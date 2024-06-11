@@ -4,7 +4,7 @@ export const permissions: Directive = {
   mounted(el: HTMLElement, binding) {
     const bindPermissions: string[] = binding.value
     if (Array.isArray(bindPermissions) && bindPermissions.length) {
-      const userStore = useUser()
+      const userStore = useUserStore()
       const hasPermission = userStore.permissions.some((permission) => bindPermissions.includes(permission))
       if (!hasPermission) el.remove()
     } else {

@@ -27,7 +27,7 @@ defineOptions({ name: 'Login' })
 
 const route = useRoute()
 const router = useRouter()
-const userStore = useUser()
+const userStore = useUserStore()
 
 /** 登录按钮 Loading */
 const loading = ref(false)

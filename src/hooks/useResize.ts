@@ -4,7 +4,7 @@ const MAX_MOBILE_WIDTH = 992
 /** 根据浏览器宽度变化，变换 Layout 布局 */
 export default () => {
   const route = useRoute()
-  const appStore = useApp()
+  const appStore = useAppStore()
 
   /** 用于判断当前设备是否为移动端 */
   function _isMobile(): boolean {

@@ -7,7 +7,7 @@ export const roles: Directive = {
   mounted(el: HTMLElement, binding) {
     const bindRoles: string[] = binding.value
     if (Array.isArray(bindRoles) && bindRoles.length) {
-      const userStore = useUser()
+      const userStore = useUserStore()
       const hasRole = userStore.roles.some((role) => bindRoles.includes(role))
       if (!hasRole && !userStore.roles.includes('admin')) el.remove()
     } else {

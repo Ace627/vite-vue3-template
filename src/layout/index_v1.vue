@@ -11,7 +11,7 @@ defineOptions({ name: 'Layout' })
 useResize()
 
 /** 读取 Pinia 仓库 */
-const appStore = useApp()
+const appStore = useAppStore()
 
 /** 用来添加到根组件的动态类的集合 */
 const classes = computed(() => {

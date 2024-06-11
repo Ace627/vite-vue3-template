@@ -45,9 +45,9 @@ import NotFound from '@/views/ExceptionPage/NotFound.vue'
 useResize()
 
 /** 读取 Pinia 仓库 */
-const appStore = useApp()
-const userStore = useUser()
-const settingStore = useSetting()
+const appStore = useAppStore()
+const userStore = useUserStore()
+const settingStore = useSettingStore()
 const route = useRoute()
 
 /** 用来添加到根组件的动态类的集合 */
