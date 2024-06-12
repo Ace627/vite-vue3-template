@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Layout' })
+import TimeFormat from '@/views/Example/TimeFormat/index.vue'
 import RichText from '@/views/Example/RichText/index.vue'
 import QrCodeDemo from '@/views/Example/QrCodeDemo/index.vue'
 import iFrameDemo from '@/views/Example/iFrameDemo/index.vue'
@@ -51,13 +52,11 @@ const settingStore = useSettingStore()
 const route = useRoute()
 
 /** 用来添加到根组件的动态类的集合 */
-const classes = computed(() => {
-  const cls: string[] = [appStore.device]
-  return cls
-})
+const classes = computed(() => [appStore.device])
 
-const activeComponent = shallowRef<Component>(RichText)
+const activeComponent = shallowRef<Component>(TimeFormat)
 const viewList = [
+  { title: '时间格式化', component: TimeFormat },
   { title: '富文本编辑器', component: RichText },
   { title: '二维码示例', component: QrCodeDemo },
   { title: '挺火的那个Switch', component: SwitchDemo },
