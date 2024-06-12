@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'SvgIconDemo' })
-import icons from '@/components/SvgIcon/icons'
+import icons from '@/assets/database/svg-icons'
 
 const gridTemplateColumns = `repeat(auto-fill, minmax(100px, 1fr))`
 </script>
