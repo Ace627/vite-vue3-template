@@ -21,6 +21,7 @@ const gridTemplateColumns = `repeat(auto-fill, minmax(100px, 1fr))`
     --border-color: #ccd3cc;
     display: grid;
     grid-template-columns: v-bind(gridTemplateColumns);
+    border-left: 1px solid var(--border-color);
     border-top: 1px solid var(--border-color);
     .item {
       display: flex;
@@ -28,14 +29,14 @@ const gridTemplateColumns = `repeat(auto-fill, minmax(100px, 1fr))`
       align-items: center;
       padding: 16px;
       font-size: 64px;
-      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
       border-bottom: 1px solid var(--border-color);
       transition: all 0.28s;
       &:last-of-type {
         border-right: 1px solid var(--border-color);
       }
       &:hover {
-        color: red;
+        color: #1ba784;
       }
     }
   }

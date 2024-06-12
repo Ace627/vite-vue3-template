@@ -61,7 +61,7 @@ const viewList = [
   { title: '富文本编辑器', component: RichText },
   { title: '二维码示例', component: QrCodeDemo },
   { title: '挺火的那个Switch', component: SwitchDemo },
-  { title: 'SvgIcon', component: SvgIconDemo },
+  { title: 'Svg 图标概览', component: SvgIconDemo },
   { title: 'NotFound页面', component: NotFound },
   { title: '链接内嵌示例', component: iFrameDemo },
   { title: 'Starfish表单设计', component: StarfishDesign },
