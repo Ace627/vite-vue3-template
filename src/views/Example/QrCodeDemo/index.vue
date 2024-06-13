@@ -21,11 +21,11 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'QrCodeDemo' })
-import type { QRCodeInstance } from '@/components'
+import type { GlobalComponents } from 'vue'
 
 const qrcodeText = ref<string>('https://github.com/Ace627/vite-vue3-template')
 const qrcodeIcon = ref<string>()
-const qrcodeRef = ref<QRCodeInstance>()
+const qrcodeRef = ref<InstanceType<GlobalComponents['QRCode']>>()
 
 function handleFileChange(event: Event) {
   const el = event.target as HTMLInputElement

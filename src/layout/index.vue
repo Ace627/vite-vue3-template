@@ -81,7 +81,6 @@ function logout() {
   position: relative;
   width: 100%;
   height: 100%;
-
   --app-sidebar-width: 200px;
 }
 
