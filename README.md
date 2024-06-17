@@ -67,6 +67,7 @@ pnpm dev
 - [UnoCSS 样式速查表](https://unocss.dev/interactive)
 - [Vite 配置路径别名的流程](https://juejin.cn/post/7302249949215457319)
 - [Vite 全局组件的自动批量化注册](https://juejin.cn/post/7304183129896124416)
+- [关于路由 Query 的类型声明问题](https://juejin.cn/post/7330835892276641833)
 - [VueRouter 中 Meta 字段的类型声明](https://juejin.cn/post/7302241918351163426)
 - [npm 的配置文件 .npmrc](https://juejin.cn/post/7325427710754422784)
 - [关于 npm 包更新工具 npm-check-updates 使用详解](https://zhuanlan.zhihu.com/p/482923542)
