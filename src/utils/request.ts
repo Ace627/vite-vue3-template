@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AuthEnum, RequestMethodEnum } from '@/enums'
+import { AuthEnum, HttpStatusEnum, RequestMethod } from '@/enums'
 import { handleErrorCode } from './status-code'
 import { getAccessToken } from '@/utils/cache/local-storage'
 
@@ -16,12 +16,17 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config) => {
-    if (config.method?.toUpperCase() === RequestMethodEnum.GET) {
-      config.params = Object.assign(config.params || {}, { timestamp: Date.now() }) // 给 get 请求加上时间戳参数，避免从缓存中拿数据
-    }
     NProgress.start() // 开启响应进度条
+    const timestamp = Date.now()
     const token = getAccessToken()
-    token && Reflect.set(config.headers, AuthEnum.AUTHORIZATION, `${AuthEnum.TOKEN_PREFIX} ${token}`) // 让每个请求携带自定义 token 请根据实际情况自行修改
+    const isGetRequest = config.method?.toUpperCase() === RequestMethod.GET
+    config.params = config.params || {}
+    if (isGetRequest) config.params['timestamp'] = timestamp // 给 get 请求加上时间戳参数，避免从缓存中拿数据
+    // 配置请求头
+    if (token) config.headers['Authorization'] = `Bearer ${token}` // 让每个请求携带自定义 token 请根据实际情况自行修改
+    if (token) config.headers['X-Access-Token'] = token
+    config.headers['X-TIMESTAMP'] = timestamp
+    // 返回处理后的请求头
     return config
   },
   (error) => {
@@ -34,14 +39,23 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     NProgress.done() // 关闭响应进度条
-    if (['blob', 'arraybuffer'].includes(response.request.responseType)) return response.data // 二进制数据则直接返回
-    return response.data
+    const withoutTransformResponse = response.config.headers['withoutTransformResponse'] === false // 是否返回原生 response.data
+    const isBinary = ['blob', 'arraybuffer'].includes(response.request.responseType) // 是否二进制数据
+    if (withoutTransformResponse || isBinary) return response.data
+
+    const code = response.data.code || HttpStatusEnum.OK // 非二进制数据进行拦截判定统一处理
+    const message = response.data.message || `系统未知错误，请反馈给管理员`
+    if (code === HttpStatusEnum.OK) return response.data.result
+
+    alert(message) // 此处可统一处理错误的提示消息
+    return Promise.reject(new Error(message))
   },
   (error: any) => {
-    console.log('响应拦截器异常: ', error) // for debug
+    NProgress.done() // 关闭响应进度条
     let message = error.message
     if (error.response) message = handleErrorCode(error.response.status)
-    NProgress.done() // 关闭响应进度条
+    console.log('响应拦截器异常: ', message || error.message || error) // for debug
+    alert(message) // 此处可统一处理错误的提示消息
     return Promise.reject(error)
   },
 )
