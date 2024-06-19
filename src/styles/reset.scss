@@ -47,7 +47,7 @@ a:hover {
 }
 
 /* 去除图片与容器底部的留白 更合理的多媒体默认展示方式 */
-img {
+img, iframe, video, canvas {
   display: block;
   max-width: 100%;
 }
