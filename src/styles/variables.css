@@ -1,21 +1,16 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
-  /* 主题色 */
-  --app-color-white: #ffffff;
-  --app-color-black: #000000;
-  --app-color-primary: #409eff;
-  --app-color-success: #67c23a;
-  --app-color-warning: #e6a23c;
-  --app-color-danger: #f56c6c;
-  --app-color-info: #909399;
+  /* 顶部加载进度条的颜色 */
+  --app-nprogress-color: #409eff;
 
-  /* Body */
+  /* 常用色彩值 */
   --app-body-text-color: #303133;
   --app-body-bg-color: #f2f3f5;
-  --app-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
 
+  /* 常用字体配置 */
   --app-font-size-small: 12px;
   --app-font-size-base: 14px;
   --app-font-size-large: 18px;
+  --app-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
 }

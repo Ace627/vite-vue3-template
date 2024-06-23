@@ -19,3 +19,8 @@ body {
 .showColorWeakness {
   filter: invert(0.8);
 }
+
+/* 顶部加载进度条的颜色 */
+#nprogress .bar {
+  background-color: var(--app-nprogress-color);
+}
