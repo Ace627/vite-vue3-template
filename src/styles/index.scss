@@ -5,7 +5,10 @@
 @import '//at.alicdn.com/t/c/font_3806809_43zggh88y9h.css';
 
 body {
-  --uno-apply: c-[--app-body-text-color] bg-[--app-body-bg-color] font-[--app-font-family];
+  font-size: var(--app-font-size-base);
+  font-family: var(--app-font-family);
+  color: var(--app-body-text-color);
+  background-color: var(--app-body-bg-color);
 }
 
 /* 灰色模式 */

@@ -14,4 +14,8 @@
   --app-body-text-color: #303133;
   --app-body-bg-color: #f2f3f5;
   --app-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+
+  --app-font-size-small: 12px;
+  --app-font-size-base: 14px;
+  --app-font-size-large: 18px;
 }
