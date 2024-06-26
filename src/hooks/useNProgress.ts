@@ -22,8 +22,9 @@ const defaultConfig: Partial<NProgressConfig> = {
   speed: 200,
 }
 
-export default (config = defaultConfig) => {
-  NProgress.configure(config)
+export default (config: Partial<NProgressConfig> = {}) => {
+  const mergeConfig = Object.assign(defaultConfig, config)
+  NProgress.configure(mergeConfig)
 
   const start = () => config.show && NProgress.start()
   const done = () => config.show && NProgress.done()
