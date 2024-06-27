@@ -1,11 +1,18 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
+  --app-navbar-height: 50px;
+  --app-navbar-bgc: var(--app-color-white);
+  --app-header-height: var(--app-navbar-height);
+  --app-content-height: calc(100vh - var(--app-header-height));
+
   /* 顶部加载进度条的颜色 */
   --app-nprogress-color: #409eff;
 
   /* 常用色彩值 */
-  --app-body-text-color: #303133;
+  --app-color-white: #ffffff;
+  --app-color-black: #000000;
+  --app-body-text-color: #262626;
   --app-body-bg-color: #f2f3f5;
 
   /* 常用字体配置 */
