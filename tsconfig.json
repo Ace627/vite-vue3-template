@@ -10,7 +10,8 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     // 忽略所有的声明文件（ *.d.ts）的类型检查
     "skipLibCheck": true,
-
+    // 兼容 CommonJS 的模块导入方式 避免 * as xx 的导入
+    "esModuleInterop": true,
     // 模块解析策略，是指编译器在查找导入模块内容时所遵循的流程
     "moduleResolution": "bundler",
     // 是否允许 TypeScript 文件使用特定于 TypeScript 的扩展名（如 .ts、.mts 或 .tsx）相互导入
