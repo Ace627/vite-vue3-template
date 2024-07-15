@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AuthEnum, HttpStatusEnum, RequestMethod } from '@/enums'
+import { HttpStatusEnum, RequestMethod } from '@/enums'
 import { handleErrorCode } from './status-code'
 import { getAccessToken } from '@/utils/cache/local-storage'
 
