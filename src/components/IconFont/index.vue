@@ -1,10 +1,10 @@
 <template>
-  <i :class="classes" :style="styles" v-bind="$attrs"></i>
+  <i :class="classes" v-bind="$attrs"></i>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'IconFont' })
-import type { CSSProperties } from 'vue'
+import { isString } from 'lodash-es'
 
 const props = defineProps({
   /** 图标名字 */
@@ -13,19 +13,20 @@ const props = defineProps({
   size: { type: [Number, String], default: '1em' },
   /** 图标颜色 */
   color: { type: String, default: 'inherit' },
-  /** 图标是否加粗 */
-  bold: { type: Boolean, default: false },
 })
 
-const styles = computed<CSSProperties>(() => {
-  const { size, color, bold } = props
-  const fontSize = typeof size === 'string' ? size : `${size}px`
-  const fontWeight = bold ? 'bold' : 'normal'
-  return { fontSize, color, fontWeight }
-})
-const classes = computed(() => {
-  return `iconfont icon-${props.name} cursor-pointer`
-})
+const classes = computed(() => `iconfont icon-${props.name}  `)
+
+/** 减少 CSS 权重 便于修改 */
+const iconColor = computed(() => props.color)
+const iconSize = computed(() => (isString(props.size) ? props.size : `${props.size}px`))
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.iconfont {
+  cursor: pointer;
+  color: v-bind(iconColor);
+  font-size: v-bind(iconSize);
+  font-style: normal;
+}
+</style>
