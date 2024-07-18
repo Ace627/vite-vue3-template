@@ -69,13 +69,13 @@ function notifyWarning(message: string, config: Partial<NotificationOptions> = {
 }
 
 /** 确认窗体 */
-function confirm(content: string) {
-  return ElMessageBox.confirm(content, '系统提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' })
+function confirm(content: string, config: ElMessageBoxOptions = {}) {
+  return ElMessageBox.confirm(content, '系统提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning', ...config })
 }
 
 /** 提交内容 */
-function prompt(content: string) {
-  return ElMessageBox.prompt(content, '系统提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' })
+function prompt(content: string, config: ElMessageBoxOptions = {}) {
+  return ElMessageBox.prompt(content, '系统提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning', ...config })
 }
 
 /* 全局请求 loading 的唯一实例 */
