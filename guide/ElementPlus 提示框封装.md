@@ -6,46 +6,46 @@ src/hooks/useModel.ts
 
 ```ts
 import { ElLoading, ElMessage, ElMessageBox, ElNotification } from 'element-plus'
-import type { MessageOptions, NotificationOptions } from 'element-plus'
+import type { ElMessageBoxOptions, MessageOptions, NotificationOptions } from 'element-plus'
 
 /** 消息提示 */
 function msg(message: string, config: MessageOptions = {}) {
-  ElMessage({ message, type: 'info', ...config })
+  ElMessage({ message, type: 'info', plain: true, ...config })
 }
 
 /** 错误消息 */
 function msgError(message: string, config: MessageOptions = {}) {
-  ElMessage({ message, type: 'error', ...config })
+  ElMessage({ message, type: 'error', plain: true, ...config })
 }
 
 /** 成功消息 */
 function msgSuccess(message: string, config: MessageOptions = {}) {
-  ElMessage({ message, type: 'success', ...config })
+  ElMessage({ message, type: 'success', plain: true, ...config })
 }
 
 /** 警告消息 */
 function msgWarning(message: string, config: MessageOptions = {}) {
-  ElMessage({ message, type: 'warning', ...config })
+  ElMessage({ message, type: 'warning', plain: true, ...config })
 }
 
 /** 弹出提示 */
-function alert(content: string) {
-  ElMessageBox.alert(content, '系统提示', { showClose: false })
+function alert(content: string, config: ElMessageBoxOptions = {}) {
+  ElMessageBox.alert(content, '系统提示', { ...config })
 }
 
 /** 错误提示 */
-function alertError(content: string) {
-  ElMessageBox.alert(content, '系统提示', { type: 'error', showClose: false })
+function alertError(content: string, config: ElMessageBoxOptions = {}) {
+  ElMessageBox.alert(content, '系统提示', { type: 'error', ...config })
 }
 
 /** 成功提示 */
-function alertSuccess(content: string) {
-  ElMessageBox.alert(content, '系统提示', { type: 'success', showClose: false })
+function alertSuccess(content: string, config: ElMessageBoxOptions = {}) {
+  ElMessageBox.alert(content, '系统提示', { type: 'success', ...config })
 }
 
 /** 警告提示 */
-function alertWarning(content: string) {
-  ElMessageBox.alert(content, '系统提示', { type: 'warning', showClose: false })
+function alertWarning(content: string, config: ElMessageBoxOptions = {}) {
+  ElMessageBox.alert(content, '系统提示', { type: 'warning', ...config })
 }
 
 /** 通知提示 */
