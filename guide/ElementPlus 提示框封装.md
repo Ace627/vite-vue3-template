@@ -1,6 +1,6 @@
 # 文件位置
 
-src/hooks/useModel.ts
+src/hooks/useModal.ts
 
 # 具体内容
 
