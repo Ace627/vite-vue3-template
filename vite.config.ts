@@ -40,7 +40,11 @@ export default defineConfig(({ command, mode }) => {
       cors: true,
       /** 反向代理配置（主要是开发时用来解决跨域问题） */
       proxy: {
-        [VITE_ENV.VITE_BASE_API]: { target: VITE_ENV.VITE_BASE_URL, changeOrigin: true },
+        [VITE_ENV.VITE_BASE_API]: {
+          target: VITE_ENV.VITE_BASE_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(VITE_ENV.VITE_BASE_API, ''),
+        },
       },
     },
 

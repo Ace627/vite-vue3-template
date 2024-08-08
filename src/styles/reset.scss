@@ -1,6 +1,6 @@
 /* 使用更直观的盒模型（box-sizing） */
 *, *::before, *::after {
-  user-select: none;
+  // user-select: none;
   box-sizing: border-box;
 }
 
@@ -23,6 +23,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 html, body, #app {
   width: 100%;
   height: 100%;
+  line-height: 1;
   -webkit-font-smoothing: antialiased; /* 优化 text 的渲染平滑度 */
 }
 
@@ -38,6 +39,7 @@ li {
 
 /* 去除超链接默认下划线 */
 a {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -56,7 +58,7 @@ img, iframe, video, canvas {
 button, input, textarea {
   margin: 0;
   padding: 0;
-  border: none;
+  border: 1px solid #dcdfe6;
   outline: none;
   font-size: inherit;
   background-color: transparent;
