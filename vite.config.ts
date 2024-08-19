@@ -95,6 +95,11 @@ export default defineConfig(({ command, mode }) => {
             if (videoExtList.some((ext) => chunkInfo.name.endsWith(ext))) {
               return `video/[name]-[hash].[ext]`
             }
+            // 音频文件
+            const audioExtList = ['.mp3', '.flac', '.wav', '.aac', '.ape', '.m4a']
+            if (audioExtList.some((ext) => chunkInfo.name.endsWith(ext))) {
+              return `audio/[name]-[hash].[ext]`
+            }
             // 其它文件: 保存在 assets/文件名-哈希值.扩展名
             return 'assets/[name]-[hash].[ext]'
           },
