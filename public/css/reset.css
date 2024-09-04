@@ -1,6 +1,5 @@
 /* 使用更直观的盒模型（box-sizing） */
 *, *::before, *::after {
-  // user-select: none;
   font-family: inherit;
   box-sizing: border-box;
 }
