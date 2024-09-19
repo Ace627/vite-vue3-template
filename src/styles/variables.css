@@ -1,23 +1,23 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
-  --app-navbar-height: 50px;
-  --app-navbar-bgc: var(--app-color-white);
-  --app-header-height: var(--app-navbar-height);
-  --app-content-height: calc(100vh - var(--app-header-height));
+  --ap-navbar-height: 50px;
+  --ap-navbar-bgc: var(--ap-color-white);
+  --ap-header-height: var(--ap-navbar-height);
+  --ap-content-height: calc(100vh - var(--ap-header-height));
 
   /* 顶部加载进度条的颜色 */
-  --app-nprogress-color: #409eff;
+  --ap-nprogress-color: #409eff;
 
   /* 常用色彩值 */
-  --app-color-white: #ffffff;
-  --app-color-black: #000000;
-  --app-body-text-color: #262626;
-  --app-body-bg-color: #f2f3f5;
+  --ap-color-white: #ffffff;
+  --ap-color-black: #000000;
+  --ap-body-text-color: #262626;
+  --ap-body-bg-color: #f2f3f5;
 
   /* 常用字体配置 */
-  --app-font-size-small: 12px;
-  --app-font-size-base: 14px;
-  --app-font-size-large: 18px;
-  --app-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  --ap-font-size-small: 12px;
+  --ap-font-size-base: 14px;
+  --ap-font-size-large: 18px;
+  --ap-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
 }

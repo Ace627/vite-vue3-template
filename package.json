@@ -2,6 +2,7 @@
   "name": "vite-vue3-template",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@9.9.0",
   "type": "module",
   "homepage": "https://github.com/Ace627/vite-vue3-template.git",
   "description": "Vite、TypeScript、Vue3 的基础开发模板以及常用配置流程参考记录",
@@ -43,7 +44,6 @@
     "vite": "^5.4.3",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-imagemin": "0.6.1",
-    "vite-plugin-svg-icons2": "1.0.0",
     "vue-tsc": "^2.1.6"
   },
   "repository": {
@@ -56,6 +56,5 @@
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"
-  },
-  "packageManager": "pnpm@9.9.0"
+  }
 }

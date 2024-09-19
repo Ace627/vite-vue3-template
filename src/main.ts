@@ -4,7 +4,6 @@ import { setupStore } from './store'
 import { setupRouter } from './router'
 import { setupPlugins } from './plugins'
 import { setupDirectives } from './directives'
-import 'virtual:svg-icons-register'
 import 'virtual:uno.css'
 import './styles/index.scss'
 

@@ -3,10 +3,10 @@
 @use './transition.scss';
 
 body {
-  font-size: var(--app-font-size-base);
-  font-family: var(--app-font-family);
-  color: var(--app-body-text-color);
-  background-color: var(--app-body-bg-color);
+  font-size: var(--ap-font-size-base);
+  font-family: var(--ap-font-family);
+  color: var(--ap-body-text-color);
+  background-color: var(--ap-body-bg-color);
 }
 
 /* 灰色模式 */
@@ -20,5 +20,5 @@ body {
 
 /* 顶部加载进度条的颜色 */
 #nprogress .bar {
-  background-color: var(--app-nprogress-color);
+  background-color: var(--ap-nprogress-color);
 }
