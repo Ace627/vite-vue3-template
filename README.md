@@ -1,4 +1,4 @@
-# 项目简介
+## 项目简介
 
 [vite-vue3-template](https://github.com/Ace627/vite-vue3-template) 是一个基础的 Vue3、TypeScript、Vite 的配置模板。
 
@@ -6,7 +6,7 @@
 
 |     环境     |             名称版本              |                    下载地址                    |
 | :----------: | :-------------------------------: | :--------------------------------------------: |
-| **开发工具** |              VSCode               | [下载](https://code.visualstudio.com/Download) |
+| **开发工具** |        Visual Studio Code         | [下载](https://code.visualstudio.com/Download) |
 | **运行环境** | Node ≥18 (其中 20.6.0 版本不可用) |       [下载](http://nodejs.cn/download)        |
 
 ## 项目启动
@@ -29,7 +29,6 @@ pnpm dev
 
 - [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
 - 集成富文本编辑器，但其图片、视频上传接口仅做了拦截，应用项目时请务必去 `src/components/Editor/index.vue` 中自行适配所属项目的上传逻辑
-- 删除 `src/layout/index.vue`，然后 `src/layout/index_v1.vue` 重命名为 `index.vue`，删除 `src/views/Example` 文件夹，重启项目即可获得最纯净的基础模板
 
 ## 特征说明
 

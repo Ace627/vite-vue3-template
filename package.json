@@ -11,8 +11,7 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "gen:icon": "esno ./build/scripts/generate-svg-type.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@wangeditor/editor": "5.1.23",

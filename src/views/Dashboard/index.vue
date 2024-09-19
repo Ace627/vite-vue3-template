@@ -1,15 +1,32 @@
 <template>
-  <div class="app-content">
-    <p v-for="(item, index) in 200" :key="index" text="#212121 20px">{{ item }} 首页</p>
+  <div class="app-content text-center text-16px">
+    <div class="fw-bold">模板已稳定运行</div>
+    <div class="mt-10px c-#07f">{{ diffTime }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'Dashboard' })
+
+const diffTime = ref<string>()
+
+function addZero(count: number) {
+  return count.toString().padStart(2, '0')
+}
+
+function formatTime(milliseconds: number): string {
+  const day = Math.floor(milliseconds / (1000 * 60 * 60 * 24))
+  const hour = Math.floor((milliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minute = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60))
+  const second = Math.floor((milliseconds % (1000 * 60)) / 1000)
+  return `${addZero(day)}天${addZero(hour)}时${addZero(minute)}分${addZero(second)}秒`
+}
+
+function getDiffTimestamp() {
+  diffTime.value = formatTime(Date.now() - new Date(`2023-09-27 14:50:54`).getTime())
+  window.requestAnimationFrame(getDiffTimestamp)
+}
+getDiffTimestamp()
 </script>
 
-<style lang="scss" scoped>
-a {
-  display: block;
-}
-</style>
+<style lang="scss" scoped></style>
