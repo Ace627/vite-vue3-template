@@ -1,16 +1,19 @@
-# vite-vue3-template
+# 项目简介
 
-## 项目拉取
+[vite-vue3-template](https://github.com/Ace627/vite-vue3-template) 是一个基础的 Vue3、TypeScript、Vite 的配置模板。
+
+## 环境准备
+
+|     环境     |             名称版本              |                    下载地址                    |
+| :----------: | :-------------------------------: | :--------------------------------------------: |
+| **开发工具** |              VSCode               | [下载](https://code.visualstudio.com/Download) |
+| **运行环境** | Node ≥18 (其中 20.6.0 版本不可用) |       [下载](http://nodejs.cn/download)        |
+
+## 项目启动
 
 ```bash
-# 克隆项目 基础模板
+# 克隆代码
 git clone https://github.com/Ace627/vite-vue3-template.git
-
-# 自动按需引入 Ant Design Vue
-git clone https://github.com/Ace627/vite-vue3-template.git -b ant-design-vue
-
-# 自动按需引入 Element Plus
-git clone https://github.com/Ace627/vite-vue3-template.git -b element-plus
 
 # 进入项目目录
 cd vite-vue3-template

@@ -15,6 +15,6 @@ export const registerAutoImport = (): PluginOption => {
 export const registerAutoComponents = (): PluginOption => {
   return AutoComponents({
     dts: 'types/auto-generate/auto-components.d.ts',
-    dirs: ['src/components'], // 配置其它需要导入的文件目录
+    dirs: [], // 配置其它需要导入的文件目录 'src/components'
   })
 }

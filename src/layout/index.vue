@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container clearFix relative">
     <RouterView />
   </div>
 </template>
