@@ -25,6 +25,13 @@
 
 - 前端采用 `Vite`、`Vue3`、`VueRouter`、`Pinia`、`TypeScript`、`UnoCSS`、`Sass`、`Axios`
 
+## 内置功能
+
+- 加载提示：网络请求和路由切换时页面顶部会出现加载进度条
+- 接口代理 .env.development 的 VITE_BASE_URL 即可
+- 接口路径：如有公共路径，请直接拼于 `/dev-api/接口公共路径`
+- 路径别名：`@` 代表 `src`，`#` 代表 `types`
+
 ## 环境准备
 
 |     环境     |             名称版本              |                    下载地址                    |
