@@ -14,7 +14,7 @@
   <a href="https://github.com/Ace627" target="_blank">
     <img src="https://img.shields.io/badge/Author-当时只道是寻常-orange" alt="Author" />
   </a>
-  
+
 <p>
 
 <hr />
@@ -23,10 +23,8 @@
 
 本仓库提供了一个基于 `Vue3`、`TypeScript` 和 `Vite` 的基础配置模板，旨在帮助开发者快速搭建现代化前端项目。该模板集成了常用的开发工具和最佳实践，适合作为个人项目、团队协作或大型应用开发的起点，帮助你专注于业务逻辑的实现，而无需从零开始配置项目环境。
 
-- 前端采用 `Vite`、`Vue3`、`VueRouter`、`Pinia`、`TypeScript`、`UnoCSS`、`Sass`、`Axios`
-
-## 内置功能
-
+- 技术选型：`Vite`、`Vue3`、`VueRouter`、`Pinia`、`TypeScript`、`UnoCSS`、`Sass`、`Axios`
+- 样式重置：利用重置样式表解决 `HTML` 元素在各浏览器显示效果不一致的问题
 - 加载提示：网络请求和路由切换时页面顶部会出现加载进度条，可在 `.env` 文件配置
 - 接口代理 `.env.development` 的 `VITE_BASE_URL` 即可
 - 接口路径：如有公共路径，请直接拼于 `/dev-api/接口公共路径`
@@ -37,7 +35,60 @@
 - 拆包处理：对打包的文件进行拆包处理，以便利用浏览器的缓存机制，减少请求次数
 - 清除日志：打包后移除所有的 `console`、`debugger`，可在 `.env.production` 文件配置
 - XSS 攻击：解决 `v-html` 指令潜在的 `xss` 攻击，请改用 `v-dompurify-html`
-- 样式重置：利用重置样式表解决 `HTML` 元素在各浏览器显示效果不一致的问题
+
+## 使用教程
+
+### 1.1 配置开发环境的代理转发
+
+<span style="color: #ed3333">此处主要针对 `.env.development` 进行配置</span>
+
+**1、接口无公共路径的情况下：**
+
+- 假如有代理：`http://www.dev.com`
+- 有接口：`/user/list`、`/role/create` 等
+- `VITE_BASE_URL = http://www.dev.com` 即可
+- 正常请求如 `request.get('/user/list')`
+
+**2、假如接口有公共路径**
+
+- 比如：``/api/user/list`、`/api/role/create` 等
+- 代理依旧按照步骤 1 配置
+- 同时追加 `VITE_BASE_API = /dev-api/api` 即可
+- 正常请求如 `request.get('/user/list')`
+
+### 1.2 如何添加全局组件及其类型
+
+- `src/components` 下新建一个目录，其内含有一个 `index.vue` 文件（`src/components/ComponentName/index.vue`）
+
+```vue
+<!-- 一个空白的组件模板 -->
+<template>
+	<div></div>
+</template>
+
+<script setup lang="ts">
+defineOptions({ name: 'ComponentName' })
+  
+const props = defineProps({})
+</script>
+
+<style lang="scss" scoped></style>
+```
+
+- 这时该组件会被自动注册为全局组件，但此时并无类型提示
+- 打开 `types/global-components.d.ts`
+
+```typescript
+export {}
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    AutoWrapList: typeof import('../src/components/AutoWrapList/index.vue')['default']
+  }
+}
+```
+
+- 如上所示，将第 5 行复制一行到其下面，然后改 `AutoWrapList` 为你刚才新建的组件目录名即可
 
 ## 环境准备
 
