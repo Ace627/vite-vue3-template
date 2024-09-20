@@ -1,11 +1,20 @@
-## 项目简介
+<h1 align="center">vite-vue3-template</h1>
 
-[vite-vue3-template](https://github.com/Ace627/vite-vue3-template) 是一个基础的 Vue3、TypeScript、Vite 的配置模板。
+<p align="center">
+  <img src="https://img.shields.io/github/languages/code-size/Ace627/vite-vue3-template" alt="code size"/>
+  <img src="https://img.shields.io/github/languages/count/Ace627/vite-vue3-template" alt="languages"/>
+  <img src="https://img.shields.io/github/last-commit/Ace627/vite-vue3-template" alt="last commit"/> 
+  <img src="https://img.shields.io/badge/pnpm-9.9.0-blue" alt="pnpm version"/><br>
+  <img src="https://img.shields.io/badge/Author-当时只道是寻常-orange" alt="Author" />
+<p>
+
+<hr />
 
 ## 环境准备
 
 |     环境     |             名称版本              |                    下载地址                    |
 | :----------: | :-------------------------------: | :--------------------------------------------: |
+| **版本控制** |        Git - 版本控制工具         |     [下载](https://git-scm.com/downloads)      |
 | **开发工具** |        Visual Studio Code         | [下载](https://code.visualstudio.com/Download) |
 | **运行环境** | Node ≥18 (其中 20.6.0 版本不可用) |       [下载](http://nodejs.cn/download)        |
 
