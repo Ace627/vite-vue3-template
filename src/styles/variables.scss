@@ -1,8 +1,8 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
+  /* Navbar */
   --ap-navbar-height: 50px;
-  --ap-navbar-bgc: var(--ap-color-white);
   --ap-header-height: var(--ap-navbar-height);
   --ap-content-height: calc(100vh - var(--ap-header-height));
 
@@ -12,8 +12,10 @@
   /* 常用色彩值 */
   --ap-color-white: #ffffff;
   --ap-color-black: #000000;
+
+  /* Body */
   --ap-body-text-color: #262626;
-  --ap-body-bg-color: #f2f3f5;
+  --ap-body-bg-color: #f5f6f7;
 
   /* 常用字体配置 */
   --ap-font-size-small: 12px;
