@@ -8,10 +8,10 @@
   <img src="https://img.shields.io/github/languages/code-size/Ace627/vite-vue3-template" alt="code size"/>
   <img src="https://img.shields.io/github/languages/count/Ace627/vite-vue3-template" alt="languages"/>
   <img src="https://img.shields.io/github/last-commit/Ace627/vite-vue3-template" alt="last commit"/> 
-  <a href="https://www.pnpm.cn">
+  <a href="https://www.pnpm.cn" target="_blank">
     <img src="https://img.shields.io/badge/pnpm-9.9.0-blue" alt="pnpm version"/><br>
   </a>
-  <a href="https://github.com/Ace627">
+  <a href="https://github.com/Ace627" target="_blank">
     <img src="https://img.shields.io/badge/Author-当时只道是寻常-orange" alt="Author" />
   </a>
   
