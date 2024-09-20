@@ -1,14 +1,29 @@
+<p align="center">
+	<img alt="logo" src="./src/assets/images/logo.png" width="64" height="64" />
+</p>
+
 <h1 align="center">vite-vue3-template</h1>
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/code-size/Ace627/vite-vue3-template" alt="code size"/>
   <img src="https://img.shields.io/github/languages/count/Ace627/vite-vue3-template" alt="languages"/>
   <img src="https://img.shields.io/github/last-commit/Ace627/vite-vue3-template" alt="last commit"/> 
-  <img src="https://img.shields.io/badge/pnpm-9.9.0-blue" alt="pnpm version"/><br>
-  <img src="https://img.shields.io/badge/Author-当时只道是寻常-orange" alt="Author" />
+  <a href="https://www.pnpm.cn">
+    <img src="https://img.shields.io/badge/pnpm-9.9.0-blue" alt="pnpm version"/><br>
+  </a>
+  <a href="https://github.com/Ace627">
+    <img src="https://img.shields.io/badge/Author-当时只道是寻常-orange" alt="Author" />
+  </a>
+  
 <p>
 
 <hr />
+
+## 项目简介
+
+本仓库提供了一个基于 `Vue3`、`TypeScript` 和 `Vite` 的基础配置模板，旨在帮助开发者快速搭建现代化前端项目。该模板集成了常用的开发工具和最佳实践，适合作为个人项目、团队协作或大型应用开发的起点，帮助你专注于业务逻辑的实现，而无需从零开始配置项目环境。
+
+- 前端采用 `Vite`、`Vue3`、`VueRouter`、`Pinia`、`TypeScript`、`UnoCSS`、`Sass`、`Axios`
 
 ## 环境准备
 
