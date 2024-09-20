@@ -31,44 +31,45 @@
 - 请求缓存：统一给 `get` 请求加上时间戳参数，避免从缓存中拿数据
 - 请求超时：支持配置网络请求超时的毫秒数，可在 `.env` 文件配置
 - 路径别名：`@` 代表 `src`，`#` 代表 `types`
-- 资源分类：已对打包出来的资源文件进行分类处理，分别放到不同的文件夹内
-- 拆包处理：对打包的文件进行拆包处理，以便利用浏览器的缓存机制，减少请求次数
-- 清除日志：打包后移除所有的 `console`、`debugger`，可在 `.env.production` 文件配置
 - XSS 攻击：解决 `v-html` 指令潜在的 `xss` 攻击，请改用 `v-dompurify-html`
+- 文件压缩：打包时对业务内静态图片资源和 `index.html` 进行压缩处理
+- 资源分类：已对打包出来的资源文件进行分类处理，分别放到不同的文件夹内
+- 拆包处理：对打包的文件进行最小化拆包拆包处理，以便利用浏览器的缓存机制，减少请求次数
+- 清除日志：打包后移除所有的 `console`、`debugger`，可在 `.env.production` 文件配置
 
 ## 使用教程
 
 ### 1.1 配置开发环境的代理转发
 
-<span style="color: #ed3333">此处主要针对 `.env.development` 进行配置</span>
+此处主要针对 `.env.development` 进行配置
 
-**1、接口无公共路径的情况下：**
+**1.1.1 接口无公共路径的情况下：**
 
 - 假如有代理：`http://www.dev.com`
 - 有接口：`/user/list`、`/role/create` 等
 - `VITE_BASE_URL = http://www.dev.com` 即可
 - 正常请求如 `request.get('/user/list')`
 
-**2、假如接口有公共路径**
+**1.1.2 假如接口有公共路径**
 
-- 比如：``/api/user/list`、`/api/role/create` 等
+- 比如：`/api/user/list`、`/api/role/create` 等
 - 代理依旧按照步骤 1 配置
-- 同时追加 `VITE_BASE_API = /dev-api/api` 即可
+- 同时修改 `VITE_BASE_API = /dev-api/api` 即可
 - 正常请求如 `request.get('/user/list')`
 
-### 1.2 如何添加全局组件及其类型
+### 1.2 添加全局组件及其类型
 
 - `src/components` 下新建一个目录，其内含有一个 `index.vue` 文件（`src/components/ComponentName/index.vue`）
 
 ```vue
 <!-- 一个空白的组件模板 -->
 <template>
-	<div></div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'ComponentName' })
-  
+
 const props = defineProps({})
 </script>
 
@@ -118,15 +119,6 @@ pnpm dev
 
 - [Vite 已不再支持 EOL 的 NodeJS 14 / 16 / 17 / 19。现在需要 NodeJS 18 / 20+](https://cn.vitejs.dev/guide/migration.html#migration-from-v4)
 - 集成富文本编辑器，但其图片、视频上传接口仅做了拦截，应用项目时请务必去 `src/components/Editor/index.vue` 中自行适配所属项目的上传逻辑
-
-## 特征说明
-
-- 已配置 `Vue`、`VueRouter` 等 Api 的自动导入
-- 已封装二维码功能，具体参数见 `src/components/QrCode/index.vue`
-- 已解决 v-html 指令潜在的 xss 攻击（vue-dompurify-html 代替 v-html）
-- 打包时对业务内静态图片资源和 `index.html` 进行压缩处理
-- 打包时默认移除所有的 `console`、`debugger`
-- 打包时进行最小化拆包，解决 js 包之间的依赖问题，提升加载时间
 
 ## 参考文献
 
