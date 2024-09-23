@@ -19,8 +19,6 @@
 
 <hr />
 
-## 项目简介
-
 本仓库提供了一个基于 `Vue3`、`TypeScript` 和 `Vite` 的基础配置模板，旨在帮助开发者快速搭建现代化前端项目。该模板集成了常用的开发工具和最佳实践，适合作为个人项目、团队协作或大型应用开发的起点，帮助你专注于业务逻辑的实现，而无需从零开始配置项目环境。
 
 - 技术选型：`Vite`、`Vue3`、`VueRouter`、`Pinia`、`TypeScript`、`UnoCSS`、`Sass`、`Axios`
@@ -90,6 +88,15 @@ declare module 'vue' {
 ```
 
 - 如上所示，将第 5 行复制一行到其下面，然后改 `AutoWrapList` 为你刚才新建的组件目录名即可
+- 如果需要获取全局组件的实例对象，请参考下方代码
+
+```typescript
+import type { GlobalComponents } from 'vue'
+
+const autoWrapListInstance = shallowRef<InstanceType<GlobalComponents['AutoWrapList']>>()
+
+// 然后通过 autoWrapListInstance.value 即可带类型提示访问其暴露出的方法之类
+```
 
 ## 环境准备
 
