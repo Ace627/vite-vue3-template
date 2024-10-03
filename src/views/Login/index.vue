@@ -32,7 +32,7 @@ const userStore = useUserStore()
 /** 登录按钮 Loading */
 const loading = ref(false)
 /** 登录表单数据 */
-const loginForm = ref<LoginEntity.LoginParams>({
+const loginForm = ref<LoginEntity.LoginForm>({
   account: 'admin',
   password: '123456',
 })

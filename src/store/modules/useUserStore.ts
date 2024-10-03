@@ -9,8 +9,8 @@ export default defineStore('user', () => {
   const avatar = ref<string>('https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80')
 
   /** 登录 */
-  async function login(loginParams: LoginEntity.LoginParams) {
-    const data = await LoginService.login(loginParams)
+  async function login(LoginForm: LoginEntity.LoginForm) {
+    const data = await LoginService.login(LoginForm)
     token.value = data.result
     setAccessToken(data.result)
   }
