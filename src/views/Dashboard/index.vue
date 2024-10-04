@@ -1,5 +1,6 @@
 <template>
-  <div class="app-content text-center text-16px">
+  <div class="app-content text-center text-16px flex-col flex items-center">
+    <ApTaiChi size="32vmin" class="mb-16px" />
     <div class="fw-bold">模板已稳定运行</div>
     <div class="mt-10px c-#07f">{{ diffTime }}</div>
   </div>
