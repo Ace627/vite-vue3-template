@@ -25,6 +25,8 @@ interface ImportMetaEnv {
   VITE_ROUTER_NPROGRESS: string
   /** 是否开启请求接口时的顶部进度条 */
   VITE_REQUEST_NPROGRESS: string
+  /** 打包后是否移除所有的注释 */
+  VITE_CLEAR_COMMENT: string
 }
 
 /** 原生读取出的环境变量经过处理后的类型 */
@@ -41,6 +43,8 @@ interface ViteEnv extends ImportMetaEnv {
   VITE_ROUTER_NPROGRESS: boolean
   /** 是否开启请求接口时的顶部进度条 */
   VITE_REQUEST_NPROGRESS: boolean
+  /** 打包后是否移除所有的注释 */
+  VITE_CLEAR_COMMENT: boolean
 }
 
 interface ImportMeta {

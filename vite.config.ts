@@ -129,9 +129,17 @@ export default defineConfig(({ command, mode }) => {
       },
     },
 
-    /** 打包后移除所有的 console、debugger */
     esbuild: {
+      /**
+       * 打包后是否移除所有的 console、debugger
+       * http://cosarty.cn/doc/essay/handbook/esbuild.html#drop
+       */
       drop: VITE_ENV.VITE_DROP_CONSOLE ? ['console', 'debugger'] : [],
+      /**
+       * 打包后是否移除所有的注释
+       * http://esbuild.docschina.org/api/#legal-comments
+       */
+      legalComments: VITE_ENV.VITE_CLEAR_COMMENT ? 'none' : 'inline',
     },
   }
 })
