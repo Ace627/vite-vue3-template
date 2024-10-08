@@ -2,7 +2,7 @@
   <div class="login-container relative wh-screen overflow-hidden">
     <div class="login-content fixed overflow-hidden flex">
       <div class="left">
-        <img src="../../assets/images/223502-17123277028d9c.jpg" class="wh-full" alt="" />
+        <img src="@/assets/images/background/bg-image-01.jpg" class="wh-full" alt="背景图" />
       </div>
       <div class="right">
         <h3>登录</h3>
@@ -34,7 +34,7 @@ const loading = ref(false)
 /** 登录表单数据 */
 const loginForm = ref<LoginEntity.LoginForm>({
   account: 'admin',
-  password: '123456',
+  password: '123456'
 })
 /** 计算需要跳转的路径 */
 const redirect = (route.query.redirect as string) || '/'

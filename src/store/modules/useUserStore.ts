@@ -3,10 +3,18 @@ import { getAccessToken, removeAccessToken, setAccessToken } from '@/utils/cache
 
 /** 第一个参数是该 store 的唯一 id */
 export default defineStore('user', () => {
-  const token = ref<string>(getAccessToken())
   const roles: string[] = []
   const permissions: string[] = []
-  const avatar = ref<string>('https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80')
+
+  /**
+   * 用户访问服务资源的唯一凭证
+   */
+  const token = ref<string>(getAccessToken())
+
+  /**
+   * 用户头像 默认值 src/assets/images/default/default-avatar.gif
+   */
+  const avatar = ref<string>(new URL('../../assets/images/default/default-avatar.gif', import.meta.url).href)
 
   /** 登录 */
   async function login(LoginForm: LoginEntity.LoginForm) {
