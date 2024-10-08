@@ -18,7 +18,7 @@ module.exports = {
 	/** 指定一个制表符等于的空格数 */
 	tabWidth: 2,
 	/** 使用制表符缩进，而不是空格缩进 */
-	useTabs: true,
+	useTabs: false,
 	/** 缩进 Vue SFC 文件中的 `<script>` 和 `<style>` 标签 */
 	vueIndentScriptAndStyle: false,
 	/** 允许 Prettier 格式化 `node_modules` 中的文件 */
