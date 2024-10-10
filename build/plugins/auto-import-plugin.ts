@@ -5,9 +5,9 @@ import AutoComponents from 'unplugin-vue-components/vite'
 /** 自带 api 的自动化导入 */
 export const registerAutoImport = (): PluginOption => {
   return AutoImport({
-    imports: ['vue', 'pinia', 'vue-router'], // 自动导入 vue、vue-router、Pinia 相关函数
+    imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'], // 自动导入 vue、vue-router、Pinia 相关函数
     dts: 'types/auto-generate/auto-import.d.ts',
-    dirs: ['src/store/modules', 'src/hooks'], // 配置其它需要导入的文件目录
+    dirs: ['src/store/modules', 'src/hooks'] // 配置其它需要导入的文件目录
   })
 }
 
@@ -15,6 +15,6 @@ export const registerAutoImport = (): PluginOption => {
 export const registerAutoComponents = (): PluginOption => {
   return AutoComponents({
     dts: 'types/auto-generate/auto-components.d.ts',
-    dirs: [], // 配置其它需要导入的文件目录 'src/components'
+    dirs: [] // 配置其它需要导入的文件目录 'src/components'
   })
 }

@@ -1,5 +1,5 @@
-import defaultSettings, { type ProjectConfig } from '@/config/default-settings'
-import { removeProjectConfig, setProjectConfig } from '@/utils/cache/local-storage'
+import defaultSettings from '@/config/default-settings'
+import { removeProjectConfig, setProjectConfig, type ProjectConfig } from '@/utils/cache'
 
 export default defineStore('setting', () => {
   const state: ProjectConfig = reactive(defaultSettings)
@@ -7,7 +7,7 @@ export default defineStore('setting', () => {
   /** 处理保存配置的操作 */
   function saveSetting() {
     const { showSetting, ...config } = state
-    setProjectConfig(config)
+    setProjectConfig(config as ProjectConfig)
   }
 
   /** 处理重置配置的操作 */

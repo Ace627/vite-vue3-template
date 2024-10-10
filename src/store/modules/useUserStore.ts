@@ -1,5 +1,5 @@
 import { LoginService } from '@/api'
-import { getAccessToken, removeAccessToken, setAccessToken } from '@/utils/cache/local-storage'
+import { getAccessToken, removeAccessToken, setAccessToken } from '@/utils/cache'
 
 /** 第一个参数是该 store 的唯一 id */
 export default defineStore('user', () => {

@@ -1,4 +1,4 @@
-import { getSidebarStatus, setSidebarStatus } from '@/utils/cache/local-storage'
+import { getSidebarStatus, setSidebarStatus } from '@/utils/cache'
 
 /** 侧边栏配置类型 */
 interface SidebarConfig {
@@ -10,7 +10,7 @@ export default defineStore('app', () => {
   /** 侧边栏配置 */
   const sidebar = reactive<SidebarConfig>({
     opened: getSidebarStatus(),
-    withoutAnimation: false,
+    withoutAnimation: false
   })
 
   /** 面包屑开关菜单栏的回调 */

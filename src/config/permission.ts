@@ -1,5 +1,5 @@
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
-import { getAccessToken } from '@/utils/cache/local-storage' // 从缓存读取 Token 的方法
+import { getAccessToken } from '@/utils/cache' // 从缓存读取 Token 的方法
 import isWhiteList from '@/config/white-list' // 路由是否在白名单的判断判断方法
 
 const { VITE_ROUTER_NPROGRESS } = useEnv()
