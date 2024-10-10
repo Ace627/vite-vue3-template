@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { HttpStatusEnum, RequestMethod } from '@/enums'
 import { handleResponseError } from './helper'
-import { getAccessToken } from '@/utils/cache/local-storage'
+import { getAccessToken } from '@/utils/cache'
 
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
 const NProgress = useNProgress({ show: VITE_REQUEST_NPROGRESS }) // 顶部进度条
@@ -10,7 +10,7 @@ const request = axios.create({
   // baseURL 将自动加在 url 前面，除非 url 是一个绝对 URL
   baseURL: VITE_BASE_API,
   // timeout 指定请求超时的毫秒数(0 表示无超时时间)，如果请求花费了超过 timeout 的时间，请求将被中断
-  timeout: VITE_REQUEST_TIMEOUT * 1000,
+  timeout: VITE_REQUEST_TIMEOUT * 1000
 })
 
 // 请求拦截器
@@ -34,7 +34,7 @@ request.interceptors.request.use(
     NProgress.done()
     // 将原初异常以 Promise 形式暴露给外部调用处理
     return Promise.reject(error)
-  },
+  }
 )
 
 // 响应拦截器
@@ -56,7 +56,7 @@ request.interceptors.response.use(
     NProgress.done()
     handleResponseError(error) // 根据响应异常时的 Error 提取解析出符合直觉的 Message
     return Promise.reject(error)
-  },
+  }
 )
 
 export default request
