@@ -1,3 +1,40 @@
+/** 校验值是否为 undefined */
+export function isUndefined(value: any): boolean {
+  return value === void 0
+}
+
+/** 校验值是否为 string */
+export function isString(value: any): boolean {
+  return typeof value === 'string'
+}
+
+/** 校验值是否为 number */
+export function isNumber(value: any): boolean {
+  return typeof value === 'number'
+}
+
+/** 校验是否是字符串类型的数字 */
+export function isStringNumber(value: string): boolean {
+  if (typeof value !== 'string') return false
+  return !Number.isNaN(Number(value))
+}
+
+/** 校验是否是字符串类型的布尔值 */
+export function isStringBoolean(value: string): boolean {
+  if (typeof value !== 'string') return false
+  return ['true', 'false'].includes(value)
+}
+
+/** 校验值是否为 object */
+export function isObject(value: any): boolean {
+  return value !== null && !Array.isArray(value) && typeof value === 'object'
+}
+
+/** 校验数据是否为空 */
+export function isEmpty(value: unknown): boolean {
+  return (!value && value !== 0) || (Array.isArray(value) && value.length === 0) || (isObject(value) && Object.keys(value).length === 0)
+}
+
 /** 校验是否为手机号 */
 export function isPhone(phone: string): boolean {
   const reg = /^1[3-9]\d{9}$/
