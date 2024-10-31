@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { HttpStatusEnum, RequestMethod } from '@/enums'
-import { handleResponseError } from './helper'
 import { getAccessToken } from '@/utils/cache'
 
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
@@ -54,7 +53,15 @@ request.interceptors.response.use(
   },
   (error: any) => {
     NProgress.done()
-    handleResponseError(error) // 根据响应异常时的 Error 提取解析出符合直觉的 Message
+    let { message } = error
+    if (message == 'Network Error') {
+      message = '后端接口连接异常'
+    } else if (message.includes('timeout')) {
+      message = '系统接口请求超时'
+    } else if (message.includes('Request failed with status code')) {
+      message = `系统接口 ${message.substr(message.length - 3)} 异常`
+    }
+    alert(message)
     return Promise.reject(error)
   }
 )
