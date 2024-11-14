@@ -1,6 +1,7 @@
-import axios from 'axios'
-import { HttpStatusEnum, RequestMethod } from '@/enums'
+import axios, { HttpStatusCode } from 'axios'
+import { RequestMethod } from '@/enums'
 import { getAccessToken } from '@/utils/cache'
+import { AppConfig } from '@/config/app-config'
 
 const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
 const NProgress = useNProgress({ show: VITE_REQUEST_NPROGRESS }) // 顶部进度条
@@ -22,9 +23,7 @@ request.interceptors.request.use(
     config.params = config.params || {}
     if (isGetRequest) config.params['timestamp'] = timestamp // 给 get 请求加上时间戳参数，避免从缓存中拿数据
     // 配置请求头
-    if (token) config.headers['Authorization'] = `Bearer ${token}` // 让每个请求携带自定义 token 请根据实际情况自行修改
-    if (token) config.headers['X-Access-Token'] = token
-    config.headers['X-TIMESTAMP'] = timestamp
+    if (token) config.headers[AppConfig.AUTHORIZATION] = `${AppConfig.TOKEN_PREFIX} ${token}` // 让每个请求携带自定义 token 请根据实际情况自行修改
     // 返回处理后的请求头
     return config
   },
@@ -44,9 +43,9 @@ request.interceptors.response.use(
     const isBinary = ['blob', 'arraybuffer'].includes(response.request.responseType) // 是否二进制数据
     if (withoutTransformResponse || isBinary) return response.data
 
-    const code = response.data.code || HttpStatusEnum.OK // 非二进制数据进行拦截判定统一处理
+    const code = response.data.code || HttpStatusCode.Ok // 非二进制数据进行拦截判定统一处理
     const message = response.data.message || `系统未知错误，请反馈给管理员`
-    if (code === HttpStatusEnum.OK) return response.data.result
+    if (code === HttpStatusCode.Ok) return response.data.result
 
     alert(message) // 此处可统一处理错误的提示消息
     return Promise.reject(new Error(message))

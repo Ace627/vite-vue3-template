@@ -6,7 +6,7 @@
       </div>
       <div class="right">
         <h3>登录</h3>
-        <input type="text" v-model="loginForm.account" class="input-item" placeholder="请输入你的账号" />
+        <input type="text" v-model="loginForm.username" class="input-item" placeholder="请输入你的账号" />
         <input type="password" v-model="loginForm.password" class="input-item" placeholder="请输入你的密码" />
         <a href="#" class="forget-password">忘记密码？</a>
         <button class="btn" @click="handleLogin">
@@ -32,8 +32,8 @@ const userStore = useUserStore()
 /** 登录按钮 Loading */
 const loading = ref(false)
 /** 登录表单数据 */
-const loginForm = ref<LoginEntity.LoginForm>({
-  account: 'admin',
+const loginForm = ref<LoginUserDto>({
+  username: 'admin',
   password: '123456'
 })
 /** 计算需要跳转的路径 */

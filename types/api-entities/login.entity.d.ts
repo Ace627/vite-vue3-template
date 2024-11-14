@@ -1,7 +1,7 @@
-namespace LoginEntity {
-  /** 用户登录所需要的数据 */
-  interface LoginForm {
-    account: string
-    password: string
-  }
+/** 登录所需要的参数 */
+interface LoginUserDto {
+  /** 用户账号 */
+  username: string
+  /** 用户密码 */
+  password: string
 }

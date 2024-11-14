@@ -1,4 +1,4 @@
-import { LoginService } from '@/api'
+import { LoginService } from '@/api/system/login.service'
 import { getAccessToken, removeAccessToken, setAccessToken } from '@/utils/cache'
 
 /** 第一个参数是该 store 的唯一 id */
@@ -17,10 +17,10 @@ export default defineStore('user', () => {
   const avatar = ref<string>(new URL('../../assets/images/default/default-avatar.gif', import.meta.url).href)
 
   /** 登录 */
-  async function login(LoginForm: LoginEntity.LoginForm) {
+  async function login(LoginForm: LoginUserDto) {
     const data = await LoginService.login(LoginForm)
-    token.value = data.result
-    setAccessToken(data.result)
+    token.value = data
+    setAccessToken(data)
   }
 
   /** 退出登录 */
