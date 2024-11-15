@@ -1,5 +1,6 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite' // 使用 defineConfig 工具函数，这样不用 jsdoc 注解也可以获取类型提示
-import { warpperEnv, pathResolve } from './build' // 引入对环境变量的处理函数
+import { warpperEnv } from './build' // 引入对环境变量的处理函数
 import { generateVitePlugins } from './build/plugins' // 引入抽离出去的 vite 插件集合
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） 即项目根目录（也就是 index.html 文件所在的位置） */
@@ -19,12 +20,12 @@ export default defineConfig(({ command, mode }) => {
     plugins: generateVitePlugins(runtimeConfig, isBuild),
 
     resolve: {
-      alias: [
+      alias: {
         /** 设置 `@` 指向 `src` 目录 */
-        { find: '@', replacement: pathResolve('src') },
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
         /** 设置 `#` 指向 `types` 目录 */
-        { find: '#', replacement: pathResolve('types') }
-      ]
+        '#': fileURLToPath(new URL('./types', import.meta.url))
+      }
     },
 
     server: {
