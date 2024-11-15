@@ -1,4 +1,4 @@
-import { AppConfig } from '@/config/app-config'
+import { AppConfig } from '@/config'
 import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 

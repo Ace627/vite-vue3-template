@@ -1,16 +1,15 @@
-import axios, { HttpStatusCode } from 'axios'
+import { AppConfig } from '@/config'
 import { RequestMethod } from '@/enums'
+import axios, { HttpStatusCode } from 'axios'
 import { getAccessToken } from '@/utils/cache'
-import { AppConfig } from '@/config/app-config'
 
-const { VITE_BASE_API, VITE_REQUEST_TIMEOUT, VITE_REQUEST_NPROGRESS } = useEnv() // 解构环境变量
-const NProgress = useNProgress({ show: VITE_REQUEST_NPROGRESS }) // 顶部进度条
+const NProgress = useNProgress({ show: AppConfig.ENABLE_REQUEST_NPROGRESS }) // 顶部进度条
 
 const request = axios.create({
   // baseURL 将自动加在 url 前面，除非 url 是一个绝对 URL
-  baseURL: VITE_BASE_API,
+  baseURL: AppConfig.REQUEST_BASE_API,
   // timeout 指定请求超时的毫秒数(0 表示无超时时间)，如果请求花费了超过 timeout 的时间，请求将被中断
-  timeout: VITE_REQUEST_TIMEOUT * 1000
+  timeout: AppConfig.REQUEST_TIMEOUT
 })
 
 // 请求拦截器

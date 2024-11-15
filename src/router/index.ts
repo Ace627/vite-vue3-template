@@ -1,15 +1,14 @@
 import type { App } from 'vue'
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { AppConfig } from '@/config'
 import { constantRoutes } from './constants-routes'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { globalRouterAfterGuard, globalRouterBeforeGuard } from '@/config/permission'
-
-const { VITE_PUBLIC_PATH, VITE_ROUTER_MODE } = useEnv() // 解构环境变量
 
 /** 创建路由实例 */
 const router = createRouter({
-  history: VITE_ROUTER_MODE === 'hash' ? createWebHashHistory(VITE_PUBLIC_PATH) : createWebHistory(VITE_PUBLIC_PATH),
+  history: AppConfig.IS_HASH_ROUTER ? createWebHashHistory(AppConfig.PUBLIC_PAHT) : createWebHistory(AppConfig.PUBLIC_PAHT),
   routes: constantRoutes,
-  scrollBehavior: () => ({ left: 0, top: 0 }),
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
 /** 路由配置函数 */

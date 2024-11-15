@@ -1,9 +1,9 @@
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { getAccessToken } from '@/utils/cache' // 从缓存读取 Token 的方法
 import isWhiteList from '@/config/white-list' // 路由是否在白名单的判断判断方法
+import { AppConfig } from './constant/app-config.constant'
 
-const { VITE_ROUTER_NPROGRESS } = useEnv()
-const NProgress = useNProgress({ show: VITE_ROUTER_NPROGRESS }) // 顶部进度条
+const NProgress = useNProgress({ show: AppConfig.ENABLE_ROUTER_NPROGRESS }) // 顶部进度条
 
 /**
  * @description 路由全局前置守卫
