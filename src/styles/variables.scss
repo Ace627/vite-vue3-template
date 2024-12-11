@@ -16,6 +16,30 @@
   --ap-color-success: #18a058;
   --ap-color-warning: #f0a020;
   --ap-color-error: #d03050;
+  --ap-color-primary-light-3: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 30%);
+  --ap-color-primary-light-5: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 50%);
+  --ap-color-primary-light-7: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 70%);
+  --ap-color-primary-light-8: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 80%);
+  --ap-color-primary-light-9: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 90%);
+  --ap-color-primary-dark-2: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-black) 20%);
+  --ap-color-success-light-3: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 30%);
+  --ap-color-success-light-5: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 50%);
+  --ap-color-success-light-7: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 70%);
+  --ap-color-success-light-8: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 80%);
+  --ap-color-success-light-9: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 90%);
+  --ap-color-success-dark-2: color-mix(in srgb, var(--ap-color-success), var(--ap-color-black) 20%);
+  --ap-color-warning-light-3: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 30%);
+  --ap-color-warning-light-5: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 50%);
+  --ap-color-warning-light-7: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 70%);
+  --ap-color-warning-light-8: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 80%);
+  --ap-color-warning-light-9: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 90%);
+  --ap-color-warning-dark-2: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-black) 20%);
+  --ap-color-danger-light-3: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 30%);
+  --ap-color-danger-light-5: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 50%);
+  --ap-color-danger-light-7: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 70%);
+  --ap-color-danger-light-8: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 80%);
+  --ap-color-danger-light-9: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 90%);
+  --ap-color-danger-dark-2: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-black) 20%);
 
   /* Body */
   --ap-body-text-color: #262626;

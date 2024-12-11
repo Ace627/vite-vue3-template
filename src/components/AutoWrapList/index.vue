@@ -1,11 +1,11 @@
 <template>
-  <div class="ap-wrap-list">
+  <div class="auto-wrap-list">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'ApWrapList' })
+defineOptions({ name: 'AutoWrapList' })
 import { isString } from 'lodash-es'
 
 const props = defineProps({
@@ -21,7 +21,7 @@ const repeat = computed(() => `repeat(auto-fill, minmax(${minWidth.value}, 1fr))
 </script>
 
 <style lang="scss" scoped>
-.ap-wrap-list {
+.auto-wrap-list {
   display: grid;
   grid-template-columns: v-bind(repeat);
   gap: v-bind(gap);

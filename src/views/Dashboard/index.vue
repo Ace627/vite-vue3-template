@@ -1,35 +1,82 @@
 <template>
-  <div class="app-content text-center text-16px flex-col flex items-center">
-    <ApTaiChi size="32vmin" class="mb-16px" />
-    <div class="fw-bold">模板已稳定运行</div>
-    <div class="mt-10px c-#07f">{{ diffTime }}</div>
+  <div class="app-container">
+    <header class="fixed-header">
+      <div class="navbar">
+        <div class="flex items-center cursor-pointer" @click="componentName = 'Home'" title="返回首页">
+          <img src="../../assets/images/logo.png" alt="logo" class="wh-32px mx-8px" srcset="" />
+          <div class="fw-bold" v-if="appStore.isDesktop">{{ VITE_APP_TITLE }}</div>
+        </div>
 
-    <SvgIcon name="Search" :size="88" />
+        <div class="right ml-auto h-full">
+          <div class="navbar-item" :class="{ 'is-active': componentName === 'IconView' }" @click="changeView('IconView')">图标</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <Home v-if="componentName === 'Home'" />
+      <IconView v-if="componentName === 'IconView'" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'Dashboard' })
+import Home from './components/Home/index.vue'
+import IconView from './components/IconView/index.vue'
 
-const diffTime = ref<string>()
+const appStore = useAppStore()
+const componentName = ref<string>('Home')
+const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 
-function addZero(count: number) {
-  return count.toString().padStart(2, '0')
+function changeView(name: string) {
+  componentName.value = name
 }
-
-function formatTime(milliseconds: number): string {
-  const day = Math.floor(milliseconds / (1000 * 60 * 60 * 24))
-  const hour = Math.floor((milliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-  const minute = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60))
-  const second = Math.floor((milliseconds % (1000 * 60)) / 1000)
-  return `${addZero(day)}天${addZero(hour)}时${addZero(minute)}分${addZero(second)}秒`
-}
-
-function getDiffTimestamp() {
-  diffTime.value = formatTime(Date.now() - new Date(`2023-09-27 14:50:54`).getTime())
-  window.requestAnimationFrame(getDiffTimestamp)
-}
-getDiffTimestamp()
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-container {
+  --ap-navbar-height: 50px;
+  --ap-transition-duration-fast: 0.3s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fixed-header {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+  .navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--ap-navbar-height);
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    /* 菜单项的通用样式 */
+    .navbar-item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 8px;
+      transition: background-color var(--ap-transition-duration-fast);
+    }
+    .navbar-item.is-active,
+    .navbar-item:hover {
+      color: var(--ap-color-primary);
+      background-color: rgba(0, 21, 41, 0.08);
+    }
+  }
+}
+
+.main-container {
+  height: 100%;
+  padding-top: var(--ap-navbar-height);
+  overflow-x: hidden;
+}
+</style>
