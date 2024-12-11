@@ -4,9 +4,9 @@ import { setupStore } from './store'
 import { setupRouter } from './router'
 import { setupPlugins } from './plugins'
 import { setupDirectives } from './directives'
-import { setupGlobalComponents } from '@/components' // 批量自动化注册全局组件
+import './styles/index.scss' // global css
 import 'virtual:uno.css'
-import './styles/index.scss'
+import 'virtual:svg-icons-register'
 
 async function bootstrap() {
   /** 创建 Vue 应用实例 */
@@ -20,9 +20,6 @@ async function bootstrap() {
 
   /** 配置 Store 状态管理 https://pinia.web3doc.top */
   setupStore(app)
-
-  /** 配置全局组件的自动批量化注册 */
-  setupGlobalComponents(app)
 
   /** 配置 Router https://router.vuejs.org/zh */
   await setupRouter(app)

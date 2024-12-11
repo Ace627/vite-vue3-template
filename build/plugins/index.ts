@@ -5,6 +5,7 @@ import UnoCSS from 'unocss/vite' // 即时按需的原子化 CSS 引擎 UnoCSS
 import { registerAutoImport, registerAutoComponents } from './auto-import-plugin'
 import { registerHtmlPlugin } from './compile.html'
 import { registerImageMini } from './image.mini'
+import { registerSvgIcons } from './svg-icons-plugin'
 
 export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOption[] {
   const plugins: PluginOption[] = []
@@ -23,6 +24,9 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
 
   /** 提供组件自动按需导入及类型声明功能 */
   plugins.push(registerAutoComponents())
+
+  /** 提供 SvgIcon 的使用支持 */
+  plugins.push(registerSvgIcons())
 
   /** 针对 index.html，提供压缩和基于 ejs 模板功能，亦可对其注入动态数据 */
   plugins.push(registerHtmlPlugin(viteEnv, isBuild))

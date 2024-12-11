@@ -95,6 +95,7 @@ async function handleLogin() {
     margin-top: 16px;
     padding: 0;
     padding-left: 5px;
+    border: none;
     border-bottom: 2px solid #b3a5fc;
   }
   .forget-password {

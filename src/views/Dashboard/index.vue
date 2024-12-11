@@ -3,6 +3,8 @@
     <ApTaiChi size="32vmin" class="mb-16px" />
     <div class="fw-bold">模板已稳定运行</div>
     <div class="mt-10px c-#07f">{{ diffTime }}</div>
+
+    <SvgIcon name="Search" :size="88" />
   </div>
 </template>
 
