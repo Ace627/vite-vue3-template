@@ -1,9 +1,11 @@
 <template>
-  <div class="ap-taichi"></div>
+  <div class="flex-center pt-60px">
+    <div class="taichi"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'ApTaiChi' })
+defineOptions({ name: 'TaiChi', inheritAttrs: false })
 
 /** 接收父组件传递过来的属性 */
 const { size, speed, lightColor, darkColor } = defineProps({
@@ -27,7 +29,7 @@ const afterBackgroundImage = computed(() => `radial-gradient(ellipse at center, 
 </script>
 
 <style lang="scss" scoped>
-.ap-taichi {
+.taichi {
   position: relative;
   width: v-bind(containerSize);
   height: v-bind(containerSize);

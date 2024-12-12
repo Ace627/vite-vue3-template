@@ -18,7 +18,8 @@ const name = defineModel({ type: String, default: 'Home' })
 
 const list = ref([
   { name: 'IconView', title: '图标' },
-  { name: 'Editor', title: '富文本' }
+  { name: 'TaiChi', title: '太极图' },
+  { name: 'Editor', title: '富文本' },
 ])
 </script>
 
