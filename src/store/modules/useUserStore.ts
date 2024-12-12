@@ -7,11 +7,6 @@ export default defineStore('user', () => {
   const permissions = ref<string[]>([])
 
   /**
-   * 用户访问服务资源的唯一凭证
-   */
-  const token = ref<string | null>(getAccessToken())
-
-  /**
    * 用户头像 默认值 src/assets/images/default/default-avatar.gif
    */
   const avatar = ref<string>(new URL('../../assets/images/default/default-avatar.gif', import.meta.url).href)
@@ -19,16 +14,14 @@ export default defineStore('user', () => {
   /** 登录 */
   async function login(LoginForm: LoginUserDto) {
     const data = await LoginService.login(LoginForm)
-    token.value = data
     setAccessToken(data)
   }
 
   /** 退出登录 */
   async function logout() {
     await LoginService.logout()
-    token.value = ''
     removeAccessToken()
   }
 
-  return { token, avatar, roles, permissions, login, logout }
+  return { avatar, roles, permissions, login, logout }
 })

@@ -1,7 +1,11 @@
 <template>
   <div class="p-16px">
-    <div class="mb-16px text-justify lh-[1.25] c-red fw-bold">
-      如果需要获取此项目的纯净模板，请在 src/views 目录下删除 Dashboard 目录，并将 Dashboard_back 目录重命名为 Dashboard
+    <div class="mb-16px text-justify lh-[1.5] c-red fw-bold">
+      <div>
+        <span>点击左上角 Logo 区域即可返回首页</span>
+        <span class="ml-8px cursor-pointer c-[--ap-color-primary] hover:c-[--ap-color-success]" @click="handleLogout">点我模拟退出</span>
+      </div>
+      <div>如果需要获取此项目的纯净模板，请在 src/views 目录下删除 Dashboard 目录，并将 Dashboard_back 目录重命名为 Dashboard</div>
     </div>
 
     <div class="card">
@@ -20,6 +24,8 @@ defineOptions({ name: 'Home' })
 
 const name = defineModel({ type: String, default: 'Home' })
 
+const userStore = useUserStore()
+
 const list = ref([
   { name: 'IconView', title: '图标' },
   { name: 'TaiChi', title: '太极图' },
@@ -27,6 +33,13 @@ const list = ref([
   { name: 'MdEditor', title: 'Markdown' },
   { name: 'WrapList', title: '换行列表' },
 ])
+
+async function handleLogout() {
+  const data = window.confirm(`确定注销并退出系统吗？`)
+  if (!data) return
+  await userStore.logout()
+  window.location.reload()
+}
 </script>
 
 <style lang="scss" scoped>
