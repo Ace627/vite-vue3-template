@@ -17,6 +17,7 @@
       <Home v-if="componentName === 'Home'" v-model="componentName" />
       <TaiChi v-else-if="componentName === 'TaiChi'" />
       <Editor v-else-if="componentName === 'Editor'" />
+      <MdEditor v-else-if="componentName === 'MdEditor'" />
       <IconView v-else-if="componentName === 'IconView'" />
     </div>
   </div>
@@ -27,6 +28,7 @@ defineOptions({ name: 'Dashboard' })
 import Home from './components/Home/index.vue'
 import TaiChi from './components/TaiChi/index.vue'
 import Editor from './components/Editor/index.vue'
+import MdEditor from './components/MdEditor/index.vue'
 import IconView from './components/IconView/index.vue'
 
 const appStore = useAppStore()

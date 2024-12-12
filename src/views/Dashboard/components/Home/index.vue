@@ -3,7 +3,7 @@
     <div class="card">
       <AutoWrapList :min-width="100" :gap="0">
         <div class="nav-item" v-for="(item, index) in list" :key="index" @click="name = item.name">
-          <SvgIcon name="Key" color="#f00" />
+          <!-- <SvgIcon name="Key" color="#f00" /> -->
           <div class="fw-bold ml-6px tracking-wider">{{ item.title }}</div>
         </div>
       </AutoWrapList>
@@ -20,6 +20,7 @@ const list = ref([
   { name: 'IconView', title: '图标' },
   { name: 'TaiChi', title: '太极图' },
   { name: 'Editor', title: '富文本' },
+  { name: 'MdEditor', title: 'Markdown' },
 ])
 </script>
 
