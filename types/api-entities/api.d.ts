@@ -7,14 +7,8 @@ interface ApiResponseData<T = any> {
   result: T
 }
 
-/** 列表类型的返回数据 */
-type TableResult<T = any> = Promise<{
-  total: number
-  records: Array<T>
-}>
+/** 分页列表的查询参数泛型 */
+type TableQueryParams<T = any> = Partial<T> & { pageNo: number; pageSize: number }
 
-/** 基础的分页查询参数 */
-type TableQuery<T extends Recordable> = Partial<T> & {
-  pageNo: number
-  pageSize: number
-}
+/** 处理列表类型的返回数据 */
+type TableResult<T = any> = Promise<{ total: number; records: Array<T> }>

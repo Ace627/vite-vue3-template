@@ -21,7 +21,8 @@ export default () => {
       if (isMobile) {
         appStore.closeSidebar(true)
       } else {
-        if (!appStore.sidebar.opened) appStore.toggleSidebar()
+        // 非移动模式切换 如果未展开 则自动展开
+        if (appStore.isCollapse) appStore.toggleSidebar()
       }
     }
   }
@@ -30,7 +31,7 @@ export default () => {
   watch(
     () => route.name,
     () => {
-      if (appStore.device === 'mobile' && appStore.sidebar.opened) {
+      if (appStore.device === 'mobile' && !appStore.isCollapse) {
         appStore.closeSidebar(false)
       }
     },
