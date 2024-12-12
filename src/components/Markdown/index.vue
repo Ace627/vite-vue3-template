@@ -36,7 +36,7 @@ const toolbarsExclude = ref<ToolbarNames[]>(['github'])
   --md-color: #3f4a54;
   --md-bk-color: #fff;
   --md-hover-color: #000;
-  --md-toolbar-icon-size: var(--el-component-size-small);
+  --md-toolbar-icon-size: 24px;
   height: 100%;
   em {
     font-style: italic;

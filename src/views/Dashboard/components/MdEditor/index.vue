@@ -1,20 +1,11 @@
 <template>
   <div class="h-full flex flex-col p-16px">
     <div class="mb-16px flex items-center">
-      <div class="btn-animate btn-animate__ripple ml-16px" @click="downHTML">
-        <span class="btn-animate__ripple-decoration"></span>
-        下载 HTML
-      </div>
+      <div class="btn-animate btn-animate__skew ml-16px" @click="downHTML">下载 HTML</div>
 
-      <div class="btn-animate btn-animate__ripple ml-16px" @click="downMarkdown">
-        <span class="btn-animate__ripple-decoration"></span>
-        下载 Markdown
-      </div>
+      <div class="btn-animate btn-animate__skew ml-16px" @click="downMarkdown">下载 Markdown</div>
 
-      <div class="btn-animate btn-animate__ripple ml-16px" @click="downText">
-        <span class="btn-animate__ripple-decoration"></span>
-        下载 TXT
-      </div>
+      <div class="btn-animate btn-animate__skew ml-16px" @click="downText">下载 TXT</div>
     </div>
 
     <Markdown v-model="markdownContent" :sanitize="(html:string) => (htmlContent = html)" />
@@ -51,44 +42,38 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .btn-animate {
+  cursor: pointer;
   position: relative;
   width: 130px;
   height: 40px;
   line-height: 40px;
   border: none;
   border-radius: 5px;
-  background: var(--ap-color-primary);
+  background: #027efb;
   color: #fff;
   text-align: center;
 }
 
-@keyframes anim-out {
-  0% {
-    width: 0%;
-    background: rgba(0, 0, 0, 0.3);
-  }
-  100% {
-    width: 100%;
-    background: transparent;
-  }
-}
-
-.btn-animate__ripple {
+.btn-animate__skew {
+  background: transparent;
   overflow: hidden;
+  z-index: 1;
 
   &::after {
-    content: '';
-    transform: translateY(-50%) translateX(-50%);
     position: absolute;
-    width: 0;
-    height: 200%;
-    top: 50%;
-    left: 50%;
+    content: ' ';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #027efb;
+    transition: all 0.32s ease;
   }
 
   &:hover {
     &::after {
-      animation: anim-out 0.75s;
+      transform: scale(2) rotate(180deg);
     }
   }
 }

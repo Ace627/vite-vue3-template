@@ -24,8 +24,8 @@ export default defineConfig(({ command, mode }) => {
         /** 设置 `@` 指向 `src` 目录 */
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         /** 设置 `#` 指向 `types` 目录 */
-        '#': fileURLToPath(new URL('./types', import.meta.url))
-      }
+        '#': fileURLToPath(new URL('./types', import.meta.url)),
+      },
     },
 
     server: {
@@ -44,9 +44,9 @@ export default defineConfig(({ command, mode }) => {
         [runtimeConfig.VITE_BASE_API]: {
           target: runtimeConfig.VITE_BASE_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace('/dev-api', '')
-        }
-      }
+          rewrite: (path) => path.replace('/dev-api', ''),
+        },
+      },
     },
 
     css: {
@@ -64,8 +64,8 @@ export default defineConfig(({ command, mode }) => {
       preprocessorOptions: {
         scss: {
           // additionalData: `@use "@/ styles/custom-element-plus/element-variables.scss" as *;`,
-        }
-      }
+        },
+      },
     },
 
     build: {
@@ -74,7 +74,7 @@ export default defineConfig(({ command, mode }) => {
       /** 图片转 base64 编码的阈值。为防止过多的 http 请求，Vite 会将小于此阈值的图片转为 base64 格式 */
       assetsInlineLimit: 4096,
       /** 规定触发警告的 chunk 大小。（以 kbs 为单位） */
-      chunkSizeWarningLimit: 1024,
+      chunkSizeWarningLimit: 4096,
       /** 启用/禁用 CSS 代码拆分 */
       cssCodeSplit: true,
       /** 构建后是否生成 source map 文件 */
@@ -125,9 +125,9 @@ export default defineConfig(({ command, mode }) => {
             // 这个 return 的值就是打包的名称
             // 可以利用浏览器的缓存机制 减少请求次数
             if (chunk.includes('node_modules')) return 'vendor'
-          }
-        }
-      }
+          },
+        },
+      },
     },
 
     esbuild: {
@@ -140,7 +140,7 @@ export default defineConfig(({ command, mode }) => {
        * 打包后是否移除所有的注释
        * http://esbuild.docschina.org/api/#legal-comments
        */
-      legalComments: runtimeConfig.VITE_CLEAR_COMMENT ? 'none' : 'inline'
-    }
+      legalComments: runtimeConfig.VITE_CLEAR_COMMENT ? 'none' : 'inline',
+    },
   }
 })
