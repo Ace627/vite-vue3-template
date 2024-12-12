@@ -14,7 +14,8 @@
     </header>
 
     <div class="main-container">
-      <Home v-if="componentName === 'Home'" />
+      <Home v-if="componentName === 'Home'" v-model="componentName" />
+      <Editor v-if="componentName === 'Editor'" />
       <IconView v-if="componentName === 'IconView'" />
     </div>
   </div>
@@ -23,6 +24,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'Dashboard' })
 import Home from './components/Home/index.vue'
+import Editor from './components/Editor/index.vue'
 import IconView from './components/IconView/index.vue'
 
 const appStore = useAppStore()
