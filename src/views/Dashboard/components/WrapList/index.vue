@@ -14,7 +14,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'WrapList' })
 
-/** 设计稿的列表项高度 */
+/** 设计稿的列表项宽度 */
 const width = ref<number>(220)
 /** 列表项个数 */
 const total = ref<number>(18)

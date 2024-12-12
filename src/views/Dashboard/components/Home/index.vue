@@ -1,5 +1,9 @@
 <template>
   <div class="p-16px">
+    <div class="mb-16px text-justify lh-[1.25] c-red fw-bold">
+      如果需要获取此项目的纯净模板，请在 src/views 目录下删除 Dashboard 目录，并将 Dashboard_back 目录重命名为 Dashboard
+    </div>
+
     <div class="card">
       <AutoWrapList :min-width="100" :gap="0">
         <div class="nav-item" v-for="(item, index) in list" :key="index" @click="name = item.name">
