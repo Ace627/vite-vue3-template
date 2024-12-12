@@ -21,6 +21,7 @@ const list = ref([
   { name: 'TaiChi', title: '太极图' },
   { name: 'Editor', title: '富文本' },
   { name: 'MdEditor', title: 'Markdown' },
+  { name: 'WrapList', title: '换行列表' },
 ])
 </script>
 

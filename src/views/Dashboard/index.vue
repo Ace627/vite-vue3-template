@@ -19,6 +19,7 @@
       <Editor v-else-if="componentName === 'Editor'" />
       <MdEditor v-else-if="componentName === 'MdEditor'" />
       <IconView v-else-if="componentName === 'IconView'" />
+      <WrapList v-else-if="componentName === 'WrapList'" />
     </div>
   </div>
 </template>
@@ -30,6 +31,7 @@ import TaiChi from './components/TaiChi/index.vue'
 import Editor from './components/Editor/index.vue'
 import MdEditor from './components/MdEditor/index.vue'
 import IconView from './components/IconView/index.vue'
+import WrapList from './components/WrapList/index.vue'
 
 const appStore = useAppStore()
 const componentName = ref<string>('Home')
