@@ -37,6 +37,7 @@ const list = ref([
   { name: 'Editor', title: '富文本' },
   { name: 'MdEditor', title: 'Markdown' },
   { name: 'WrapList', title: '换行列表' },
+  { name: 'Download', title: '前端下载' },
 ])
 
 async function handleLogout() {

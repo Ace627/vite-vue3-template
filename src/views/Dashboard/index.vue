@@ -25,6 +25,7 @@
       <MdEditor v-else-if="componentName === 'MdEditor'" />
       <IconView v-else-if="componentName === 'IconView'" />
       <WrapList v-else-if="componentName === 'WrapList'" />
+      <Download v-else-if="componentName === 'Download'" />
     </div>
   </div>
 </template>
@@ -37,6 +38,7 @@ import Editor from './components/Editor/index.vue'
 import MdEditor from './components/MdEditor/index.vue'
 import IconView from './components/IconView/index.vue'
 import WrapList from './components/WrapList/index.vue'
+import Download from './components/Download/index.vue'
 import { CacheService } from '@/utils/cache/cache.service'
 import { REDIRECT_PAGE_URL } from '@/router/router.constant'
 
@@ -50,9 +52,6 @@ function hanleOpenURL(url: string) {
   window.open(url, '_blank')
 }
 function handleRefreshPage() {
-  console.log(window.location.href)
-  console.log(window.location.pathname)
-  console.log(window.location.search)
   router.replace({ path: `${REDIRECT_PAGE_URL}` + route.path, query: route.query })
 }
 function changeView(name: string) {
