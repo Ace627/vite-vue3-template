@@ -10,7 +10,7 @@
 
     <div class="card">
       <AutoWrapList :min-width="100" :gap="0">
-        <div class="nav-item" v-for="(item, index) in list" :key="index" @click="name = item.name">
+        <div class="nav-item" v-for="(item, index) in list" :key="index" @click="emits('changeView', item.name)">
           <!-- <SvgIcon name="Key" color="#f00" /> -->
           <div class="fw-bold ml-6px tracking-wider">{{ item.title }}</div>
         </div>
@@ -20,9 +20,14 @@
 </template>
 
 <script setup lang="ts">
+import { CacheService } from '@/utils/cache/cache.service'
+
 defineOptions({ name: 'Home' })
 
-const name = defineModel({ type: String, default: 'Home' })
+/** 接收父组件传递的事件 */
+const emits = defineEmits<{
+  (event: 'changeView', name: string): void
+}>()
 
 const userStore = useUserStore()
 
@@ -38,6 +43,7 @@ async function handleLogout() {
   const data = window.confirm(`确定注销并退出系统吗？`)
   if (!data) return
   await userStore.logout()
+  CacheService.local.remove('ACTIVE_VIEW')
   window.location.reload()
 }
 </script>

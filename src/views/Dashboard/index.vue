@@ -2,7 +2,7 @@
   <div class="app-container">
     <header class="fixed-header">
       <div class="navbar">
-        <div class="flex items-center cursor-pointer" @click="componentName = 'Home'" title="返回首页">
+        <div class="flex items-center cursor-pointer" @click="changeView('Home')" title="返回首页">
           <img src="../../assets/images/logo.png" alt="logo" class="wh-32px mx-8px" srcset="" />
           <div class="fw-bold" v-if="appStore.isDesktop">{{ VITE_APP_TITLE }}</div>
         </div>
@@ -14,7 +14,7 @@
     </header>
 
     <div class="main-container">
-      <Home v-if="componentName === 'Home'" v-model="componentName" />
+      <Home v-if="componentName === 'Home'" @changeView="changeView" />
       <TaiChi v-else-if="componentName === 'TaiChi'" />
       <Editor v-else-if="componentName === 'Editor'" />
       <MdEditor v-else-if="componentName === 'MdEditor'" />
@@ -32,14 +32,18 @@ import Editor from './components/Editor/index.vue'
 import MdEditor from './components/MdEditor/index.vue'
 import IconView from './components/IconView/index.vue'
 import WrapList from './components/WrapList/index.vue'
+import { CacheService } from '@/utils/cache/cache.service'
 
 const appStore = useAppStore()
-const componentName = ref<string>('Home')
+const componentName = ref<string>()
 const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 function changeView(name: string) {
   componentName.value = name
+  CacheService.local.set('ACYIVE_VIEW', name)
 }
+
+componentName.value = CacheService.local.get('ACYIVE_VIEW') ?? 'Home'
 </script>
 
 <style lang="scss" scoped>
