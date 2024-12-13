@@ -11,6 +11,7 @@ const { params, query } = route
 
 /** created */
 router.replace({ path: `/${params.path}`, query })
+// setTimeout(() => router.replace({ path: `/${params.path}`, query }), 32)
 </script>
 
 <style lang="scss" scoped></style>

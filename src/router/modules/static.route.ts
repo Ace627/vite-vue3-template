@@ -1,12 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { HOME_PAGE_URL, LAYOUT, LOGIN_PAGE_URL } from '../router.constant'
+import { HOME_PAGE_URL, DEFAULT_LAYOUT, LOGIN_PAGE_URL, REDIRECT_PAGE_URL } from '../router.constant'
 
 export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
-  // 布局路由配置 确保可以显示布局框架
   {
-    path: '/',
-    name: 'Layout',
-    component: LAYOUT,
+    path: '/', // 布局路由配置 确保可以显示布局框架
+    name: 'DefaultLayout',
+    component: DEFAULT_LAYOUT,
     redirect: HOME_PAGE_URL,
     meta: { hidden: true },
     children: [{ path: HOME_PAGE_URL, component: () => import('@/views/Dashboard/index.vue') }],
@@ -25,9 +24,10 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
   },
 
   {
-    path: '/redirect', // 重定向页
-    component: () => import('@/views/Redirect/index.vue'),
+    path: REDIRECT_PAGE_URL, // 重定向页
+    component: DEFAULT_LAYOUT,
     meta: { title: '重定向', full: false, hidden: true },
+    children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/Redirect/index.vue') }],
   },
 
   {

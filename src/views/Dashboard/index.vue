@@ -7,8 +7,13 @@
           <div class="fw-bold" v-if="appStore.isDesktop">{{ VITE_APP_TITLE }}</div>
         </div>
 
-        <div class="right ml-auto h-full">
-          <div class="navbar-item" :class="{ 'is-active': componentName === 'IconView' }" @click="changeView('IconView')">图标</div>
+        <div class="right ml-auto h-full flex items-center">
+          <div class="navbar-item" @click="handleRefreshPage" title="刷新页面">
+            <SvgIcon name="Refresh" :size="24" />
+          </div>
+          <div class="navbar-item" @click="hanleOpenURL('https://github.com/Ace627/vite-vue3-template')" title="仓库地址">
+            <SvgIcon name="Github" :size="24" />
+          </div>
         </div>
       </div>
     </header>
@@ -33,11 +38,23 @@ import MdEditor from './components/MdEditor/index.vue'
 import IconView from './components/IconView/index.vue'
 import WrapList from './components/WrapList/index.vue'
 import { CacheService } from '@/utils/cache/cache.service'
+import { REDIRECT_PAGE_URL } from '@/router/router.constant'
 
+const route = useRoute()
+const router = useRouter()
 const appStore = useAppStore()
 const componentName = ref<string>()
 const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 
+function hanleOpenURL(url: string) {
+  window.open(url, '_blank')
+}
+function handleRefreshPage() {
+  console.log(window.location.href)
+  console.log(window.location.pathname)
+  console.log(window.location.search)
+  router.replace({ path: `${REDIRECT_PAGE_URL}` + route.path, query: route.query })
+}
 function changeView(name: string) {
   componentName.value = name
   CacheService.local.set('ACYIVE_VIEW', name)
