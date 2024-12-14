@@ -1,21 +1,21 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
-  /* Navbar */
+  /* -------------------------------------------------------------------------- */
+  /*                                   Navbar                                   */
+  /* -------------------------------------------------------------------------- */
   --ap-navbar-height: 50px;
   --ap-header-height: var(--ap-navbar-height);
-  --ap-content-height: calc(100vh - var(--ap-header-height));
 
-  /* 顶部加载进度条的颜色 */
-  --ap-nprogress-color: #409eff;
-
-  /* 常用色彩值 */
+  /* -------------------------------------------------------------------------- */
+  /*                                    Color                                   */
+  /* -------------------------------------------------------------------------- */
   --ap-color-white: #ffffff;
   --ap-color-black: #000000;
-  --ap-color-primary: #2080f0;
-  --ap-color-success: #18a058;
-  --ap-color-warning: #f0a020;
-  --ap-color-error: #d03050;
+  --ap-color-primary: #409eff;
+  --ap-color-success: #67c23a;
+  --ap-color-warning: #e6a23c;
+  --ap-color-danger: #f56c6c;
   --ap-color-primary-light-3: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 30%);
   --ap-color-primary-light-5: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 50%);
   --ap-color-primary-light-7: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 70%);
@@ -41,13 +41,90 @@
   --ap-color-danger-light-9: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 90%);
   --ap-color-danger-dark-2: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-black) 20%);
 
-  /* Body */
-  --ap-body-text-color: #262626;
-  --ap-body-bg-color: #f5f6f7;
+  /* -------------------------------------------------------------------------- */
+  /*                                 Text Color                                 */
+  /* -------------------------------------------------------------------------- */
+  --ap-text-color-primary: #303133;
+  --ap-text-color-regular: #606266;
+  --ap-text-color-secondary: #909399;
+  --ap-text-color-placeholder: #a8abb2;
+  --ap-text-color-disabled: #c0c4cc;
 
-  /* 常用字体配置 */
-  --ap-font-size-small: 12px;
+  /* -------------------------------------------------------------------------- */
+  /*                              Background Color                              */
+  /* -------------------------------------------------------------------------- */
+  --ap-bg-color: #ffffff;
+  --ap-bg-color-page: #f5f6f7;
+  --ap-bg-color-overlay: #ffffff;
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Fill Color                                 */
+  /* -------------------------------------------------------------------------- */
+  --ap-fill-color: #f0f2f5;
+  --ap-fill-color-light: #f5f7fa;
+  --ap-fill-color-lighter: #fafafa;
+  --ap-fill-color-extra-light: #fafcff;
+  --ap-fill-color-dark: #ebedf0;
+  --ap-fill-color-darker: #e6e8eb;
+  --ap-fill-color-blank: #ffffff;
+
+  /* -------------------------------------------------------------------------- */
+  /*                             Mask Overlay Color                             */
+  /* -------------------------------------------------------------------------- */
+  --ap-overlay-color: rgba(0, 0, 0, 0.8);
+  --ap-overlay-color-light: rgba(0, 0, 0, 0.7);
+  --ap-overlay-color-lighter: rgba(0, 0, 0, 0.5);
+  --ap-mask-color: rgba(255, 255, 255, 0.9);
+  --ap-mask-color-extra-light: rgba(255, 255, 255, 0.3);
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  Font Size                                 */
+  /* -------------------------------------------------------------------------- */
+  --ap-font-size-extra-small: 12px;
+  --ap-font-size-small: 13px;
   --ap-font-size-base: 14px;
+  --ap-font-size-medium: 16px;
   --ap-font-size-large: 18px;
-  --ap-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  --ap-font-size-extra-large: 20px;
+  --ap-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   Border                                   */
+  /* -------------------------------------------------------------------------- */
+  --ap-border-radius-base: 4px;
+  --ap-border-radius-small: 2px;
+  --ap-border-radius-round: 20px;
+  --ap-border-radius-circle: 100%;
+  --ap-border-width: 1px;
+  --ap-border-style: solid;
+  --ap-border-color: #dcdfe6;
+  --ap-border-color-light: #e4e7ed;
+  --ap-border-color-lighter: #ebeef5;
+  --ap-border-color-extra-light: #f2f6fc;
+  --ap-border-color-dark: #d4d7de;
+  --ap-border-color-darker: #cdd0d6;
+  --ap-border: var(--ap-border-width) var(--ap-border-style) var(--ap-border-color);
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Box Shadow                                 */
+  /* -------------------------------------------------------------------------- */
+  --ap-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04), 0px 8px 20px rgba(0, 0, 0, 0.08);
+  --ap-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  --ap-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
+  --ap-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08), 0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Transition                                 */
+  /* -------------------------------------------------------------------------- */
+  --ap-transition-duration: 0.3s;
+  --ap-transition-duration-fast: 0.2s;
+  --ap-transition-function-ease-in-out-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ap-transition-function-fast-bezier: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* -------------------------------------------------------------------------- */
+  /*                               Component Size                               */
+  /* -------------------------------------------------------------------------- */
+  --ap-component-size-small: 24px;
+  --ap-component-size: 32px;
+  --ap-component-size-large: 40px;
 }

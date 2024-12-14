@@ -4,8 +4,8 @@
 
 body {
   font-family: var(--ap-font-family);
-  color: var(--ap-body-text-color);
-  background-color: var(--ap-body-bg-color);
+  color: var(--ap-text-color-primary);
+  background-color: var(--ap-bg-color-page);
 }
 
 /* 灰色模式 */
@@ -19,5 +19,5 @@ body {
 
 /* 顶部加载进度条的颜色 */
 #nprogress .bar {
-  background-color: var(--ap-nprogress-color);
+  background-color: var(--ap-color-primary);
 }
