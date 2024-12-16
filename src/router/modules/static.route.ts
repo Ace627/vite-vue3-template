@@ -7,7 +7,7 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
     name: 'DefaultLayout',
     component: DEFAULT_LAYOUT,
     redirect: HOME_PAGE_URL,
-    meta: { hidden: true },
+    meta: { title: '主控台', hidden: true }, // 此处务必有 title
     children: [{ path: HOME_PAGE_URL, component: () => import('@/views/Dashboard/index.vue') }],
   },
 
@@ -37,7 +37,7 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
     path: '/404', // The not found page must be placed last
     name: 'NotFound',
     component: () => import('@/views/ExceptionPage/NotFound.vue'),
-    meta: { title: 'NotFound', hidden: true },
+    meta: { hidden: true },
     alias: '/:pathMatch(.*)*',
   },
 ]
