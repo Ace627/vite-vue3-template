@@ -13,18 +13,21 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
 
   {
     path: HOME_PAGE_URL, // 确保显示为一级菜单
+    name: 'Dashboard',
     component: () => import('@/views/Dashboard/index.vue'),
     meta: { title: '主控台', icon: 'Home', full: false, affix: true },
   },
 
   {
     path: LOGIN_PAGE_URL, // 系统登录页
+    name: 'Login',
     component: () => import('@/views/Login/index.vue'),
     meta: { title: '登录', full: true, hidden: true },
   },
 
   {
     path: REDIRECT_PAGE_URL, // 重定向页
+    name: 'Redirect',
     component: DEFAULT_LAYOUT,
     meta: { title: '重定向', full: false, hidden: true },
     children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/Redirect/index.vue') }],
@@ -32,6 +35,7 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
 
   {
     path: '/404', // The not found page must be placed last
+    name: 'NotFound',
     component: () => import('@/views/ExceptionPage/NotFound.vue'),
     meta: { title: 'NotFound', hidden: true },
     alias: '/:pathMatch(.*)*',
