@@ -12,7 +12,7 @@ export default defineStore('user', () => {
   const avatar = ref<string>(new URL('../../assets/images/default/default-avatar.gif', import.meta.url).href)
 
   /** 登录 */
-  async function login(LoginForm: LoginUserDto) {
+  async function login(LoginForm: LoginAccountDto) {
     const data = await LoginService.login(LoginForm)
     setAccessToken(data)
   }

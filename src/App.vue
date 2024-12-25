@@ -6,6 +6,7 @@
 defineOptions({ name: 'App' })
 
 useResize()
+useDynamicTitle()
 </script>
 
 <style lang="scss" scoped></style>

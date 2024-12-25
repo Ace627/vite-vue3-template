@@ -32,9 +32,9 @@ const userStore = useUserStore()
 /** 登录按钮 Loading */
 const loading = ref(false)
 /** 登录表单数据 */
-const loginForm = ref<LoginUserDto>({
+const loginForm = ref<LoginAccountDto>({
   username: 'admin',
-  password: '123456'
+  password: '123456',
 })
 /** 计算需要跳转的路径 */
 const redirect = (route.query.redirect as string) || '/'
