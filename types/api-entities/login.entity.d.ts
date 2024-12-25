@@ -1,7 +1,19 @@
 /** 登录所需要的参数 */
 interface LoginAccountDto {
-  /** 用户账号 */
   username: string
-  /** 用户密码 */
   password: string
+  captcha: string
+  uuid: string
+  rememberMe: boolean
 }
+
+interface CaptchaData {
+  captcha: string
+  uuid: string
+}
+
+interface LoginResult {
+  accessToken: string
+}
+
+interface RememberLoginDto extends Pick<LoginUserDto, 'password' | 'username' | 'rememberMe'> {}

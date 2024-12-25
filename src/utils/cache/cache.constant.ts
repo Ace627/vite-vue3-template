@@ -12,4 +12,7 @@ export class CacheKey {
 
   /** 侧边栏伸缩状态 */
   static readonly SIDEBAR_STATUS = `${CACHE_PREFIX}-SIDEBAR-STATUS`
+
+  /** 记住登录账号密码 */
+  static readonly REMEMBER_PASSWORD = `${CACHE_PREFIX}-REMEMBER_PASSWORD`
 }
