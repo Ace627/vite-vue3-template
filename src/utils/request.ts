@@ -37,14 +37,24 @@ request.interceptors.request.use(
 
 // 响应拦截器
 request.interceptors.response.use(
-  (response) => {
+  async (response) => {
     NProgress.done()
     // 未设置状态码则默认成功状态
-    const code = response.data.code || HttpStatusCode.Ok
+    let code = response.data.code || HttpStatusCode.Ok
     // 获取错误信息
-    const message = response.data.message || `系统未知错误，请反馈给管理员`
+    let message = response.data.message || `系统未知错误，请反馈给管理员`
+    // 校验是否为 JSON 类型 Blob 数据
+    const isJsonBlob = response.request.responseType === 'blob' && response.data.type === 'application/json'
+    // 如果设置了 responseType: 'blob'，即使后端返回的内容是 JSON 错误信息，前端仍会将其作为 blob 处理
+    // 因此，需要在前端额外检测返回的 Blob 数据是否实际上是一个 JSON 错误信息
+    if (isJsonBlob) {
+      const text = await response.data.text()
+      const errorData = JSON.parse(text) // 转为 JSON 对象
+      code = errorData.code
+      message = errorData.message
+    }
     // 二进制数据则直接返回
-    if (['blob', 'arraybuffer'].includes(response.request.responseType)) {
+    if (['arraybuffer', 'blob'].includes(response.request.responseType) && !isJsonBlob) {
       return response.data
     }
     // 非二进制且状态码为成功状态码 直接返回具体数据 {code, message, result, timestamp}

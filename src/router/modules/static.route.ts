@@ -29,7 +29,7 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
     path: REDIRECT_PAGE_URL, // 重定向页
     name: 'Redirect',
     component: DEFAULT_LAYOUT,
-    meta: { title: '重定向', full: false, hidden: true },
+    meta: { full: false, hidden: true },
     children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/Redirect/index.vue') }],
   },
 
