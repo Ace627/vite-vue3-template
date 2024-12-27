@@ -20,6 +20,7 @@ const appStore = useAppStore()
   height: var(--ap-navbar-height);
   background-color: var(--ap-navbar-bg-color);
   box-shadow: var(--ap-navbar-box-shadow);
+  backdrop-filter: blur(4px);
 }
 
 /* 菜单项的通用样式 */

@@ -1,12 +1,9 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
-  /* -------------------------------------------------------------------------- */
-  /*                                   Navbar                                   */
-  /* -------------------------------------------------------------------------- */
   --ap-navbar-height: 50px; // 导航栏的高度
   --ap-navbar-bg-color: #fff; // 导航栏背景色
-  --ap-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  --ap-navbar-bg-color: rgba(255, 255, 255, 0.65);
   --ap-header-height: var(--ap-navbar-height);
 
   --ap-logo-text-color: inherit;
