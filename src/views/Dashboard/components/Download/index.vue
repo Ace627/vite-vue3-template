@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Download' })
-import { copyText, linkDownload } from '@/utils/download'
 import jsonContent from './json-example.json'
+import { copyText, linkDownload } from '@/utils/lodash-added'
 
 async function downText() {
   const fileURL = new URL('./txt-example.txt', import.meta.url).href

@@ -5,7 +5,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'QRCode' })
 import VueQr from 'vue-qr/src/packages/vue-qr.vue'
-import { linkDownload } from '@/utils/download'
+import { linkDownload } from '@/utils/lodash-added'
 
 defineProps({
   /** 二维码内容 必需 */

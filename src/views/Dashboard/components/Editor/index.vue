@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Editor' })
-import { linkDownload } from '@/utils/download'
+import { linkDownload } from '@/utils/lodash-added'
 
 const content = ref<string>('你用什么吸引人，吸引到的就是什么人。')
 

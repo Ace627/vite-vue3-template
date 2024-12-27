@@ -1,5 +1,5 @@
 import { LoginService } from '@/api/system/login.service'
-import { getAccessToken, removeAccessToken, setAccessToken } from '@/utils/cache'
+import { removeAccessToken, setAccessToken } from '@/utils/cache'
 
 /** 第一个参数是该 store 的唯一 id */
 export default defineStore('user', () => {
@@ -14,7 +14,7 @@ export default defineStore('user', () => {
   /** 登录 */
   async function login(LoginForm: LoginAccountDto) {
     const data = await LoginService.login(LoginForm)
-    setAccessToken(data)
+    setAccessToken(data.accessToken)
   }
 
   /** 退出登录 */

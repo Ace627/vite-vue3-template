@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'MdEditor' })
-import { linkDownload } from '@/utils/download'
 import readme from '../../../../../README.md?raw'
+import { linkDownload } from '@/utils/lodash-added'
 
 const markdownContent = ref('**仰天大笑出门去，我辈岂是蓬蒿人。**')
 const htmlContent = ref<string>('')

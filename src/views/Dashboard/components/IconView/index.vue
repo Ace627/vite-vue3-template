@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { copyText } from '@/utils/download'
+import { copyText } from '@/utils/lodash-added'
 
 defineOptions({ name: 'IconView' })
 
