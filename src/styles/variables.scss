@@ -4,8 +4,16 @@
   /* -------------------------------------------------------------------------- */
   /*                                   Navbar                                   */
   /* -------------------------------------------------------------------------- */
-  --ap-navbar-height: 50px;
+  --ap-navbar-height: 50px; // 导航栏的高度
+  --ap-navbar-bg-color: #fff; // 导航栏背景色
+  --ap-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   --ap-header-height: var(--ap-navbar-height);
+
+  --ap-sidebar-width: 200px; // 侧边栏宽度
+  --ap-sidebar-hide-width: 64px; // 侧边栏折叠的宽度
+  --ap-sidebar-text-color: #fff; // 侧边栏的文本颜色
+  --ap-sidebar-bg-color: #2e2e2e; // 侧边栏的背景色
+  --ap-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 
   /* -------------------------------------------------------------------------- */
   /*                                    Color                                   */

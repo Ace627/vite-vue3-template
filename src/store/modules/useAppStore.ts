@@ -25,5 +25,5 @@ export default defineStore('app', () => {
   const isMobile: globalThis.ComputedRef<boolean> = computed(() => device.value === 'mobile')
   const isDesktop: globalThis.ComputedRef<boolean> = computed(() => device.value === 'desktop')
 
-  return { isCollapse, device, isMobile, isDesktop, toggleSidebar, closeSidebar }
+  return { isCollapse, device, isMobile, isDesktop, withoutAnimation, toggleSidebar, closeSidebar }
 })
