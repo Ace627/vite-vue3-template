@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { HOME_PAGE_URL, DEFAULT_LAYOUT, LOGIN_PAGE_URL, REDIRECT_PAGE_URL } from '../router.constant'
+import { HOME_PAGE_URL, DEFAULT_LAYOUT, LOGIN_PAGE_URL, REDIRECT_PAGE_URL, LAYOUT_NAME } from '../router.constant'
 
 export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
   {
     path: '/', // 布局路由配置 确保可以显示布局框架
-    name: 'DefaultLayout',
+    name: LAYOUT_NAME,
     component: DEFAULT_LAYOUT,
     redirect: HOME_PAGE_URL,
     meta: { title: '主控台', hidden: true }, // 此处务必有 title
@@ -35,7 +35,6 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
 
   {
     path: '/404', // The not found page must be placed last
-    name: 'NotFound',
     component: () => import('@/views/ExceptionPage/NotFound.vue'),
     meta: { hidden: true },
     alias: '/:pathMatch(.*)*',

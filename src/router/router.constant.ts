@@ -1,6 +1,9 @@
 /** 默认布局组件 */
 export const DEFAULT_LAYOUT = () => import('@/layout/index.vue')
 
+/** 布局组件的 name 用于动态添加路由 */
+export const LAYOUT_NAME = `DEFAULT_LAYOUT`
+
 /** 默认首页 */
 export const HOME_PAGE_URL = '/dashboard'
 
