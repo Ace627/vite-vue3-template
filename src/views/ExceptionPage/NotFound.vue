@@ -1,23 +1,20 @@
 <template>
   <div class="viewport-container" :class="classes">
     <!-- 星空背景 -->
-    <div class="layer1"></div>
-    <div class="layer2"></div>
-    <div class="layer3"></div>
-    <div class="layer4"></div>
-    <div class="layer5"></div>
+    <div v-for="i in 5" :key="i" :class="`layer layer${i}`"></div>
 
     <div class="notfound-container">
       <img src="@/assets/images/404.png" />
       <h2>抱歉，您访问的页面出错了</h2>
       <p>您可能输错了网址，或该网页已删除或不存在</p>
-      <a href="/" class="btn flex-center">返回主页</a>
+      <a :href="HOME_PAGE_URL" class="btn flex-center">返回主页</a>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'NotFound' })
+import { HOME_PAGE_URL } from '@/router/router.constant'
 
 /** Layout 布局响应式 */
 useResize()
@@ -41,28 +38,31 @@ $duration: 400s;
   @return string.unquote($result);
 }
 
+.layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+}
+.layer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 100vh;
+  width: inherit;
+  height: inherit;
+  box-shadow: inherit;
+  border-radius: inherit;
+}
+
 @for $i from 1 through 5 {
   $total: math.floor(math.div($total, 2));
   $duration: math.div($duration, 2);
   .layer#{$i} {
-    position: fixed;
-    left: 0;
-    top: 0;
     width: #{$i}px;
     height: #{$i}px;
-    border-radius: 50%;
     box-shadow: getShadows($total);
     animation: moveUp $duration linear infinite, flicker #{$i}s ease-in-out infinite;
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 100vh;
-      width: inherit;
-      height: inherit;
-      box-shadow: inherit;
-      border-radius: inherit;
-    }
   }
 }
 
