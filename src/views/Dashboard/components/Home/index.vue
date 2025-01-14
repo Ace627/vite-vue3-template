@@ -38,8 +38,7 @@ const list = ref([
   { name: 'MdEditor', title: 'Markdown' },
   { name: 'WrapList', title: '换行列表' },
   { name: 'Download', title: '前端下载' },
-  { name: 'NotFound', title: '404 其一' },
-  { name: 'NotFound2', title: '404 其二' },
+  { name: 'NotFound', title: '404' },
 ])
 
 async function handleLogout() {

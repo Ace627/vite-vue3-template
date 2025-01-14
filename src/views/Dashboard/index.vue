@@ -13,7 +13,6 @@
       <WrapList v-else-if="componentName === 'WrapList'" />
       <Download v-else-if="componentName === 'Download'" />
       <NotFound v-else-if="componentName === 'NotFound'" />
-      <NotFound2 v-else-if="componentName === 'NotFound2'" />
     </div>
   </div>
 </template>
@@ -29,7 +28,6 @@ import IconView from './components/IconView/index.vue'
 import WrapList from './components/WrapList/index.vue'
 import Download from './components/Download/index.vue'
 import NotFound from '../ExceptionPage/NotFound.vue'
-import NotFound2 from '../ExceptionPage/NotFound style01.vue'
 import { CacheService } from '@/utils/cache/cache.service'
 
 const componentName = ref<string>()
