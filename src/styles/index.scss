@@ -8,15 +8,6 @@ body {
   background-color: var(--ap-bg-color-page);
 }
 
-/* 灰色模式 */
-.showGreyMode {
-  filter: grayscale(1);
-}
-/* 色弱模式 */
-.showColorWeakness {
-  filter: invert(0.8);
-}
-
 /* 顶部加载进度条的颜色 */
 #nprogress .bar {
   background-color: var(--ap-color-primary);

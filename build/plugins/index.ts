@@ -17,7 +17,7 @@ export function generateVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginO
   plugins.push(vueJsx())
 
   /** 即时按需的原子化 CSS 引擎 UnoCSS */
-  plugins.push(UnoCSS())
+  plugins.push(UnoCSS({ inspector: false }))
 
   /** 自动跟踪依赖并导入所需的内容，避免手动导入的繁琐步骤 */
   plugins.push(registerAutoImport())

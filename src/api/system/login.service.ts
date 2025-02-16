@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-function _mockApiResult(result: unknown): ApiResponseData {
+function _mockApiResult(result: unknown): any {
   return { code: 200, message: '操作成功', success: true, timestamp: Date.now(), result }
 }
 
