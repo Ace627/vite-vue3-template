@@ -38,9 +38,36 @@ export function dayInWeek(date: Date = new Date()) {
   return daysOfWeek[date.getDay()]
 }
 
-/** 登录页的时间前缀 */
-export function timePrefix(): string {
-  const time = new Date()
-  const hour = time.getHours()
-  return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
+/**
+ * @description 时间问候语
+ * @param 当前时间，new Date() 格式
+ * @returns 返回拼接后的时间字符串
+ */
+export function getTimeWelcome(time: Date = new Date()): string {
+  const hour = new Date(time).getHours()
+  if (hour < 6) return '凌晨好'
+  else if (hour < 9) return '早上好'
+  else if (hour < 12) return '上午好'
+  else if (hour < 14) return '中午好'
+  else if (hour < 17) return '下午好'
+  else if (hour < 19) return '傍晚好'
+  else if (hour < 22) return '晚上好'
+  return '夜里好'
+}
+
+/**
+ * 计算两个日期间隔天数
+ * @param date1 日期1
+ * @param date2 日期2
+ */
+export function betweenDay(date1: Date | string, date2: Date | string): number {
+  return Math.floor((convertDate(date2).getTime() - convertDate(date1).getTime()) / (24 * 3600 * 1000))
+}
+
+/**
+ * @description 日期转换
+ * @param 日期
+ */
+export function convertDate(date: string | Date): Date {
+  return typeof date === 'string' ? new Date(date) : date
 }
