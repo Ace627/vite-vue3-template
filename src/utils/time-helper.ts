@@ -1,17 +1,21 @@
 /**
- * 计算指定日期是该年的第几周
- * @param {Date} date - 要计算的日期对象，默认为当前日期
- *  @returns 该日期是该年的第几周
+ * 计算指定日期是该年的第几周（ISO 8601标准）
+ * @param date - 要计算的日期对象，默认为当前日期
+ * @returns 该日期在ISO 8601标准中的周数
  */
 export function weekInYear(date: Date = new Date()): number {
-  // 克隆日期对象，避免修改原始值
-  const startOfYear = new Date(date.getFullYear(), 0, 1) // 当年的第一天
-  // 确保 startOfYear 的时间被重置为午夜（00:00:00），避免潜在的时间计算误差
-  startOfYear.setHours(0, 0, 0, 0)
-  // 计算当前日期和该年第一天之间的时间差
-  const days = Math.floor((date.getTime() - startOfYear.getTime()) / (24 * 60 * 60 * 1000))
-  // 根据 ISO 周规则，计算周号（第一周从1月1日开始，包含当周）
-  return Math.ceil((days + startOfYear.getDay() + 1) / 7)
+  // 创建不修改原值的日期副本
+  const d = new Date(date.getTime())
+  d.setHours(0, 0, 0, 0)
+  // 调整到该周的星期四（ISO周规则核心逻辑）
+  d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7))
+  // 获取当年1月1日（用于计算年基准）
+  const yearStart = new Date(d.getFullYear(), 0, 1)
+  yearStart.setHours(0, 0, 0, 0)
+  // 计算从年基准到当前周四的天数差
+  const diff = d.getTime() - yearStart.getTime()
+  const dayCount = Math.round(diff / 86400000) // 精确天数
+  return Math.ceil((dayCount + 1) / 7) // +1补偿1月1日为第1天
 }
 
 /**
