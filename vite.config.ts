@@ -14,6 +14,11 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build' // 当前是否是生产模式
 
   return {
+    define: {
+      /** 将处理后的环境变量定义全局常量 */
+      __RUNTIME_CONFIG__: runtimeConfig,
+    },
+
     // 部署应用包时的基本 URL
     base: runtimeConfig.VITE_PUBLIC_PATH,
 

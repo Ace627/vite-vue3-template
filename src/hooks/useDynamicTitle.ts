@@ -4,7 +4,7 @@ export default () => {
   // 获取存储用户设置的 store，这里用于获取是否启用动态标题的设置
   const settingStore = useSettingStore()
   // 获取应用程序的默认标题，通常在 .env 文件中定义
-  const appTitle = import.meta.env.VITE_APP_TITLE
+  const appTitle = __RUNTIME_CONFIG__.VITE_APP_TITLE
 
   const stopWatchDynamicTitle = watch(
     // 设置 watch 来观察路由的路径 (route.path) 和是否显示动态标题 (settingStore.showDynamicTitle)。当这些值发生变化时，会根据条件更新页面标题

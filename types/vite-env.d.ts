@@ -51,3 +51,5 @@ interface ImportMeta {
   /** 利用 Readonly 泛型工具类全部修改为只读属性 */
   readonly env: Readonly<ImportMetaEnv>
 }
+
+declare const __RUNTIME_CONFIG__: ViteEnv

@@ -5,7 +5,7 @@ import { HOME_PAGE_URL, LOGIN_PAGE_URL } from './router.constant'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 // 根据环境配置决定是否开启路由切换时的顶部进度条
-const NProgress = useNProgress({ show: import.meta.env.VITE_ROUTER_NPROGRESS === 'true' })
+const NProgress = useNProgress({ show: __RUNTIME_CONFIG__.VITE_ROUTER_NPROGRESS })
 
 // 全局路由前置守卫
 export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {

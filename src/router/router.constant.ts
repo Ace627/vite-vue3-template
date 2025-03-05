@@ -20,7 +20,7 @@ export const PATH_WHITE_LIST: string[] = ['/login', '/register']
 export const NAME_WHITE_LIST: string[] = []
 
 /** 当前路由模式是否为 hash */
-export const IS_HASH_ROUTER = import.meta.env.VITE_ROUTER_MODE === 'hash'
+export const IS_HASH_ROUTER = __RUNTIME_CONFIG__.VITE_ROUTER_MODE === 'hash'
 
 /** 部署应用包时的基本 URL */
-export const PUBLIC_PAHT = import.meta.env.VITE_PUBLIC_PATH
+export const PUBLIC_PAHT = __RUNTIME_CONFIG__.VITE_PUBLIC_PATH

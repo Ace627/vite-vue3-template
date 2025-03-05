@@ -21,7 +21,7 @@ defineOptions({ name: 'AppLogo' })
 import logoImg from '@/assets/images/logo.png'
 
 const appStore = useAppStore()
-const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
+const VITE_APP_TITLE = __RUNTIME_CONFIG__.VITE_APP_TITLE
 
 /** 是否显示应用标题 */
 const isShowTitle = computed(() => !appStore.isCollapse)
