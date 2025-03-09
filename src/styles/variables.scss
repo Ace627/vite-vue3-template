@@ -3,11 +3,7 @@
 :root {
   --ap-navbar-height: 50px; // 导航栏的高度
   --ap-navbar-bg-color: #fff; // 导航栏背景色
-  --ap-navbar-bg-color: rgba(255, 255, 255, 0.65);
   --ap-header-height: var(--ap-navbar-height);
-
-  --ap-logo-text-color: inherit;
-  --ap-logo-bg-color: inherit;
 
   --ap-sidebar-width: 200px; // 侧边栏宽度
   --ap-sidebar-hide-width: 64px; // 侧边栏折叠的宽度

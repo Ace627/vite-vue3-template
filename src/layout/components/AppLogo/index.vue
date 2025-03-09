@@ -1,5 +1,5 @@
 <template>
-  <h1 class="app-logo flex-center">
+  <h1 class="app-logo">
     <transition name="sidebar-logo-fade">
       <!-- 侧栏展开状态 -->
       <router-link v-if="isShowTitle" key="expand" to="/" class="flex-center wh-full">
@@ -29,14 +29,16 @@ const isShowTitle = computed(() => !appStore.isCollapse)
 
 <style lang="scss" scoped>
 .app-logo {
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: var(--ap-navbar-height);
   margin: 0;
   padding: 0;
   font-weight: 500;
   letter-spacing: 1px;
-  color: var(--ap-logo-text-color);
-  background-color: var(--ap-logo-bg-color);
+  color: inherit;
+  background-color: inherit;
   white-space: nowrap;
   overflow: hidden;
 }
