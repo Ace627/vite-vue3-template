@@ -13,19 +13,12 @@ interface ImportMetaEnv {
   /** 路由模式 */
   VITE_ROUTER_MODE: 'hash' | 'history'
 
-  /** 开发服务器的监听端口 */
   VITE_DROP_CONSOLE: string
-  /** 打包后移除所有的 console、debugger */
   VITE_SERVER_PORT: string
-  /** 请求超时时间 单位秒 */
   VITE_REQUEST_TIMEOUT: string
-  /** 是否自动打开浏览器 */
   VITE_AUTO_OPEN: string
-  /** 是否开启路由加载时的顶部进度条 */
   VITE_ROUTER_NPROGRESS: string
-  /** 是否开启请求接口时的顶部进度条 */
   VITE_REQUEST_NPROGRESS: string
-  /** 打包后是否移除所有的注释 */
   VITE_CLEAR_COMMENT: string
 }
 
@@ -52,4 +45,5 @@ interface ImportMeta {
   readonly env: Readonly<ImportMetaEnv>
 }
 
+/** 声明一个 ViteEnv 类型的全局常量，但不会实际生成代码 */
 declare const __RUNTIME_CONFIG__: ViteEnv

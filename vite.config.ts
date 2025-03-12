@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite' // 使用 defineConfig 工具函数，这样不用 jsdoc 注解也可以获取类型提示
-import { warpperEnv } from './build' // 引入对环境变量的处理函数
-import { generateVitePlugins } from './build/plugins' // 引入抽离出去的 vite 插件集合
+import { wrapperEnv } from './vite' // 引入对环境变量的处理函数
+import { generateVitePlugins } from './vite/plugins' // 引入抽离出去的 vite 插件集合
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） 即项目根目录（也就是 index.html 文件所在的位置） */
 const root: string = process.cwd()
@@ -10,7 +10,7 @@ const root: string = process.cwd()
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const runtimeConfig = warpperEnv(loadEnv(mode, root, 'VITE_')) // 对原生环境变量进行二次处理
+  const runtimeConfig = wrapperEnv(loadEnv(mode, root, 'VITE_')) // 对原生环境变量进行二次处理
   const isBuild = command === 'build' // 当前是否是生产模式
 
   return {
@@ -49,7 +49,7 @@ export default defineConfig(({ command, mode }) => {
         [runtimeConfig.VITE_BASE_API]: {
           target: runtimeConfig.VITE_BASE_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace('/dev-api', ''),
+          rewrite: (path) => path.replace(runtimeConfig.VITE_BASE_API, ''),
         },
       },
     },
