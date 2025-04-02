@@ -3,19 +3,19 @@
  * @param {Record<string, string>} envConfig - 原始环境变量配置对象
  * @returns {ViteEnv} 类型转换后的环境变量对象
  */
-export function wrapperEnv(envConfing: Record<string, string>): ViteEnv {
+export function wrapperEnv(envConfing: Record<string, string>, mode: string): ViteEnv {
   const runtimeConfig = {} as ViteEnv
+  runtimeConfig.MODE = mode
+  runtimeConfig.DEV = mode === 'development'
+  runtimeConfig.PROD = mode === 'production'
   for (const [key, value] of Object.entries(envConfing)) {
     const normalizedValue = value.trim()
-
     // 默认先给原值 其后看情况处理
     runtimeConfig[key] = normalizedValue
-
     // 处理布尔类型
     if (['true', 'false'].includes(normalizedValue.toLocaleLowerCase())) {
       runtimeConfig[key] = normalizedValue.toLocaleLowerCase() === 'true' ? true : false
     }
-
     // 处理数字类型（空字符串不处理）
     if (!Number.isNaN(Number(value))) {
       runtimeConfig[key] = +value // 数值类型处理

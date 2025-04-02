@@ -10,7 +10,7 @@ const root: string = process.cwd()
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀
-  const runtimeConfig = wrapperEnv(loadEnv(mode, root, 'VITE_')) // 对原生环境变量进行二次处理
+  const runtimeConfig = wrapperEnv(loadEnv(mode, root, 'VITE_'), mode) // 对原生环境变量进行二次处理
   const isBuild = command === 'build' // 当前是否是生产模式
 
   return {

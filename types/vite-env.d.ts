@@ -23,7 +23,13 @@ interface ImportMetaEnv {
 }
 
 /** 原生读取出的环境变量经过处理后的类型 */
-interface ViteEnv extends ImportMetaEnv {
+interface ViteEnv extends Omit<ImportMetaEnv, 'BASE_URL' | 'SSR'> {
+  /** 当前运行模式 */
+  MODE: string
+  /** 是否为开发环境 */
+  DEV: boolean
+  /** 是否为生产环境 */
+  PROD: boolean
   /** 开发服务器的监听端口 */
   VITE_SERVER_PORT: number
   /** 请求超时时间 单位秒 */
