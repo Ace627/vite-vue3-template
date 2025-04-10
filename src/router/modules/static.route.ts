@@ -30,12 +30,12 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
     name: 'Redirect',
     component: DEFAULT_LAYOUT,
     meta: { full: false, hidden: true },
-    children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/Redirect/index.vue') }],
+    children: [{ path: `${REDIRECT_PAGE_URL}/:path(.*)`, component: () => import('@/views/System/Redirect/index.vue') }],
   },
 
   {
     path: '/404', // The not found page must be placed last
-    component: () => import('@/views/ExceptionPage/NotFound.vue'),
+    component: () => import('@/views/System/ExceptionPage/NotFound.vue'),
     meta: { hidden: true },
     alias: '/:pathMatch(.*)*',
   },
