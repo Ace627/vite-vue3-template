@@ -1,3 +1,7 @@
+/** 简化明确定时器函数的类型 */
+type SetInterval = ReturnType<typeof setInterval>
+type SetTimeout = ReturnType<typeof setTimeout>
+
 /** 简化 Record<string, any> 的使用流程 */
 type Recordable<T = any> = Record<string, T>
 
