@@ -49,7 +49,7 @@ export default defineConfig(({ command, mode }) => {
         [runtimeConfig.VITE_BASE_API]: {
           target: runtimeConfig.VITE_BASE_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(runtimeConfig.VITE_BASE_API, ''),
+          rewrite: (path) => path.replace('/dev-api', ''),
         },
       },
     },
