@@ -10,7 +10,7 @@ function getLoginWelcome(): string {
   return list[Math.floor(Math.random() * list.length)]
 }
 
-export default () => {
+export function useLogin() {
   const route = useRoute()
   const router = useRouter()
   const userStore = useUserStore()

@@ -1,4 +1,4 @@
-export default () => {
+export function useDynamicTitle() {
   // 获取当前路由对象，用来获取当前页面的路径和元信息
   const route = useRoute()
   // 获取存储用户设置的 store，这里用于获取是否启用动态标题的设置

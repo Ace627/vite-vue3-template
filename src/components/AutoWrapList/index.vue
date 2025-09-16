@@ -6,13 +6,13 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'AutoWrapList' })
-import { isString } from 'lodash-es'
+import { isString } from 'fnbox'
 
 const props = defineProps({
   /** 列表项间隔 */
   gap: { type: [String, Number], default: 16 },
   /** 列表项最小宽度 */
-  minWidth: { type: [String, Number], default: 375 }
+  minWidth: { type: [String, Number], default: 375 },
 })
 
 const gap = computed(() => (isString(props.gap) ? props.gap : `${props.gap}px`))

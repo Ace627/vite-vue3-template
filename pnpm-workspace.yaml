@@ -1,0 +1,8 @@
+ignoredBuiltDependencies:
+  - cwebp-bin
+  - esbuild
+  - gifsicle
+  - jpegtran-bin
+  - mozjpeg
+  - optipng-bin
+  - pngquant-bin

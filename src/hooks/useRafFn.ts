@@ -11,7 +11,7 @@ interface RafController {
   isPaused: ComputedRef<boolean> // 当前是否处于暂停状态
 }
 
-export default (callback: () => void, config: RafConfig = {}): RafController => {
+export function useRafFn(callback: () => void, config: RafConfig = {}): RafController {
   let lastTime = performance.now() // 记录上一次执行时间
   let rafId: ReturnType<typeof requestAnimationFrame> | null = null // 用于存储请求的动画帧 ID
 

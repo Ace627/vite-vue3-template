@@ -7,15 +7,13 @@ export const STATIC_ROUTE_LIST: Array<RouteRecordRaw> = [
     name: LAYOUT_NAME,
     component: DEFAULT_LAYOUT,
     redirect: HOME_PAGE_URL,
-    meta: { title: '主控台', hidden: true }, // 此处务必有 title
-    children: [{ path: HOME_PAGE_URL, component: () => import('@/views/Dashboard/index.vue') }],
-  },
-
-  {
-    path: HOME_PAGE_URL, // 确保显示为一级菜单
-    name: 'Dashboard',
-    component: () => import('@/views/Dashboard/index.vue'),
-    meta: { title: '主控台', icon: 'Home', full: false, affix: true },
+    children: [
+      {
+        path: HOME_PAGE_URL,
+        component: () => import('@/views/Dashboard/index.vue'),
+        meta: { title: '首页', icon: 'Home', full: false, affix: true },
+      },
+    ],
   },
 
   {

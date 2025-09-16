@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'SvgIcon' })
-import { isString } from 'lodash-es'
+import { isString } from 'fnbox'
 import { type CSSProperties } from 'vue'
 
 const props = defineProps({
@@ -14,13 +14,13 @@ const props = defineProps({
   /** Svg 的 fill 颜色 */
   color: { type: String, default: 'inherit' },
   /** Svg 图标的大小，size x size */
-  size: { type: [String, Number], default: '1em' }
+  size: { type: [String, Number], default: '1em' },
 })
 
 /** 动态计算需要绑定的行内样式 */
 const styles = computed<CSSProperties>(() => ({
   width: isString(props.size) ? props.size : `${props.size}px`,
-  height: isString(props.size) ? props.size : `${props.size}px`
+  height: isString(props.size) ? props.size : `${props.size}px`,
 }))
 </script>
 
