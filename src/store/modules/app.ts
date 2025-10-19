@@ -1,6 +1,6 @@
 import { getSidebarStatus, setSidebarStatus } from '@/utils/cache'
 
-export default defineStore('app', () => {
+export const useAppStore = defineStore('app', () => {
   /** 是否折叠菜单 */
   const isCollapse = ref<boolean>(getSidebarStatus())
   /** 是否移除侧栏和主容器的过渡效果 */
@@ -22,8 +22,6 @@ export default defineStore('app', () => {
 
   /** 设备类型 */
   const device = ref<DeviceType>('desktop')
-  const isMobile: globalThis.ComputedRef<boolean> = computed(() => device.value === 'mobile')
-  const isDesktop: globalThis.ComputedRef<boolean> = computed(() => device.value === 'desktop')
 
-  return { isCollapse, device, isMobile, isDesktop, withoutAnimation, toggleSidebar, closeSidebar }
+  return { isCollapse, device, withoutAnimation, toggleSidebar, closeSidebar }
 })

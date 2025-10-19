@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'AutoWrapList' })
-import { isString } from 'fnbox'
+import { isString } from '@/utils'
 
 const props = defineProps({
   /** 列表项间隔 */

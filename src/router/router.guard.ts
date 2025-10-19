@@ -12,8 +12,11 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized, from:
   NProgress.start()
   const accessToken = getAccessToken()
 
-  // 如果没有 Token，但在免登录的白名单中，则直接进入；否则将被重定向到登录页面
-  if (!accessToken) return isWhiteList(to) ? next() : next({ path: LOGIN_PAGE_URL, query: { redirect: to.fullPath } })
+  // 如果在免登录的白名单中，则直接进入
+  if (isWhiteList(to)) return next()
+
+  // 此时的皆为非白名单路由，如果没有 Token，则重定向到登录页面
+  if (!accessToken) return next({ path: LOGIN_PAGE_URL, query: { redirect: to.fullPath } })
 
   // 如果已经登录，并准备进入 Login 页面，则重定向到主页
   if (to.path.toLowerCase() === LOGIN_PAGE_URL) return next({ path: HOME_PAGE_URL, replace: true })

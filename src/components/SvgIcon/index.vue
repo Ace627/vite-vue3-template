@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'SvgIcon' })
-import { isString } from 'fnbox'
+import { isString } from '@/utils'
 import { type CSSProperties } from 'vue'
 
 const props = defineProps({

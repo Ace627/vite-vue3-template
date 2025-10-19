@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { HttpStatus } from 'fnbox'
 import { getAccessToken } from '@/utils/cache'
 
 /** 根据配置决定是否开启请求接口时的顶部进度条 */
@@ -41,7 +40,7 @@ request.interceptors.response.use(
   async (response) => {
     NProgress.done()
     // 未设置状态码则默认成功状态
-    let code = response.data.code || HttpStatus.OK
+    let code = response.data.code || 200
     // 获取错误信息
     let message = response.data.message || `系统未知错误，请反馈给管理员`
     // 校验是否为 JSON 类型 Blob 数据
@@ -59,7 +58,7 @@ request.interceptors.response.use(
       return response.data
     }
     // 非二进制且状态码为成功状态码 直接返回具体数据 {code, message, result, timestamp}
-    if (code === HttpStatus.OK) {
+    if (code === 200) {
       return response.data.result
     }
     // 能到这里的基本都是异常返回了

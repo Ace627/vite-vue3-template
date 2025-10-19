@@ -2,7 +2,7 @@ import { LoginService } from '@/api/system/login.service'
 import { removeAccessToken, setAccessToken } from '@/utils/cache'
 
 /** 第一个参数是该 store 的唯一 id */
-export default defineStore('user', () => {
+export const useUserStore = defineStore('user', () => {
   const roles = ref<string[]>([])
   const permissions = ref<string[]>([])
 

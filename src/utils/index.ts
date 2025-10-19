@@ -1,3 +1,5 @@
+export { isString } from 'lodash-es'
+
 /** 用 JS 获取全局 CSS 变量 */
 export function getCssVariableValue(cssVariableName: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(cssVariableName)
