@@ -3,12 +3,12 @@
 @use './transition.scss';
 
 body {
-  font-family: var(--ap-font-family);
-  color: var(--ap-text-color-primary);
-  background-color: var(--ap-bg-color-page);
+  font-family: var(--lx-font-family);
+  color: var(--lx-text-color-primary);
+  background-color: var(--lx-bg-color-page);
 }
 
 /* 顶部加载进度条的颜色 */
 #nprogress .bar {
-  background-color: var(--ap-color-primary);
+  background-color: var(--lx-color-primary);
 }

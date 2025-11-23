@@ -1,134 +1,27 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+@use './mixins/function.scss' as *;
+
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+$color-primary: #409eff !default;
+$color-success: #67c23a !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
 
 :root {
-  --ap-navbar-height: 50px; // 导航栏的高度
-  --ap-navbar-bg-color: #fff; // 导航栏背景色
-  --ap-header-height: var(--ap-navbar-height);
+  #{getCssVarName('color','white')}: $color-white;
+  #{getCssVarName('color','black')}: $color-black;
+  #{getCssVarName('color','primary')}: $color-primary;
+  #{getCssVarName('color','success')}: $color-success;
+  #{getCssVarName('color','warning')}: $color-warning;
+  #{getCssVarName('color','danger')}: $color-danger;
 
-  --ap-sidebar-width: 200px; // 侧边栏宽度
-  --ap-sidebar-hide-width: 64px; // 侧边栏折叠的宽度
-  --ap-sidebar-text-color: #fff; // 侧边栏的文本颜色
-  --ap-sidebar-bg-color: #2e2e2e; // 侧边栏的背景色
-  --ap-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  #{getCssVarName('navbar','height')}: 50px; // 导航栏的高度
+  #{getCssVarName('navbar','bg-color')}: $color-white; // 导航栏背景色
 
-  /* -------------------------------------------------------------------------- */
-  /*                                    Color                                   */
-  /* -------------------------------------------------------------------------- */
-  --ap-color-white: #ffffff;
-  --ap-color-black: #000000;
-  --ap-color-primary: #409eff;
-  --ap-color-success: #67c23a;
-  --ap-color-warning: #e6a23c;
-  --ap-color-danger: #f56c6c;
-  --ap-color-primary-light-3: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 30%);
-  --ap-color-primary-light-5: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 50%);
-  --ap-color-primary-light-7: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 70%);
-  --ap-color-primary-light-8: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 80%);
-  --ap-color-primary-light-9: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-white) 90%);
-  --ap-color-primary-dark-2: color-mix(in srgb, var(--ap-color-primary), var(--ap-color-black) 20%);
-  --ap-color-success-light-3: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 30%);
-  --ap-color-success-light-5: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 50%);
-  --ap-color-success-light-7: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 70%);
-  --ap-color-success-light-8: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 80%);
-  --ap-color-success-light-9: color-mix(in srgb, var(--ap-color-success), var(--ap-color-white) 90%);
-  --ap-color-success-dark-2: color-mix(in srgb, var(--ap-color-success), var(--ap-color-black) 20%);
-  --ap-color-warning-light-3: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 30%);
-  --ap-color-warning-light-5: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 50%);
-  --ap-color-warning-light-7: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 70%);
-  --ap-color-warning-light-8: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 80%);
-  --ap-color-warning-light-9: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-white) 90%);
-  --ap-color-warning-dark-2: color-mix(in srgb, var(--ap-color-warning), var(--ap-color-black) 20%);
-  --ap-color-danger-light-3: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 30%);
-  --ap-color-danger-light-5: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 50%);
-  --ap-color-danger-light-7: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 70%);
-  --ap-color-danger-light-8: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 80%);
-  --ap-color-danger-light-9: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-white) 90%);
-  --ap-color-danger-dark-2: color-mix(in srgb, var(--ap-color-danger), var(--ap-color-black) 20%);
-
-  /* -------------------------------------------------------------------------- */
-  /*                                 Text Color                                 */
-  /* -------------------------------------------------------------------------- */
-  --ap-text-color-primary: #303133;
-  --ap-text-color-regular: #606266;
-  --ap-text-color-secondary: #909399;
-  --ap-text-color-placeholder: #a8abb2;
-  --ap-text-color-disabled: #c0c4cc;
-
-  /* -------------------------------------------------------------------------- */
-  /*                              Background Color                              */
-  /* -------------------------------------------------------------------------- */
-  --ap-bg-color: #ffffff;
-  --ap-bg-color-page: #f5f6f7;
-  --ap-bg-color-overlay: #ffffff;
-
-  /* -------------------------------------------------------------------------- */
-  /*                                 Fill Color                                 */
-  /* -------------------------------------------------------------------------- */
-  --ap-fill-color: #f0f2f5;
-  --ap-fill-color-light: #f5f7fa;
-  --ap-fill-color-lighter: #fafafa;
-  --ap-fill-color-extra-light: #fafcff;
-  --ap-fill-color-dark: #ebedf0;
-  --ap-fill-color-darker: #e6e8eb;
-  --ap-fill-color-blank: #ffffff;
-
-  /* -------------------------------------------------------------------------- */
-  /*                             Mask Overlay Color                             */
-  /* -------------------------------------------------------------------------- */
-  --ap-overlay-color: rgba(0, 0, 0, 0.8);
-  --ap-overlay-color-light: rgba(0, 0, 0, 0.7);
-  --ap-overlay-color-lighter: rgba(0, 0, 0, 0.5);
-  --ap-mask-color: rgba(255, 255, 255, 0.9);
-  --ap-mask-color-extra-light: rgba(255, 255, 255, 0.3);
-
-  /* -------------------------------------------------------------------------- */
-  /*                                  Font Size                                 */
-  /* -------------------------------------------------------------------------- */
-  --ap-font-size-extra-small: 12px;
-  --ap-font-size-small: 13px;
-  --ap-font-size-base: 14px;
-  --ap-font-size-medium: 16px;
-  --ap-font-size-large: 18px;
-  --ap-font-size-extra-large: 20px;
-  --ap-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-
-  /* -------------------------------------------------------------------------- */
-  /*                                   Border                                   */
-  /* -------------------------------------------------------------------------- */
-  --ap-border-radius-base: 4px;
-  --ap-border-radius-small: 2px;
-  --ap-border-radius-round: 20px;
-  --ap-border-radius-circle: 100%;
-  --ap-border-width: 1px;
-  --ap-border-style: solid;
-  --ap-border-color: #dcdfe6;
-  --ap-border-color-light: #e4e7ed;
-  --ap-border-color-lighter: #ebeef5;
-  --ap-border-color-extra-light: #f2f6fc;
-  --ap-border-color-dark: #d4d7de;
-  --ap-border-color-darker: #cdd0d6;
-  --ap-border: var(--ap-border-width) var(--ap-border-style) var(--ap-border-color);
-
-  /* -------------------------------------------------------------------------- */
-  /*                                 Box Shadow                                 */
-  /* -------------------------------------------------------------------------- */
-  --ap-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04), 0px 8px 20px rgba(0, 0, 0, 0.08);
-  --ap-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
-  --ap-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
-  --ap-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08), 0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
-
-  /* -------------------------------------------------------------------------- */
-  /*                                 Transition                                 */
-  /* -------------------------------------------------------------------------- */
-  --ap-transition-duration: 0.3s;
-  --ap-transition-duration-fast: 0.2s;
-  --ap-transition-function-ease-in-out-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ap-transition-function-fast-bezier: cubic-bezier(0.23, 1, 0.32, 1);
-
-  /* -------------------------------------------------------------------------- */
-  /*                               Component Size                               */
-  /* -------------------------------------------------------------------------- */
-  --ap-component-size-small: 24px;
-  --ap-component-size: 32px;
-  --ap-component-size-large: 40px;
+  #{getCssVarName('sidebar','width')}: 220px; // 侧边栏宽度
+  #{getCssVarName('sidebar','hide-width')}: 64px; // 侧边栏折叠的宽度
+  #{getCssVarName('sidebar','text-color')}: $color-white; // 侧边栏的文本颜色
+  #{getCssVarName('sidebar','bg-width')}: #2b2b2b; // 侧边栏的背景色
+  #{getCssVarName('sidebar','box-shadow')}: 2px 0 6px rgba(0, 21, 41, 0.35); // 侧边栏的背景色
 }

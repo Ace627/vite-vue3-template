@@ -17,9 +17,9 @@ const appStore = useAppStore()
   display: flex;
   align-items: center;
   width: 100%;
-  height: var(--ap-navbar-height);
-  background-color: var(--ap-navbar-bg-color);
-  box-shadow: var(--ap-navbar-box-shadow);
+  height: var(--lx-navbar-height);
+  background-color: var(--lx-navbar-bg-color);
+  box-shadow: var(--lx-navbar-box-shadow);
   backdrop-filter: blur(4px);
 }
 

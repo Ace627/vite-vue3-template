@@ -124,13 +124,13 @@ $duration: 400s;
       font-size: 18px;
       font-weight: 500;
       letter-spacing: 6px;
-      color: var(--ap-color-white);
-      background-color: var(--ap-color-primary);
+      color: var(--lx-color-white);
+      background-color: var(--lx-color-primary);
       border-radius: 4px;
-      border-color: var(--ap-color-primary-dark-2);
-      transition: all var(--ap-transition-duration);
+      border-color: var(--lx-color-primary-dark-2);
+      transition: all var(--lx-transition-duration);
       &:hover {
-        background-color: var(--ap-color-primary-light-3);
+        background-color: var(--lx-color-primary-light-3);
       }
     }
   }
