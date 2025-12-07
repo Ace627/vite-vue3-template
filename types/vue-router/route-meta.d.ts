@@ -4,6 +4,7 @@ interface VueRouteMeta {
 
   /** 设置该路由在侧边栏和面包屑中展示的名字 */
   title: string
+  icon: string
 
   /** 默认 true，如果设置为 false，则不会在面包屑中显示 */
   breadcrumb: boolean
