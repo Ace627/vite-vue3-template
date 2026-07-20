@@ -1,15 +1,66 @@
 {
+  /**
+   * 继承基础 TS 配置
+   * @description 基于 @vue/tsconfig 的 DOM 环境预设（含浏览器 lib、module/target 等），项目只需覆盖差异项
+   */
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
+    /**
+     * 增量构建信息文件输出路径
+     * @description 指定 .tsbuildinfo 存放位置，开启增量编译以加速后续类型检查与构建
+     */
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    /**
+     * 全局类型声明包
+     * @description 仅包含列出的 @types 包（如 vite/client 提供 import.meta.env 等环境类型），不再自动引入 node_modules/@types 下全部类型
+     */
     "types": ["vite/client"],
+
+    /**
+     * 允许任意扩展名模块导入
+     * @description 支持 import './x.css' 等非 TS 原生扩展名，配合 Vite 处理静态资源与样式
+     */
     "allowArbitraryExtensions": true,
 
-    /* Linting */
+    /**
+     * 路径别名配置（简化模块导入路径）
+     * @description 映射自定义别名到实际目录，避免冗长的相对路径导入
+     * @note 需配合 Vite 配置文件中的 resolve.alias 同步配置，否则运行时会报错
+     */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /**
+     * 禁止未使用的局部变量
+     * @description 声明但未使用的变量将报错，减少死代码
+     */
     "noUnusedLocals": true,
+
+    /**
+     * 禁止未使用的函数参数
+     * @description 未被使用的参数（除非以 _ 前缀）将报错
+     */
     "noUnusedParameters": true,
+
+    /**
+     * 仅允许可擦除的语法
+     * @description 禁止 enum、命名空间等需运行时支持的特性，确保编译产物可被完全擦除为纯 JS
+     * @note Vite/Rolldown 生态下推荐开启，避免引入运行时类型垫片
+     */
     "erasableSyntaxOnly": true,
+
+    /**
+     * 禁止 switch case 穿透
+     * @description 每个 case 必须以 break/return 结束，防止意外的 case 穿透
+     */
     "noFallthroughCasesInSwitch": true
   },
+
+  /**
+   * 编译包含的文件
+   * @description 限定仅编译 src 下的 .ts/.tsx/.vue 源码，排除测试/配置等无关文件
+   */
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

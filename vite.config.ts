@@ -21,4 +21,10 @@ export default defineConfig({
       },
     },
   ],
+  resolve: {
+    alias: {
+      /** 设置 `@` 指向 `src` 目录 */
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 })
