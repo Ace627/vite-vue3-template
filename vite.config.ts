@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import UnoCSS from 'unocss/vite'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
@@ -14,6 +15,7 @@ const { description } = JSON.parse(
 export default defineConfig({
   plugins: [
     vue(),
+    UnoCSS(),
     {
       name: 'inject-meta-description',
       transformIndexHtml(html) {
