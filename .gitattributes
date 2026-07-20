@@ -1,0 +1,2 @@
+# 统一仓库文本文件行尾为 LF，避免 Windows 下 Git 的 CRLF 归一化告警与检出改写
+* text=auto eol=lf
