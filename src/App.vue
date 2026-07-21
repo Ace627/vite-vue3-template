@@ -1,5 +1,5 @@
 <template>
-  <!-- 应用根组件：后续在此接入路由视图、布局等 -->
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts"></script>

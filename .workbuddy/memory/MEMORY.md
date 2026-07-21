@@ -26,3 +26,12 @@
 ## 项目内 Skill
 - `git-commit-msg`（项目级，`.workbuddy/skills/git-commit-msg/SKILL.md`）：根据 `git diff` 实际改动生成 Conventional Commits 规范的中文提交信息（格式 `<type>: <简述>`），只输出 message 不擅自 `git commit`；暂存区含 `.workbuddy/` 等工具目录时提醒用户而非擅自处理。
 - `path-alias`（项目级，`.workbuddy/skills/path-alias/SKILL.md`）：Vite+Vue+TS 项目配置 `@/*` 别名的完整流程（tsconfig `paths` + vite `resolve.alias` 双向同步、ESM 安全 `fileURLToPath(new URL('./src',import.meta.url))`、`pnpm build` 验证）。
+
+## 更新补记（2026-07-21 路由集成后）
+- **vue-router 已装并已加回 auto-import**：`package.json` 运行时依赖加 `vue-router ^5.2.0`（用户手动集成路由）。上方「API/组件自动导入」段中「刻意去掉 imports 里的 'vue-router'（本项目未装路由）」已过时——2026-07-21 已将 `'vue-router'` 加回 `registerAutoImport` 的 `imports: ['vue','pinia','vue-router']`，并同步 README。该段原文不再作为当前事实。
+- **路由（vue-router）已集成**（用户手动，2026-07-21）：`src/router/index.ts` 导出模块级单例 `router`（`createRouter`，history 模式按 `import.meta.env.VITE_ROUTER_MODE === 'hash'` 切 `createWebHashHistory`/`createWebHistory`，`.env` 配 `VITE_ROUTER_MODE="history"`）与 `setupRouter(app)`（`app.use(router)` + `await router.isReady()`），风格对齐 Pinia；根路由 `path: ''` component `Layout`、`scrollBehavior` 归零；`src/layout/index.vue` 布局组件（含 `<router-view>`、`defineOptions({ name: 'Layout' })`、scoped scss）；`App.vue` 出口为 `<router-view>`；`main.ts` 的 `bootstrap()` 在 `setupStore` 后、`mount` 前 `await setupRouter(app)`（注释「配置 Router https://router.vuejs.org/zh」）。⚠️ 路由为半成品：`routes` 仅根路由含 Layout、无 `children`、无业务页；`imports: ['vue','pinia','vue-router']` 已使 `useRoute/useRouter` 自动导入。
+- ⚠️ 版本存疑：`vue-router ^5.2.0` 与 Vue3 通常配套的 4.x 不一致，需核实是否真实发布版本（或笔误），建议确认后修正。
+
+## 更正（2026-07-21 联网核实 vue-router 版本）
+- 上条「⚠️ 版本存疑：vue-router ^5.2.0 与 Vue3 通常配套的 4.x 不一致」判断**不成立**。联网核实 npm registry 的 vue-router `dist-tags.latest` = **5.2.0**（发布于 2026-07-15，Gitee 镜像 vuejs/router 亦有 v5.2.0 记录）；`next`=4.0.13、`legacy`=3.6.5、`beta`=5.0.0-beta.2。即 vue-router 已于 2026 年发布 5.x 大版本并将 latest 切到 5.2.0，`^5.2.0` 是真实、正确的当前稳定版本（非笔误）。
+- 结论：`package.json` 的 `vue-router ^5.2.0` 安装正确，无需改版本；`pnpm build` 已通过（`vue-tsc -b` 无报错、29 模块、类型检查兼容 5.2.0），说明现有路由代码与 5.x 兼容。

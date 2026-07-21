@@ -36,10 +36,23 @@ pnpm build     # 类型检查 + 生产构建
 ```
 
 ## 已落地的工程化约定
-- `index.html` 本地化（`lang="zh-CN"`），站点描述单一真源为 `package.json.description`，经 Vite 插件自动注入 `<meta name="description">`。
-- `public/css/reset.css` 通过 `<head>` 的 `<link>` 引入（不走 `index.scss`，避免样式跳动）。
-- 全局样式入口 `src/styles/index.scss` 由 `main.ts` 引入（当前留空）。
-- 路径别名 `@/*` → `src/*`（tsconfig + vite 双向同步）。
+
+### 引导与状态管理
+- 入口采用 `bootstrap()` 异步引导骨架（`src/main.ts`）：创建 `createApp(App)` → 注册 Pinia（`setupStore(app)`）→ `app.mount('#app')`。
+- 状态管理 Pinia：`src/store/index.ts` 维护模块级单例 `createPinia()` + `setupStore(app)` 注册函数；统一用 `@/` 别名导入。
+
+### 路径与样式
+- 路径别名 `@/*` → `src/*`：`tsconfig.app.json` 的 `paths` 与 `vite.config.ts` 的 `resolve.alias` 双向同步，导入统一用 `@/`。
+- 原子化样式 UnoCSS：`build/plugins/index.ts` 的 `setupVitePlugins()` 注册 `UnoCSS()`，`src/main.ts` 顶部引入 `virtual:uno.css`（置于 `index.scss` 之前）；根目录 `uno.config.ts` 配置 `presetWind3()` + `presetAttributify()` 及自定义 rules（`wh-/mtb-/mlr-/ptb-/plr-`）与 shortcuts（`wh-full/wh-screen/flex-center/clearFix`）。UnoCSS 的 preflight 仅含 `--un-*` 变量预设、无传统样式重置，与 `public/css/reset.css` 零冲突。
+- 全局样式入口 `src/styles/index.scss` 由 `main.ts` 引入（当前留空）；基础重置 `public/css/reset.css` 通过 `index.html` 的 `<link>` 引入（不进 `index.scss`，避免加载时序靠后导致样式跳动/FOUC）。
+
+### 自动导入
+- API 自动导入 `unplugin-auto-import`（`imports: ['vue','pinia','vue-router']`，d.ts 落 `src/types/auto-generate/auto-import.d.ts`，`dirs: ['src/store/modules','src/hooks']`）。
+- 组件自动导入 `unplugin-vue-components`（d.ts 落 `src/types/auto-generate/auto-components.d.ts`，`dirs: []` 暂空，待全局组件目录约定确定后再配）。
+- Vite 插件统一抽离到 `build/plugins/`：导出 `setupVitePlugins()` 在 `vite.config.ts` 的 `plugins` 调用，并纳入 `vue-tsc -b` 类型检查（见 `tsconfig.node.json` 的 `include`）。
+
+### 构建期变量与工程配置
+- 应用标题：根 `.env` 提供 `VITE_APP_TITLE`，`index.html` 用 Vite 原生 `<title>%VITE_APP_TITLE%</title>` 占位符注入（dev/build 自动替换）。
+  - 注：此前自研的 HTML meta 注入插件已移除，`index.html` 仅保留 title 注入；如需 meta 注入优先走 Vite 原生（`.env` 加 `VITE_*` 变量即可被 `%VAR%` 命中），纯动态值（如构建时间戳）Vite 原生无法提供。
 - 仓库根 `.gitattributes` 统一文本行尾为 `eol=lf`。
-- 入口采用 `bootstrap()` 异步引导骨架（`src/main.ts`）。
-- 原子化样式 UnoCSS：已集成 `unocss`（devDependency），`vite.config.ts` 的 `plugins` 加入 `UnoCSS()`（`import UnoCSS from 'unocss/vite'`），`src/main.ts` 引入 `virtual:uno.css`，根目录 `uno.config.ts` 配置 `presetWind3()` + `presetAttributify()` 及自定义 rules（`wh-/mtb-/mlr-/ptb-/plr-`）与 shortcuts（`wh-full/wh-screen/flex-center/clearFix`）。UnoCSS 注入的 preflight 仅含 `--un-*` 变量预设、无传统样式重置，与 `public/css/reset.css` 零冲突。
+- `.gitignore` 已忽略自动生成的 `src/types/auto-generate/`。
