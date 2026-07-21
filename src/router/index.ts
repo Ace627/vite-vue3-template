@@ -7,8 +7,14 @@ export const router = createRouter({
   history: import.meta.env.VITE_ROUTER_MODE === 'hash' ? createWebHashHistory() : createWebHistory(),
   routes: [
     {
-      path: '',
+      path: '', // 布局路由配置 确保可以显示布局框架
       component: Layout,
+    },
+
+    {
+      path: '/:pathMatch(.*)*', // 404页面（必须放在最后）
+      component: () => import('@/views/core/404.vue'),
+      meta: { hidden: true },
     },
   ],
   scrollBehavior: () => ({ left: 0, top: 0 }),
