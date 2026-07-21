@@ -1,5 +1,5 @@
-import type { App } from 'vue'
 import Layout from '@/layout/index.vue'
+import type { App } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 /** 创建路由实例 */

@@ -1,5 +1,5 @@
-import { resolve, basename } from 'path'
 import { readFile, writeFile, readdir } from 'fs/promises'
+import { resolve, basename } from 'path'
 
 // 要移除的 SVG 冗余属性
 const REMOVE_ATTRS = ['fill', 'class', 'version', 't', 'p-id', 'width', 'height']

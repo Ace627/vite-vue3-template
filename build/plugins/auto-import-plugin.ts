@@ -1,6 +1,6 @@
-import type { PluginOption } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import AutoComponents from 'unplugin-vue-components/vite'
+import type { PluginOption } from 'vite'
 
 /** 自带 API 的自动化导入（Vue / Pinia） */
 export const registerAutoImport = (): PluginOption => {

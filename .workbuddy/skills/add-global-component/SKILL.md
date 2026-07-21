@@ -8,13 +8,16 @@ description: 在 vite-vue3-template 项目中新增一个全局 Vue 组件：创
 在项目中新增一个**全局可用**的 Vue 组件：生成目录与骨架文件，并自动完成插件注册与类型声明，省去手动改两处（plugin + d.ts）的重复劳动。
 
 ## 触发场景
+
 - 用户说："加个全局组件 XXX" / "新增全局组件" / "创建全局组件 Xxx" / "注册全局组件 Xxx"
 - 用户显式调用本 Skill，并给出一个 PascalCase 组件名
 
 ## 输入
+
 - 一个 **PascalCase** 组件名（首字母大写、仅字母与数字），如 `GlobalDialog`、`ThemeSwitch`。
 
 ## 前置约定（本项目已定稿，切勿擅自改动）
+
 - **目录**：`src/components/<Name>/`（维持现状，不挪到 `src/global-components` 等独立目录）
 - **注册方式**：手动 `app.component()` 注册，**不启用** `unplugin-vue-components` 的 `dirs` 扫描（`registerAutoComponents` 的 `dirs` 保持 `[]`）
 - **生成内容**：带**可编译骨架**（非纯空文件）
@@ -38,6 +41,7 @@ description: 在 vite-vue3-template 项目中新增一个全局 Vue 组件：创
 ## 骨架模板
 
 **`index.vue`**：
+
 ```vue
 <template>
   <div class="<name-kebab>">
@@ -53,12 +57,13 @@ const props = defineProps<<Name>Props>()
 </script>
 
 <style lang="scss" scoped>
-.<name-kebab> {
+.<name-kebab > {
 }
 </style>
 ```
 
 **`types.ts`**：
+
 ```ts
 /**
  * <Name> 组件属性
@@ -69,14 +74,17 @@ export interface <Name>Props {
 ```
 
 ## 约束
+
 - 不自动 `git commit`；不改动与本次无关的其它文件。
 - `types.ts` 的接口默认空，仅留注释引导用户按需补字段。
 - 所有代码注释用中文；技术关键词（`app.component`、`defineOptions`、`PascalCase` 等）保留英文。
 
 ## 风险与注意
+
 - `global-component.d.ts` 的相对路径 `../components/` 不能写错（它位于 `src/types/global/`）。
 - 当前 `registerAutoComponents` 的 `dirs` 为 `[]`，手动注册安全；若将来把 `dirs` 设为 `src/components`，会与手动注册重复（Vue 仅警告），届时需重新评估本 Skill。
 
 ## 验证
+
 - `pnpm build` 通过（`vue-tsc -b` 无类型报错、`vite build` 成功）。
 - 在任意模板（如 `src/layout/index.vue`）用 `<Name />` 验证全局可用（无需 import）。

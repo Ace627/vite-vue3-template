@@ -95,5 +95,5 @@
    * 编译包含的文件
    * @description 限定仅编译 vite.config.ts（Node 端配置/脚本），与编译 src 的 tsconfig.app.json 分工
    */
-  "include": ["vite.config.ts", "build/**/*.ts"]
+  "include": ["vite.config.ts", "build/**/*.ts", "oxfmt.config.ts"]
 }

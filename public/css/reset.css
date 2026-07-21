@@ -1,16 +1,30 @@
 /* 使用更直观的盒模型（box-sizing） */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   font-family: inherit;
   box-sizing: border-box;
 }
 
 /* 新布局元素兼容旧版本浏览器 */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
 /* 允许通过百分比设置应用的高度 */
-html, body, #app {
+html,
+body,
+#app {
   width: 100%;
   height: 100%;
   line-height: 1;

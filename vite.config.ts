@@ -1,5 +1,7 @@
-import { defineConfig } from 'vite'
 import { fileURLToPath } from 'node:url'
+
+import { defineConfig } from 'vite'
+
 import { setupVitePlugins } from './build/plugins/index.ts'
 
 // https://vite.dev/config/
