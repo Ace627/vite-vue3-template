@@ -2,12 +2,13 @@
   "name": "vite-vue3-template",
   "description": "本项目提供了一个基于 Vue3、TypeScript 和 Vite 的基础配置模板，适合快速启动项目或作为开发的起点。",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean:svg": "node --experimental-strip-types scripts/svg-clean.ts"
   },
   "dependencies": {
     "pinia": "^4.0.2",

@@ -1,51 +1,38 @@
 # 项目记忆：vite-vue3-template
 
 ## 项目定位
-- 目标：打造「前端工程化模板」（基于 `pnpm create vite` 的 Vue3 + TS 产物二次改造）。
+基于 `pnpm create vite` 的 Vue3 + TS 产物二次改造，目标打造「前端工程化模板」。
 
-## 技术栈（版本较新，选型需注意兼容）
-- Vite `^8.1.1`、Vue `^3.5.39`、TypeScript `~6.0.2`、vue-tsc `^3.3.5`、@vitejs/plugin-vue `^6.0.7`、@vue/tsconfig `^0.9.1`、@types/node `^24`、sass `^1.101.0`（dev，已装）、unocss `^66.7.5`（dev，已装，2026-07-20 集成）、pinia `^4.0.2`（运行时依赖，已装，2026-07-21 集成）
+## 技术栈
+Vite ^8.1.1、Vue ^3.5.39、TypeScript ~6.0.2、vue-tsc ^3.3.5、@vitejs/plugin-vue ^6.0.7、@vue/tsconfig ^0.9.1、@types/node ^24、sass ^1.101.0(dev)、unocss ^66.7.5(dev)、pinia ^4.0.2、vue-router ^5.2.0、unplugin-auto-import ^21、unplugin-vue-components ^32、vite-plugin-svg-icons-ng ^1.9.2(dev)。
 
 ## 项目约定
-- **HTML meta 注入（手搓插件已彻底移除，2026-07-21）**：此前自研 `name: 'vite-plugin-html'` 插件通过 `transformIndexHtml` 注入 `%VITE_APP_DESCRIPTION%`(=package.json.description) 与 `%VITE_APP_BUILD_TIME%`(=时间戳)。用户决定回退——现 `vite.config.ts` 的 `plugins` 仅 `[vue(), UnoCSS()]`，`import pkg from './package.json' with { type: 'json' }` 与 `tsconfig.node.json` 的 `resolveJsonModule` 也已移除。`index.html` 仅保留 `<title>%VITE_APP_TITLE%</title>`（Vite 8 原生替换，值来自 `.env`），description / build-time 两个 meta 已整行删除。若日后需要 meta 注入：优先走 Vite 原生——把 `VITE_*` 变量写进 `.env` 即被 `%VAR%` 命中（无需插件）；纯动态值（如构建时间戳）Vite 原生无法提供，要么放弃、要么重新引入插件/构建脚本。
-- `index.html` 的 `<html lang="zh-CN">`（已本地化）。
-- 已清理 create vite 的 demo 产物：`src/components/HelloWorld.vue`、`src/style.css`、`src/assets/` 下的 vite.svg/vue.svg/hero.png 已删除；`App.vue`、`main.ts` 的对应引用已清除，`src/` 现为干净空壳（App.vue 仅留根组件骨架，main.ts 仅挂载 App）。
-- 全局样式入口 = `src/styles/index.scss`，由 `main.ts` 引入；当前**保持空白**，后续再填充变量/mixin/第三方样式等。
-- 基础 reset 样式 = `public/css/reset.css`，通过 `index.html` 的 `<head>` 内 `<link rel="stylesheet" href="/css/reset.css" />` 引入（**不**进 `index.scss`，以免打包后加载时序靠后导致样式跳动/FOUC）。内容含 box-sizing、旧版浏览器新布局元素兼容、html/body/#app 全高、移动端点击高亮去除等。
-- 入口采用 `bootstrap()` 异步引导模式（`src/main.ts`）：`createApp(App)` → `setupStore(app)`（注册 Pinia，2026-07-21 接入）→ `app.mount('#app')` → 打印完成。不预留/不注释任何尚未安装/创建的模块（用户要求「没有的东西不要」，连 TODO 注释也不留）。
-- **路径别名 `@/*` → `src/*`**（已配置，2026-07-20）：`tsconfig.app.json` 的 `compilerOptions.paths` 写 `"@/*": ["./src/*"]`；`vite.config.ts` 的 `resolve.alias` 写 `'@': fileURLToPath(new URL('./src', import.meta.url))`。**两处必须同步**，否则类型检查通过但运行时报「找不到模块」。导入统一用 `@/` 而非相对路径。
-- **状态管理 = Pinia**（已集成，2026-07-21）：目录 `src/store/`，`index.ts` 导出模块级 `createPinia()` 单例与 `setupStore(app)` 注册函数；`main.ts` 的 `bootstrap()` 在 `createApp(App)` 之后、`app.mount` 之前调用 `setupStore(app)`，调用上方保留独立注释 `// 配置 Store 状态管理 https://pinia.web3doc.top`。`main.ts` 内从 `@/store` 导入，遵循统一 `@/` 约定（用户 2026-07-21 最终确认：入口文件也统一 `@/`，不再用相对路径）。
-- **原子化样式 = UnoCSS**（已集成，2026-07-20）：`unocss` 作为 devDependency；`UnoCSS()` 在 `build/plugins/index.ts` 的 `setupVitePlugins()` 中注册（需 `import UnoCSS from 'unocss/vite'`）；`src/main.ts` 顶部 `import 'virtual:uno.css'`（置于 `./styles/index.scss` 之前）；配置文件 `uno.config.ts` 位于项目根（Vite 插件自动发现，无需手动引用路径）。预设 `presetWind3()` + `presetAttributify()`，含自定义 rules（`wh-`/`mtb-`/`mlr-`/`ptb-`/`plr-`）与 shortcuts（`wh-full`/`wh-screen`/`flex-center`/`clearFix`）。**版本坑**：参考的 `vite-electron-template` 的 `uno.config.ts` 是旧版写法，`unocss@66.x` 已不支持——`content` 必须用 `content.pipeline.include/exclude`（无顶层 `include`）；`cache:true` 顶层字段已移除（缓存默认开启，无需声明）。`virtual:uno.css` 的模块类型由 UnoCSS 自带声明，`vue-tsc` 无需额外 `.d.ts`。注：UnoCSS 注入的 preflight 仅含 `--un-*` CSS 变量预设（供 rotate/scale/ring 等原子类默认值），**不含**传统样式重置（`margin`/`box-sizing`/`normalize` 均无），与 `public/css/reset.css` 完全不重叠、零冲突；"双重 preflight 重置"担忧系误报（已核实 dist 产物与 `preset-wind3` 源码），无需 `preflights:false` 或删 reset.css。
-
-- **Vite 插件抽离到 `build/plugins/index.ts`**（2026-07-21，对标 `Ace627/vite-electron-template` 的 `build/plugins/index.ts`）：`vite.config.ts` 不再内联 `vue()`/`UnoCSS()`，改为 `import { setupVitePlugins } from './build/plugins/index.ts'` 并在 `plugins: setupVitePlugins()` 调用。`build/plugins/index.ts` 导出 `setupVitePlugins(): PluginOption[]`，内部用 `plugins.push(vue())` / `plugins.push(UnoCSS())` 逐个注册（结构完全对标参考：导出函数 + `plugins` 数组 + push + 中文 JSDoc 注释）。**与参考的差异**：① 参考的 `setupVitePlugins(isBuild)` 带 `isBuild` 参数是给 Electron 的 build/main 区分用的，本项目纯前端无此需求，且 `noUnusedParameters: true` 会因未使用参数报错，故保持 `setupVitePlugins()` 无参；② `tsconfig.node.json` 的 `include` 已扩为 `["vite.config.ts", "build/**/*.ts"]`，`build/` 下插件代码纳入 `vue-tsc -b` 类型检查。**nodenext 扩展名坑**：`module: nodenext` 下相对导入必须带显式扩展名，故导入写 `./build/plugins/index.ts`（不能写 `./build/plugins`，否则 TS2834 报错）——这是与参考（其 node 端用 bundler 解析、可省略扩展名）的唯一写法差异。
-
-- **API / 组件自动导入（unplugin-auto-import + unplugin-vue-components）**（2026-07-21 集成）：`devDependencies` 装 `unplugin-auto-import@21` + `unplugin-vue-components@32`。`build/plugins/auto-import-plugin.ts` 导出 `registerAutoImport()` 与 `registerAutoComponents()`，在 `setupVitePlugins()` 中 `plugins.push` 接入。**配置（对标参考、去 ElementPlus/去 vue-router）**：`registerAutoImport` = `AutoImport({ imports: ['vue','pinia'], dts: 'src/types/auto-generate/auto-import.d.ts', dirs: ['src/store/modules','src/hooks'] })`；`registerAutoComponents` = `AutoComponents({ dts: 'src/types/auto-generate/auto-components.d.ts', dirs: [] })`。**刻意去掉的部分**：参考的 `ElementPlusResolver`（用户要求不处理 ElementPlus）；`imports` 里的 `'vue-router'`（本项目未装路由）。**dirs 演变**：初版 `registerAutoImport` 的 `dirs` 留 `[]`（因目录不存在），后用户要求恢复成参考原值 `src/store/modules` + `src/hooks` 并真实建目录（目录保留、不放置 `.gitkeep` 占位文件，空目录默认不被 Git 跟踪）；与 `main.ts` 显式导入的 `@/store`(`src/store/index.ts`) 不冲突（`dirs` 仅扫 `modules/` 子目录，不扫 `index.ts`）。**全局组件目录约定待定**：用户明确 `src/components` 不合适，全局组件的目录名/类型约定后续自定义，故 Components 的 `dirs` 暂留 `[]`，等确定目录（如 `src/global-components`）再填。**生成类型**：d.ts 落 `src/types/auto-generate/`，自动被 `tsconfig.app.json` 的 `src/**/*.ts` 覆盖（无需改 include）；`.gitignore` 已加 `src/types/auto-generate/`。⚠️ 顺序坑：`vue-tsc -b` 先于 `vite build` 跑，d.ts 在 vite 阶段才生成；首次构建无 `.vue` 用 auto-import 的 API 故不报错，写组件用到 `ref` 等时先跑一次 `dev`/`build` 生成 d.ts 即可。`[unplugin-vue-components] no components found` 是 `dirs:[]` 的预期提示、非错误。
-
-- **SVG 图标与全局组件 SvgIcon（已集成，2026-07-21，用户手动改动、暂存未提交）**：本轮在暂存区新增一套「SVG 雪碧图标 + 全局组件」方案。
-  - 依赖：`vite-plugin-svg-icons-ng@^1.9.2`（dev，非原版 `vite-plugin-svg-icons`）。**关键差异**：该 fork 默认 `htmlMode: 'inline'`，dev/build 会把 sprite 自动注入 HTML，**无需** `import 'virtual:svg-icons/register'`（原版才需要；新虚拟模块名为 `virtual:svg-icons/register`，旧 `virtual:svg-icons-register` 仍兼容但 v2 将移除）。
-  - 插件：`build/plugins/svg-icons-plugin.ts` 的 `registerSvgIcons()` → `createSvgIconsPlugin({ iconDirs: [src/assets/svg-icons], symbolId: 'icon-[name]' })`；在 `build/plugins/index.ts` 的 `setupVitePlugins()` 内 `plugins.push(registerSvgIcons())`。`iconDirs` 用 `fileURLToPath(new URL('../../src/assets/svg-icons', import.meta.url))`（build/plugins → 项目根 → src/assets/svg-icons，相对正确）。
-  - 资源：`src/assets/svg-icons/*.svg`（已放 Lock.svg、Unlock.svg），图标用 `fill="currentColor"` 以便受 `color` 控制；`symbolId` 的 `[name]` = 文件名去 `.svg`。
-  - 组件：`src/components/SvgIcon/index.vue`（`defineOptions({ name: 'SvgIcon' })`；props `name` 必填、`color` 默认 `currentColor`、`size` 默认 `'1em'` 且 number→px；模板 `<svg class="svg-icon"><use :href="#icon-${name}"></use></svg>`；scoped scss `.svg-icon{ fill: currentColor; ... }`）+ 配套 `src/components/SvgIcon/types.ts`（`SvgIconProps`）。组件内 `computed` 靠 auto-import 自动导入；`isString` 用 `import { isString } from '@/utils'` 显式导入（`src/utils` 不在 auto-import 的 dirs，故不自动导入）。
-  - 全局注册（**手动注册，非 auto-components 扫描**）：`src/plugins/index.ts` 导出 `setupPlugins(app)` → `app.use(registerGlobalComponent)`；`src/plugins/modules/global-component.ts` 的 `registerGlobalComponent(app){ app.component('SvgIcon', SvgIcon) }`；`src/main.ts` 的 `bootstrap()` 在 `createApp` 之后、`setupStore` 之前 `setupPlugins(app)`（注册顺序先于 mount，Layout 可用）。
-  - 类型声明：`src/types/global/global-component.d.ts` 扩展 `vue` 的 `GlobalComponents` 接口声明 `SvgIcon`，被 `tsconfig.app.json` 的 `src/**/*.ts` 覆盖；与 `auto-components.d.ts`（仅 RouterLink/RouterView，因 dirs:[]）互补。
-  - 工具：`src/utils/index.ts`(`export * from './validate'`) + `src/utils/validate.ts`(`isString`)。
-  - ⚠️ 术语澄清：本次「全局组件自动引入」实为「手动注册 + 手写类型声明」，`unplugin-vue-components` 的 dirs 扫描**未启用**（仍 `[]`）。每加一个全局组件须改 `global-component.ts` 与 `global-component.d.ts` 两处。未来若想真正自动扫描某目录全部组件，应把目录填入 `registerAutoComponents` 的 `dirs`（如 `src/global-components`）。
-  - 目录约定（已裁决，2026-07-21）：此前倾向 `src/components` 不适合做全局组件目录，但用户于 2026-07-21 明确裁决**维持 `src/components/<Name>/`**（SvgIcon 已在用，不挪到独立 `src/global-components`），全局组件统一放此目录。
-  - 新增全局组件已抽离为项目级 Skill `add-global-component`（见 `.workbuddy/skills/add-global-component/SKILL.md`）：封装「建目录 + 生成可编译骨架(index.vue+types.ts) + 在 `global-component.ts` 注册 + 在 `global-component.d.ts` 补类型」全流程；输入 PascalCase 组件名，手动注册模式（dirs 保持 `[]`），与本项目约定一致。
-  - 验证：`src/layout/index.vue` 用 `<SvgIcon name="Lock" />` 验证全局可用（无 import，依赖全局注册 + 类型声明）。
-
-- **应用标题 / 构建期环境变量**：根目录 `.env` 提供 `VITE_APP_TITLE="Vite Vue3 Template"` 等公开构建期变量；`index.html` 的 `<title>` 用 Vite 原生 `%VITE_APP_TITLE%` 占位符注入（dev/build 自动替换为实际值，外层双引号由 dotenv 去除）。当前 `.gitignore` 未忽略 `.env`，会被提交（仅含公开变量）；若后续加入密钥需补 `.gitignore` 规则。
+- **入口引导**：`src/main.ts` 用 `bootstrap()` 异步模式，顺序 `createApp` → `setupPlugins(app)` → `setupStore(app)`(Pinia) → `await setupRouter(app)` → `app.mount('#app')`。不预留/不注释未安装模块；导入统一用 `@/`（含入口文件）。
+- **路径别名 `@/*` → `src/*`**：`tsconfig.app.json` 的 `compilerOptions.paths` 与 `vite.config.ts` 的 `resolve.alias` 双向同步，否则类型过但运行报找不到模块。
+- **Vite 插件抽离**：`build/plugins/index.ts` 导出 `setupVitePlugins(): PluginOption[]`（无参，纯前端无 isBuild 需求），内部 `plugins.push` 注册 vue / UnoCSS / autoImport / autoComponents / svgIcons；`vite.config.ts` 调 `setupVitePlugins()`。`tsconfig.node.json` 的 include 含 `build/**/*.ts`（纳入类型检查）。nodenext 下相对导入须带 `.ts` 扩展名。
+- **状态管理 Pinia**：`src/store/index.ts` 导出 `createPinia()` 单例与 `setupStore(app)`。
+- **路由 vue-router 5.x**：`src/router/index.ts` 导出 `router` 单例与 `setupRouter(app)`；history 模式按 `import.meta.env.VITE_ROUTER_MODE==='hash'` 切 hash/web，`.env` 配 `VITE_ROUTER_MODE="history"`。⚠️ vue-router latest 已是 5.2.0（非 4.x），与本项目兼容，无需降级。
+- **原子化样式 UnoCSS**：`uno.config.ts` 用 `presetWind3()` + `presetAttributify()`；`content.pipeline.include/exclude` 写法（unocss@66 无顶层 include）；`main.ts` 顶部 `import 'virtual:uno.css'` 置于 `./styles/index.scss` 前。preflight 仅注入 `--un-*` 变量，与 reset.css 不冲突，无需 `preflights:false`。
+- **自动导入**：`unplugin-auto-import` 配 `imports: ['vue','pinia','vue-router']` + `dirs: ['src/store/modules','src/hooks']`；`unplugin-vue-components` 的 `dirs: []`（未启用全局组件目录扫描）。d.ts 落 `src/types/auto-generate/`（已 gitignore）。`vue-tsc -b` 先于 `vite build` 跑，d.ts 在 vite 阶段才生成，首次写组件用到自动导入 API 前先跑一次 dev/build。
+- **SVG 图标 + 全局组件**：`vite-plugin-svg-icons-ng` 默认 `htmlMode:'inline'` 自动注入 sprite，**无需** `import 'virtual:svg-icons/register'`；`symbolId:'icon-[name]'`，故 `SvgIcon` 的 `name` **必须等于** `src/assets/svg-icons/` 下的文件名（去 `.svg`）。新增图标流程：从「阿里巴巴矢量图标库」下载或找 UI 拿 SVG → 放入 `src/assets/svg-icons/` → 跑 `pnpm clean:svg`（`scripts/svg-clean.ts`，`node --experimental-strip-types` 原生跑 TS 无需编译）去除 `fill/class/width/height/version/t/p-id` 等冗余属性，使其适配 `SvgIcon` 的 CSS `fill:currentColor`（仅支持单色图标，多色会丢色）。全局组件手动注册于 `src/plugins/modules/global-component.ts`，类型声明补 `src/types/global/global-component.d.ts`，统一放 `src/components/<Name>/`。新增全局组件走 Skill `add-global-component`。【生成代码注意】`SvgIcon` 的 `name` 只能用已存在的文件名；所需图标不存在时，须提醒开发者去阿里图标库下载或找 UI 获取，并跑 `clean:svg`。
+- **样式分层**：`public/css/reset.css` 经 `index.html` `<link href="/css/reset.css">` 引入（基础重置，不进打包，避免 FOUC）；`src/styles/index.scss` 为全局样式入口（当前空白）。
+- **应用标题/环境变量**：`.env` 提供 `VITE_APP_TITLE` 与 `VITE_ROUTER_MODE` 等公开变量；`index.html` 用 `%VITE_APP_TITLE%` 原生注入。`.env` 未 gitignore（仅含公开变量，加密钥需补规则）。手搓 meta 注入插件已于 2026-07-21 彻底移除，meta 注入若需做优先走 Vite 原生 `%VITE_*%`。
 
 ## 项目内 Skill
-- `git-commit-msg`（项目级，`.workbuddy/skills/git-commit-msg/SKILL.md`）：根据 `git diff` 实际改动生成 Conventional Commits 规范的中文提交信息（格式 `<type>: <简述>`），只输出 message 不擅自 `git commit`；暂存区含 `.workbuddy/` 等工具目录时提醒用户而非擅自处理。
-- `path-alias`（项目级，`.workbuddy/skills/path-alias/SKILL.md`）：Vite+Vue+TS 项目配置 `@/*` 别名的完整流程（tsconfig `paths` + vite `resolve.alias` 双向同步、ESM 安全 `fileURLToPath(new URL('./src',import.meta.url))`、`pnpm build` 验证）。
-- `add-global-component`（项目级，`.workbuddy/skills/add-global-component/SKILL.md`）：新增全局 Vue 组件——建 `src/components/<Name>/` 目录 + 可编译骨架（index.vue + types.ts），并自动在 `global-component.ts` 注册、`global-component.d.ts` 补 `GlobalComponents` 类型；手动注册模式（dirs 保持 `[]`），输入 PascalCase 组件名。
+- `git-commit-msg`：依 git diff 生成中文 Conventional Commits message，只输出不擅自 commit；涉及 `.workbuddy/` 时也一并提交（用户明确要求必须提交，不得单列、不得提醒、不得询问）。**message 仅写 `type: 简洁单行描述`，不要展开多行 bullet 列表（用户明确不要）。**
+- `path-alias`：配置 `@/*` 别名完整流程（tsconfig paths + vite resolve.alias 双向同步）。
+- `add-global-component`：新增全局组件全流程（建 `src/components/<Name>/` + index.vue/types.ts 骨架 + 注册 + 补类型）。
 
-## 更新补记（2026-07-21 路由集成后）
-- **vue-router 已装并已加回 auto-import**：`package.json` 运行时依赖加 `vue-router ^5.2.0`（用户手动集成路由）。上方「API/组件自动导入」段中「刻意去掉 imports 里的 'vue-router'（本项目未装路由）」已过时——2026-07-21 已将 `'vue-router'` 加回 `registerAutoImport` 的 `imports: ['vue','pinia','vue-router']`，并同步 README。该段原文不再作为当前事实。
-- **路由（vue-router）已集成**（用户手动，2026-07-21）：`src/router/index.ts` 导出模块级单例 `router`（`createRouter`，history 模式按 `import.meta.env.VITE_ROUTER_MODE === 'hash'` 切 `createWebHashHistory`/`createWebHistory`，`.env` 配 `VITE_ROUTER_MODE="history"`）与 `setupRouter(app)`（`app.use(router)` + `await router.isReady()`），风格对齐 Pinia；根路由 `path: ''` component `Layout`、`scrollBehavior` 归零；`src/layout/index.vue` 布局组件（含 `<router-view>`、`defineOptions({ name: 'Layout' })`、scoped scss）；`App.vue` 出口为 `<router-view>`；`main.ts` 的 `bootstrap()` 在 `setupStore` 后、`mount` 前 `await setupRouter(app)`（注释「配置 Router https://router.vuejs.org/zh」）。⚠️ 路由为半成品：`routes` 仅根路由含 Layout、无 `children`、无业务页；`imports: ['vue','pinia','vue-router']` 已使 `useRoute/useRouter` 自动导入。
-- ⚠️ 版本存疑：`vue-router ^5.2.0` 与 Vue3 通常配套的 4.x 不一致，需核实是否真实发布版本（或笔误），建议确认后修正。
-
-## 更正（2026-07-21 联网核实 vue-router 版本）
-- 上条「⚠️ 版本存疑：vue-router ^5.2.0 与 Vue3 通常配套的 4.x 不一致」判断**不成立**。联网核实 npm registry 的 vue-router `dist-tags.latest` = **5.2.0**（发布于 2026-07-15，Gitee 镜像 vuejs/router 亦有 v5.2.0 记录）；`next`=4.0.13、`legacy`=3.6.5、`beta`=5.0.0-beta.2。即 vue-router 已于 2026 年发布 5.x 大版本并将 latest 切到 5.2.0，`^5.2.0` 是真实、正确的当前稳定版本（非笔误）。
-- 结论：`package.json` 的 `vue-router ^5.2.0` 安装正确，无需改版本；`pnpm build` 已通过（`vue-tsc -b` 无报错、29 模块、类型检查兼容 5.2.0），说明现有路由代码与 5.x 兼容。
+## 进度与待办（截至 2026-07-21）
+**已完成（构建通过：`pnpm build` 零类型错误、36 模块）**：脚手架清理、路径别名、UnoCSS、Pinia、vue-router 基础设施、unplugin 自动导入、SVG 图标/SvgIcon、Vite 插件抽离、reset.css、3 个项目 Skill、README 对齐。
+**未做（模板常见项）**：
+- 业务/示例页面（当前 App.vue=`<router-view>`，Layout 仅占位「布局测试」）
+- 请求层（axios + 拦截器）、API 目录约定
+- 多环境 `.env`（dev/prod/test）
+- 路由 children / 懒加载 / 路由守卫（当前仅根路由）
+- Layout 实际布局（头部/侧边栏/菜单）
+- UI 组件库（Element Plus 已明确不引入）
+- 代码格式化 oxfmt（方案已定、待落地，替代 Prettier）/ ESLint / husky / lint-staged
+- i18n、错误页/404、存储与通用工具封装
+- 构建优化（chunk 分包 / gzip / CDN）
+- 单元测试（Vitest）、CI/CD
