@@ -1,6 +1,9 @@
 <template>
   <div class="app-container">
     布局测试
+    <div class="p-16px">
+      <SvgIcon name="Lock" />
+    </div>
     <router-view></router-view>
   </div>
 </template>

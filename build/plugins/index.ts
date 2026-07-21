@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import { registerSvgIcons } from './svg-icons-plugin.ts'
 import { registerAutoImport, registerAutoComponents } from './auto-import-plugin.ts'
 
 /** 汇总并注册所有 Vite 插件 */
@@ -18,6 +19,9 @@ export function setupVitePlugins(): PluginOption[] {
 
   /** Vue 组件按需自动导入 */
   plugins.push(registerAutoComponents())
+
+  /** 提供 SvgIcon 的使用支持 */
+  plugins.push(registerSvgIcons())
 
   return plugins
 }

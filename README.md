@@ -4,7 +4,7 @@
 
 ## 内置 SKILL（项目级）
 
-本仓库在 `.workbuddy/skills/` 下内置了两个项目级 Skill，用于标准化常见工程操作。
+本仓库在 `.workbuddy/skills/` 下内置了三个项目级 Skill，用于标准化常见工程操作。
 
 > 说明：项目级 Skill 无法经 Skill 工具按名直接加载，需按对应 `SKILL.md` 的内容手动执行。
 
@@ -27,6 +27,16 @@
   3. 用 `fileURLToPath(new URL('./src', import.meta.url))` 做 ESM 安全映射，跑 `pnpm build` 验证。
 - 约定：TS 与 Vite 两处必须同步，导入统一用 `@/`。
 
+### 3. `add-global-component` — 新增全局组件
+- 路径：`.workbuddy/skills/add-global-component/SKILL.md`
+- 作用：标准化「新增全局 Vue 组件」流程——输入 PascalCase 组件名，自动建 `src/components/<Name>/` 目录、生成可编译骨架（index.vue + types.ts）、在 `global-component.ts` 注册、在 `global-component.d.ts` 补 `GlobalComponents` 类型。
+- 用法：
+  1. 对我说「加个全局组件 XXX / 新增全局组件 / 创建全局组件 Xxx」触发；
+  2. 我会校验组件名为 PascalCase、检查是否已存在（防覆盖），然后建目录 + 生成骨架；
+  3. 自动在 `src/plugins/modules/global-component.ts` 追加 `app.component` 注册，并在 `src/types/global/global-component.d.ts` 的 `GlobalComponents` 接口补一条类型；
+  4. 提示你跑 `pnpm build` 验证。
+- 约定：目录固定 `src/components/<Name>/`，注册走手动 `app.component()`（不启用 `unplugin-vue-components` 的 dirs 扫描），对齐现有 SvgIcon 风格。
+
 ## 快速开始
 
 ```bash
@@ -48,8 +58,15 @@ pnpm build     # 类型检查 + 生产构建
 
 ### 自动导入
 - API 自动导入 `unplugin-auto-import`（`imports: ['vue','pinia','vue-router']`，d.ts 落 `src/types/auto-generate/auto-import.d.ts`，`dirs: ['src/store/modules','src/hooks']`）。
-- 组件自动导入 `unplugin-vue-components`（d.ts 落 `src/types/auto-generate/auto-components.d.ts`，`dirs: []` 暂空，待全局组件目录约定确定后再配）。
+- 组件自动导入 `unplugin-vue-components`（d.ts 落 `src/types/auto-generate/auto-components.d.ts`，`dirs: []` 暂未启用目录扫描；全局组件改用手动注册 + 手写类型声明，详见下节）。
 - Vite 插件统一抽离到 `build/plugins/`：导出 `setupVitePlugins()` 在 `vite.config.ts` 的 `plugins` 调用，并纳入 `vue-tsc -b` 类型检查（见 `tsconfig.node.json` 的 `include`）。
+
+### 全局组件与 SVG 图标
+- SVG 图标：`build/plugins/svg-icons-plugin.ts` 接入 `vite-plugin-svg-icons-ng`（`iconDirs: src/assets/svg-icons`，`symbolId: 'icon-[name]'`）；该插件默认 `htmlMode: 'inline'`，构建/dev 自动把雪碧 sprite 注入 HTML，**无需** `import 'virtual:svg-icons/register'`。图标 `.svg` 放在 `src/assets/svg-icons/`，内部用 `fill="currentColor"` 以便受 `color` 控制。
+- 全局组件 `SvgIcon`（`src/components/SvgIcon/`）：封装 `<svg class="svg-icon"><use :href="#icon-${name}"></use></svg>`，props `name`(必填) / `color`(默认 `currentColor`) / `size`(默认 `'1em'`，number 自动补 `px`)；配套 `types.ts` 的 `SvgIconProps`。模板中直接用 `<SvgIcon name="Lock" />` 即可，无需 import。
+- 全局注册（手动，非自动扫描）：`src/plugins/index.ts` 的 `setupPlugins(app)` → `app.use(registerGlobalComponent)`；`src/plugins/modules/global-component.ts` 内 `app.component('SvgIcon', SvgIcon)`；`main.ts` 的 `bootstrap()` 在 `createApp` 之后、`setupStore` 之前调用 `setupPlugins(app)`。
+- 类型声明：`src/types/global/global-component.d.ts` 扩展 `vue` 的 `GlobalComponents` 接口声明 `SvgIcon`（被 `tsconfig.app.json` 的 `src/**/*.ts` 覆盖），与 `auto-components.d.ts` 互补。
+- 新增全局组件：使用项目级 Skill `add-global-component`（说「加个全局组件 XXX」触发），自动完成「建目录 + 生成骨架 + 注册 + 补类型」，详见「内置 SKILL」第 3 条。
 
 ### 构建期变量与工程配置
 - 应用标题：根 `.env` 提供 `VITE_APP_TITLE`，`index.html` 用 Vite 原生 `<title>%VITE_APP_TITLE%</title>` 占位符注入（dev/build 自动替换）。
