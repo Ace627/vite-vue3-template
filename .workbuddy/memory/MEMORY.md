@@ -21,6 +21,7 @@ Vite ^8.1.1、Vue ^3.5.39、TypeScript ~6.0.2、vue-tsc ^3.3.5、@vitejs/plugin-
 - **样式分层**：`public/css/reset.css` 经 `index.html` `<link href="/css/reset.css">` 引入（基础重置，不进打包，避免 FOUC）；`src/styles/index.scss` 为全局样式入口（当前空白）。
 - **应用标题/环境变量**：`.env` 提供 `VITE_APP_TITLE` 与 `VITE_ROUTER_MODE` 等公开变量；`index.html` 用 `%VITE_APP_TITLE%` 原生注入。`.env` 未 gitignore（仅含公开变量，加密钥需补规则）。手搓 meta 注入插件已于 2026-07-21 彻底移除，meta 注入若需做优先走 Vite 原生 `%VITE_*%`。
 - **代码格式化 oxfmt**：`oxfmt.config.ts`（TS 配置，`defineConfig` 模式）。配置 `printWidth:160`、`singleQuote:true`、`trailingComma:'all'`、`semi:true`、`arrowParens:'always'`、`endOfLine:'lf'`；`ignorePatterns` 忽略 `dist/`/`node_modules/`/`src/types/auto-generate/`；启用内置 `sortImports`（`internalPattern:['^@/']`、`order:'asc'`）。`tsconfig.node.json` 的 `include` 含 `oxfmt.config.ts`（纳入类型检查）。`package.json` 脚本：`format`（`oxfmt . --write`）、`format:check`（`oxfmt . --check`）。
+- **构建期移除 console/debugger（Vite 8 + Rolldown）**：`vite.config.ts` 改为函数式 `defineConfig(({ mode }) => {...})`，用 `loadEnv(mode, process.cwd())` 读取环境；在 `build.rolldownOptions.output.minify.compress` 下设 `dropConsole` / `dropDebugger`，值为 `runtimeConfig.VITE_DROP_CONSOLE !== 'false'`（即**默认启用**，仅当显式 `= false` 才保留）。开关来自 `.env.production` 的 `VITE_DROP_CONSOLE` / `VITE_DROP_DEBUGGER`（均为 `VITE_` 前缀，`loadEnv` 默认只认 `VITE_`，故能被注入；`build.minify` 默认 true，minify 生效时此 compress 配置才起作用）。⚠️ 该路径是 Rolldown 专属（Vite 8 默认 Rolldown），非 esbuild 的 `build.terserOptions`；若日后换回 esbuild 需改写法。`.env.production` 里的 `MODE = "production"` 非 `VITE_` 前缀、`loadEnv` 不加载，仅作标识无实际作用。
 
 ## 项目内 Skill
 
@@ -35,7 +36,7 @@ Vite ^8.1.1、Vue ^3.5.39、TypeScript ~6.0.2、vue-tsc ^3.3.5、@vitejs/plugin-
 
 - 业务/示例页面（当前 App.vue=`<router-view>`，Layout 仅占位「布局测试」）
 - 请求层（axios + 拦截器）、API 目录约定
-- 多环境 `.env`（dev/prod/test）
+- 多环境 `.env`（已加 `.env.production` 含 drop 开关；dev/test 待补）
 - 路由 children / 懒加载 / 路由守卫（当前仅根路由）
 - Layout 实际布局（头部/侧边栏/菜单）
 - UI 组件库（Element Plus 已明确不引入）
