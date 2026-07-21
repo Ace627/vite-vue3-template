@@ -1,23 +1,99 @@
 {
+  /**
+   * Node 端 TS 配置
+   * @description 供 vite.config.ts 等 Node 运行环境脚本使用的 tsconfig，与浏览器端的 tsconfig.app.json 分工；
+   *             采用 nodenext 模块解析，只做类型检查（noEmit）不产出 JS
+   */
   "compilerOptions": {
+    /**
+     * 增量构建信息文件输出路径
+     * @description 指定 .tsbuildinfo 存放位置，开启增量编译以加速后续类型检查与构建
+     */
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    /**
+     * 编译目标 JS 版本
+     * @description 指定编译输出的 ECMAScript 语法级别（es2023），决定可用的语法特性
+     */
     "target": "es2023",
+
+    /**
+     * 类型库
+     * @description 提供 ES2023 标准库类型声明，匹配 target 避免原生 API 类型缺失
+     */
     "lib": ["ES2023"],
+
+    /**
+     * 全局类型声明包
+     * @description 仅引入 node 类型（提供 process/path/url 等 Node 环境 API），供 vite.config.ts 等 Node 端脚本使用
+     */
     "types": ["node"],
+
+    /**
+     * 跳过第三方库类型检查
+     * @description 跳过 node_modules 内 .d.ts 的检查以加速编译，库内类型问题交由库作者负责
+     */
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /**
+     * 模块系统
+     * @description nodenext 模式，遵循 Node 的 ESM/CJS 解析规则（含 package.json 的 type 字段），为 Vite 官方推荐的 Node 端配置
+     */
     "module": "nodenext",
+
+    /**
+     * 允许导入 .ts 扩展名
+     * @description 配合 nodenext 与 noEmit，允许在导入语句中写显式 .ts 后缀
+     */
     "allowImportingTsExtensions": true,
+
+    /**
+     * 严格保留模块语法
+     * @description 原样保留 import/export 语法（不自动改写），要求类型导入必须用 `import type`，避免运行时副作用
+     */
     "verbatimModuleSyntax": true,
+
+    /**
+     * 模块检测
+     * @description force 模式下每个文件都视为独立模块（即便没有 import/export），统一模块语义
+     */
     "moduleDetection": "force",
+
+    /**
+     * 禁止产出
+     * @description 仅做类型检查不生成 JS 文件，vite.config.ts 由 Vite 负责打包运行
+     */
     "noEmit": true,
 
-    /* Linting */
+    /**
+     * 禁止未使用的局部变量
+     * @description 声明但未使用的变量将报错，减少死代码
+     */
     "noUnusedLocals": true,
+
+    /**
+     * 禁止未使用的函数参数
+     * @description 未被使用的参数（除非以 _ 前缀）将报错
+     */
     "noUnusedParameters": true,
+
+    /**
+     * 仅允许可擦除的语法
+     * @description 禁止 enum、命名空间等需运行时支持的特性，确保编译产物可被完全擦除为纯 JS
+     * @note Vite/Rolldown 生态下推荐开启，避免引入运行时类型垫片
+     */
     "erasableSyntaxOnly": true,
+
+    /**
+     * 禁止 switch case 穿透
+     * @description 每个 case 必须以 break/return 结束，防止意外的 case 穿透
+     */
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+
+  /**
+   * 编译包含的文件
+   * @description 限定仅编译 vite.config.ts（Node 端配置/脚本），与编译 src 的 tsconfig.app.json 分工
+   */
+  "include": ["vite.config.ts", "build/**/*.ts"]
 }
