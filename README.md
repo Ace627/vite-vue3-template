@@ -42,3 +42,4 @@ pnpm build     # 类型检查 + 生产构建
 - 路径别名 `@/*` → `src/*`（tsconfig + vite 双向同步）。
 - 仓库根 `.gitattributes` 统一文本行尾为 `eol=lf`。
 - 入口采用 `bootstrap()` 异步引导骨架（`src/main.ts`）。
+- 原子化样式 UnoCSS：已集成 `unocss`（devDependency），`vite.config.ts` 的 `plugins` 加入 `UnoCSS()`（`import UnoCSS from 'unocss/vite'`），`src/main.ts` 引入 `virtual:uno.css`，根目录 `uno.config.ts` 配置 `presetWind3()` + `presetAttributify()` 及自定义 rules（`wh-/mtb-/mlr-/ptb-/plr-`）与 shortcuts（`wh-full/wh-screen/flex-center/clearFix`）。UnoCSS 注入的 preflight 仅含 `--un-*` 变量预设、无传统样式重置，与 `public/css/reset.css` 零冲突。
