@@ -6,11 +6,22 @@
     <title>%VITE_APP_TITLE%</title>
     <!-- 引入浏览器重置样式表 -->
     <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/app-loading.css" />
     <!-- 引入应用图标 -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+       <!-- 白屏阶段会执行的 CSS 加载动画 -->
+      <div class="app-loading">
+        <div class="app-loading-wrap">
+          <img src="/favicon.svg" class="app-loading-logo" alt="Logo" />
+          <div class="app-loading-dots">
+            <span class="dot"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <div class="app-loading-title">%VITE_APP_TITLE%</div>
+        </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
