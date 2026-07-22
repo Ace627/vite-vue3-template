@@ -1,35 +1,21 @@
-import Layout from '@/layout/index.vue'
 import type { App } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+
+import { STATIC_ROUTE_LIST } from './modules/static.route'
+import { globalRouterBeforeGuard } from './router.guard'
 
 /** 创建路由实例 */
 export const router = createRouter({
   history: import.meta.env.VITE_ROUTER_MODE === 'hash' ? createWebHashHistory() : createWebHistory(),
-  routes: [
-    {
-      path: '', // 布局路由配置 确保可以显示布局框架
-      component: Layout,
-      redirect: '/dashboard',
-      children: [
-        {
-          path: 'dashboard',
-          component: () => import('@/views/dashboard/index.vue'),
-          meta: { title: '首页', icon: 'home' },
-        },
-      ],
-    },
-
-    {
-      path: '/:pathMatch(.*)*', // 404页面（必须放在最后）
-      component: () => import('@/views/core/404.vue'),
-      meta: { hidden: true },
-    },
-  ],
+  routes: STATIC_ROUTE_LIST,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
 
 /** 路由配置函数 */
 export async function setupRouter(app: App) {
+  // 配置路由全局前置守卫
+  router.beforeEach(globalRouterBeforeGuard)
+
   // 注册挂载路由插件
   app.use(router)
 

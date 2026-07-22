@@ -1,40 +1,48 @@
 # 项目记忆：vite-vue3-template
 
-## 项目定位
-基于 `pnpm create vite` 的 Vue3 + TS 产物二次改造，目标打造「前端工程化模板」。
+## 定位
+基于 `pnpm create vite` 的 Vue3+TS 产物二次改造，目标「前端工程化模板」。
 
 ## 技术栈
-Vite ^8.1.1、Vue ^3.5.39、TypeScript ~6.0.2、vue-tsc ^3.3.5、@vitejs/plugin-vue ^6.0.7、@vue/tsconfig ^0.9.1、@types/node ^24、sass ^1.101.0(dev)、unocss ^66.7.5(dev)、pinia ^4.0.2、vue-router ^5.2.0、unplugin-auto-import ^21、unplugin-vue-components ^32、vite-plugin-svg-icons-ng ^1.9.2(dev)、oxfmt ^0.59.0(dev)、axios ^1.18.1。
+Vite ^8.1.1 / Vue ^3.5.39 / TypeScript ~6.0.2 / vue-tsc ^3.3.5 / @vitejs/plugin-vue ^6.0.7 / sass ^1.101 / unocss ^66.7.5 / pinia ^4.0.2 / vue-router ^5.2.0 / unplugin-auto-import ^21 / unplugin-vue-components ^32 / vite-plugin-svg-icons-ng ^1.9.2 / vite-plugin-compression2 ^2.5.3 / oxfmt ^0.59 / axios ^1.18.1 / dayjs ^1.11.21。
 
-## 项目约定（已落地）
-- **入口引导**：`src/main.ts` 用 `bootstrap()` 异步模式，顺序 `createApp` → `setupPlugins(app)` → `setupStore(app)`(Pinia) → `await setupRouter(app)` → `app.mount('#app')`。统一用 `@/` 导入。
-- **路径别名**：`@/* → src/*`，`tsconfig.app.json` 的 `paths` 与 `vite.config.ts` 的 `resolve.alias` 双向同步。
-- **Vite 插件抽离**：`build/plugins/index.ts` 导出 `setupVitePlugins(): PluginOption[]`，注册 vue/UnoCSS/autoImport/autoComponents/svgIcons；`build/**/*.ts` 纳入 `tsconfig.node.json` 检查。nodenext 下相对导入须带 `.ts`。
-- **状态管理**：`src/store/index.ts` 导出 `createPinia()` 单例 + `setupStore(app)`。
-- **路由**：`src/router/index.ts` 导出 `router` + `setupRouter(app)`；`VITE_ROUTER_MODE==='hash'` 切 hash/web（当前 history）；含 404 兜底路由（`src/views/core/404.vue`）。
-- **UnoCSS**：`uno.config.ts` 用 `presetWind3()` + `presetAttributify()`，自定义 rules（wh-/mtb-/mlr-/ptb-/plr-）+ shortcuts（wh-full/wh-screen/flex-center/clearFix）；`main.ts` 顶部 `import 'virtual:uno.css'` 置于 `./styles/index.scss` 前。
-- **自动导入**：unplugin-auto-import 配 `imports:['vue','pinia','vue-router']` + `dirs:['src/store/modules','src/hooks']`；unplugin-vue-components 的 `dirs:[]`（未启用组件目录扫描）。d.ts 落 `src/types/auto-generate/`（gitignore）。
-- **SVG 图标**：`vite-plugin-svg-icons-ng` 默认 inline 注入 sprite，无需 `import 'virtual:svg-icons/register'`；`symbolId:'icon-[name]'`，`SvgIcon` 的 `name` 必须等于 `src/assets/svg-icons/` 文件名（去 `.svg`）。新增图标流程：阿里图标库下载 → 放入目录 → 跑 `pnpm clean:svg`（`scripts/svg-clean.ts`，`node --experimental-strip-types` 原生跑 TS）去冗余属性适配 `fill:currentColor`（仅单色）。全局组件手动注册于 `src/plugins/modules/global-component.ts`，类型补 `src/types/global/global-component.d.ts`，统一放 `src/components/<Name>/`。新增全局组件走 Skill `add-global-component`。
-- **样式分层**：`public/css/reset.css` 经 `index.html` `<link>` 引入（不进打包防 FOUC）；`src/styles/index.scss` 全局样式入口（当前空）。
-- **首屏加载动画（白屏兜底）**：`index.html` 的 `#app` 内放 `.app-loading` 占位（纯 HTML+CSS），`public/css/app-loading.css` 经 `<head>` `<link>` 同步引入；`main.ts` 不手动删节点，靠 `app.mount('#app')` 原生 `container.textContent = ""` 在挂载前清空 `#app` 子节点 → 加载动画随挂载自动消失。**机制前提**：①纯客户端 SPA（client mount）成立；若上 SSR/hydration 需改 `v-cloak`/`data-v-app` 方案。②根组件必须有 template/render（App.vue 有 `<router-view>`），否则 Vue 会把 loading HTML 当模板捕获。③JS 彻底加载失败会卡死在 spinner（无报错），上线项目建议加失败兜底；2026-07-22 已出方案（内联 watchdog + bootstrap try/catch 两层，错误 UI 替换 spinner），用户决定暂不做，靠控制台排查、后续看情况优化。④原瑕疵（HTML `.app-loading-dots` 与 CSS `.dots` 死规则）已于 2026-07-22 清理（删除死规则，动画靠 `.dot`）。
-- **环境变量**：`.env` 提供 `VITE_APP_TITLE`/`VITE_ROUTER_MODE`/`VITE_REQUEST_TIMEOUT`；`.env.development` 有 `VITE_BASE_URL`(真实后端地址)/`VITE_BASE_API`/`VITE_SERVER_PORT`；`.env.production` 有 `VITE_DROP_CONSOLE`/`VITE_DROP_DEBUGGER`/`VITE_BASE_API`。`index.html` 用 `%VITE_APP_TITLE%` 原生注入。`.env` 未 gitignore（仅公开变量）。
-- **开发期反向代理（Vite `server.proxy`）**：`vite.config.ts` 的 `proxy` 键 = `VITE_BASE_API`，`target=VITE_BASE_URL`、`changeOrigin:true`、`rewrite` 剥掉 `/dev-api` 标记。`/dev-api` 是纯代理标记前缀（不与路由/静态资源冲突），它后面拼的才是后端真实公共路径。两种用法统一在 `VITE_BASE_API` 一个变量：①无公共路径 → `/dev-api`（浏览器 `/dev-api/x` → 剥除 → 后端根 `/x`）；②有公共路径 → `/dev-api/api` 或 `/dev-api/common`（剥 `/dev-api` → 后端 `/api/...`）。好处：开发期消跨域、配置点最少、dev/prod 共用同一 `baseURL=VITE_BASE_API` 写法（prod 由 nginx 按 `VITE_BASE_API` 反代，现已配 `VITE_BASE_API="/api"`）。**核心优势（设计取舍）**：`/dev-api` 把「代理触发前缀」与「后端公共路径」合一于 `VITE_BASE_API` 单一变量——后端无公共路径时仅写 `/dev-api` 即**零额外配置**（剥掉即直达后端根），有公共路径时只在 `/dev-api` 后追加一段（如 `/dev-api/api`）。开发者切换环境 / 换后端 / 加去公共前缀，全程只动 `.env`、不碰业务代码，**心智负担最低**。
-- **代码格式化 oxfmt**：`oxfmt.config.ts`（`defineConfig`）。`printWidth:160`、`singleQuote:true`、`semi:false`、`trailingComma:'all'`、`arrowParens:'always'`、`endOfLine:'lf'`；`ignorePatterns` 忽略 `dist/`/`node_modules/`/`src/types/auto-generate/`/`pnpm-lock.yaml`；启用 `sortImports`（`internalPattern:['^@/']`、`order:'asc'`）。`tsconfig.node.json` include 含 `oxfmt.config.ts`。脚本：`format`/`format:check`。
-- **构建期移除 console/debugger（Vite 8 + Rolldown）**：`vite.config.ts` 函数式 `defineConfig(({mode})=>...)` + `loadEnv`；`build.rolldownOptions.output.minify.compress` 设 `dropConsole`/`dropDebugger`，值 `runtimeConfig.VITE_DROP_* !== 'false'`（默认启用）。Rolldown 专属，换 esbuild 需改写法。
-- **构建期 vendor chunk 分包（Vite 8 + Rolldown）**：`vite.config.ts` 的 `build.rolldownOptions.output.codeSplitting.groups` 将 `vue/pinia/vue-router/axios/dayjs` 拆为独立 vendor chunk；`chunkFileNames`/`entryFileNames` 用 `[name]-[hash].js`（content hash，内容不变则文件名不变）。**收益**：①浏览器长缓存命中——vendor 不随业务发版变动，二次访问免重下库代码（约 80KB 级别）；②并发下载缩短首屏——多块并行、流式解析，HTTP/2 多路复用下更优；③缓存粒度细，业务改动不波及 vendor 缓存；④失败隔离（单块失败只重下该块）+ 同类代码同块压缩率略高。**边界/约束**：①Vite 8 + Rolldown 已无传统 `build.rollupOptions.output.manualChunks`（对象形式报 `output.manualChunks object form is not supported`，函数形式亦弃用），分包只能走 `codeSplitting.groups`（或 Rolldown 新 `advancedChunks.groups`），勿再用 manualChunks。②须服务端/CDN 对带 hash 资源配 `Cache-Control: public, max-age=31536000, immutable` 才真正生效（入口 html 短缓存/不缓存）。③`vue` 运行时(`@vue/runtime-*` 等)因 group 的 `test` 正则 `/node_modules[\\/]vue[\\/]/` 仅匹配 `node_modules/vue/`、未覆盖 `node_modules/@vue/`，被 Rolldown 当未分组共享模块合并进 `pinia` 块（pinia 60.5KB 内已含 vue 运行时），`index` 入口块仅持有对 `createApp` 的引用——故 vue 未真正独立成块、缓存粒度被绑到 pinia；**修复**：将 vue 组 `test` 改为 `/node_modules[\\/](vue|@vue)[\\/]/` 即可让 `@vue/*` 归 vue 组独立成块（priority 16 最高，会从 pinia 块剥离 vue 运行时）。④业务未做路由级懒加载分包；⑤碎块过多(>30)反噬请求开销；⑥HTTP/1.1 同域并发≈6。
-- **构建期 gzip 预压缩（vite-plugin-compression2）**：`build/plugins/dist-compression.ts` 导出 `setupCompressionPlugin()`，`build/plugins/index.ts` 的 `setupVitePlugins()` 末尾 `plugins.push(setupCompressionPlugin())` 注册。`vite-plugin-compression2` 为 ESM、对 Vite8/Rolldown 友好（原 `vite-plugin-compression@0.5` 是 CJS，在 `verbatimModuleSyntax`+`nodenext` 下默认导入无调用签名，已弃用换 v2）。配置：`algorithms:[['gzip',{level:9}]]`、`threshold:10*1024`（仅压 >10KB）、`deleteOriginalAssets:false`（保留原文件）、`include` 匹配 js/css/json/html/ico/svg、`logLevel:'silent'`（替代旧版 `verbose`/`ext`/`deleteOriginFile`/`filter`）。**关键约束**：生成的 `.gz` 只有服务端开启 `gzip_static`（nginx）或 CDN 预压缩才会被直接发出，否则不生效——部署侧需配套。
-- **请求层 axios**：`src/utils/request/index.ts` 用 `axios.create`（baseURL=`VITE_BASE_API`、timeout=`VITE_REQUEST_TIMEOUT`*1000），注册 `jwt-auth`（取 `getAccessToken()` 挂 `Bearer`）+ `response-transform`（成功 `code===200` 解包 `response.data.data`、业务失败转交 error 拦截器）+ `response-error`（按 `HttpStatusCode` 映射文案 + `alert` 占位 + 后端 `message` 优先；401 调 `removeAccessToken()` + `reload()` 清死 token；网络错误 `status ?? -1` 降级）。`ApiResponse<T>` 定义为 `src/types/api.d.ts` 全局 ambient（`code`/`message`/`data`），拦截器用 `AxiosError<ApiResponse>` 泛型收紧类型。`request.get<T>` 的 T 是解包后业务数据，调用方写 `get<User>` 而非 `get<ApiResponse<User>>`。
-- **Token 存储约定**：token 过期/有效性由服务端 Redis 负责，前端 localStorage 仅做不透明持久化（`src/utils/cache/token.cache.ts`，读写返回 `string | null`）。清场由调用方负责，不开 `clearTokens()`。底层 `StorageCache`（`src/utils/storage-cache.util.ts`）统一 `app:storage:` 前缀、支持 ttl。
+## 约定（已落地）
+- 入口：`src/main.ts` 用 `bootstrap()` 异步，顺序 createApp→setupPlugins→setupStore(Pinia)→await setupRouter→mount；统一 `@/` 导入。
+- 别名：`@/*→src/*`，tsconfig.app paths 与 vite resolve.alias 双向同步。
+- Vite 插件抽离：`build/plugins/index.ts` 导出 `setupVitePlugins(): PluginOption[]`，纳入 tsconfig.node 检查；nodenext 下相对导入带 `.ts`。
+- 状态：`src/store/index.ts` 导出 `createPinia()` 单例 + `setupStore(app)`；含 `store/modules/app.ts`。
+- 路由（三层）：① `src/router/index.ts` 创建 `router` + `setupRouter(app)`（注册守卫→`app.use(router)`→`await router.isReady()` 再挂载）；`VITE_ROUTER_MODE==='hash'` 切 hash 否则 history。② `src/router/modules/static.route.ts` 导出常量路由 `STATIC_ROUTE_LIST`（dashboard/login/404 通配），**无 asyncRoutes/addRoute/roles 动态权限**。③ `src/router/router.guard.ts` 导出 `globalRouterBeforeGuard(to)`：白名单 `['/login']` 直接放行 → 读 `getAccessToken()` 为空则 `redirect` 到 `/login?redirect=to.fullPath` → 否则放行（仅依据 token 有无判断，无 roles）。
+- UnoCSS：`presetWind3()+presetAttributify()`，自定义 rules(wh-/mtb-/mlr-/ptb-/plr-)+shortcuts(wh-full/wh-screen/flex-center/clearFix)；`main.ts` 顶部 `import 'virtual:uno.css'` 先于 `./styles/index.scss`。
+- 自动导入：auto-import 配 `imports:['vue','pinia','vue-router']`+`dirs:['src/store/modules','src/hooks']`；components 的 `dirs:[]`（未扫组件目录）。d.ts 落 `src/types/auto-generate/`(gitignore)。
+- SVG：`vite-plugin-svg-icons-ng` inline sprite，symbolId `icon-[name]`，组件 name=文件名(去.svg)。新增：下载→放 `src/assets/svg-icons/`→跑 `pnpm clean:svg`(`scripts/svg-clean.ts`，node 原生跑 TS)去冗余属性适配 `fill:currentColor`。全局组件手动注册于 `src/plugins/modules/global-component.ts`，类型补 `src/types/global/global-component.d.ts`，统一放 `src/components/<Name>/`。新增全局组件走 Skill `add-global-component`。
+- 样式分层：`public/css/reset.css` 经 `index.html` `<link>` 引入(不进打包防 FOUC)；`src/styles/index.scss` 全局入口(当前空)。
+- 首屏 loading：`index.html` `#app` 内 `.app-loading` 占位 + `public/css/app-loading.css`(`<head>` 同步 `<link>`)，`main.ts` 靠 `app.mount` 原生 `container.textContent=""` 清空。注意：①JS 彻底失败会卡死 spinner；②依赖 client mount，SSR 需换方案；③根组件需有 template。watchdog 失败兜底已出方案(2026-07-22)用户决定暂不做。
+- 环境变量：`.env`(VITE_APP_TITLE/ROUTER_MODE/REQUEST_TIMEOUT)、`.env.development`(VITE_BASE_URL/VITE_BASE_API/VITE_SERVER_PORT)、`.env.production`(VITE_DROP_CONSOLE/VITE_DROP_DEBUGGER/VITE_BASE_API)；`index.html` 用 `%VITE_APP_TITLE%`。
+- 开发代理：`server.proxy` 键=`VITE_BASE_API`，target=`VITE_BASE_URL`、changeOrigin、rewrite 剥 `/dev-api`。`/dev-api` 把代理前缀与后端公共路径合一于 `VITE_BASE_API` 单变量：无公共路径写 `/dev-api`(零配置)，有则 `/dev-api/api`；dev/prod 共用 baseURL=`VITE_BASE_API`，切环境只动 `.env`。
+- oxfmt：`printWidth:160/singleQuote/semi:false/trailingComma:'all'/arrowParens:'always'/endOfLine:'lf'`；ignore dist/node_modules/auto-generate/pnpm-lock；`sortImports`(internalPattern `^@/`, asc)。脚本 `format`/`format:check`。
+- 构建 drop console/debugger：Rolldown `build.rolldownOptions.output.minify.compress.dropConsole/dropDebugger`，值 `VITE_DROP_*!=='false'`(默认启)。
+- vendor chunk：`build.rolldownOptions.output.codeSplitting.groups` 拆 vue(含@vue,regex `/node_modules[\\/](vue|@vue)[\\/]/`,priority16)/pinia(15)/vue-router(14)/axios(13)/dayjs(12) 独立块；`chunkFileNames/entryFileNames` 用 `[name]-[hash].js`。**约束**：①Vite8+Rolldown 已无 manualChunks；②需服务端对带 hash 资源配 `Cache-Control: public,max-age=31536000,immutable` 才生效；③业务未做路由级懒加载分包；④碎块>30反噬；⑤HTTP/1.1 同域并发≈6。
+- gzip：`build/plugins/dist-compression.ts` 导出 `setupCompressionPlugin()`，注册于 `setupVitePlugins()` 末尾。vite-plugin-compression2(ESM)。`algorithms:[['gzip',{level:9}]]`/`threshold:10*1024`/`deleteOriginalAssets:false`/include 匹配 js/css/json/html/ico/svg/`logLevel:'silent'`。**约束**：需服务端开 `gzip_static` 或 CDN 预压缩才发 `.gz`。
+- axios：`src/utils/request/index.ts` axios.create(baseURL=`VITE_BASE_API`、timeout=`VITE_REQUEST_TIMEOUT`*1000)+三拦截器 jwt-auth(挂 Bearer)/response-transform(成功 code===200 解包 data、业务失败转 error)/response-error(按 HttpStatusCode 映射文案+401 removeAccessToken+reload)。`ApiResponse<T>` 全局 ambient(`src/types/api.d.ts`)，拦截器用 `AxiosError<ApiResponse>`；`request.get<T>` 的 T 即业务 data。
+- Token：`src/utils/cache/token.cache.ts` 读写返回 `string|null`；底层 `StorageCache`(`src/utils/storage-cache.util.ts`) 统一 `app:storage:` 前缀、支持 ttl。清场由调用方负责。
+  - **登录态本质**：localStorage 中的 `accessToken` 字符串即全部登录态；**无 user/auth Pinia store、无 userInfo/roles**。
 
-## 项目内 Skill
-- `git-commit-msg`（触发即「提交代码」习惯说法，详情见 `.workbuddy/skills/git-commit-msg/SKILL.md`）：**严格两步流程 + 最终提交前强制自检**。① 基于真实 `git diff` 生成 5 条彼此有差异的单行中文候选 message（`<type>: <简述>`，中文动词开头、≤50字、无句号），纯文本列出 1-5 让用户回复编号选（候选超 4 项不能用快捷组件，必须纯文本）；② 用户选定后单独再问一次提交方式：提交到暂存区 / 提交并推送 / 跳过；③ **最终提交前强制自检**：执行 `git status --short`，若输出为空则停止并告知用户无改动；若输出非空则列出未提交文件，重点检查 `.workbuddy/` 是否有新增改动，必须一并纳入本次提交（不单列、不询问），再次确认后再执行 `git add` 与 `git commit`。所有写操作必须用户确认，绝不自动执行；`.workbuddy/` 一并提交。
+## 登录/登出/守卫流程（模拟实现，2026-07-23）
+- **主链路**：访问受保护页 → `router.guard.ts` 拦截 → 无 token 跳 `/login?redirect=原路径` → `login.vue` 的 `handleLogin` 读 `route.query.redirect`、`setAccessToken('mock-access-token')`、`router.replace(target)` 回跳 → 登出（`dashboard/index.vue` 的 `handleLogout`）= `removeAccessToken()` + `router.replace('/login')`。
+- **关键文件**：`src/router/router.guard.ts`、`src/router/modules/static.route.ts`、`src/router/index.ts`、`src/views/core/login.vue`、`src/views/dashboard/index.vue`。
+- **模拟边界（务必知晓，接入真实接口前是假实现）**：
+  - 登录无接口调用：`login.vue` 写死 token `'mock-access-token'`，表单预填 `admin`/`admin123456` **仅预填、不校验账号密码对错**。
+  - 登出无接口：仅清本地 token + 跳登录页。
+  - 401 兜底（`response-error.ts`）：`removeAccessToken()` + `window.location.reload()` 占位，非精准跳登录页。
+  - `token.cache.ts` 的 `refreshToken` 系列（`setRefreshToken`/`getRefreshToken`/`removeRefreshToken`）为**死代码，无任何调用点**。
+- **升级真实登录最小路径（备注，非当前实现）**：①`login.vue` 改为调真实登录接口写后端返回的 token；②新增 `store/modules/user.ts`（login/logout/getUserInfo actions + token/userInfo state）替代纯缓存方案；③`response-error.ts` 的 401 改为 `router.replace('/login?redirect=…')` 而非整页 reload；④权限路由再引 `asyncRoutes`+`router.addRoute`+`roles`。
+
+## 项目 Skill
+- `git-commit-msg`：两步流程(5候选message→问提交方式)+提交前强制自检(必含 `.workbuddy/`)。
 - `path-alias`：`@/*` 别名完整配置流程。
 - `add-global-component`：新增全局组件全流程。
 
-## 工程化进度（截至 2026-07-22）
-**已完成**：脚手架清理、路径别名、UnoCSS（含自定义 rules/shortcuts）、Pinia、vue-router（含 404 兜底）、unplugin 自动导入、SVG 图标 + SvgIcon、Vite 插件抽离、reset.css、StorageCache 封装、axios 请求层（实例 + 三拦截器 + ApiResponse 契约 + 类型收紧）、构建期 drop console/debugger、代码格式化 oxfmt、3 个项目 Skill、严格 TS 配置（noUnusedLocals/Parameters、erasableSyntaxOnly、tsconfig.node 用 verbatimModuleSyntax/nodenext）、多环境 .env（dev/prod）、构建期 vendor chunk 分包（Rolldown `output.codeSplitting.groups`：vue/pinia/vue-router/axios/dayjs 独立成块、文件名带 content hash）、构建期 gzip 预压缩（vite-plugin-compression2，>10KB 产物生成 .gz）。
-**未做（模板常见项）**：业务/示例页面（App.vue=`<router-view>`、Layout 仅占位）、路由 children/懒加载/路由守卫、Layout 实际布局（头部/侧边栏/菜单）、UI 组件库（Element Plus 明确不引入）、ESLint/husky/lint-staged、i18n、构建优化（brotli 压缩、CDN、路由级业务分包懒加载）、单元测试（Vitest）、CI/CD、test/staging 多环境 .env。
-
-## 后续计划
-- **整理「可直接落地的前端工程化配置文档」**：用户明确有此意向，将基于本项目已落地的约定沉淀为一份开箱即用的工程化配置手册。**已于 2026-07-22 落地为 `docs/前端工程化.md`**（按 构建产物优化 / 类型与代码质量 / 开发体验 / 状态路由 / 请求层 / 样式UI / 首屏体验 / Skill 分组，每条配一句话好处说明）。
-**构建状态**：`vue-tsc -b && vite build` 整链已转绿（零类型错误，44 模块，dist 正常生成）。
+## 工程化进度（2026-07-22）
+已完成：脚手架清理/路径别名/UnoCSS/Pinia/vue-router(404)/unplugin自动导入/SvgIcon/Vite插件抽离/reset.css/StorageCache/axios请求层/drop console·debugger/oxfmt/3 Skill/严格TS/多环境.env/vendor chunk分包/gzip预压缩/首屏loading/`docs/前端工程化.md`/模拟登录·登出·路由守卫（mock token，非真实接口，详见「登录/登出/守卫流程」章节）。
+未做：真实登录接口/user Pinia store/userInfo/动态权限路由(asyncRoutes+addRoute+roles)/刷新 token(refreshToken 死代码)/业务·示例页面(Layout仅占位)/路由children·懒加载/Layout实际布局/UI组件库(Element Plus不引入)/brotli·CDN·路由级业务分包/单元测试(Vitest)/CI-CD/test·staging多环境.env/i18n/ESLint·husky·lint-staged/oxlint(评估非必需暂不入)。
+构建状态：`vue-tsc -b && vite build` 整链绿(零类型错误，44模块，dist正常)。
