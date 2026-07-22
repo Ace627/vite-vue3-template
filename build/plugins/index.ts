@@ -4,6 +4,7 @@ import type { PluginOption } from 'vite'
 
 import { registerAutoImport, registerAutoComponents } from './auto-import-plugin.ts'
 import { registerSvgIcons } from './svg-icons-plugin.ts'
+import { setupCompressionPlugin } from './dist-compression.ts'
 
 /** 汇总并注册所有 Vite 插件 */
 export function setupVitePlugins(): PluginOption[] {
@@ -23,6 +24,9 @@ export function setupVitePlugins(): PluginOption[] {
 
   /** 提供 SvgIcon 的使用支持 */
   plugins.push(registerSvgIcons())
+
+  /** 构建期产物 gzip 预压缩（仅生产构建生效） */
+  plugins.push(setupCompressionPlugin())
 
   return plugins
 }

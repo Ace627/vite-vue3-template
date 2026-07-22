@@ -54,6 +54,9 @@ importers:
       vite:
         specifier: ^8.1.1
         version: 8.1.5(@types/node@24.13.3)(jiti@2.7.0)(sass@1.101.0)(yaml@2.9.0)
+      vite-plugin-compression2:
+        specifier: ^2.5.3
+        version: 2.5.3
       vite-plugin-svg-icons-ng:
         specifier: ^1.9.2
         version: 1.9.2(vite@8.1.5(@types/node@24.13.3)(jiti@2.7.0)(sass@1.101.0)(yaml@2.9.0))
@@ -593,6 +596,15 @@ packages:
 
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+
+  '@rollup/pluginutils@5.4.0':
+    resolution: {integrity: sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -1292,6 +1304,9 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+  tar-mini@0.2.0:
+    resolution: {integrity: sha512-+qfUHz700DWnRutdUsxRRVZ38G1Qr27OetwaMYTdg8hcPxf46U0S1Zf76dQMWRBmusOt2ZCK5kbIaiLkoGO7WQ==}
+
   tinyexec@1.2.4:
     resolution: {integrity: sha512-SHf/r48b7vOrjve9PxJo3MN5v5yuyjHvdUcrQffT3WXMUfnGmHDVbC4k3sHJaJTgZCwpUplIaAo5ANtMyp3YHg==}
     engines: {node: '>=18'}
@@ -1411,6 +1426,9 @@ packages:
         optional: true
       webpack:
         optional: true
+
+  vite-plugin-compression2@2.5.3:
+    resolution: {integrity: sha512-ItPgqQWkcnBbVw7is9OKwiZ8v6+ju9rYROl5Lp6QfQDEx/d55AwJQb/KLpsQqsU9HoigYBsZ8tK6I02UwJNvEw==}
 
   vite-plugin-svg-icons-ng@1.9.2:
     resolution: {integrity: sha512-C/hLJw4irOUVNJZB7AZi5YghCSFbu59py4jl2B6AJvV2gAk43pPjk8h1pn57/ngzOrWX9+cEr/qbvBuLxCasAw==}
@@ -1863,6 +1881,12 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.1': {}
+
+  '@rollup/pluginutils@5.4.0':
+    dependencies:
+      '@types/estree': 1.0.9
+      estree-walker: 2.0.2
+      picomatch: 4.0.5
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -2662,6 +2686,8 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.6.0
 
+  tar-mini@0.2.0: {}
+
   tinyexec@1.2.4: {}
 
   tinyglobby@0.2.17:
@@ -2788,6 +2814,13 @@ snapshots:
     optionalDependencies:
       rolldown: 1.1.5
       vite: 8.1.5(@types/node@24.13.3)(jiti@2.7.0)(sass@1.101.0)(yaml@2.9.0)
+
+  vite-plugin-compression2@2.5.3:
+    dependencies:
+      '@rollup/pluginutils': 5.4.0
+      tar-mini: 0.2.0
+    transitivePeerDependencies:
+      - rollup
 
   vite-plugin-svg-icons-ng@1.9.2(vite@8.1.5(@types/node@24.13.3)(jiti@2.7.0)(sass@1.101.0)(yaml@2.9.0)):
     dependencies:
