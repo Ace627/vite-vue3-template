@@ -8,7 +8,7 @@ export function useDynamicTitle() {
   watch(
     // 设置 watch 来观察路由的路径 (route.path) 。当这些值发生变化时，会根据条件更新页面标题
     [() => route.path],
-    ([_]) => {
+    () => {
       // 如果不启用动态标题或当前路由没有 meta.title，则使用默认的应用标题
       if (!route.meta.title) {
         document.title = appTitle

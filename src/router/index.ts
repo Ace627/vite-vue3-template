@@ -9,6 +9,14 @@ export const router = createRouter({
     {
       path: '', // 布局路由配置 确保可以显示布局框架
       component: Layout,
+      redirect: '/dashboard',
+      children: [
+        {
+          path: 'dashboard',
+          component: () => import('@/views/dashboard/index.vue'),
+          meta: { title: '首页', icon: 'home' },
+        },
+      ],
     },
 
     {
