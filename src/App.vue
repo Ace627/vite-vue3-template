@@ -6,4 +6,5 @@
 defineOptions({ name: 'App' })
 
 useResize()
+useDynamicTitle()
 </script>
