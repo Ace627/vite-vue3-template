@@ -1,4 +1,4 @@
-import axios, { HttpStatusCode } from 'axios'
+import { HttpStatusCode } from 'axios'
 import type { AxiosInstance } from 'axios'
 
 export function responseTransformInterceptor(instance: AxiosInstance) {

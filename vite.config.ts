@@ -7,6 +7,9 @@ export default defineConfig(({ mode }) => {
   const runtimeConfig = loadEnv(mode, process.cwd())
 
   return {
+    // 部署应用包时的基本 URL
+    base: runtimeConfig.VITE_PUBLIC_PATH ?? '/',
+
     plugins: setupVitePlugins(),
 
     resolve: {
@@ -17,6 +20,8 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
+      // 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整
+      outDir: runtimeConfig.VITE_OUTPUT_DIR ?? 'dist',
       rolldownOptions: {
         output: {
           minify: {
@@ -29,6 +34,14 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+    },
+
+    css: {
+      /**
+       * 如果启用了这个选项，那么 CSS 预处理器会尽可能在 worker 线程中运行；即通过多线程运行 CSS 预处理器，从而极大提高其处理速度
+       * https://cn.vitejs.dev/config/shared-options#css-preprocessormaxworkers
+       */
+      preprocessorMaxWorkers: true,
     },
 
     server: {
