@@ -14,5 +14,8 @@ export const useAppStore = defineStore('app', () => {
     withoutAnimation.value = hasAnimation
   }
 
-  return { device, isCollapse, closeSidebar }
+  const isMobile = computed(() => device.value === 'mobile')
+  const isDesktop = computed(() => device.value === 'desktop')
+
+  return { device, isCollapse, isMobile, isDesktop, closeSidebar }
 })
