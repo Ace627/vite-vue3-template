@@ -1,5 +1,7 @@
 import { fileURLToPath } from 'node:url'
+
 import { defineConfig, loadEnv } from 'vite'
+
 import { setupVitePlugins } from './build/plugins/index.ts'
 
 // https://vite.dev/config/
@@ -23,7 +25,24 @@ export default defineConfig(({ mode }) => {
       // 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整
       outDir: runtimeConfig.VITE_OUTPUT_DIR ?? 'dist',
       rolldownOptions: {
+        checks: {
+          pluginTimings: false, // 禁用插件计时器检查，以提高构建性能
+        },
         output: {
+          // 引入文件名的名称
+          chunkFileNames: 'js/[name]-[hash].js',
+          // 包的入口文件名称
+          entryFileNames: 'js/[name]-[hash].js',
+          // 打包的文件进行拆包处理
+          codeSplitting: {
+            groups: [
+              { name: 'vue', test: /node_modules[\\/](vue|@vue)[\\/]/, priority: 16 },
+              { name: 'pinia', test: /node_modules[\\/]pinia[\\/]/, priority: 15 },
+              { name: 'vue-router', test: /node_modules[\\/]vue-router[\\/]/, priority: 14 },
+              { name: 'axios', test: /node_modules[\\/]axios[\\/]/, priority: 13 },
+              { name: 'dayjs', test: /node_modules[\\/]dayjs[\\/]/, priority: 12 },
+            ],
+          },
           minify: {
             compress: {
               // 是否移除 console 语句（环境变量不为 'false' 时启用，默认启用）
