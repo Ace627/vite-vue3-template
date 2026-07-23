@@ -4,9 +4,11 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import { STATIC_ROUTE_LIST } from './modules/static.route'
 import { globalRouterBeforeGuard } from './router.guard'
 
+const { VITE_ROUTER_MODE, VITE_PUBLIC_PATH } = import.meta.env
+
 /** 创建路由实例 */
 export const router = createRouter({
-  history: import.meta.env.VITE_ROUTER_MODE === 'hash' ? createWebHashHistory() : createWebHistory(),
+  history: VITE_ROUTER_MODE === 'hash' ? createWebHashHistory(VITE_PUBLIC_PATH) : createWebHistory(VITE_PUBLIC_PATH),
   routes: STATIC_ROUTE_LIST,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })

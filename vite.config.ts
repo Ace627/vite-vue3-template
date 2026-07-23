@@ -24,6 +24,16 @@ export default defineConfig(({ mode }) => {
     build: {
       // 指定打包文件的输出目录。默认值为 dist ，当 dist 被占用或公司有统一命名规范时，可进行调整
       outDir: runtimeConfig.VITE_OUTPUT_DIR ?? 'dist',
+      /** 图片转 base64 编码的阈值。为防止过多的 http 请求，Vite 会将小于此阈值的图片转为 base64 格式 */
+      assetsInlineLimit: 4096,
+      /** 规定触发警告的 chunk 大小。（以 kbs 为单位） */
+      chunkSizeWarningLimit: 4096,
+      /** 启用/禁用 CSS 代码拆分 */
+      cssCodeSplit: true,
+      /** 构建后是否生成 source map 文件 */
+      sourcemap: false,
+      /** 是否在构建阶段将 publicDir 目录中的所有文件复制到 outDir 目录中 */
+      copyPublicDir: true,
       rolldownOptions: {
         checks: {
           pluginTimings: false, // 禁用插件计时器检查，以提高构建性能
@@ -61,6 +71,16 @@ export default defineConfig(({ mode }) => {
        * https://cn.vitejs.dev/config/shared-options#css-preprocessormaxworkers
        */
       preprocessorMaxWorkers: true,
+      /**
+       * 建议只用来嵌入 SCSS 的变量声明文件，嵌入后全局可用
+       * 该选项可以用来为每一段样式内容添加额外的代码。但是要注意，如果你添加的是实际的样式而不仅仅是变量，那这些样式在最终的产物中会重复。
+       * https://cn.vitejs.dev/config/shared-options.html#css-preprocessoroptions-extension-additionaldata
+       */
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/styles/element-plus/el-theme-light.scss";`,
+        },
+      },
     },
 
     server: {
@@ -69,6 +89,10 @@ export default defineConfig(({ mode }) => {
       // 指定开发服务器端口。注意：如果端口已经被使用，Vite 会自动尝试下一个可用的端口，所以这可能不是开发服务器最终监听的实际端口
       // 开发环境端口（项目建议避开 80、443 等常用端口，防止冲突）
       port: parseInt(runtimeConfig.VITE_SERVER_PORT),
+      /** 端口被占用时，是否直接退出 | 设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口 */
+      strictPort: false,
+      /** 是否允许跨域 */
+      cors: true,
       /** 反向代理配置（主要是开发时用来解决跨域问题） */
       proxy: {
         [runtimeConfig.VITE_BASE_API]: {

@@ -1,10 +1,11 @@
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 import type { PluginOption } from 'vite'
 
 import { registerAutoImport, registerAutoComponents } from './auto-import-plugin.ts'
-import { registerSvgIcons } from './svg-icons-plugin.ts'
 import { setupCompressionPlugin } from './dist-compression.ts'
+import { registerSvgIcons } from './svg-icons-plugin.ts'
 
 /** 汇总并注册所有 Vite 插件 */
 export function setupVitePlugins(): PluginOption[] {
@@ -15,6 +16,9 @@ export function setupVitePlugins(): PluginOption[] {
 
   /** 即时按需的原子化 CSS 引擎 UnoCSS */
   plugins.push(UnoCSS())
+
+  /** 提供 Element Plus 组件库 + 函数式 API(ElMessage/ElMessageBox/ElNotification/ElLoading) 样式按需导入；模板组件样式由 ElementPlusResolver 负责，二者互补 */
+  plugins.push(ElementPlus({ useSource: true }))
 
   /** Vue / Pinia API 按需自动导入 */
   plugins.push(registerAutoImport())

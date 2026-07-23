@@ -5,26 +5,12 @@
 
       <div class="login__field">
         <label class="login__label" for="account">账号</label>
-        <input
-          id="account"
-          v-model="account"
-          class="login__input"
-          type="text"
-          placeholder="请输入账号"
-          autocomplete="username"
-        />
+        <input id="account" v-model="account" class="login__input" type="text" placeholder="请输入账号" autocomplete="username" />
       </div>
 
       <div class="login__field">
         <label class="login__label" for="password">密码</label>
-        <input
-          id="password"
-          v-model="password"
-          class="login__input"
-          type="password"
-          placeholder="请输入密码"
-          autocomplete="current-password"
-        />
+        <input id="password" v-model="password" class="login__input" type="password" placeholder="请输入密码" autocomplete="current-password" />
       </div>
 
       <button class="login__btn" type="button" @click="handleLogin">登录</button>
@@ -33,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { setAccessToken } from '@/utils'
+import { setAccessToken, TipModal } from '@/utils'
 
 defineOptions({ name: 'Login' })
 
@@ -51,7 +37,7 @@ function handleLogin() {
 
   // 写入 token（占位 mock，待接入真实登录接口后替换为后端返回）
   setAccessToken('mock-access-token')
-
+  TipModal.msgSuccess('登录成功')
   router.replace(target)
 }
 </script>
@@ -125,7 +111,9 @@ function handleLogin() {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition:
+      background 0.2s,
+      transform 0.15s;
 
     &:hover {
       background: #337ecc;

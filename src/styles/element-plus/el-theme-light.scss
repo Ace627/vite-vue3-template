@@ -1,0 +1,44 @@
+/* more：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss */
+// https://zhongguose.com/#zhulv
+
+$--color-primary: #0077ff;
+$--color-success: #1ba784; // 竹绿色
+
+// primary.base 保持与 apps\admin\src\settings.ts 中的 primaryColor 一致
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': $--color-primary,
+    ),
+    'success': (
+      'base': $--color-success,
+    ),
+    'warning': (
+      'base': #ff983f,
+    ),
+    'danger': (
+      'base': #ff3d3d,
+    ),
+  ),
+
+  $font-family: (
+    '': "'LXGW WenKai Screen', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif",
+  ),
+
+  $bg-color: (
+    'page': #f5f5f5,
+  ),
+
+  $card: (
+    'padding': 16px,
+  ),
+
+  $drawer: (
+    'padding-primary': 16px,
+  ),
+
+  $table: (
+    'header-text-color': var(--el-text-color-primary),
+    'header-bg-color': var(--el-color-info-light-7),
+  )
+);
