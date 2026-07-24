@@ -1,30 +1,16 @@
 /* 使用更直观的盒模型（box-sizing） */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   font-family: inherit;
   box-sizing: border-box;
 }
 
 /* 新布局元素兼容旧版本浏览器 */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
 /* 允许通过百分比设置应用的高度 */
-html,
-body,
-#app {
+html, body, #app {
   width: 100%;
   height: 100%;
   line-height: 1;
@@ -35,4 +21,14 @@ body,
 body {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
+  font-family: 'LXGW WenKai Screen', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+.dark::view-transition-old(root) {
+  z-index: 2026;
 }

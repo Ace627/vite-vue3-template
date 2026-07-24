@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <h1 class="dashboard__title">首页</h1>
-    <button class="dashboard__logout" type="button" @click="handleLogout">退出登录</button>
+    <el-button type="primary" @click="handleLogout">退出登录</el-button>
   </div>
 </template>
 
@@ -27,26 +27,6 @@ function handleLogout() {
     margin: 0 0 16px;
     font-size: 20px;
     font-weight: 600;
-    color: #303133;
-  }
-
-  &__logout {
-    padding: 8px 20px;
-    font-size: 14px;
-    color: #fff;
-    background: #409eff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-
-    &:hover {
-      background: #337ecc;
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
   }
 }
 </style>

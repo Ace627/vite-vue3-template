@@ -15,12 +15,12 @@ export default defineConfig({
 
   // ============ 忽略模式 ============
 
-  ignorePatterns: ['dist/', 'node_modules/', 'src/types/auto-generate/', 'pnpm-lock.yaml'],
+  ignorePatterns: ['dist/', 'node_modules/', 'src/types/auto-generate/', 'pnpm-lock.yaml', 'reset.css'],
 
   // ============ 导入排序 ============
 
-  sortImports: {
-    internalPattern: ['^@/'], // @/ 开头的视为内部导入
-    order: 'asc', // 按字母升序
-  },
+  // sortImports: {
+  //   internalPattern: ['^@/'], // @/ 开头的视为内部导入
+  //   order: 'asc', // 按字母升序
+  // },
 })

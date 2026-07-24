@@ -1,10 +1,11 @@
-import 'virtual:uno.css'
 import '@/styles/index.scss'
 import App from '@/App.vue'
 import { setupPlugins } from '@/plugins'
 import { setupRouter } from '@/router'
 import { setupStore } from '@/store'
 import { createApp } from 'vue'
+import 'virtual:uno.css'
+import 'virtual:svg-icons-register'
 
 async function bootstrap() {
   // 创建 Vue 应用实例

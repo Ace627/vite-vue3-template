@@ -1,11 +1,10 @@
-import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
-import ElementPlus from 'unplugin-element-plus/vite'
+import vue from '@vitejs/plugin-vue'
 import type { PluginOption } from 'vite'
-
-import { registerAutoImport, registerAutoComponents } from './auto-import-plugin.ts'
-import { setupCompressionPlugin } from './dist-compression.ts'
+import ElementPlus from 'unplugin-element-plus/vite'
 import { registerSvgIcons } from './svg-icons-plugin.ts'
+import { setupCompressionPlugin } from './dist-compression.ts'
+import { registerAutoImport, registerAutoComponents } from './auto-import-plugin.ts'
 
 /** 汇总并注册所有 Vite 插件 */
 export function setupVitePlugins(): PluginOption[] {

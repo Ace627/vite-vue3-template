@@ -13,7 +13,7 @@
 | 开发体验 | 路径别名 `@/*` / unplugin 自动导入 / 反向代理 / 多环境 `.env` |
 | 状态与路由 | Pinia / vue-router 三层结构 + 登录态守卫 / 模拟登录登出 |
 | 请求层 | axios 统一实例 + 三拦截器 + `ApiResponse<T>` 契约 |
-| 样式与 UI | UnoCSS / 样式分层 / SVG 图标 / Element Plus 按需 + sass 主题 |
+| 样式与 UI | UnoCSS / 样式分层 / SVG 图标 / Element Plus 按需 + sass 主题 / 主题切换（亮↔暗） |
 | 首屏体验 | 首屏加载动画（白屏兜底） |
 | 工程化沉淀 | 3 个项目级 Skill（git-commit-msg / path-alias / add-global-component） |
 
@@ -45,7 +45,7 @@ pnpm format    # 用 oxfmt 统一格式化
 
 | 文档 | 内容 |
 | --- | --- |
-| [`docs/前端工程化.md`](./docs/前端工程化.md) | 已落地的工程化配置逐条说明 + 每条带来的好处（构建分包 / gzip 预压缩 / 严格 TS / 自动导入 / SVG 图标 / Element Plus 按需 + sass 主题 / 首屏 loading 等）。**想了解"配了什么、为什么"，看这里。** |
+| [`docs/前端工程化.md`](./docs/前端工程化.md) | 已落地的工程化配置逐条说明 + 每条带来的好处（构建分包 / gzip 预压缩 / 严格 TS / 自动导入 / SVG 图标 / Element Plus 按需 + sass 主题 / 主题切换 / 首屏 loading 等）。**想了解"配了什么、为什么"，看这里。** |
 | [`AGENTS.md`](./AGENTS.md) | AI 在本项目生成代码时必须遵守的约束（图标统一 `SvgIcon`、Element Plus 组件用插槽塞 `SvgIcon`、复用 `src/utils` 并统一从 `@/utils` 导入等）。**AI 协作 / Review AI 产出时以此为准。** |
 
 ## 项目级 Skill

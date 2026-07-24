@@ -1,15 +1,16 @@
 <template>
   <div class="app-container">
-    布局测试
-    <div class="p-16px">
-      <SvgIcon name="Lock" />
-    </div>
+    <header>
+      <Navbar />
+    </header>
+
     <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'Layout' })
+import Navbar from './components/Navbar/index.vue'
 </script>
 
 <style lang="scss" scoped>

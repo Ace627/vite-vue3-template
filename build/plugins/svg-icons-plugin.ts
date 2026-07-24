@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export function registerSvgIcons() {
   return createSvgIconsPlugin({
