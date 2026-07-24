@@ -1,4 +1,4 @@
-import { removeAccessToken } from '@/utils/cache/token.cache'
+import { TipModal, removeAccessToken } from '@/utils'
 import { AxiosError, HttpStatusCode, type AxiosInstance } from 'axios'
 
 const ErrorMessageMap: Record<string, string> = {
@@ -26,7 +26,7 @@ export function responseErrorInterceptor(instance: AxiosInstance) {
     if (error?.response?.data?.message) message = error.response.data.message
 
     // 统一提示错误信息（临时用，后续换 toast）
-    alert(message)
+    TipModal.msgError(message)
 
     // 处理 401 错误（会话过期）
     if (status === HttpStatusCode.Unauthorized) {
