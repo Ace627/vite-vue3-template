@@ -11,3 +11,7 @@ body {
   width: 100%;
   padding: 16px;
 }
+/* 移动端统一收窄基础内边距，保证各业务页一致 */
+html[data-device='mobile'] .app-content {
+  padding: 12px;
+}

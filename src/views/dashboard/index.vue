@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="app-content dashboard">
     <h1 class="dashboard__title">首页</h1>
     <el-button type="primary" @click="handleLogout">退出登录</el-button>
   </div>
@@ -21,8 +21,6 @@ function handleLogout() {
 
 <style lang="scss" scoped>
 .dashboard {
-  padding: 24px;
-
   &__title {
     margin: 0 0 16px;
     font-size: 20px;

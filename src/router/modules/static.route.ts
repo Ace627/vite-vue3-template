@@ -12,6 +12,11 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '首页', icon: 'home' },
       },
+      {
+        path: 'settings',
+        component: () => import('@/views/settings/index.vue'),
+        meta: { title: '设置', icon: 'Setting' },
+      },
     ],
   },
 

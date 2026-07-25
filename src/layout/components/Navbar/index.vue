@@ -1,6 +1,13 @@
 <template>
   <div class="navbar">
     <div class="navbar__right h-full ml-auto flex-center">
+      <!-- 设置入口 -->
+      <el-tooltip content="设置" effect="dark" placement="bottom">
+        <span class="navbar-item hover-effect" @click="goSettings">
+          <SvgIcon name="Setting" size="1.16em" />
+        </span>
+      </el-tooltip>
+
       <!-- 主题切换 -->
       <el-tooltip :content="settingStore.isDark ? '浅色主题' : '深色主题'" effect="dark" placement="bottom">
         <ThemeSwitch class="navbar-item hover-effect" />
@@ -14,6 +21,12 @@ defineOptions({ name: 'Navbar' })
 import ThemeSwitch from './ThemeSwitch.vue'
 
 const settingStore = useSettingStore()
+const router = useRouter()
+
+/** 进入设置页：用 router.push 替代 router-link，规避 <a> 默认链接色与 hover/active 变色 */
+function goSettings() {
+  router.push('/settings')
+}
 </script>
 
 <style lang="scss" scoped>
