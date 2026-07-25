@@ -1,5 +1,9 @@
 <template>
   <div class="navbar">
+    <div class="navbar__left h-full pl-8px">
+      <AppLogo :show-title="!appStore.isCollapse" />
+    </div>
+
     <div class="navbar__right h-full ml-auto flex-center">
       <!-- 设置入口 -->
       <el-tooltip content="设置" effect="dark" placement="bottom">
@@ -19,7 +23,9 @@
 <script setup lang="ts">
 defineOptions({ name: 'Navbar' })
 import ThemeSwitch from './ThemeSwitch.vue'
+import AppLogo from '../AppLogo/index.vue'
 
+const appStore = useAppStore()
 const settingStore = useSettingStore()
 const router = useRouter()
 

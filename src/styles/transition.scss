@@ -1,0 +1,13 @@
+// enter-active 设定整个入场动画的状态具体如何展示，如，动画持续的时间，过渡的动画类型
+// leave-active 设定整个出场动画的状态具体如何展示，如，动画持续的时间，过渡的动画类型
+// enter-from 入场动画的初始状态
+// leave-to 入场动画的结束状态
+
+/* sidebar-logo-fade */
+.sidebar-logo-fade-enter-active {
+  transition: opacity 1.5s;
+}
+.sidebar-logo-fade-enter-from,
+.sidebar-logo-fade-leave-to {
+  opacity: 0;
+}
