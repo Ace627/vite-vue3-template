@@ -25,6 +25,25 @@
         <el-switch v-model="settingStore.showDynamicTitle" />
       </div>
 
+      <!-- 系统水印 -->
+      <div class="settings__row">
+        <span class="settings__label">系统水印</span>
+        <el-switch v-model="settingStore.showWatermark" />
+      </div>
+
+      <!-- 路由转场 -->
+      <div class="settings__row">
+        <span class="settings__label">路由转场</span>
+        <el-select v-model="settingStore.transition" style="width: 160px">
+          <el-option label="滑动位移" value="fade-transform" />
+          <el-option label="线性淡入" value="el-fade-in-linear" />
+          <el-option label="缓动淡入" value="el-fade-in" />
+          <el-option label="中心缩放" value="el-zoom-in-center" />
+          <el-option label="顶部展开" value="el-zoom-in-top" />
+          <el-option label="底部展开" value="el-zoom-in-bottom" />
+        </el-select>
+      </div>
+
       <div class="settings__actions">
         <el-button type="primary" class="settings__save" @click="onSave">保存设置</el-button>
         <el-button type="danger" plain class="settings__reset" @click="onReset"> 重置设置 </el-button>
