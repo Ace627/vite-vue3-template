@@ -1,8 +1,8 @@
 # 项目记忆：vite-vue3-template
 
 ## 定位
-基于 `pnpm create vite` 的 Vue3+TS 产物二次改造，目标「前端工程化模板」。
-**边界约束**：纯前端工程化实践，**不接后端、无真实接口**；登录/权限/数据均以 mock 演示，所有能力演进均限定在前端范畴。
+基于 `pnpm create vite` 的 Vue3+TS 产物二次改造。**目标有二：①作为「前端工程化」的落地实践模板（可运行、可参考）；②作为「让 AI 理解前端工程化」的样本（结构清晰、约定明确，便于 AI 阅读与协作）。**
+**边界约束**：纯前端工程化实践，**不涉及后端、无真实接口**；登录/权限/数据均以 mock 演示，所有能力演进均限定在前端范畴。任何「接后端 / 真实登录 / 真实权限 / 真实数据库」类需求均超出本项目范围，不得列入本项目待办。
 
 ## 技术栈
 Vite ^8.1.1 / Vue ^3.5.39 / TS ~6.0.2 / vue-tsc ^3.3.5 / @vitejs/plugin-vue ^6.0.7 / sass ^1.101 / unocss ^66.7.5 / pinia ^4.0.2 / vue-router ^5.2.0 / element-plus ^2.14.3 / unplugin-auto-import ^21 / unplugin-vue-components ^32 / vite-plugin-svg-icons ^2.0.1 / vite-plugin-compression2 ^2.5.3 / oxfmt ^0.59 / axios ^1.18.1 / dayjs ^1.11.21 / lodash-es ^4.18.1。
@@ -36,6 +36,6 @@ Vite ^8.1.1 / Vue ^3.5.39 / TS ~6.0.2 / vue-tsc ^3.3.5 / @vitejs/plugin-vue ^6.0
 - Navbar 右侧：设置入口用 `<span @click="router.push('/settings')">`+`<SvgIcon name="Setting">`（非 router-link，规避 `<a>` 链接色/hover 变色）；主题切换用 `ThemeSwitch`（委托 `useTheme().toggleTheme`，Moon/Sunny 图标），el-tooltip 包。
 
 ## 工程化进度
-已完成：脚手架/别名/UnoCSS/Pinia/vue-router(404)/自动导入/SvgIcon(含修复)/Vite插件抽离/reset.css/StorageCache/axios/drop console·debugger/oxfmt/3 Skill/严格TS/多环境.env/vendor分包/gzip/首屏loading/模拟登录守卫/ElementPlus按需+主题+暗黑/**主题切换+useTheme hook(2026-07-24~25)**/设置页 /settings(2026-07-25：主题·尺寸·动态标题·保存/重置 + 移动端 + Navbar 入口)/`.app-content` 容器(2026-07-25)/类型重组 `types/api/`(api.d.ts→api/api.d.ts + auth.ts)/docs 同步。**2026-07-26 再次同步 `docs/前端工程化.md`：补 AppLogo(Brand 抽离封装)、设置页 `/settings`、useTheme 统一逻辑层、SystemSetting.size 字段、`.app-content` 容器 / 全局水印 el-watermark（layout 包裹全站、VITE_APP_TITLE、明暗联动）**。
+已完成：脚手架/别名/UnoCSS/Pinia/vue-router(404)/自动导入/SvgIcon(含修复)/Vite插件抽离/reset.css/StorageCache/axios/drop console·debugger/oxfmt/4 Skill(git-commit-msg / path-alias / add-global-component / iterate-readme)/严格TS/多环境.env/vendor分包/gzip/首屏loading/模拟登录守卫/ElementPlus按需+主题+暗黑/**主题切换+useTheme hook(2026-07-24~25)**/设置页 /settings(2026-07-25：主题·尺寸·动态标题·保存/重置 + 移动端 + Navbar 入口)/`.app-content` 容器(2026-07-25)/类型重组 `types/api/`(api.d.ts→api/api.d.ts + auth.ts)/docs 同步。**2026-07-26 再次同步 `docs/前端工程化.md`：补 AppLogo(Brand 抽离封装)、设置页 `/settings`、useTheme 统一逻辑层、SystemSetting.size 字段、`.app-content` 容器 / 全局水印 el-watermark（layout 包裹全站、VITE_APP_TITLE、明暗联动）**。
 未做：user store/userInfo / 前端 mock 角色驱动动态路由(asyncRoutes+addRoute) / 业务示例页 / 路由children·懒加载 / i18n / ESLint·husky / oxlint / 单元测试 / CI-CD。注：brotli 不引入；不接后端、refreshToken 仅前端预留点不续期；Layout 不追求侧边栏/多页签/面包屑。
 构建状态：`vue-tsc -b` 绿 + `vite build` 正常。本机 `pnpm` 须用 PowerShell `& "C:\Progra~1\nodejs\pnpm.CMD"`（Git Bash corepack 路径错）。
