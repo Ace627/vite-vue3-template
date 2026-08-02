@@ -15,7 +15,7 @@
 | 请求层 | axios 统一实例 + 三拦截器 + `ApiResponse<T>` 契约 |
 | 样式与 UI | UnoCSS / 样式分层 / SVG 图标 / Element Plus 按需 + sass 主题 / 主题切换（亮↔暗，View Transitions 圆形扩散）/ 设置页 / 全局水印 / 移动端适配 |
 | 首屏体验 | 首屏加载动画（白屏兜底） |
-| 工程化沉淀 | 4 个项目级 Skill（git-commit-msg / path-alias / add-global-component / iterate-readme） |
+| 工程化沉淀 | 3 个项目级 Skill（git-commit-msg / path-alias / add-global-component） |
 
 > 每一项配置的「为什么」与「带来的好处」都在 [`docs/前端工程化.md`](./docs/前端工程化.md) 逐条展开。
 
@@ -50,7 +50,7 @@ pnpm format    # 用 oxfmt 统一格式化
 
 ## 项目级 Skill
 
-`.workbuddy/skills/` 下内置了 `git-commit-msg`（提交规范）/ `path-alias`（路径别名）/ `add-global-component`（新增全局组件）/ `iterate-readme`（README 与工程化改动同步）四个项目级 Skill，把固定流程沉淀为可复用步骤。详见 [`docs/前端工程化.md`](./docs/前端工程化.md) 对应章节。
+`.workbuddy/skills/` 下内置了 `git-commit-msg`（提交规范）/ `path-alias`（路径别名）/ `add-global-component`（新增全局组件）三个项目级 Skill，把固定流程沉淀为可复用步骤。详见 [`docs/前端工程化.md`](./docs/前端工程化.md) 对应章节。
 
 ---
 
