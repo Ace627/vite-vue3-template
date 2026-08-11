@@ -16,6 +16,9 @@
       <el-tooltip :content="settingStore.isDark ? '浅色主题' : '深色主题'" effect="dark" placement="bottom">
         <ThemeSwitch class="navbar-item hover-effect" />
       </el-tooltip>
+
+      <!-- 个人中心 -->
+      <UserDropDown class="navbar-item hover-effect" />
     </div>
   </div>
 </template>
@@ -24,6 +27,7 @@
 defineOptions({ name: 'Navbar' })
 import ThemeSwitch from './ThemeSwitch.vue'
 import AppLogo from '../AppLogo/index.vue'
+import UserDropDown from './UserDropDown.vue'
 
 const appStore = useAppStore()
 const settingStore = useSettingStore()

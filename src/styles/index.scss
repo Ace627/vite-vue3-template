@@ -1,6 +1,7 @@
 @use './variables.scss';
 @use './transition.scss';
-@use '@/styles/element-plus/el-theme-dark.scss';
+@use './element-plus/el-theme-dark.scss';
+@use './element-plus/el-dropdown.scss';
 
 body {
   font-family: var(--el-font-family);
