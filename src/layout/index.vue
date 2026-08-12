@@ -1,13 +1,13 @@
 <template>
-  <div class="app-container">
-    <el-watermark :content="watermarkContent" class="wh-full" :gap="[16, 16]" :font>
+  <el-watermark :content="watermarkContent" class="w-full min-h-full" :gap="[16, 16]" :font>
+    <div class="app-container">
       <header>
         <Navbar />
       </header>
 
       <AppMain />
-    </el-watermark>
-  </div>
+    </div>
+  </el-watermark>
 </template>
 
 <script setup lang="ts">

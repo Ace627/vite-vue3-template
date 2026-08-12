@@ -10,9 +10,10 @@ function check(el: HTMLElement, binding: DirectiveBinding) {
 }
 
 /**
- * v-roles 角色校验指令
- * 根据绑定的角色数组，判断当前用户是否具有其中的角色
- * 如果没有权限且用户角色不是 'admin'，则移除该元素
+ * 自定义角色校验指令：v-roles
+ * @description 根据用户角色列表，控制 DOM 元素的显示/隐藏（无对应角色则移除元素）
+ * @usage `<button v-roles="['editor']">编辑</button>`
+ * @note 绑定值非数组或空数组时仅 console.warn 告警并跳过校验（fail-soft），不抛出错误
  */
 export const roles: Directive<HTMLElement, string[]> = {
   mounted: check,

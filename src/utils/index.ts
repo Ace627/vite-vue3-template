@@ -5,6 +5,7 @@ export * from './tip-modal'
 export * from './cache/token.cache'
 export * from './storage-cache.util'
 export * from './cache/login-params.cache'
+export * from './cache/sidebar-status.cache'
 export * from './cache/system-setting.cache'
 
 export { isString } from 'lodash-es'

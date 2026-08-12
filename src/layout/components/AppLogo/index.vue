@@ -4,13 +4,13 @@
       <!-- 侧栏展开状态 -->
       <router-link v-if="showTitle" key="expand" to="/" class="flex-center wh-full">
         <img src="/favicon.svg" alt="logo" draggable="false" />
-        <span v-if="showTitle">{{ title }}</span>
+        <span v-if="Boolean(title)">{{ title }}</span>
       </router-link>
 
       <!-- 侧栏折叠状态 -->
       <router-link v-else key="collapse" to="/" class="flex-center wh-full">
         <img src="/favicon.svg" alt="logo" draggable="false" />
-        <span v-if="showTitle">{{ title }}</span>
+        <span v-if="Boolean(title)">{{ title }}</span>
       </router-link>
     </transition>
   </h1>

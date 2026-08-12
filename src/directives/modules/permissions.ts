@@ -11,8 +11,8 @@ function check(el: HTMLElement, binding: DirectiveBinding) {
 /**
  * 自定义权限校验指令：v-permissions
  * @description 根据用户权限列表，控制 DOM 元素的显示/隐藏（无权限则移除元素）
- * @usage <button v-permissions="['system:user:add']">新增用户</button>
- * @throws 绑定值非数组/空数组时抛出错误，提示正确使用方式
+ * @usage `<button v-permissions="['system:user:add']">新增用户</button>`
+ * @note 绑定值非数组或空数组时仅 console.warn 告警并跳过校验（fail-soft），不抛出错误
  */
 export const permissions: Directive<HTMLElement, string[]> = {
   mounted: check,
