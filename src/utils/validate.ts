@@ -1,3 +1,3 @@
-export function isString(value: any): boolean {
-  return typeof value === 'string'
-}
+export { isArray } from 'lodash-es'
+export { isString } from 'lodash-es'
+export { isPlainObject } from 'lodash-es'

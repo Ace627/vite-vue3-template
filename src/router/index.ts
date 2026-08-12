@@ -1,8 +1,7 @@
 import type { App } from 'vue'
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-
 import { STATIC_ROUTE_LIST } from './modules/static.route'
-import { globalRouterBeforeGuard } from './router.guard'
+import { globalRouterAfterGuard, globalRouterBeforeGuard } from './router.guard'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const { VITE_ROUTER_MODE, VITE_PUBLIC_PATH } = import.meta.env
 
@@ -17,6 +16,9 @@ export const router = createRouter({
 export async function setupRouter(app: App) {
   // 配置路由全局前置守卫
   router.beforeEach(globalRouterBeforeGuard)
+
+  // 配置路由全局后置守卫
+  router.afterEach(globalRouterAfterGuard)
 
   // 注册挂载路由插件
   app.use(router)

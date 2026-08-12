@@ -1,9 +1,10 @@
 import '@/styles/index.scss'
 import App from '@/App.vue'
-import { setupPlugins } from '@/plugins'
-import { setupRouter } from '@/router'
-import { setupStore } from '@/store'
 import { createApp } from 'vue'
+import { setupStore } from '@/store'
+import { setupRouter } from '@/router'
+import { setupPlugins } from '@/plugins'
+import { setupDirectives } from './directives'
 import 'virtual:uno.css'
 import 'virtual:svg-icons-register'
 
@@ -13,6 +14,9 @@ async function bootstrap() {
 
   // 配置插件
   setupPlugins(app)
+
+  // 配置自定义指令
+  setupDirectives(app)
 
   // 配置 Store 状态管理 https://pinia.web3doc.top
   setupStore(app)
