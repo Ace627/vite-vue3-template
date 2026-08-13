@@ -25,5 +25,5 @@ export const useAppStore = defineStore('app', () => {
   const isMobile = computed(() => device.value === 'mobile')
   const isDesktop = computed(() => device.value === 'desktop')
 
-  return { device, isCollapse, isMobile, isDesktop, closeSidebar, toggleSidebar }
+  return { device, isCollapse, isMobile, isDesktop, withoutAnimation, closeSidebar, toggleSidebar }
 })

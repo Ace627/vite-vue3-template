@@ -1,3 +1,4 @@
+import { router } from '.'
 import { getAccessToken } from '@/utils'
 import type { RouteLocationNormalized } from 'vue-router'
 
@@ -9,6 +10,7 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized) {
 
   const userStore = useUserStore()
   const accessToken = getAccessToken()
+  const permissionStore = usePermissionStore()
 
   // 已登录但要进入登录页 → 重定向到主页（把「已登录访问登录页」的逻辑提到最前面（避免被白名单拦截））
   if (accessToken && to.path.toLowerCase() === '/login') return { path: '/', replace: true }
@@ -21,6 +23,9 @@ export async function globalRouterBeforeGuard(to: RouteLocationNormalized) {
     if (userStore.roles && userStore.roles.length > 0) return
     // 未获取用户信息 → 拉取信息并生成动态路由
     await userStore.getInfo()
+    await permissionStore.getRoutes()
+    // 添加动态路由
+    for (const route of permissionStore.dynamicRouteList) router.addRoute('Layout', route)
     // 动态路由添加后，重新导航到目标路由（replace: true 避免历史记录）
     return { ...to, replace: true }
   } catch (error: unknown) {

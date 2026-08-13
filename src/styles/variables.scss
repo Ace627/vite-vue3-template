@@ -1,6 +1,30 @@
-:root {
+html {
   --el-navbar-height: 50px;
   --el-navbar-bg-color: var(--el-bg-color);
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
+  --el-sidebar-width: 220px;
+  --el-sidebar-hide-width: 64px;
+  --el-sidebar-item-height: 42px;
+  --el-sidebar-font-size: 14px;
+  --el-sidebar-icon-size: 1.32em;
+  --el-sidebar-text-color: var(--el-text-color-primary);
+  --el-sidebar-bg-color: var(--el-fill-color-extra-light);
+  --el-sidebar-nested-bg-color: var(--el-fill-color);
+  --el-sidebar-hover-text-color: var(--el-color-primary);
+  --el-sidebar-hover-bg-color: var(--el-fill-color-darker);
+  --el-sidebar-active-text-color: var(--el-color-white);
+  --el-sidebar-active-bg-color: var(--el-color-primary);
+  --el-sidebar-index: 1001;
+  --el-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  --el-sidebar-bg-color: #141414;
+  --el-sidebar-nested-bg-color: #0d0d0d;
+  --el-sidebar-hover-text-color: var(--el-color-white);
+  --el-sidebar-hover-bg-color: var(--el-overlay-color-lighter);
+  --el-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }

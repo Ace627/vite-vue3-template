@@ -1,13 +1,12 @@
 <template>
   <div class="navbar">
-    <div class="navbar__left h-full pl-8px">
-      <AppLogo :show-title="!appStore.isCollapse" />
-    </div>
+    <!-- 侧栏折叠控制 -->
+    <Hamburger class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
 
     <div class="navbar__right h-full ml-auto flex-center">
       <!-- 设置入口 -->
-      <el-tooltip content="设置" effect="dark" placement="bottom">
-        <span class="navbar-item hover-effect" @click="goSettings">
+      <el-tooltip content="系统设置" effect="dark" placement="bottom">
+        <span class="navbar-item hover-effect" @click="settingStore.showSetting = true">
           <SvgIcon name="Setting" size="1.16em" />
         </span>
       </el-tooltip>
@@ -25,18 +24,12 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Navbar' })
+import Hamburger from './Hamburger.vue'
 import ThemeSwitch from './ThemeSwitch.vue'
-import AppLogo from '../AppLogo/index.vue'
 import UserDropDown from './UserDropDown.vue'
 
 const appStore = useAppStore()
 const settingStore = useSettingStore()
-const router = useRouter()
-
-/** 进入设置页：用 router.push 替代 router-link，规避 <a> 默认链接色与 hover/active 变色 */
-function goSettings() {
-  router.push('/settings')
-}
 </script>
 
 <style lang="scss" scoped>

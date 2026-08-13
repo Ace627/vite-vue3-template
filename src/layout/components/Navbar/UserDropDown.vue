@@ -20,14 +20,14 @@ import { TipModal } from '@/utils'
 
 // const router = useRouter()
 const userStore = useUserStore()
-// const settingStore = useSettingStore()
+const settingStore = useSettingStore()
 
 const avatar = computed(() => userStore.avatar)
 const nickname = '天道'
 
 const items = [
   // { icon: 'User', title: '个人中心', callback: () => router.push('/user/profile') },
-  // { icon: 'Setting', title: '系统设置', callback: () => (settingStore.showSetting = true) },
+  { icon: 'Setting', title: '系统设置', callback: () => (settingStore.showSetting = true) },
   { icon: 'Delete', title: '清空缓存', callback: clearCache },
   { icon: 'SwitchButton', title: '退出登录', callback: handleLogout },
 ]
