@@ -21,6 +21,20 @@ const settingStore = useSettingStore()
 .app-main {
   position: relative;
   width: 100%;
+  min-height: calc(100vh - var(--el-navbar-height));
   overflow: hidden;
+}
+
+.fixed-header + .app-main {
+  height: calc(100vh - var(--el-navbar-height));
+  min-height: 0px;
+  margin-top: var(--el-navbar-height);
+  overflow-y: auto;
+  scrollbar-gutter: auto;
+}
+
+.has-tags-view .fixed-header + .app-main {
+  height: calc(100vh - var(--el-navbar-height) - var(--el-tags-view-height));
+  margin-top: calc(var(--el-navbar-height) + var(--el-tags-view-height));
 }
 </style>

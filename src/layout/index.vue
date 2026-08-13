@@ -9,6 +9,7 @@
       <div class="main-container clearFix">
         <header class="fixed-header">
           <Navbar />
+          <TagsView v-if="settingStore.showTagsView" />
         </header>
 
         <AppMain />
@@ -25,6 +26,7 @@ defineOptions({ name: 'Layout' })
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
+import TagsView from './components/TagsView/index.vue'
 import SettingPanel from './components/SettingPanel/index.vue'
 
 const appStore = useAppStore()
@@ -38,6 +40,7 @@ const classes = computed(() => [
   appStore.device,
   { 'hide-sidebar': appStore.isCollapse },
   { 'open-sidebar': !appStore.isCollapse },
+  { 'has-tags-view': settingStore.showTagsView },
   { withoutAnimation: appStore.withoutAnimation },
 ])
 </script>

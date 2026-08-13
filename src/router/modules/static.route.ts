@@ -12,7 +12,7 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         name: 'Dashboard',
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: '首页', icon: 'Home' },
+        meta: { title: '首页', icon: 'Home', affix: true },
       },
     ],
   },
@@ -22,6 +22,14 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
     path: '/login',
     component: () => import('@/views/core/login.vue'),
     meta: { title: '登录', hidden: true },
+  },
+
+  {
+    path: '/redirect',
+    name: 'Redirect',
+    component: Layout,
+    meta: { hidden: true },
+    children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/core/redirect.vue') }],
   },
 
   {

@@ -1,8 +1,4 @@
 html {
-  --el-navbar-height: 50px;
-  --el-navbar-bg-color: var(--el-bg-color);
-  --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
   --el-sidebar-width: 220px;
   --el-sidebar-hide-width: 64px;
   --el-sidebar-item-height: 42px;
@@ -17,14 +13,26 @@ html {
   --el-sidebar-active-bg-color: var(--el-color-primary);
   --el-sidebar-index: 1001;
   --el-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
+
+  --el-navbar-height: 50px;
+  --el-navbar-bg-color: var(--el-bg-color);
+  --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  --el-tags-view-height: 34px;
+  --el-tags-view-bg-color: var(--el-bg-color);
+  --el-tags-view-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  --el-tags-view-border-color: #d8dce5;
 }
 
 html.dark {
-  --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-
   --el-sidebar-bg-color: #141414;
   --el-sidebar-nested-bg-color: #0d0d0d;
   --el-sidebar-hover-text-color: var(--el-color-white);
   --el-sidebar-hover-bg-color: var(--el-overlay-color-lighter);
   --el-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+
+  --el-navbar-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.96);
+
+  --el-tags-view-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  --el-tags-view-border-color: rgba(255, 255, 255, 0.12);
 }

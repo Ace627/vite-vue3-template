@@ -11,6 +11,10 @@ export interface SystemSetting {
   showWatermark: boolean
   /** 是否显示项目名称及 Logo */
   showLogo: boolean
+  /** 是否显示多标签模式 */
+  showTagsView: boolean
+  /** 显示页签图标 */
+  showTagsViewIcon: boolean
   /** 路由转场动效 */
   transition: 'fade-transform' | 'el-fade-in-linear' | 'el-fade-in' | 'el-zoom-in-center' | 'el-zoom-in-top' | 'el-zoom-in-bottom'
 }
@@ -23,4 +27,6 @@ export const defaultSettings: SystemSetting = {
   showDynamicTitle: true,
   showWatermark: true,
   showLogo: true,
+  showTagsView: true,
+  showTagsViewIcon: true,
 }

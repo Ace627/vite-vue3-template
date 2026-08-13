@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+/* 取消默认的内外边距 margin padding */
+html, body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ol, ul , li, p, fieldset, legend, header, footer, hgroup, menu, nav, section, figcaption, figure, mark, form,
+time, td, th, label, hr {
+  margin: 0;
+  padding: 0;
+}
+
 /* 新布局元素兼容旧版本浏览器 */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
@@ -19,7 +26,6 @@ html, body, #app {
 
 /* 解决在移动端时，点击元素会出现阴影的问题 */
 body {
-  margin: 0;
   -webkit-tap-highlight-color: transparent;
   font-family: 'LXGW WenKai Screen', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
@@ -29,6 +35,10 @@ a {
   text-decoration: none;
 }
 
+/* 去除所有项目符号标识 */
+li {
+  list-style: none;
+}
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
