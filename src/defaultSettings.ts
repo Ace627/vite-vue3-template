@@ -15,6 +15,10 @@ export interface SystemSetting {
   showTagsView: boolean
   /** 显示页签图标 */
   showTagsViewIcon: boolean
+  /** 是否显示面包屑导航 */
+  showBreadcrumb: boolean
+  /** 是否显示面包屑导航的图标 */
+  showBreadcrumbIcon: boolean
   /** 路由转场动效 */
   transition: 'fade-transform' | 'el-fade-in-linear' | 'el-fade-in' | 'el-zoom-in-center' | 'el-zoom-in-top' | 'el-zoom-in-bottom'
 }
@@ -29,4 +33,6 @@ export const defaultSettings: SystemSetting = {
   showLogo: true,
   showTagsView: true,
   showTagsViewIcon: true,
+  showBreadcrumb: true,
+  showBreadcrumbIcon: true,
 }

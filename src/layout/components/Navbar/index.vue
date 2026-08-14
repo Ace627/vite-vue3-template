@@ -2,6 +2,8 @@
   <div class="navbar">
     <!-- 侧栏折叠控制 -->
     <Hamburger class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
+    <!-- 面包屑导航 -->
+    <Breadcrumb v-if="!appStore.isMobile && settingStore.showBreadcrumb" />
 
     <div class="navbar__right h-full ml-auto flex-center">
       <!-- 设置入口 -->
@@ -25,6 +27,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'Navbar' })
 import Hamburger from './Hamburger.vue'
+import Breadcrumb from './Breadcrumb.vue'
 import ThemeSwitch from './ThemeSwitch.vue'
 import UserDropDown from './UserDropDown.vue'
 

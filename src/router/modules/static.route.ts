@@ -1,15 +1,16 @@
 import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
+import { RouterConstant } from '../router.constant'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
-    name: 'Layout', // 布局路由配置 确保可以显示布局框架
+    name: RouterConstant.LAYOUT_NAME, // 布局路由配置 确保可以显示布局框架
     path: '',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: RouterConstant.HOME_PAGE_URL,
     children: [
       {
-        name: 'Dashboard',
+        name: RouterConstant.HOME_PAGE_NAME,
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '首页', icon: 'Home', affix: true },
@@ -18,15 +19,15 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   },
 
   {
-    name: 'Login',
-    path: '/login',
+    name: RouterConstant.LOGIN_PAGE_NAME,
+    path: RouterConstant.LOGIN_PAGE_URL,
     component: () => import('@/views/core/login.vue'),
     meta: { title: '登录', hidden: true },
   },
 
   {
-    path: '/redirect',
-    name: 'Redirect',
+    path: RouterConstant.REDIRECT_PAGE_URL,
+    name: RouterConstant.REDIRECT_PAGE_NAME,
     component: Layout,
     meta: { hidden: true },
     children: [{ path: '/redirect/:path(.*)', component: () => import('@/views/core/redirect.vue') }],

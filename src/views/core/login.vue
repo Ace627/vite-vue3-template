@@ -51,8 +51,9 @@ defineOptions({ name: 'Login' })
 import type { Auth } from '@/types'
 import type { FormRules } from 'element-plus'
 import { AuthRequest } from '@/api/auth.request'
+import { RouterConstant } from '@/router/router.constant'
 import defaultCaptcha from '@/assets/images/default-captcha.png'
-import { getTimeGreeting, TipModal, getLoginParams, removeLoginParams, setLoginParams } from '@/utils'
+import { getTimeGreeting, TipModal, getLoginParams, removeLoginParams, setLoginParams, isString } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
@@ -99,7 +100,7 @@ async function handleLogin() {
     const { username, password } = loginForm.value
     rememberMe.value ? setLoginParams({ username, password, rememberMe: rememberMe.value }) : removeLoginParams()
     const redirect = route.query.redirect
-    await router.replace(typeof redirect === 'string' ? redirect : '/')
+    await router.replace(isString(redirect) ? redirect : RouterConstant.HOME_PAGE_URL)
     TipModal.notifySuccess(`${getTimeGreeting()}，欢迎回来`, { title: '登录成功' })
   } catch (error: unknown) {
     loginForm.value.captcha = ''

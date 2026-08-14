@@ -55,6 +55,7 @@ defineOptions({ name: 'TagsView' })
 import { type TagView } from '@/utils'
 import type { RouteRecordRaw } from 'vue-router'
 import { resolvePath } from '@/router/router.helper'
+import { RouterConstant } from '@/router/router.constant'
 
 const route = useRoute()
 const router = useRouter()
@@ -163,8 +164,8 @@ function initTags() {
 function toLastView(visitedViews: TagView[], view: TagView) {
   const latestView = visitedViews.slice(-1)[0]
   if (latestView && latestView.fullPath) return router.push(latestView.fullPath!)
-  if (view.path === '/') return router.replace({ path: '/redirect' + view.path })
-  router.push('/')
+  if (view.path === RouterConstant.HOME_PAGE_URL) return router.replace({ path: RouterConstant.REDIRECT_PAGE_URL + view.path })
+  router.push(RouterConstant.HOME_PAGE_URL)
 }
 
 /** 添加标签页 */
@@ -185,9 +186,8 @@ function closeSelectedTag(tag: TagView) {
 /** 刷新当前正在右键操作的标签页 */
 function refreshSelectedTag(view: TagView) {
   tagsViewStore.delCachedView(view)
-  router.replace({ path: '/redirect' + view.path, query: view.query })
+  router.replace({ path: RouterConstant.REDIRECT_PAGE_URL + view.path, query: view.query })
 }
-
 /** 关闭其他标签页 */
 function closeOthersTags() {
   const fullPath = activeTag.value.fullPath
