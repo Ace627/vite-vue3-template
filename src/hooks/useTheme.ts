@@ -1,3 +1,10 @@
+interface UseThemeOptions {
+  /** 圆形扩散主题切换动效的时长，单位毫秒。默认 640 */
+  duration?: number
+  /** 圆形扩散主题切换动效的缓动曲线（CSS easing 函数，如 cubic-bezier(...)）。默认 'cubic-bezier(0.28, 0, 0.44, 1)'（苹果风格缓动） */
+  easing?: string
+}
+
 /**
  * 主题切换 hook
  * 统一导航栏 ThemeSwitch 与设置页的主题切换逻辑：
@@ -6,12 +13,12 @@
  * - 防 FOUC 初始化
  * - 非 Chromium 浏览器（无 startViewTransition）自动降级为直接切换
  */
-export function useTheme() {
+export function useTheme(options: UseThemeOptions = {}) {
   const settingStore = useSettingStore()
-  const isDark = computed(() => settingStore.theme === 'dark')
+  const { duration = 640, easing = 'cubic-bezier(0.28, 0, 0.44, 1)' } = options
 
   // 防 FOUC：首次进入若已是 dark，确保 html 有 dark 类（幂等，调用多次无害）
-  if (isDark.value) document.documentElement.classList.add('dark')
+  if (settingStore.isDark) document.documentElement.classList.add('dark')
 
   /** 应用主题：切暗色类 + 圆形扩散动效 + 静默持久化 */
   function applyTheme(theme: 'light' | 'dark', event?: MouseEvent) {
@@ -33,24 +40,17 @@ export function useTheme() {
     void transition.ready.then(() => {
       const x = event?.clientX ?? window.innerWidth / 2
       const y = event?.clientY ?? window.innerHeight / 2
-      const radius = Math.hypot(
-        Math.max(x, 0, window.innerWidth - x),
-        Math.max(y, 0, window.innerHeight - y),
-      )
+      const radius = Math.hypot(Math.max(x, 0, window.innerWidth - x), Math.max(y, 0, window.innerHeight - y))
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]
       const pseudoElement = nextDark ? '::view-transition-old(root)' : '::view-transition-new(root)'
-      const easing = 'cubic-bezier(0.28, 0, 0.44, 1)' // 苹果风格缓动
-      document.documentElement.animate(
-        { clipPath: nextDark ? [...clipPath].reverse() : clipPath },
-        { duration: 500, fill: 'both', easing, pseudoElement },
-      )
+      document.documentElement.animate({ clipPath: nextDark ? [...clipPath].reverse() : clipPath }, { duration, fill: 'both', easing, pseudoElement })
     })
   }
 
   /** 取反切换（导航栏 ThemeSwitch 用，传 event 做从点击点扩散） */
   function toggleTheme(event?: MouseEvent) {
-    applyTheme(isDark.value ? 'light' : 'dark', event)
+    applyTheme(settingStore.isDark ? 'light' : 'dark', event)
   }
 
-  return { isDark, applyTheme, toggleTheme }
+  return { applyTheme, toggleTheme }
 }

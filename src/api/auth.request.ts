@@ -1,5 +1,5 @@
 import type { Auth } from '@/types'
-import { request } from '@/utils/request'
+// import { request } from '@/utils/request'
 
 export abstract class AuthRequest {
   /** 获取验证码 */
@@ -16,6 +16,7 @@ export abstract class AuthRequest {
 
   /** 登录 */
   static login(data: Auth.LoginParams): Promise<Auth.LoginResult> {
+    console.log('login data: ', data)
     // return request.post(`/login`, data)
     return new Promise((resolve) =>
       resolve({

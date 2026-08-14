@@ -58,8 +58,13 @@ agent_created: true
 | `src/store/**`、`src/router/**` | `docs/前端工程化.md`「四、状态与路由」 |
 | `src/utils/request/**`、`src/utils/cache/**` | `docs/前端工程化.md`「五、请求层」 |
 | `src/hooks/**`、`useTheme`、`src/App.vue` 主题 / 标题逻辑 | `docs/用户体验/主题切换.md`、`动态标题.md` |
-| `src/views/settings/**`、`src/defaultSettings.ts`、`src/store/modules/setting.ts` | `docs/构建与工程化/全局设置中心.md` |
+| `src/layout/components/SettingPanel/**`、`src/defaultSettings.ts`、`src/store/modules/setting.ts` | `docs/构建与工程化/全局设置中心.md` |
 | `src/layout/**`、`el-watermark` | `docs/用户体验/系统级水印.md` |
+| `src/layout/components/Sidebar/**` | `docs/UI组件/侧边栏菜单.md` |
+| `src/layout/components/TagsView/**`、`src/store/modules/tags-view.ts`、`src/utils/cache/tags-view.cache.ts` | `docs/UI组件/多标签页面签.md` |
+| `src/directives/**` | `docs/UI组件/权限指令.md` |
+| `src/store/modules/user.ts`、`src/api/auth.request.ts`、`src/views/core/login.vue`、`src/utils/cache/login-params.cache.ts` | `docs/UI组件/用户体系.md` |
+| `src/layout/components/Navbar/**` | `docs/UI组件/导航栏用户菜单.md` |
 | `index.html`、`public/css/app-loading.css` | `docs/用户体验/首屏加载动画.md` |
 | `vite.config.ts` 反向代理段 | `docs/构建与工程化/开发环境反向代理.md` |
 | 设备自适应相关（`html[data-device]` 设定、断点逻辑、响应式 composable） | `docs/响应式/设备自适应.md` |
