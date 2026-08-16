@@ -10,4 +10,4 @@ export * from './cache/login-params.cache'
 export * from './cache/sidebar-status.cache'
 export * from './cache/system-setting.cache'
 
-export { isString } from 'lodash-es'
+export { default as echarts } from './libs/echarts'

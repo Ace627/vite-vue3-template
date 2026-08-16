@@ -11,7 +11,7 @@ Element Plus 的组件与 API 经 unplugin 自动按需引入，不全局全量�
 | `build/plugins/index.ts` | `ElementPlus({ useSource: true })`：负责函数式 API（`ElMessage`/`ElMessageBox`/`ElNotification`/`ElLoading`）的样式注入 |
 | `build/plugins/auto-import-plugin.ts` | `AutoImport` + `ElementPlusResolver({ importStyle: 'sass' })` 自动导入 API 名称；`AutoComponents` + 同 resolver 自动引入模板组件 `<el-xxx>` 及其 sass 源样式 |
 
-机制（三处互补、缺一不可）：
+机制（三者互补，缺一不可）：
 
 - `unplugin-vue-components` + `ElementPlusResolver({ importStyle: 'sass' })`：模板组件与其 sass 样式按需解析。
 - `unplugin-auto-import` + 同 `ElementPlusResolver`：仅自动导入 `ElMessage` 等 API 的**名称**（不注入样式）。
@@ -19,14 +19,14 @@ Element Plus 的组件与 API 经 unplugin 自动按需引入，不全局全量�
 
 ## 好处
 
-- **体积可控**：非全量引入，主 CSS 仅约 13KB、无 EP 独立 vendor chunk。
-- **开发体验**：模板组件与 `ElMessage` 等 API 免手动 import。
+- 非全量引入，主 CSS 仅约 13KB、无 EP 独立 vendor chunk。
+- 模板组件与 `ElMessage` 等 API 免手动 import。
 
 ## 工程化好处
 
-- **职责清晰、确定性方案**：三插件分工明确、互补，形成可复制的"按需引入最小正确配置"，降低决策成本。
-- **与图标约定一致**：组件图标位优先用 `<SvgIcon>`（见 `../AGENTS.md` 第 2 条），保持图标单一来源。
-- **模板标准实践**：明确给出"如何按需接入 Element Plus"的范式，AI 或协作者可直接参照。
+- 三插件分工明确、互补，是一套可直接复用的按需引入配置。
+- 组件图标位优先用 `<SvgIcon>`（见 `../AGENTS.md` 第 2 条），保持图标单一来源。
+- 直接给出接入 Element Plus 的做法，新人照着配即可。
 
 ## 注意事项
 

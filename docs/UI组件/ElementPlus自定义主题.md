@@ -15,20 +15,20 @@
 
 机制：
 
-- **亮色**：`additionalData` 在每个组件样式编译前注入 `el-theme-light.scss`，用 `@forward ... var.scss with (...)` 覆盖 SCSS 变量（`primary`/`success`/`warning`/`danger`/`font-family`/`bg-color` 等），组件样式据此换肤。
-- **暗黑**：`el-theme-dark.scss` `@use` 官方 `dark/css-vars.scss`，产出 `html.dark` 作用域的 CSS 变量；由 `Navbar` 的 `ThemeSwitch` 切换 `html.dark` 类整体生效。
+- 亮色：`additionalData` 在每个组件样式编译前注入 `el-theme-light.scss`，用 `@forward ... var.scss with (...)` 覆盖 SCSS 变量（`primary`/`success`/`warning`/`danger`/`font-family`/`bg-color` 等），组件样式据此换肤。
+- 暗黑：`el-theme-dark.scss` `@use` 官方 `dark/css-vars.scss`，产出 `html.dark` 作用域的 CSS 变量；由 `Navbar` 的 `ThemeSwitch` 切换 `html.dark` 类整体生效。
 
 ## 好处
 
-- **集中可维护**：主色等一处定义，全组件统一，避免散落覆盖。
-- **明暗同源**：亮 / 暗共享同一套变量体系，切换无闪烁。
-- **无运行时开销**：编译期注入，不引入主题切换库。
+- 主色等一处定义，全组件统一，不散落覆盖。
+- 亮 / 暗共享同一套变量体系，切换无闪烁。
+- 编译期注入，不引入主题切换库，无运行时开销。
 
 ## 工程化好处
 
-- **主题与构建解耦**：`additionalData` 在编译期注入，组件样式编译即换肤。
-- **标准化定制范式**：给出"如何正确覆盖 EP 主题变量"的最小配置，参照成本低。
-- **与主题切换协同**：暗黑 vars 由 `html.dark` 驱动，复用既有明暗开关（见主题切换相关说明）。
+- `additionalData` 在编译期注入，组件样式编译即换肤，主题与构建解耦。
+- 给出覆盖 EP 主题变量的最小配置，参照成本低。
+- 暗黑 vars 由 `html.dark` 驱动，复用既有明暗开关（见主题切换相关说明）。
 
 ## 注意事项
 
