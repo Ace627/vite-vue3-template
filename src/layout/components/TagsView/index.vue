@@ -38,6 +38,14 @@
         <SvgIcon name="Close" size="1.2em" class="mr-4px" />
         <span>关闭当前</span>
       </li>
+      <li @click="closeLeftTags(activeTag)">
+        <SvgIcon name="Close" size="1.2em" class="mr-4px" />
+        <span>关闭左侧</span>
+      </li>
+      <li @click="closeRightTags(activeTag)">
+        <SvgIcon name="Close" size="1.2em" class="mr-4px" />
+        <span>关闭右侧</span>
+      </li>
       <li @click="closeOthersTags">
         <SvgIcon name="Close" size="1.2em" class="mr-4px" />
         <span>关闭其它</span>
@@ -194,6 +202,26 @@ function closeOthersTags() {
   if (fullPath && fullPath !== route.path) router.push(fullPath)
   tagsViewStore.delOthersVisitedViews(activeTag.value)
   tagsViewStore.delOthersCachedViews(activeTag.value)
+}
+
+/** 关闭左侧标签页 */
+function closeLeftTags(view: TagView) {
+  const views = tagsViewStore.visitedViews
+  const index = views.findIndex((v) => v.path === view.path)
+  const currentClosed = index !== -1 && views.findIndex((v) => v.path === route.path) < index
+  tagsViewStore.delLeftVisitedViews(view)
+  tagsViewStore.delLeftCachedViews(view)
+  if (currentClosed) router.push(view.fullPath || view.path || RouterConstant.HOME_PAGE_URL)
+}
+
+/** 关闭右侧标签页 */
+function closeRightTags(view: TagView) {
+  const views = tagsViewStore.visitedViews
+  const index = views.findIndex((v) => v.path === view.path)
+  const currentClosed = index !== -1 && views.findIndex((v) => v.path === route.path) > index
+  tagsViewStore.delRightVisitedViews(view)
+  tagsViewStore.delRightCachedViews(view)
+  if (currentClosed) router.push(view.fullPath || view.path || RouterConstant.HOME_PAGE_URL)
 }
 
 /** 关闭所有标签页 */

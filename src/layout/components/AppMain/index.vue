@@ -3,7 +3,7 @@
     <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
     <RouterView v-slot="{ Component, route }">
       <Transition :name="settingStore.transition" mode="out-in">
-        <KeepAlive :include="[]">
+        <KeepAlive :include="tagsViewStore.cachedViews">
           <component :is="Component" :key="route.path" />
         </KeepAlive>
       </Transition>
@@ -15,6 +15,7 @@
 defineOptions({ name: 'AppMain' })
 
 const settingStore = useSettingStore()
+const tagsViewStore = useTagsViewStore()
 </script>
 
 <style lang="scss" scoped>

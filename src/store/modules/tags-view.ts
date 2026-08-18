@@ -46,6 +46,36 @@ export const useTagsViewStore = defineStore('tags-view', () => {
     cachedViews.value = index !== -1 ? cachedViews.value.slice(index, index + 1) : []
   }
 
+  function delRightVisitedViews(view: TagView) {
+    const index = visitedViews.value.findIndex((v) => v.path === view.path)
+    if (index === -1) return
+    visitedViews.value = visitedViews.value.filter((v, i) => v.meta?.affix || i <= index)
+  }
+
+  function delRightCachedViews(view: TagView) {
+    const index = visitedViews.value.findIndex((v) => v.path === view.path)
+    if (index === -1) return
+    const removeNames = visitedViews.value
+      .filter((v, i) => i > index && !v.meta?.affix && typeof v.name === 'string')
+      .map((v) => v.name as string)
+    cachedViews.value = cachedViews.value.filter((name) => !removeNames.includes(name))
+  }
+
+  function delLeftVisitedViews(view: TagView) {
+    const index = visitedViews.value.findIndex((v) => v.path === view.path)
+    if (index === -1) return
+    visitedViews.value = visitedViews.value.filter((v, i) => v.meta?.affix || i >= index)
+  }
+
+  function delLeftCachedViews(view: TagView) {
+    const index = visitedViews.value.findIndex((v) => v.path === view.path)
+    if (index === -1) return
+    const removeNames = visitedViews.value
+      .filter((v, i) => i < index && !v.meta?.affix && typeof v.name === 'string')
+      .map((v) => v.name as string)
+    cachedViews.value = cachedViews.value.filter((name) => !removeNames.includes(name))
+  }
+
   function delAllVisitedViews() {
     visitedViews.value = visitedViews.value.filter((tag) => tag.meta?.affix)
   }
@@ -74,6 +104,10 @@ export const useTagsViewStore = defineStore('tags-view', () => {
     delCachedView,
     delOthersVisitedViews,
     delOthersCachedViews,
+    delRightVisitedViews,
+    delRightCachedViews,
+    delLeftVisitedViews,
+    delLeftCachedViews,
     delAllVisitedViews,
     delAllCachedViews,
     clear,
