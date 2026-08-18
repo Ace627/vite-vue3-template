@@ -82,11 +82,6 @@ function normalizePath(path: string): string {
 function handleMenuItemClick(item: OneChild) {
   const path: string = resolvePath(item.path)
   if (isExternal(path)) return window.open(path, '_blank', 'noopener')
-  // 特殊路径新窗口打开
-  // if (path.includes('analysis')) {
-  //   const href = router.resolve(path).href
-  //   return window.open(href, '_blank', 'noopener')
-  // }
   router.push(path)
 }
 </script>

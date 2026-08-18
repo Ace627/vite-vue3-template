@@ -35,6 +35,12 @@ import type { SystemSetting } from '@/defaultSettings'
 
 const settingStore = useSettingStore()
 
+const SIZE_OPTIONS = [
+  { label: '大号尺寸', value: 'large' },
+  { label: '默认尺寸', value: 'default' },
+  { label: '小号尺寸', value: 'small' },
+]
+
 const TRANSITION_OPTIONS = [
   { label: '淡入淡出', value: 'el-fade-in' },
   { label: '顶部缩放', value: 'el-zoom-in-top' },
@@ -60,6 +66,7 @@ const items: SettingItem[] = [
   { type: 'switch', label: '面包屑图标', prop: 'showBreadcrumbIcon' },
   { type: 'switch', label: '多标签模式', prop: 'showTagsView' },
   { type: 'switch', label: '显示页签图标', prop: 'showTagsViewIcon' },
+  { type: 'select', label: '组件尺寸', prop: 'size', options: SIZE_OPTIONS },
   { type: 'select', label: '页面转场动效', prop: 'transition', options: TRANSITION_OPTIONS },
 ]
 </script>

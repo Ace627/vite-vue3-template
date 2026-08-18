@@ -4,6 +4,8 @@ import { removeAccessToken, setAccessToken } from '@/utils'
 import defaultAvatar from '@/assets/images/default-avatar.jpg'
 
 export const useUserStore = defineStore('user', () => {
+  const tagsViewStore = useTagsViewStore()
+
   /** 登录者的信息 */
   const currentUserInfo = ref({} as Auth.CurrentUserInfo)
   /** 角色列表 */
@@ -35,6 +37,7 @@ export const useUserStore = defineStore('user', () => {
       console.error('退出登录失败:', errMessage)
     } finally {
       removeAccessToken()
+      tagsViewStore.clear()
     }
   }
 

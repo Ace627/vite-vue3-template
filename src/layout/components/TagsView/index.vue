@@ -38,11 +38,11 @@
         <SvgIcon name="Close" size="1.2em" class="mr-4px" />
         <span>关闭当前</span>
       </li>
-      <li @click="closeLeftTags(activeTag)">
+      <li @click="closeLeftTags(activeTag)" v-if="leftClosable">
         <SvgIcon name="Close" size="1.2em" class="mr-4px" />
         <span>关闭左侧</span>
       </li>
-      <li @click="closeRightTags(activeTag)">
+      <li @click="closeRightTags(activeTag)" v-if="rightClosable">
         <SvgIcon name="Close" size="1.2em" class="mr-4px" />
         <span>关闭右侧</span>
       </li>
@@ -76,6 +76,20 @@ const scrollbarRef = useTemplateRef('scrollbarRef')
 const activeTag = ref<TagView>({})
 /** 给右箭头右边的刷新和下拉菜单用的刷新标签页 */
 const selectedDropdownTag = computed(() => tagsViewStore.visitedViews.find((view) => isActive(view)) || {})
+
+/** 左侧是否存在可关闭（非固定）的标签页 */
+const leftClosable = computed(() => {
+  const index = tagsViewStore.visitedViews.findIndex((v) => v.path === activeTag.value.path)
+  if (index === -1) return false
+  return tagsViewStore.visitedViews.slice(0, index).some((v) => !isAffix(v))
+})
+
+/** 右侧是否存在可关闭（非固定）的标签页 */
+const rightClosable = computed(() => {
+  const index = tagsViewStore.visitedViews.findIndex((v) => v.path === activeTag.value.path)
+  if (index === -1) return false
+  return tagsViewStore.visitedViews.slice(index + 1).some((v) => !isAffix(v))
+})
 
 /** 右键菜单的状态 */
 const visible = ref(false)
@@ -209,8 +223,7 @@ function closeLeftTags(view: TagView) {
   const views = tagsViewStore.visitedViews
   const index = views.findIndex((v) => v.path === view.path)
   const currentClosed = index !== -1 && views.findIndex((v) => v.path === route.path) < index
-  tagsViewStore.delLeftVisitedViews(view)
-  tagsViewStore.delLeftCachedViews(view)
+  tagsViewStore.delLeftTags(view)
   if (currentClosed) router.push(view.fullPath || view.path || RouterConstant.HOME_PAGE_URL)
 }
 
@@ -219,8 +232,7 @@ function closeRightTags(view: TagView) {
   const views = tagsViewStore.visitedViews
   const index = views.findIndex((v) => v.path === view.path)
   const currentClosed = index !== -1 && views.findIndex((v) => v.path === route.path) > index
-  tagsViewStore.delRightVisitedViews(view)
-  tagsViewStore.delRightCachedViews(view)
+  tagsViewStore.delRightTags(view)
   if (currentClosed) router.push(view.fullPath || view.path || RouterConstant.HOME_PAGE_URL)
 }
 
