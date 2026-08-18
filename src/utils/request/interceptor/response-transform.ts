@@ -7,7 +7,7 @@ export function responseTransformInterceptor(instance: AxiosInstance) {
       const responseType = response.config.responseType || ''
       const contentType = (response.headers['content-type'] || '') as string
       let code = response.data.code || HttpStatusCode.Ok
-      let message = response.data.message
+      let message = response.data.message || response.data.msg
 
       const isJsonBlob = response.data instanceof Blob && response.data.type.includes('application/json')
       const isJsonStream = response.data instanceof ReadableStream && contentType.includes('application/json')
