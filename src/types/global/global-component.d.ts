@@ -7,6 +7,7 @@ declare module 'vue' {
     SvgIcon: (typeof import('../components/SvgIcon/index.vue'))['default']
     ProChart: (typeof import('../components/ProChart/index.vue'))['default']
     ProTable: (typeof import('../components/ProTable/index.vue'))['default']
+    ProTooltip: (typeof import('../components/ProTooltip/index.vue'))['default']
     ProPagination: (typeof import('../components/ProPagination/index.vue'))['default']
   }
 }
