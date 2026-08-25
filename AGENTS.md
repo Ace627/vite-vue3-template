@@ -45,6 +45,12 @@
   - 而是**提醒用户**：补充对应方法，并在 `src/utils/index.ts` 用 `export * from './xxx'` 或显式 re-export 暴露后，再统一从 `@/utils` 引入使用；
   - 若本次确需落地该方法，把它加到 `utils` 下合适的文件，同步在 `index.ts` 补导出，并明确告知用户「已新增 XXX 方法并导出」。
 
+## 4. 组合式函数放在 `src/hooks`，不要叫 `composables`
+- 本项目约定**组合式函数（Composable）统一放 `src/hooks/` 目录**，不要新建或使用 `composables` 命名（含目录、文件名、注释、文档）。
+- 命名与导出：文件名以 `use` 开头驼峰（如 `useTheme.ts`、`useDynamicTitle.ts`），默认导出或命名导出函数；组件内按 `@/hooks/xxx` 引入。
+- **禁止**：新建 `src/composables/` 目录，或把组合式逻辑写进 `components/`、`views/`、`utils/` 等非专属位置（纯工具函数才归 `utils`）。
+- 已有示例：`src/hooks/useTheme.ts`（`useTheme()` 暴露 `isDark` / `applyTheme` / `toggleTheme`）、`src/hooks/useDynamicTitle.ts`。新增组合式函数照此归位。
+
 ---
 
 > 关联约定详见 `docs/前端工程化.md`（「样式与 UI」章节：UnoCSS / SVG 图标 / Element Plus 按需）与 `.workbuddy/memory/MEMORY.md`。

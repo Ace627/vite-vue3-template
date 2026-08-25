@@ -18,7 +18,7 @@ Vite ^8.1.1 / Vue ^3.5.39 / TS ~6.0.2 / vue-tsc ^3.3.5 / @vitejs/plugin-vue ^6.0
   - 类型声明坑：官方插件 `package.json.exports` 未暴露 `./client`，故在 `src/types/global/vite-env.d.ts` 用 `declare module 'virtual:svg-icons-register'`(及 `'virtual:svg-icons-names'`) 手动声明，`vue-tsc -b` 方通过。
 - ElementPlus（按需+sass主题+暗黑）：`unplugin-vue-components`+`ElementPlusResolver({importStyle:'sass'})` 管模板组件样式；`unplugin-auto-import`+同 resolver 管 API；`unplugin-element-plus({useSource:true})` 管函数式 API 样式注入，**三处缺一不可**。`vite.config.ts` `additionalData` 注入 `el-theme-light.scss`(primary `#0077ff`)；暗黑主色仍 EP 默认蓝 `#409eff`。
 - 样式分层：`public/css/reset.css` `<link>` 引入(不进打包防 FOUC；oxfmt 已 ignore)；`src/styles/index.scss` 入口(引入 `variables.scss`+`el-theme-dark.scss`+body 背景)；`variables.scss` 放 navbar 等变量。reset.css 含 view-transition 关闭默认动画 + `.dark::view-transition-old(root){z-index:2026}`。
-- **AI 代码约束**见根 `AGENTS.md`(三条)：图标统一 `<SvgIcon>`/EP 组件图标位用插槽塞 SvgIcon/复用 `@/utils`(统一入口，禁散装子路径 import，缺失则补到 utils 并导出)。
+- **AI 代码约束**见根 `AGENTS.md`(四条)：图标统一 `<SvgIcon>`/EP 组件图标位用插槽塞 SvgIcon/复用 `@/utils`(统一入口，禁散装子路径 import，缺失则补到 utils 并导出)/**组合式函数放 `src/hooks` 禁 `composables` 命名**。
 - **`@/utils` barrel 循环依赖红线**：第3条针对 `src/utils` 之外的消费者；属于 barrel 导出图的 `src/utils` 内部模块必须走相对子路径、禁 `import ... from '@/utils'`（否则循环依赖）。`src/utils/request/...` 不在导出图内，可安全用 barrel 引入。修复散装 import 时先判断文件是否属于导出图。
 - 首屏 loading：`index.html` `#app` `.app-loading` + `public/css/app-loading.css`，`main.ts` 靠 `app.mount` 清空 container。
 - **业务路由页基础容器 `.app-content`（2026-07-25 定）**：所有挂载在 layout 内的业务路由页根元素统一加 `app-content` 类（`src/styles/index.scss`：`position:relative;width:100%;padding:16px`；移动端 `html[data-device='mobile'] .app-content{padding:12px}`）。页面内不再各自写 `padding`/`min-height`。
