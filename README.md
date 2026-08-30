@@ -9,13 +9,13 @@
 | 能力域 | 落地的工程化手段 |
 | --- | --- |
 | 构建与产物优化 | vendor chunk 分包 / gzip 预压缩 / 构建期剔除 console·debugger / Vite 插件抽离 |
-| 类型与代码质量 | 严格 TypeScript / oxfmt 统一格式化 / 脚手架清理 |
+| 类型与代码质量 | 严格 TypeScript / Prettier 统一格式化 / 脚手架清理 |
 | 开发体验 | 路径别名 `@/*` / unplugin 自动导入 / 反向代理 / 多环境 `.env` |
 | 状态与路由 | Pinia / vue-router 三层结构 + 登录态守卫 / 模拟登录登出 |
 | 请求层 | axios 统一实例 + 三拦截器 + `ApiResponse<T>` 契约 |
 | 样式与 UI | UnoCSS / 样式分层 / SVG 图标 / Element Plus 按需 + sass 主题 / 主题切换（亮↔暗，View Transitions 圆形扩散）/ 设置页 / 全局水印 / 移动端适配 |
 | 首屏体验 | 首屏加载动画（白屏兜底） |
-| 工程化沉淀 | 3 个项目级 Skill（git-commit-msg / path-alias / add-global-component） |
+| 工程化沉淀 | 3 个项目级 Skill（add-global-component / iterate-docs / path-alias） |
 
 > 上面每一项「为什么这么配、带来什么好处」，都在 [`docs/前端工程化.md`](./docs/前端工程化.md) 里。
 
@@ -36,7 +36,7 @@
 pnpm install   # 安装依赖
 pnpm dev       # 启动开发服务器
 pnpm build     # 类型检查 + 生产构建（vue-tsc -b && vite build）
-pnpm format    # 用 oxfmt 统一格式化
+pnpm format    # 用 Prettier 统一格式化
 ```
 
 > 如果本机 pnpm 用不了，也能直接跑本地二进制，比如 `node node_modules/vite/bin/vite.js`。
@@ -50,7 +50,7 @@ pnpm format    # 用 oxfmt 统一格式化
 
 ## 项目级 Skill
 
-`.workbuddy/skills/` 下内置了三个项目级 Skill：`git-commit-msg`（提交规范）、`path-alias`（路径别名）、`add-global-component`（新增全局组件），把固定流程沉淀成了可复用的步骤。具体看 [`docs/前端工程化.md`](./docs/前端工程化.md) 对应章节。
+`.workbuddy/skills/` 下内置了三个项目级 Skill：`add-global-component`（新增全局组件）、`path-alias`（路径别名）、`iterate-docs`（文档随代码同步），把固定流程沉淀成了可复用的步骤。具体看 [`docs/前端工程化.md`](./docs/前端工程化.md) 对应章节。
 
 ---
 
