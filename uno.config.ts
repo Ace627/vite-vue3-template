@@ -7,7 +7,6 @@ import { defineConfig, presetAttributify, presetWind3 } from 'unocss'
 export default defineConfig({
   content: {
     pipeline: {
-      include: ['src/**/*.{vue,html,ts,tsx}'],
       exclude: ['node_modules', 'dist', '.git', '.vscode', 'public', 'build', 'config', '.github', 'types'],
     },
   },
