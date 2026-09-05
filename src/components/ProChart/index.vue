@@ -1,10 +1,10 @@
 <template>
   <!-- 图表容器，使用 wh-full 类名设置宽高为 100% -->
-  <div class="pro-chart relative" ref="proChartRef" :style="styles"></div>
+  <div class="pro-chart relative" ref="proChartRef" :class="customClass"></div>
 </template>
 <script setup lang="ts">
 defineOptions({ name: 'ProChart' })
-import { echarts, isEmpty, isNumber } from '@/utils'
+import { echarts, isEmpty } from '@/utils'
 import type { EChartsType, EChartsOption } from 'echarts'
 
 /**
@@ -12,17 +12,11 @@ import type { EChartsType, EChartsOption } from 'echarts'
  * @property {EChartsOption} options - ECharts 核心配置项，遵循 ECharts 官方配置规范，必传且默认空对象
  */
 const props = defineProps({
-  width: { type: String, default: '100%' },
-  height: { type: String, default: '100%' },
+  customClass: { type: String },
   options: { type: Object as PropType<EChartsOption>, default: () => ({}) },
 })
 
 const settingStore = useSettingStore()
-
-const styles = computed(() => ({
-  width: isNumber(props.width) ? `${props.width}px` : props.width,
-  height: isNumber(props.height) ? `${props.height}px` : props.height,
-}))
 
 /** 获取图表 DOM 元素的引用 */
 const chartDOM = useTemplateRef('proChartRef')

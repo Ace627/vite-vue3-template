@@ -34,7 +34,6 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   },
 
   {
-    name: 'NotFound',
     path: '/:pathMatch(.*)*', // 404页面（必须放在最后）
     component: () => import('@/views/core/404.vue'),
     meta: { hidden: true },

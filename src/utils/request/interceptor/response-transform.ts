@@ -22,11 +22,14 @@ export function responseTransformInterceptor(instance: AxiosInstance) {
       // 传递给 responseErrorInterceptor 处理异常响应
       if (code !== HttpStatusCode.Ok) return Promise.reject({ response: { status: code, data: { message } } })
 
-      // 处理普通响应
-      if (code === HttpStatusCode.Ok) return response.data.data
+      // 处理二进制响应
+      if (['arraybuffer', 'blob'].includes(responseType)) return response
 
       // 处理流式响应
       if (responseType === 'stream') return response.data
+
+      // 处理普通响应
+      if (code === HttpStatusCode.Ok) return response.data.data
 
       return response
     },
